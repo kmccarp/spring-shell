@@ -78,7 +78,7 @@ public interface ShellTestClient extends Closeable {
 	 * @return a Builder
 	 */
 	public static Builder builder(TerminalSession terminalSession, Shell shell, PromptProvider promptProvider,
-			LineReader lineReader, Terminal terminal) {
+																																																																									  LineReader lineReader, Terminal terminal) {
 		return new DefaultBuilder(terminalSession, shell, promptProvider, lineReader, terminal);
 	}
 
@@ -95,7 +95,7 @@ public interface ShellTestClient extends Closeable {
 		ShellTestClient build();
 	}
 
-	interface BaseShellSession<T extends BaseShellSession<T>>  {
+	interface BaseShellSession<T extends BaseShellSession<T>> {
 
 		/**
 		 * Get a write sequencer.
@@ -144,7 +144,7 @@ public interface ShellTestClient extends Closeable {
 		private Terminal terminal;
 
 		DefaultBuilder(TerminalSession terminalSession, Shell shell, PromptProvider promptProvider,
-				LineReader lineReader, Terminal terminal) {
+				  LineReader lineReader, Terminal terminal) {
 			this.terminalSession = terminalSession;
 			this.shell = shell;
 			this.promptProvider = promptProvider;
@@ -170,7 +170,7 @@ public interface ShellTestClient extends Closeable {
 		private final BlockingQueue<ShellRunnerTaskData> blockingQueue = new LinkedBlockingDeque<>(10);
 
 		DefaultShellClient(TerminalSession terminalSession, Shell shell, PromptProvider promptProvider,
-				LineReader lineReader, Terminal terminal) {
+					  LineReader lineReader, Terminal terminal) {
 			this.terminalSession = terminalSession;
 			this.shell = shell;
 			this.promptProvider = promptProvider;
@@ -225,7 +225,7 @@ public interface ShellTestClient extends Closeable {
 		private final AtomicInteger state = new AtomicInteger(-2);
 
 		public DefaultInteractiveShellSession(Shell shell, PromptProvider promptProvider, LineReader lineReader,
-				BlockingQueue<ShellRunnerTaskData> blockingQueue, TerminalSession terminalSession, Terminal terminal) {
+										 BlockingQueue<ShellRunnerTaskData> blockingQueue, TerminalSession terminalSession, Terminal terminal) {
 			this.shell = shell;
 			this.promptProvider = promptProvider;
 			this.lineReader = lineReader;
@@ -274,7 +274,7 @@ public interface ShellTestClient extends Closeable {
 		private final AtomicInteger state = new AtomicInteger(-2);
 
 		public DefaultNonInteractiveShellSession(Shell shell, String[] args,
-				BlockingQueue<ShellRunnerTaskData> blockingQueue, TerminalSession terminalSession, Terminal terminal) {
+											BlockingQueue<ShellRunnerTaskData> blockingQueue, TerminalSession terminalSession, Terminal terminal) {
 			this.shell = shell;
 			this.args = args;
 			this.blockingQueue = blockingQueue;
@@ -316,7 +316,8 @@ public interface ShellTestClient extends Closeable {
 		ShellRunner runner,
 		ApplicationArguments args,
 		AtomicInteger state
-	) {}
+	) {
+	}
 
 	static class ShellRunnerTask implements Runnable {
 

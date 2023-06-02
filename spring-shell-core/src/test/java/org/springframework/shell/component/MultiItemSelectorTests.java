@@ -206,7 +206,7 @@ public class MultiItemSelectorTests extends AbstractShellTests {
 		Stream<String> datas = selected.stream().map(SelectorItem::getItem).map(SimplePojo::getData);
 		assertThat(datas).containsExactlyInAnyOrder("data4");
 	}
-	
+
 	@Test
 	public void testDefaultSelection() throws InterruptedException {
 		scheduleSelect(Arrays.asList(SELECTOR_ITEM_1, SELECTOR_ITEM_2, SELECTOR_ITEM_7, SELECTOR_ITEM_8));

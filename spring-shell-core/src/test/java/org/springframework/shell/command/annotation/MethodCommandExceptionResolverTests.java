@@ -39,7 +39,7 @@ class MethodCommandExceptionResolverTests {
 
 		Exception called;
 
-		@ExceptionResolver({ CustomException1.class })
+		@ExceptionResolver({CustomException1.class})
 		CommandHandlingResult errorHandler(Exception e) {
 			called = e;
 			return CommandHandlingResult.of("Hi, handled exception\n", 42);
@@ -60,7 +60,7 @@ class MethodCommandExceptionResolverTests {
 
 		boolean called;
 
-		@ExceptionResolver({ CustomException1.class })
+		@ExceptionResolver({CustomException1.class})
 		CommandHandlingResult errorHandler() {
 			called = true;
 			return CommandHandlingResult.of("Hi, handled exception\n", 42);

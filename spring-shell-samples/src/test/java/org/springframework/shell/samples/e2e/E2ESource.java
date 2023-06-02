@@ -28,7 +28,7 @@ import org.junit.jupiter.params.provider.ArgumentsSource;
  *
  * @author Janne Valkealahti
  */
-@Target({ ElementType.ANNOTATION_TYPE, ElementType.METHOD })
+@Target({ElementType.ANNOTATION_TYPE, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @ArgumentsSource(E2EArgumentsProvider.class)

@@ -42,9 +42,9 @@ class SelectorListTests {
 
 		assertThat(list.getSelected().getName()).isEqualTo("name0");
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.hasProjectionSize(5)
-			.namesContainsExactly("name0", "name1", "name2", "name3", "name4")
-			.selectedContainsExactly(true, false, false, false, false);
+				.hasProjectionSize(5)
+				.namesContainsExactly("name0", "name1", "name2", "name3", "name4")
+				.selectedContainsExactly(true, false, false, false, false);
 	}
 
 	@Test
@@ -52,38 +52,38 @@ class SelectorListTests {
 		SelectorList<TestItem> list = SelectorList.of(3);
 		list.reset(items(3));
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(true, false, false);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(true, false, false);
 
 		list.scrollDown();
 		assertThat(list.getSelected().getName()).isEqualTo("name1");
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(false, true, false);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(false, true, false);
 
 		list.scrollDown();
 		assertThat(list.getSelected().getName()).isEqualTo("name2");
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(false, false, true);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(false, false, true);
 
 		list.scrollDown();
 		assertThat(list.getSelected().getName()).isEqualTo("name0");
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(true, false, false);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(true, false, false);
 
 		list.scrollDown();
 		assertThat(list.getSelected().getName()).isEqualTo("name1");
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(false, true, false);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(false, true, false);
 
 		list.scrollDown();
 		assertThat(list.getSelected().getName()).isEqualTo("name2");
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(false, false, true);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(false, false, true);
 	}
 
 	@Test
@@ -91,38 +91,38 @@ class SelectorListTests {
 		SelectorList<TestItem> list = SelectorList.of(3);
 		list.reset(items(3));
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(true, false, false);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(true, false, false);
 
 		list.scrollUp();
 		assertThat(list.getSelected().getName()).isEqualTo("name2");
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(false, false, true);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(false, false, true);
 
 		list.scrollUp();
 		assertThat(list.getSelected().getName()).isEqualTo("name1");
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(false, true, false);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(false, true, false);
 
 		list.scrollUp();
 		assertThat(list.getSelected().getName()).isEqualTo("name0");
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(true, false, false);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(true, false, false);
 
 		list.scrollUp();
 		assertThat(list.getSelected().getName()).isEqualTo("name2");
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(false, false, true);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(false, false, true);
 
 		list.scrollUp();
 		assertThat(list.getSelected().getName()).isEqualTo("name1");
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(false, true, false);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(false, true, false);
 	}
 
 	@Test
@@ -130,21 +130,21 @@ class SelectorListTests {
 		SelectorList<TestItem> list = SelectorList.of(3);
 		list.reset(items(5));
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(true, false, false);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(true, false, false);
 
 		list.scrollDown();
 		list.scrollDown();
 		list.scrollDown();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name1", "name2", "name3")
-			.selectedContainsExactly(false, false, true);
+				.namesContainsExactly("name1", "name2", "name3")
+				.selectedContainsExactly(false, false, true);
 
 		list.scrollDown();
 		list.scrollDown();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(true, false, false);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(true, false, false);
 	}
 
 	@Test
@@ -152,33 +152,33 @@ class SelectorListTests {
 		SelectorList<TestItem> list = SelectorList.of(3);
 		list.reset(items(5));
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(true, false, false);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(true, false, false);
 
 		list.scrollUp();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name2", "name3", "name4")
-			.selectedContainsExactly(false, false, true);
+				.namesContainsExactly("name2", "name3", "name4")
+				.selectedContainsExactly(false, false, true);
 
 		list.scrollUp();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name2", "name3", "name4")
-			.selectedContainsExactly(false, true, false);
+				.namesContainsExactly("name2", "name3", "name4")
+				.selectedContainsExactly(false, true, false);
 
 		list.scrollUp();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name2", "name3", "name4")
-			.selectedContainsExactly(true, false, false);
+				.namesContainsExactly("name2", "name3", "name4")
+				.selectedContainsExactly(true, false, false);
 
 		list.scrollUp();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name1", "name2", "name3")
-			.selectedContainsExactly(true, false, false);
+				.namesContainsExactly("name1", "name2", "name3")
+				.selectedContainsExactly(true, false, false);
 
 		list.scrollUp();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1", "name2")
-			.selectedContainsExactly(true, false, false);
+				.namesContainsExactly("name0", "name1", "name2")
+				.selectedContainsExactly(true, false, false);
 	}
 
 	@Test
@@ -188,18 +188,18 @@ class SelectorListTests {
 
 		list.scrollUp();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name2", "name3", "name4")
-			.selectedContainsExactly(false, false, true);
+				.namesContainsExactly("name2", "name3", "name4")
+				.selectedContainsExactly(false, false, true);
 
 		list.scrollUp();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name2", "name3", "name4")
-			.selectedContainsExactly(false, true, false);
+				.namesContainsExactly("name2", "name3", "name4")
+				.selectedContainsExactly(false, true, false);
 
 		list.scrollDown();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name2", "name3", "name4")
-			.selectedContainsExactly(false, false, true);
+				.namesContainsExactly("name2", "name3", "name4")
+				.selectedContainsExactly(false, false, true);
 	}
 
 	@Test
@@ -209,23 +209,23 @@ class SelectorListTests {
 
 		list.scrollUp();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name2", "name3", "name4")
-			.selectedContainsExactly(false, false, true);
+				.namesContainsExactly("name2", "name3", "name4")
+				.selectedContainsExactly(false, false, true);
 
 		list.scrollUp();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name2", "name3", "name4")
-			.selectedContainsExactly(false, true, false);
+				.namesContainsExactly("name2", "name3", "name4")
+				.selectedContainsExactly(false, true, false);
 
 		list.scrollUp();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name2", "name3", "name4")
-			.selectedContainsExactly(true, false, false);
+				.namesContainsExactly("name2", "name3", "name4")
+				.selectedContainsExactly(true, false, false);
 
 		list.scrollDown();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name2", "name3", "name4")
-			.selectedContainsExactly(false, true, false);
+				.namesContainsExactly("name2", "name3", "name4")
+				.selectedContainsExactly(false, true, false);
 
 	}
 
@@ -236,13 +236,14 @@ class SelectorListTests {
 
 		list.scrollUp();
 		assertThat(list).asInstanceOf(SELECTOR_LIST)
-			.namesContainsExactly("name0", "name1")
-			.selectedContainsExactly(false, true);
+				.namesContainsExactly("name0", "name1")
+				.selectedContainsExactly(false, true);
 	}
 
 	private static class TestItem implements Nameable {
 
 		String name;
+
 		TestItem(String name) {
 			this.name = name;
 		}
@@ -255,10 +256,10 @@ class SelectorListTests {
 
 	List<TestItem> items(int count) {
 		return IntStream.range(0, count)
-			.mapToObj(i -> {
-				return new TestItem("name" + i);
-			})
-			.collect(Collectors.toList());
+				.mapToObj(i -> {
+					return new TestItem("name" + i);
+				})
+				.collect(Collectors.toList());
 	}
 
 	@SuppressWarnings("rawtypes")
@@ -285,8 +286,8 @@ class SelectorListTests {
 		public SelectorListAssert<T> namesContainsExactly(String... names) {
 			isNotNull();
 			List<String> actualNames = actual.getProjection().stream()
-				.map(i -> i.getName())
-				.collect(Collectors.toList());
+					.map(i -> i.getName())
+					.collect(Collectors.toList());
 			assertThat(actualNames).containsExactly(names);
 			return this;
 		}
@@ -294,8 +295,8 @@ class SelectorListTests {
 		public SelectorListAssert<T> selectedContainsExactly(Boolean... selected) {
 			isNotNull();
 			List<Boolean> actualSelected = actual.getProjection().stream()
-				.map(i -> i.isSelected())
-				.collect(Collectors.toList());
+					.map(i -> i.isSelected())
+					.collect(Collectors.toList());
 			assertThat(actualSelected).containsExactly(selected);
 			return this;
 		}

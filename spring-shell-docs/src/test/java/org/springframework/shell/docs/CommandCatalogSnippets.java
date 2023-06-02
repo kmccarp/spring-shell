@@ -40,8 +40,8 @@ public class CommandCatalogSnippets {
 
 		CustomCommandResolver() {
 			CommandRegistration resolved = CommandRegistration.builder()
-				.command("resolve command")
-				.build();
+					.command("resolve command")
+					.build();
 			registrations.add(resolved);
 		}
 
@@ -50,6 +50,7 @@ public class CommandCatalogSnippets {
 			return registrations;
 		}
 	}
+
 	// end::snippet2[]
 
 	// tag::snippet3[]
@@ -58,8 +59,8 @@ public class CommandCatalogSnippets {
 		@Override
 		public void customize(CommandCatalog commandCatalog) {
 			CommandRegistration registration = CommandRegistration.builder()
-				.command("resolve command")
-				.build();
+					.command("resolve command")
+					.build();
 			commandCatalog.register(registration);
 		}
 	}

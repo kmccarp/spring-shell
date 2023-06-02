@@ -35,10 +35,10 @@ public class CompleteCommands {
 	@Bean
 	CommandRegistration completeCommandRegistration1() {
 		return CommandRegistration.builder()
-			.command("complete", "sample1")
-			.description("complete sample1")
-			.group("Complete Commands")
-			.withOption()
+				.command("complete", "sample1")
+				.description("complete sample1")
+				.group("Complete Commands")
+				.withOption()
 				.longNames("arg1")
 				.completion(ctx -> {
 					CompletionProposal p1 = new CompletionProposal("arg1hi1");
@@ -46,7 +46,7 @@ public class CompleteCommands {
 					return Arrays.asList(p1, p2);
 				})
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg2")
 				.completion(ctx -> {
 					CompletionProposal p1 = new CompletionProposal("arg2hi1");
@@ -54,13 +54,13 @@ public class CompleteCommands {
 					return Arrays.asList(p1, p2);
 				})
 				.and()
-			.withTarget()
+				.withTarget()
 				.function(ctx -> {
 					String arg1 = ctx.getOptionValue("arg1");
 					return String.format("hi, arg1 value is '%s'", arg1);
 				})
 				.and()
-			.build();
+				.build();
 	}
 
 	@ShellMethod(value = "complete sample2", key = "complete sample2")
@@ -75,10 +75,10 @@ public class CompleteCommands {
 
 	static class FunnyValuesProvider implements ValueProvider {
 
-		private final static String[] VALUES = new String[] {
-			"hello world",
-			"I am quoting \"The Daily Mail\"",
-			"10 \\ 3 = 3"
+		private final static String[] VALUES = new String[]{
+				"hello world",
+				"I am quoting \"The Daily Mail\"",
+				"10 \\ 3 = 3"
 		};
 
 		@Override
@@ -90,10 +90,10 @@ public class CompleteCommands {
 	@Bean
 	CommandRegistration completeCommandRegistration3() {
 		return CommandRegistration.builder()
-			.command("complete", "sample3")
-			.description("complete sample3")
-			.group("Complete Commands")
-			.withOption()
+				.command("complete", "sample3")
+				.description("complete sample3")
+				.group("Complete Commands")
+				.withOption()
 				.longNames("arg1")
 				.type(MyEnums.class)
 				.completion(ctx -> {
@@ -103,13 +103,13 @@ public class CompleteCommands {
 					return Arrays.asList(p1, p2, p3);
 				})
 				.and()
-			.withTarget()
+				.withTarget()
 				.function(ctx -> {
 					String arg1 = ctx.getOptionValue("arg1");
 					return String.format("You said '%s'", arg1);
 				})
 				.and()
-			.build();
+				.build();
 	}
 
 	@ShellMethod(value = "complete sample4", key = "complete sample4")

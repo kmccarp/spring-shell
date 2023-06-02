@@ -37,7 +37,7 @@ public class KeyValueRenderingTests extends AbstractTestWithSample {
 		values.put("a", "b");
 		values.put("long-key", "c");
 		values.put("d", "long-value");
-		TableModel model = new ArrayTableModel(new Object[][] {{"Thing", "Properties"}, {"Something", values}});
+		TableModel model = new ArrayTableModel(new Object[][]{{"Thing", "Properties"}, {"Something", values}});
 		TableBuilder tableBuilder = new TableBuilder(model)
 				.addHeaderAndVerticalsBorders(BorderStyle.fancy_light);
 		Tables.configureKeyValueRendering(tableBuilder, " = ");
@@ -52,7 +52,7 @@ public class KeyValueRenderingTests extends AbstractTestWithSample {
 		values.put("a", "b");
 		values.put("long-key", "c");
 		values.put("d", "long-value");
-		TableModel model = new ArrayTableModel(new Object[][] {{"Thing", "Properties"}, {"Something", values}});
+		TableModel model = new ArrayTableModel(new Object[][]{{"Thing", "Properties"}, {"Something", values}});
 		TableBuilder tableBuilder = new TableBuilder(model)
 				.addHeaderAndVerticalsBorders(BorderStyle.fancy_light);
 		Tables.configureKeyValueRendering(tableBuilder, " = ");

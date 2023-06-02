@@ -51,17 +51,17 @@ public class CommandExecutionCustomConversionTests {
 		Pojo1 pojo1 = new Pojo1();
 
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method1")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "--arg1", "myarg1value" });
+		execution.evaluate(new String[]{"command1", "--arg1", "myarg1value"});
 		assertThat(pojo1.method1Pojo2).isNotNull();
 	}
 
@@ -70,17 +70,17 @@ public class CommandExecutionCustomConversionTests {
 		Pojo1 pojo1 = new Pojo1();
 
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method2")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "--arg1", "a,b" });
+		execution.evaluate(new String[]{"command1", "--arg1", "a,b"});
 		assertThat(pojo1.method2Pojo2).isNotNull();
 		assertThat(pojo1.method2Pojo2.length).isEqualTo(2);
 		assertThat(pojo1.method2Pojo2[0].arg).isEqualTo("a");
@@ -92,19 +92,19 @@ public class CommandExecutionCustomConversionTests {
 		Pojo1 pojo1 = new Pojo1();
 
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.arity(OptionArity.ONE_OR_MORE)
 				.position(0)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method2")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "a,b" });
+		execution.evaluate(new String[]{"command1", "a,b"});
 		assertThat(pojo1.method2Pojo2).isNotNull();
 		assertThat(pojo1.method2Pojo2.length).isEqualTo(2);
 		assertThat(pojo1.method2Pojo2[0].arg).isEqualTo("a");
@@ -118,18 +118,18 @@ public class CommandExecutionCustomConversionTests {
 		ResolvableType type = ResolvableType.forClassWithGenerics(List.class, Pojo1.class);
 
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.type(type)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method3")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "--arg1", "a,b" });
+		execution.evaluate(new String[]{"command1", "--arg1", "a,b"});
 		assertThat(pojo1.method3Pojo2).isNotNull();
 		assertThat(pojo1.method3Pojo2.size()).isEqualTo(2);
 		assertThat(pojo1.method3Pojo2.get(0)).isInstanceOf(Pojo2.class);
@@ -144,20 +144,20 @@ public class CommandExecutionCustomConversionTests {
 		ResolvableType type = ResolvableType.forClassWithGenerics(List.class, Pojo1.class);
 
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.arity(OptionArity.ONE_OR_MORE)
 				.position(0)
 				.type(type)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method3")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "a,b" });
+		execution.evaluate(new String[]{"command1", "a,b"});
 		assertThat(pojo1.method3Pojo2).isNotNull();
 		assertThat(pojo1.method3Pojo2.size()).isEqualTo(2);
 		assertThat(pojo1.method3Pojo2.get(0)).isInstanceOf(Pojo2.class);
@@ -170,17 +170,17 @@ public class CommandExecutionCustomConversionTests {
 		Pojo1 pojo1 = new Pojo1();
 
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method4")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "--arg1", "a,b" });
+		execution.evaluate(new String[]{"command1", "--arg1", "a,b"});
 		assertThat(pojo1.method4Pojo2).isNotNull();
 		assertThat(pojo1.method4Pojo2.size()).isEqualTo(2);
 		assertThat(pojo1.method4Pojo2.iterator().next()).isInstanceOf(Pojo2.class);
@@ -192,19 +192,19 @@ public class CommandExecutionCustomConversionTests {
 		Pojo1 pojo1 = new Pojo1();
 
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.arity(OptionArity.ONE_OR_MORE)
 				.position(0)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method4")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "a,b" });
+		execution.evaluate(new String[]{"command1", "a,b"});
 		assertThat(pojo1.method4Pojo2).isNotNull();
 		assertThat(pojo1.method4Pojo2.size()).isEqualTo(2);
 		assertThat(pojo1.method4Pojo2.iterator().next()).isInstanceOf(Pojo2.class);

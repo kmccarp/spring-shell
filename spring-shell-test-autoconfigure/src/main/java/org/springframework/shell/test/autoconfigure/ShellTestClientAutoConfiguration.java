@@ -36,7 +36,7 @@ public class ShellTestClientAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	ShellTestClient shellTestClient(TerminalSession widget, Shell shell, PromptProvider promptProvider,
-			LineReader lineReader, Terminal terminal) {
+																	LineReader lineReader, Terminal terminal) {
 		return ShellTestClient.builder(widget, shell, promptProvider, lineReader, terminal).build();
 	}
 }

@@ -51,7 +51,7 @@ public class Utils {
 	public static String unCamelify(CharSequence original) {
 		StringBuilder result = new StringBuilder(original.length());
 		boolean wasLowercase = false;
-		for (int i = 0; i < original.length(); i++) {
+		for (int i = 0;i < original.length();i++) {
 			char ch = original.charAt(i);
 			if (Character.isUpperCase(ch) && wasLowercase) {
 				result.append('-');
@@ -67,23 +67,26 @@ public class Utils {
 	 */
 	public static MethodParameter createMethodParameter(Parameter parameter) {
 		Parameter[] parameters = parameter.getDeclaringExecutable().getParameters();
-		for (int i = 0; i < parameters.length; i++) {
+		for (int i = 0;i < parameters.length;i++) {
 			if (parameters[i].equals(parameter)) {
 				return createMethodParameter(parameter.getDeclaringExecutable(), i);
 			}
 		}
 		throw new AssertionError("Can't happen");
 	}
+
 	/**
 	 * Return a properly initialized MethodParameter for the given executable and index.
 	 */
 	public static MethodParameter createMethodParameter(Executable executable, int i) {
 		MethodParameter methodParameter;
 		if (executable instanceof Method) {
-			methodParameter = new MethodParameter((Method) executable, i);
-		} else if (executable instanceof Constructor){
-			methodParameter = new MethodParameter((Constructor<?>) executable, i);
-		} else {
+			methodParameter = new MethodParameter((Method)executable, i);
+		}
+		else if (executable instanceof Constructor) {
+			methodParameter = new MethodParameter((Constructor<?>)executable, i);
+		}
+		else {
 			throw new IllegalArgumentException("Unsupported Executable: " + executable);
 		}
 		methodParameter.initParameterNameDiscovery(new DefaultParameterNameDiscoverer());
@@ -95,7 +98,7 @@ public class Utils {
 	 */
 	public static Stream<MethodParameter> createMethodParameters(Executable executable) {
 		return IntStream.range(0, executable.getParameterCount())
-			.mapToObj(i -> createMethodParameter(executable, i));
+				.mapToObj(i -> createMethodParameter(executable, i));
 	}
 
 	/**
@@ -105,9 +108,9 @@ public class Utils {
 	 */
 	public static List<String> sanitizeInput(List<String> words) {
 		words = words.stream()
-			.map(s -> s.replaceAll("^\\n+|\\n+$", "")) // CR at beginning/end of line introduced by backslash continuation
-			.map(s -> s.replaceAll("\\n+", " ")) // CR in middle of word introduced by return inside a quoted string
-			.collect(Collectors.toList());
+				.map(s -> s.replaceAll("^\\n+|\\n+$", "")) // CR at beginning/end of line introduced by backslash continuation
+				.map(s -> s.replaceAll("\\n+", " ")) // CR in middle of word introduced by return inside a quoted string
+				.collect(Collectors.toList());
 		return words;
 	}
 
@@ -149,12 +152,12 @@ public class Utils {
 		boolean[] boundaries = new boolean[array.length];
 		List<List<T>> split = new ArrayList<>();
 
-		for (int i = 0; i < array.length; i++) {
+		for (int i = 0;i < array.length;i++) {
 			boundaries[i] = predicate.test(array[i]);
 		}
 
 		int tail = 0;
-		for (int i = 0; i < boundaries.length; i++) {
+		for (int i = 0;i < boundaries.length;i++) {
 			if (boundaries[i]) {
 				if (tail < i) {
 					split.add(list.subList(tail, i));

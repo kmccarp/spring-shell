@@ -139,7 +139,7 @@ public class StandardMethodTargetRegistrarTests {
 	public static class Sample3 {
 
 		@ShellMethod("some command")
-		public String sayHello(@ShellOption( defaultValue = ShellOption.NULL) String what) {
+		public String sayHello(@ShellOption(defaultValue = ShellOption.NULL) String what) {
 			return "hello " + what;
 		}
 	}
@@ -183,6 +183,7 @@ public class StandardMethodTargetRegistrarTests {
 		public void sayHello() {
 
 		}
+
 		public Availability sayHelloAvailability() {
 			return available ? Availability.available() : Availability.unavailable("sayHelloAvailability");
 		}
@@ -193,6 +194,7 @@ public class StandardMethodTargetRegistrarTests {
 		public void hi() {
 
 		}
+
 		public Availability customAvailabilityMethod() {
 			return available ? Availability.available() : Availability.unavailable("customAvailabilityMethod");
 		}
@@ -334,10 +336,10 @@ public class StandardMethodTargetRegistrarTests {
 
 	@Test
 	public void testInteractionModeInteractive() {
-	    shellContext.setInteractionMode(InteractionMode.INTERACTIVE);
+		shellContext.setInteractionMode(InteractionMode.INTERACTIVE);
 		applicationContext = new AnnotationConfigApplicationContext(InteractionModeCommands.class);
 		registrar = new StandardMethodTargetRegistrar(applicationContext, builder);
-	    registrar.register(catalog);
+		registrar.register(catalog);
 
 		assertThat(catalog.getRegistrations().get("foo1")).isNotNull();
 		assertThat(catalog.getRegistrations().get("foo2")).isNull();
@@ -346,10 +348,10 @@ public class StandardMethodTargetRegistrarTests {
 
 	@Test
 	public void testInteractionModeNonInteractive() {
-	    shellContext.setInteractionMode(InteractionMode.NONINTERACTIVE);
+		shellContext.setInteractionMode(InteractionMode.NONINTERACTIVE);
 		applicationContext = new AnnotationConfigApplicationContext(InteractionModeCommands.class);
 		registrar = new StandardMethodTargetRegistrar(applicationContext, builder);
-	    registrar.register(catalog);
+		registrar.register(catalog);
 
 		assertThat(catalog.getRegistrations().get("foo1")).isNull();
 		assertThat(catalog.getRegistrations().get("foo2")).isNotNull();
@@ -374,10 +376,10 @@ public class StandardMethodTargetRegistrarTests {
 
 	@Test
 	public void testOptionUseDefaultValue() {
-	    shellContext.setInteractionMode(InteractionMode.NONINTERACTIVE);
+		shellContext.setInteractionMode(InteractionMode.NONINTERACTIVE);
 		applicationContext = new AnnotationConfigApplicationContext(DefaultValuesCommands.class);
 		registrar = new StandardMethodTargetRegistrar(applicationContext, builder);
-	    registrar.register(catalog);
+		registrar.register(catalog);
 
 		assertThat(catalog.getRegistrations().get("foo1")).isNotNull();
 		assertThat(catalog.getRegistrations().get("foo1").getOptions()).hasSize(1);

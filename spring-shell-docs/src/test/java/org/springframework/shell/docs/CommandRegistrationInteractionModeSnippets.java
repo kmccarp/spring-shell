@@ -24,15 +24,16 @@ public class CommandRegistrationInteractionModeSnippets {
 	// tag::snippet1[]
 	CommandRegistration commandRegistration() {
 		return CommandRegistration.builder()
-			.command("mycommand")
-			// can be defined for all modes
-			.interactionMode(InteractionMode.ALL)
-			// can be defined only for interactive
-			.interactionMode(InteractionMode.INTERACTIVE)
-			// can be defined only for non-interactive
-			.interactionMode(InteractionMode.NONINTERACTIVE)
-			.build();
+				.command("mycommand")
+				// can be defined for all modes
+				.interactionMode(InteractionMode.ALL)
+				// can be defined only for interactive
+				.interactionMode(InteractionMode.INTERACTIVE)
+				// can be defined only for non-interactive
+				.interactionMode(InteractionMode.NONINTERACTIVE)
+				.build();
 	}
+
 	// end::snippet1[]
 
 	static class Dump1 {

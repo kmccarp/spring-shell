@@ -37,6 +37,7 @@ public class ThemingSnippets {
 			return super.highlight();
 		}
 	}
+
 	// end::custom-style-class[]
 
 	// tag::custom-figure-class[]
@@ -47,6 +48,7 @@ public class ThemingSnippets {
 			return super.error();
 		}
 	}
+
 	// end::custom-figure-class[]
 
 	// tag::custom-theme-class[]
@@ -62,6 +64,7 @@ public class ThemingSnippets {
 			return new MyFigureSettings();
 		}
 	}
+
 	// end::custom-theme-class[]
 
 	// tag::custom-theme-config[]
@@ -83,6 +86,7 @@ public class ThemingSnippets {
 			};
 		}
 	}
+
 	// end::custom-theme-config[]
 
 	class Dump1 {

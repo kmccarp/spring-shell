@@ -42,7 +42,7 @@ public class EnumValueProvider implements ValueProvider {
 					Object[] enumConstants = clazz.getEnumConstants();
 					if (enumConstants != null) {
 						for (Object v : enumConstants) {
-							Enum<?> e = (Enum<?>) v;
+							Enum<?> e = (Enum<?>)v;
 							String prefix = completionContext.currentWordUpToCursor();
 							if (prefix == null) {
 								prefix = "";

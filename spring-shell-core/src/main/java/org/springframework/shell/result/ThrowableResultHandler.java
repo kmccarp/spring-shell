@@ -57,7 +57,7 @@ public class ThrowableResultHandler extends TerminalAwareResultHandler<Throwable
 	private ShellContext shellContext;
 
 	public ThrowableResultHandler(Terminal terminal, CommandCatalog commandCatalog, ShellContext shellContext,
-			ObjectProvider<InteractiveShellRunner> interactiveRunner) {
+								ObjectProvider<InteractiveShellRunner> interactiveRunner) {
 		super(terminal);
 		this.commandCatalog = commandCatalog;
 		this.shellContext = shellContext;
@@ -72,15 +72,15 @@ public class ThrowableResultHandler extends TerminalAwareResultHandler<Throwable
 		if (shouldHandle) {
 			String errorMsg = StringUtils.hasLength(result.getMessage()) ? result.getMessage() : result.toString();
 			terminal.writer().println(new AttributedString(errorMsg,
-				AttributedStyle.DEFAULT.foreground(AttributedStyle.RED)).toAnsi());
+					AttributedStyle.DEFAULT.foreground(AttributedStyle.RED)).toAnsi());
 
 			String noteMsg;
 			if (showShortError()) {
 				noteMsg = new AttributedStringBuilder()
-					.append("Details of the error have been omitted. You can use the ", AttributedStyle.DEFAULT.foreground(AttributedStyle.RED))
-					.append(DETAILS_COMMAND_NAME, AttributedStyle.DEFAULT.foreground(AttributedStyle.RED).bold())
-					.append(" command to print the full stacktrace.", AttributedStyle.DEFAULT.foreground(AttributedStyle.RED))
-					.toAnsi();
+						.append("Details of the error have been omitted. You can use the ", AttributedStyle.DEFAULT.foreground(AttributedStyle.RED))
+						.append(DETAILS_COMMAND_NAME, AttributedStyle.DEFAULT.foreground(AttributedStyle.RED).bold())
+						.append(" command to print the full stacktrace.", AttributedStyle.DEFAULT.foreground(AttributedStyle.RED))
+						.toAnsi();
 			}
 			else {
 				StringWriter sw = new StringWriter();
@@ -95,13 +95,13 @@ public class ThrowableResultHandler extends TerminalAwareResultHandler<Throwable
 		}
 		else {
 			if (result instanceof RuntimeException) {
-				throw (RuntimeException) result;
+				throw (RuntimeException)result;
 			}
 			else if (result instanceof Error) {
-				throw (Error) result;
+				throw (Error)result;
 			}
 			else {
-				throw new RuntimeException((Throwable) result);
+				throw new RuntimeException((Throwable)result);
 			}
 		}
 	}

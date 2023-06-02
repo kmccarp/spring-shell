@@ -29,7 +29,7 @@ class FuzzyMatchV2SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 
 	@Override
 	public SearchMatchResult match(boolean caseSensitive, boolean normalize, boolean forward, String text,
-			String pattern) {
+											String pattern) {
 		if (!StringUtils.hasText(pattern)) {
 			return SearchMatchResult.ofZeros();
 		}
@@ -66,7 +66,7 @@ class FuzzyMatchV2SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 		List<Integer> C0sub = slicex(C0, idx, Tsub.length());
 		List<Integer> Bsub = slicex(B, idx, Tsub.length());
 
-		for (int off = 0; off < Tsub.length(); off++) {
+		for (int off = 0;off < Tsub.length();off++) {
 			char c = Tsub.charAt(off);
 			CharClass clazz;
 
@@ -133,7 +133,7 @@ class FuzzyMatchV2SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 			return SearchMatchResult.ofMinus();
 		}
 		if (M == 1) {
-			return SearchMatchResult.of(maxScorePos, maxScorePos + 1, maxScore, new int[] { maxScorePos }, this);
+			return SearchMatchResult.of(maxScorePos, maxScorePos + 1, maxScore, new int[]{maxScorePos}, this);
 		}
 
 		// Phase 3. Fill in score matrix (H)
@@ -149,7 +149,7 @@ class FuzzyMatchV2SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 		String Psub = pattern.substring(1);
 		Psub = Psub.substring(0, Fsub.size());
 
-		for (int off = 0; off < Fsub.size(); off++) {
+		for (int off = 0;off < Fsub.size();off++) {
 			int f = Fsub.get(off);
 			char pchar2 = Psub.charAt(off);
 			int pidx2 = off + 1;
@@ -164,7 +164,7 @@ class FuzzyMatchV2SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 			List<Integer> Hleft = slicex(H, row + f - f0 - 1, Tsub2.length());
 			Hleft.set(0, 0);
 
-			for (int off2 = 0; off2 < Tsub2.length(); off2++) {
+			for (int off2 = 0;off2 < Tsub2.length();off2++) {
 				char c = Tsub2.charAt(off2);
 				int col = off2 + f;
 				int s1 = 0;
@@ -218,7 +218,7 @@ class FuzzyMatchV2SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 		j = maxScorePos;
 		boolean preferMatch = true;
 		int posidx = pos.length - 1;
-		for(;;) {
+		for (;;) {
 			int I = i * width;
 			int j0 = j - f0;
 			int s = H.get(I + j0);
@@ -250,14 +250,14 @@ class FuzzyMatchV2SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 
 	private static void copy(List<Integer> dst, List<Integer> src, int start, int end) {
 		int x = 0;
-		for (int i = start; i < end; i++) {
+		for (int i = start;i < end;i++) {
 			dst.set(x++, src.get(i));
 		}
 	}
 
 	private static List<Integer> create(int size) {
 		List<Integer> list = new ArrayList<>(size);
-		for (int i = 0; i < size; i++) {
+		for (int i = 0;i < size;i++) {
 			list.add(0);
 		}
 		return list;

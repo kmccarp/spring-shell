@@ -54,7 +54,7 @@ public class ThemingAutoConfiguration {
 
 	@Bean
 	public ThemeResolver shellThemeResolver(ThemeRegistry themeRegistry, SpringShellProperties properties,
-			ThemeActive themeActive) {
+												 ThemeActive themeActive) {
 		String themeName = properties.getTheme().getName();
 		if (!StringUtils.hasText(themeName)) {
 			themeName = themeActive.get();

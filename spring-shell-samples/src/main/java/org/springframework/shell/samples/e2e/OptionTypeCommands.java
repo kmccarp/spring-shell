@@ -40,72 +40,72 @@ public class OptionTypeCommands {
 
 		@ShellMethod(key = LEGACY_ANNO + "option-type-string", group = GROUP)
 		public String optionTypeStringAnnotation(
-			@ShellOption(help = "Desc arg1") String arg1
-		) {
+	@ShellOption(help = "Desc arg1") String arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "option-type-boolean", group = GROUP)
 		public String optionTypeBooleanAnnotation(
-			@ShellOption() boolean arg1,
-			@ShellOption(defaultValue = "true") boolean arg2,
-			@ShellOption(defaultValue = "false") boolean arg3,
-			@ShellOption() Boolean arg4,
-			@ShellOption(defaultValue = "true") Boolean arg5,
-			@ShellOption(defaultValue = "false") Boolean arg6,
-			boolean arg7
-		) {
+	@ShellOption() boolean arg1,
+	@ShellOption(defaultValue = "true") boolean arg2,
+	@ShellOption(defaultValue = "false") boolean arg3,
+	@ShellOption() Boolean arg4,
+	@ShellOption(defaultValue = "true") Boolean arg5,
+	@ShellOption(defaultValue = "false") Boolean arg6,
+	boolean arg7
+	) {
 			return String.format("Hello arg1=%s arg2=%s arg3=%s arg4=%s arg5=%s arg6=%s arg7=%s", arg1, arg2, arg3,
 					arg4, arg5, arg6, arg7);
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "option-type-integer", group = GROUP)
 		public String optionTypeIntegerAnnotation(
-			@ShellOption int arg1,
-			@ShellOption Integer arg2
-		) {
+	@ShellOption int arg1,
+	@ShellOption Integer arg2
+	) {
 			return String.format("Hello '%s' '%s'", arg1, arg2);
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "option-type-enum", group = GROUP)
 		public String optionTypeEnumAnnotation(
-			@ShellOption(help = "Desc arg1") OptionTypeEnum arg1
-		) {
+	@ShellOption(help = "Desc arg1") OptionTypeEnum arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "option-type-string-array", group = GROUP)
 		public String optionTypeStringArrayAnnotation(
-			@ShellOption(help = "Desc arg1") String[] arg1
-		) {
+	@ShellOption(help = "Desc arg1") String[] arg1
+	) {
 			return "Hello " + stringOfStrings(arg1);
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "option-type-int-array", group = GROUP)
 		public String optionTypeIntArrayAnnotation(
-			@ShellOption(help = "Desc arg1") int[] arg1
-		) {
+	@ShellOption(help = "Desc arg1") int[] arg1
+	) {
 			return "Hello " + stringOfInts(arg1);
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "option-type-string-list", group = GROUP)
 		public String optionTypeStringListAnnotation(
-			@ShellOption(help = "Desc arg1") List<String> arg1
-		) {
+	@ShellOption(help = "Desc arg1") List<String> arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "option-type-string-set", group = GROUP)
 		public String optionTypeStringSetAnnotation(
-			@ShellOption(help = "Desc arg1") Set<String> arg1
-		) {
+	@ShellOption(help = "Desc arg1") Set<String> arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "option-type-string-collection", group = GROUP)
 		public String optionTypeStringCollectionAnnotation(
-			@ShellOption(help = "Desc arg1") Collection<String> arg1
-		) {
+	@ShellOption(help = "Desc arg1") Collection<String> arg1
+	) {
 			return "Hello " + arg1;
 		}
 	}
@@ -115,81 +115,81 @@ public class OptionTypeCommands {
 
 		@Command(command = "option-type-string")
 		public String optionTypeStringAnnotation(
-			@Option(longNames = "arg1")
-			String arg1
-		) {
+	@Option(longNames = "arg1")
+	String arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@Command(command = "option-type-boolean")
 		public String optionTypeBooleanAnnotation(
-			@Option(longNames = "arg1") boolean arg1,
-			@Option(longNames = "arg2", defaultValue = "true") boolean arg2,
-			@Option(longNames = "arg3", defaultValue = "false") boolean arg3,
-			@Option(longNames = "arg4") Boolean arg4,
-			@Option(longNames = "arg5", defaultValue = "true") Boolean arg5,
-			@Option(longNames = "arg6", defaultValue = "false") Boolean arg6,
-			boolean arg7
-		) {
+	@Option(longNames = "arg1") boolean arg1,
+	@Option(longNames = "arg2", defaultValue = "true") boolean arg2,
+	@Option(longNames = "arg3", defaultValue = "false") boolean arg3,
+	@Option(longNames = "arg4") Boolean arg4,
+	@Option(longNames = "arg5", defaultValue = "true") Boolean arg5,
+	@Option(longNames = "arg6", defaultValue = "false") Boolean arg6,
+	boolean arg7
+	) {
 			return String.format("Hello arg1=%s arg2=%s arg3=%s arg4=%s arg5=%s arg6=%s arg7=%s", arg1, arg2, arg3,
 					arg4, arg5, arg6, arg7);
 		}
 
 		@Command(command = "option-type-integer")
 		public String optionTypeIntegerAnnotation(
-			@Option(longNames = "arg1")
-			int arg1,
-			@Option(longNames = "arg2")
-			Integer arg2
-		) {
+	@Option(longNames = "arg1")
+	int arg1,
+	@Option(longNames = "arg2")
+	Integer arg2
+	) {
 			return String.format("Hello '%s' '%s'", arg1, arg2);
 		}
 
 		@Command(command = "option-type-enum")
 		public String optionTypeEnumAnnotation(
-			@Option(longNames = "arg1")
-			OptionTypeEnum arg1
-		) {
+	@Option(longNames = "arg1")
+	OptionTypeEnum arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@Command(command = "option-type-string-array")
 		public String optionTypeStringArrayAnnotation(
-			@Option(longNames = "arg1")
-			String[] arg1
-		) {
+	@Option(longNames = "arg1")
+	String[] arg1
+	) {
 			return "Hello " + stringOfStrings(arg1);
 		}
 
 		@Command(command = "option-type-int-array")
 		public String optionTypeIntArrayAnnotation(
-			@Option(longNames = "arg1")
-			int[] arg1
-		) {
+	@Option(longNames = "arg1")
+	int[] arg1
+	) {
 			return "Hello " + stringOfInts(arg1);
 		}
 
 		@Command(command = "option-type-string-list")
 		public String optionTypeStringListAnnotation(
-			@Option(longNames = "arg1")
-			List<String> arg1
-		) {
+	@Option(longNames = "arg1")
+	List<String> arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@Command(command = "option-type-string-set")
 		public String optionTypeStringSetAnnotation(
-			@Option(longNames = "arg1")
-			Set<String> arg1
-		) {
+	@Option(longNames = "arg1")
+	Set<String> arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@Command(command = "option-type-string-collection")
 		public String optionTypeStringCollectionAnnotation(
-			@Option(longNames = "arg1")
-			Collection<String> arg1
-		) {
+	@Option(longNames = "arg1")
+	Collection<String> arg1
+	) {
 			return "Hello " + arg1;
 		}
 
@@ -201,61 +201,61 @@ public class OptionTypeCommands {
 		@Bean
 		public CommandRegistration optionTypeStringRegistration() {
 			return getBuilder()
-				.command(REG, "option-type-string")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-type-string")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(String.class)
 					.position(0)
 					.required()
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						String arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration optionTypeBooleanRegistration() {
 			return getBuilder()
-				.command(REG, "option-type-boolean")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-type-boolean")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(boolean.class)
 					.and()
-				.withOption()
+					.withOption()
 					.longNames("arg2")
 					.type(boolean.class)
 					.defaultValue("true")
 					.and()
-				.withOption()
+					.withOption()
 					.longNames("arg3")
 					.type(boolean.class)
 					.defaultValue("false")
 					.and()
-				.withOption()
+					.withOption()
 					.longNames("arg4")
 					.type(Boolean.class)
 					.and()
-				.withOption()
+					.withOption()
 					.longNames("arg5")
 					.type(Boolean.class)
 					.defaultValue("true")
 					.and()
-				.withOption()
+					.withOption()
 					.longNames("arg6")
 					.type(Boolean.class)
 					.defaultValue("false")
 					.and()
-				.withOption()
+					.withOption()
 					.longNames("arg7")
 					.type(boolean.class)
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						boolean arg1 = ctx.hasMappedOption("arg1") ? ctx.getOptionValue("arg1") : false;
 						boolean arg2 = ctx.getOptionValue("arg2");
@@ -268,163 +268,163 @@ public class OptionTypeCommands {
 								arg2, arg3, arg4, arg5, arg6, arg7);
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration optionTypeIntegerRegistration() {
 			return getBuilder()
-				.command(REG, "option-type-integer")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-type-integer")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(int.class)
 					.required()
 					.and()
-				.withOption()
+					.withOption()
 					.longNames("arg2")
 					.type(Integer.class)
 					.required()
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						int arg1 = ctx.getOptionValue("arg1");
 						Integer arg2 = ctx.getOptionValue("arg2");
 						return String.format("Hello '%s' '%s'", arg1, arg2);
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration optionTypeEnumRegistration() {
 			return getBuilder()
-				.command(REG, "option-type-enum")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-type-enum")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(OptionTypeEnum.class)
 					.required()
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						OptionTypeEnum arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration optionTypeStringArrayRegistration() {
 			return getBuilder()
-				.command(REG, "option-type-string-array")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-type-string-array")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(String[].class)
 					.required()
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						String[] arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + stringOfStrings(arg1);
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration optionTypeIntArrayRegistration() {
 			return getBuilder()
-				.command(REG, "option-type-int-array")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-type-int-array")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(int[].class)
 					.required()
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						int[] arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + stringOfInts(arg1);
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration optionTypeStringListRegistration() {
 			return getBuilder()
-				.command(REG, "option-type-string-list")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-type-string-list")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(List.class)
 					.required()
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						List<String> arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration optionTypeStringSetRegistration() {
 			return getBuilder()
-				.command(REG, "option-type-string-set")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-type-string-set")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(Set.class)
 					.required()
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						Set<String> arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration optionTypeStringCollectionRegistration() {
 			return getBuilder()
-				.command(REG, "option-type-string-collection")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-type-string-collection")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(Collection.class)
 					.required()
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						Collection<String> arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration optionTypeVoidRegistration() {
 			return getBuilder()
-				.command(REG, "option-type-void")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-type-void")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(void.class)
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						return "Hello ";
 					})
 					.and()
-				.build();
+					.build();
 		}
 	}
 

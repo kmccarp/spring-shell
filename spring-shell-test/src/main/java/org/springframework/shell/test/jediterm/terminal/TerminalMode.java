@@ -103,15 +103,15 @@ public enum TerminalMode {
 	InsertMode,
 	SendReceive,
 	EightBitInput, //Interpret "meta" key, sets eighth bit. (enables the eightBitInput resource).
-							 // http://www.leonerd.org.uk/hacks/hints/xterm-8bit.html
+	// http://www.leonerd.org.uk/hacks/hints/xterm-8bit.html
 
 	AltSendsEscape //See section Alt and Meta Keys in http://invisible-island.net/xterm/ctlseqs/ctlseqs.html
-					{
-						@Override
-						public void setEnabled(Terminal terminal, boolean enabled) {
-							terminal.setAltSendsEscape(enabled);
-						}
-					},
+			{
+				@Override
+				public void setEnabled(Terminal terminal, boolean enabled) {
+					terminal.setAltSendsEscape(enabled);
+				}
+			},
 
 	// https://cirw.in/blog/bracketed-paste
 	// http://www.xfree86.org/current/ctlseqs.html#Bracketed%20Paste%20Mode

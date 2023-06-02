@@ -40,7 +40,8 @@ public class Quit {
 	 *
 	 * @author Eric Bottard
 	 */
-	public interface Command {}
+	public interface Command {
+	}
 
 	@ShellMethod(value = "Exit the shell.", key = {"quit", "exit"}, interactionMode = InteractionMode.INTERACTIVE)
 	public void quit() {

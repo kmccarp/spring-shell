@@ -41,17 +41,17 @@ public class ShellAssertions {
 		public StringOrderAssert containsInOrder(String... expected) {
 			isNotNull();
 			int[] indexes = new int[expected.length];
-			for (int i = 0; i < expected.length; i++) {
+			for (int i = 0;i < expected.length;i++) {
 				indexes[i] = actual.indexOf(expected[i]);
 			}
-			for (int i = 0; i < expected.length; i++) {
+			for (int i = 0;i < expected.length;i++) {
 				if (indexes[i] < 0) {
 					failWithMessage("Item [%s] not found from output [%s]", expected[i], actual);
 				}
 			}
 			if (!isSorted(indexes)) {
 				String expectedStr = Stream.of(expected).collect(Collectors.joining(","));
-				String indexStr = IntStream.of(indexes).mapToObj(i -> ((Integer) i).toString())
+				String indexStr = IntStream.of(indexes).mapToObj(i -> ((Integer)i).toString())
 						.collect(Collectors.joining(","));
 				failWithMessage("Items [%s] are in wrong order, indexes are [%s], output is [%s]", expectedStr,
 						indexStr, actual);
@@ -60,7 +60,7 @@ public class ShellAssertions {
 		}
 
 		private boolean isSorted(int[] array) {
-			for (int i = 0; i < array.length - 1; i++) {
+			for (int i = 0;i < array.length - 1;i++) {
 				if (array[i] > array[i + 1])
 					return false;
 			}

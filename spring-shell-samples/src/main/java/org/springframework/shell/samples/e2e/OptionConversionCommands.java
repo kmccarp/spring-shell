@@ -38,36 +38,36 @@ public class OptionConversionCommands {
 
 		@ShellMethod(key = LEGACY_ANNO + "option-conversion-integer", group = GROUP)
 		public String optionConversionIntegerAnnotation(
-			@ShellOption Integer arg1
-		) {
+	@ShellOption Integer arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "option-conversion-custom", group = GROUP)
 		public String optionConversionCustomAnnotation(
-			@ShellOption MyPojo arg1
-		) {
+	@ShellOption MyPojo arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "option-conversion-customset", group = GROUP)
 		public String optionConversionCustomSetAnnotation(
-			@ShellOption Set<MyPojo> arg1
-		) {
+	@ShellOption Set<MyPojo> arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "option-conversion-customlist", group = GROUP)
 		public String optionConversionCustomListAnnotation(
-			@ShellOption List<MyPojo> arg1
-		) {
+	@ShellOption List<MyPojo> arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "option-conversion-customarray", group = GROUP)
 		public String optionConversionCustomArrayAnnotation(
-			@ShellOption MyPojo[] arg1
-		) {
+	@ShellOption MyPojo[] arg1
+	) {
 			return "Hello " + Arrays.asList(arg1);
 		}
 	}
@@ -77,33 +77,33 @@ public class OptionConversionCommands {
 
 		@Command(command = "option-conversion-integer")
 		public String optionConversionIntegerAnnotation(
-			@Option(longNames = "arg1")
-			Integer arg1
-		) {
+	@Option(longNames = "arg1")
+	Integer arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@Command(command = "option-conversion-custom")
 		public String optionConversionCustomAnnotation(
-			@Option(longNames = "arg1")
-			MyPojo arg1
-		) {
+	@Option(longNames = "arg1")
+	MyPojo arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@Command(command = "option-conversion-customset")
 		public String optionConversionCustomSetAnnotation(
-			@Option(longNames = "arg1")
-			Set<MyPojo> arg1
-		) {
+	@Option(longNames = "arg1")
+	Set<MyPojo> arg1
+	) {
 			return "Hello " + arg1;
 		}
 
 		@Command(command = "option-conversion-customarray")
 		public String optionConversionCustomArrayAnnotation(
-			@Option(longNames = "arg1")
-			MyPojo[] arg1
-		) {
+	@Option(longNames = "arg1")
+	MyPojo[] arg1
+	) {
 			return "Hello " + Arrays.asList(arg1);
 		}
 	}
@@ -114,74 +114,74 @@ public class OptionConversionCommands {
 		@Bean
 		public CommandRegistration optionConversionIntegerRegistration() {
 			return getBuilder()
-				.command(REG, "option-conversion-integer")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-conversion-integer")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(Integer.class)
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						Integer arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration optionConversionCustomRegistration() {
 			return getBuilder()
-				.command(REG, "option-conversion-custom")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-conversion-custom")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(MyPojo.class)
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						MyPojo arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration optionConversionCustomSetRegistration() {
 			ResolvableType rtype = ResolvableType.forClassWithGenerics(Set.class, MyPojo.class);
 			return CommandRegistration.builder()
-				.command(REG, "option-conversion-customset")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-conversion-customset")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(rtype)
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						Set<MyPojo> arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration optionConversionCustomArrayRegistration() {
 			return getBuilder()
-				.command(REG, "option-conversion-customarray")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-conversion-customarray")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(MyPojo[].class)
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						MyPojo[] arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + Arrays.asList(arg1);
 					})
 					.and()
-				.build();
+					.build();
 		}
 	}
 

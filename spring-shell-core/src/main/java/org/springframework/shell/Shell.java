@@ -89,7 +89,7 @@ public class Shell {
 	private List<CommandExceptionResolver> exceptionResolvers = new ArrayList<>();
 
 	public Shell(ResultHandlerService resultHandlerService, CommandCatalog commandRegistry, Terminal terminal,
-			ShellContext shellContext, ExitCodeMappings exitCodeMappings) {
+			   ShellContext shellContext, ExitCodeMappings exitCodeMappings) {
 		this.resultHandlerService = resultHandlerService;
 		this.commandRegistry = commandRegistry;
 		this.terminal = terminal;
@@ -165,13 +165,13 @@ public class Shell {
 			// that would exit a shell
 			if (this.shellContext != null && this.shellContext.getInteractionMode() != InteractionMode.INTERACTIVE) {
 				if (result instanceof CommandExecution.CommandParserExceptionsException) {
-					throw (CommandExecution.CommandParserExceptionsException) result;
+					throw (CommandExecution.CommandParserExceptionsException)result;
 				}
 				else if (result instanceof Exception) {
-					throw (Exception) result;
+					throw (Exception)result;
 				}
 				if (handlingResultNonInt instanceof CommandExecution.CommandParserExceptionsException) {
-					throw (CommandExecution.CommandParserExceptionsException) handlingResultNonInt;
+					throw (CommandExecution.CommandParserExceptionsException)handlingResultNonInt;
 				}
 				else if (processExceptionNonInt != null && processExceptionNonInt.exitCode() != null
 						&& exitCodeExceptionProvider != null) {
@@ -206,18 +206,18 @@ public class Shell {
 		log.debug("Evaluate input with line=[{}], command=[{}]", line, command);
 
 		Optional<CommandRegistration> commandRegistration = commandRegistry.getRegistrations().values().stream()
-			.filter(r -> {
-				if (r.getCommand().equals(command)) {
-					return true;
-				}
-				for (CommandAlias a : r.getAliases()) {
-					if (a.getCommand().equals(command)) {
+				.filter(r -> {
+					if (r.getCommand().equals(command)) {
 						return true;
 					}
-				}
-				return false;
-			})
-			.findFirst();
+					for (CommandAlias a : r.getAliases()) {
+						if (a.getCommand().equals(command)) {
+							return true;
+						}
+					}
+					return false;
+				})
+				.findFirst();
 
 		if (commandRegistration.isEmpty()) {
 			return new CommandNotFound(words);
@@ -354,16 +354,16 @@ public class Shell {
 				matchedArgOptions.addAll(matchOptions(registration.getOptions(), argsContext.getWords().get(argsContext.getWordIndex() - 1)));
 			}
 
-			List<CompletionProposal> argProposals =	matchedArgOptions.stream()
-				.flatMap(o -> {
-					Function<CompletionContext, List<CompletionProposal>> completion = o.getCompletion();
-					if (completion != null) {
-						List<CompletionProposal> apply = completion.apply(argsContext.commandOption(o));
-						return apply.stream();
-					}
-					return Stream.empty();
-				})
-				.collect(Collectors.toList());
+			List<CompletionProposal> argProposals = matchedArgOptions.stream()
+					.flatMap(o -> {
+						Function<CompletionContext, List<CompletionProposal>> completion = o.getCompletion();
+						if (completion != null) {
+							List<CompletionProposal> apply = completion.apply(argsContext.commandOption(o));
+							return apply.stream();
+						}
+						return Stream.empty();
+					})
+					.collect(Collectors.toList());
 
 			candidates.addAll(argProposals);
 		}
@@ -378,42 +378,42 @@ public class Shell {
 			if (trimmed.length() == 1) {
 				Character trimmedChar = trimmed.charAt(0);
 				options.stream()
+						.filter(o -> {
+							for (Character sn : o.getShortNames()) {
+								if (trimmedChar.equals(sn)) {
+									return true;
+								}
+							}
+							return false;
+						})
+						.findFirst()
+						.ifPresent(o -> matched.add(o));
+			}
+			else if (trimmed.length() > 1) {
+				trimmed.chars().mapToObj(i -> (char)i)
+						.forEach(c -> {
+							options.stream().forEach(o -> {
+								for (Character sn : o.getShortNames()) {
+									if (c.equals(sn)) {
+										matched.add(o);
+									}
+								}
+							});
+						});
+			}
+		}
+		else if (count == 2) {
+			options.stream()
 					.filter(o -> {
-						for (Character sn : o.getShortNames()) {
-							if (trimmedChar.equals(sn)) {
+						for (String ln : o.getLongNames()) {
+							if (trimmed.equals(ln)) {
 								return true;
 							}
 						}
 						return false;
 					})
-				.findFirst()
-				.ifPresent(o -> matched.add(o));
-			}
-			else if (trimmed.length() > 1) {
-				trimmed.chars().mapToObj(i -> (char)i)
-					.forEach(c -> {
-						options.stream().forEach(o -> {
-							for (Character sn : o.getShortNames()) {
-								if (c.equals(sn)) {
-									matched.add(o);
-								}
-							}
-						});
-					});
-			}
-		}
-		else if (count == 2) {
-			options.stream()
-				.filter(o -> {
-					for (String ln : o.getLongNames()) {
-						if (trimmed.equals(ln)) {
-							return true;
-						}
-					}
-					return false;
-				})
-				.findFirst()
-				.ifPresent(o -> matched.add(o));
+					.findFirst()
+					.ifPresent(o -> matched.add(o));
 		}
 		return matched;
 	}
@@ -423,13 +423,13 @@ public class Shell {
 		// (sadly, this ties this class to JLine somehow)
 		int lastWordStart = prefix.lastIndexOf(' ') + 1;
 		return Utils.removeHiddenCommands(commandRegistry.getRegistrations()).entrySet().stream()
-			.filter(e -> e.getKey().startsWith(prefix))
-			.map(e -> {
-				String c = e.getKey();
-				c = c.substring(lastWordStart);
-				return toCommandProposal(c, e.getValue());
-			})
-			.collect(Collectors.toList());
+				.filter(e -> e.getKey().startsWith(prefix))
+				.map(e -> {
+					String c = e.getKey();
+					c = c.substring(lastWordStart);
+					return toCommandProposal(c, e.getValue());
+				})
+				.collect(Collectors.toList());
 	}
 
 	private CompletionProposal toCommandProposal(String command, CommandRegistration registration) {

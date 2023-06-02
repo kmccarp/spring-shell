@@ -51,11 +51,11 @@ public class StoredCursor {
 	private final CharacterSet[] myDesignations = new CharacterSet[4];
 
 	public StoredCursor(int cursorX,
-											int cursorY,
-											 TextStyle textStyle,
-											boolean autoWrap,
-											boolean originMode,
-											GraphicSetState graphicSetState) {
+						int cursorY,
+						TextStyle textStyle,
+						boolean autoWrap,
+						boolean originMode,
+						GraphicSetState graphicSetState) {
 		myCursorX = cursorX;
 		myCursorY = cursorY;
 		myTextStyle = textStyle;
@@ -64,7 +64,7 @@ public class StoredCursor {
 		myGLMapping = graphicSetState.getGL().getIndex();
 		myGRMapping = graphicSetState.getGR().getIndex();
 		myGLOverride = graphicSetState.getGLOverrideIndex();
-		for (int i = 0; i<4; i++) {
+		for (int i = 0;i < 4;i++) {
 			myDesignations[i] = graphicSetState.getGraphicSet(i).getDesignation();
 		}
 	}

@@ -34,7 +34,7 @@ public class StyleState {
 	}
 
 
-	private static TextStyle merge( TextStyle style,  TextStyle defaultStyle) {
+	private static TextStyle merge(TextStyle style, TextStyle defaultStyle) {
 		TextStyle.Builder builder = style.toBuilder();
 		// if (style.getBackground() == null && defaultStyle.getBackground() != null) {
 		//   builder.setBackground(defaultStyle.getBackground());

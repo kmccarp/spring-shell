@@ -105,7 +105,7 @@ public interface Parser {
 		}
 
 		public DefaultParser(CommandModel commandModel, Lexer lexer, Ast ast, ParserConfig config,
-				ConversionService conversionService) {
+						ConversionService conversionService) {
 			this.commandModel = commandModel;
 			this.lexer = lexer;
 			this.ast = ast;
@@ -169,27 +169,27 @@ public interface Parser {
 
 				// add options with default values
 				Set<CommandOption> resolvedOptions1 = optionResults.stream()
-					.map(or -> or.option())
-					.collect(Collectors.toSet());
+						.map(or -> or.option())
+						.collect(Collectors.toSet());
 				registration.getOptions().stream()
-					.filter(o -> o.getDefaultValue() != null)
-					.filter(o -> !resolvedOptions1.contains(o))
-					.forEach(o -> {
-						resolvedOptions1.add(o);
-						Object value = convertOptionType(o, o.getDefaultValue());
-						optionResults.add(OptionResult.of(o, value));
-					});
+						.filter(o -> o.getDefaultValue() != null)
+						.filter(o -> !resolvedOptions1.contains(o))
+						.forEach(o -> {
+							resolvedOptions1.add(o);
+							Object value = convertOptionType(o, o.getDefaultValue());
+							optionResults.add(OptionResult.of(o, value));
+						});
 
 				List<CommandOption> optionsForArguments = registration.getOptions().stream()
-					.filter(o -> !resolvedOptions1.contains(o))
-					.filter(o -> o.getPosition() > -1)
-					.sorted(Comparator.comparingInt(o -> o.getPosition()))
-					.collect(Collectors.toList());
+						.filter(o -> !resolvedOptions1.contains(o))
+						.filter(o -> o.getPosition() > -1)
+						.sorted(Comparator.comparingInt(o -> o.getPosition()))
+						.collect(Collectors.toList());
 
 				List<String> argumentValues = argumentResults.stream()
-					.sorted(Comparator.comparingInt(ar -> ar.position()))
-					.map(ar -> ar.value())
-					.collect(Collectors.toList());
+						.sorted(Comparator.comparingInt(ar -> ar.position()))
+						.map(ar -> ar.value())
+						.collect(Collectors.toList());
 
 				int i = 0;
 				for (CommandOption o : optionsForArguments) {
@@ -263,8 +263,8 @@ public interface Parser {
 			if (name.startsWith("--")) {
 				info.registration.getOptions().forEach(option -> {
 					Set<String> longNames = Arrays.asList(option.getLongNames()).stream()
-						.map(n -> "--" + n)
-						.collect(Collectors.toSet());
+							.map(n -> "--" + n)
+							.collect(Collectors.toSet());
 					String nameToMatch = config.isEnabled(Feature.CASE_SENSITIVE_OPTIONS) ? name : name.toLowerCase();
 					boolean match = longNames.contains(nameToMatch);
 					if (match) {
@@ -289,7 +289,7 @@ public interface Parser {
 						Set<String> shortNames = Arrays.asList(option.getShortNames()).stream()
 								.map(n -> "-" + Character.toString(n))
 								.collect(Collectors.toSet());
-						for (int i = 1; i < name.length(); i++) {
+						for (int i = 1;i < name.length();i++) {
 							boolean match = shortNames.contains("-" + name.charAt(i));
 							if (match) {
 								currentOptions.add(option);
@@ -376,44 +376,44 @@ public interface Parser {
 
 		private List<MessageResult> validateOptionNotMissing(CommandRegistration registration) {
 			HashSet<CommandOption> requiredOptions = registration.getOptions().stream()
-				.filter(o -> o.isRequired())
-				.collect(Collectors.toCollection(() -> new HashSet<>()));
+					.filter(o -> o.isRequired())
+					.collect(Collectors.toCollection(() -> new HashSet<>()));
 
 			List<String> argumentResultValues = argumentResults.stream().map(ar -> ar.value).collect(Collectors.toList());
 			optionResults.stream()
-				.filter(or -> or.value() != null)
-				.map(or -> or.option())
-				.forEach(o -> {
-					requiredOptions.remove(o);
-				});
+					.filter(or -> or.value() != null)
+					.map(or -> or.option())
+					.forEach(o -> {
+						requiredOptions.remove(o);
+					});
 			Set<CommandOption> requiredOptions2 = requiredOptions.stream()
-				.filter(o -> {
-					if (argumentResultValues.isEmpty()) {
-						return true;
-					}
-					List<String> longNames = Arrays.asList(o.getLongNames());
-					return !Collections.disjoint(argumentResultValues, longNames);
-				})
-				.collect(Collectors.toSet());
+					.filter(o -> {
+						if (argumentResultValues.isEmpty()) {
+							return true;
+						}
+						List<String> longNames = Arrays.asList(o.getLongNames());
+						return !Collections.disjoint(argumentResultValues, longNames);
+					})
+					.collect(Collectors.toSet());
 
 			return requiredOptions2.stream()
-				.map(o -> {
-					String ln = o.getLongNames() != null
-							? Stream.of(o.getLongNames()).collect(Collectors.joining(","))
-							: "";
-					String sn = o.getShortNames() != null ? Stream.of(o.getShortNames()).map(n -> Character.toString(n))
-							.collect(Collectors.joining(",")) : "";
-					return MessageResult.of(ParserMessage.MANDATORY_OPTION_MISSING, 0, ln, sn);
-				})
-				.collect(Collectors.toList());
+					.map(o -> {
+						String ln = o.getLongNames() != null
+								? Stream.of(o.getLongNames()).collect(Collectors.joining(","))
+								: "";
+						String sn = o.getShortNames() != null ? Stream.of(o.getShortNames()).map(n -> Character.toString(n))
+								.collect(Collectors.joining(",")) : "";
+						return MessageResult.of(ParserMessage.MANDATORY_OPTION_MISSING, 0, ln, sn);
+					})
+					.collect(Collectors.toList());
 		}
 
 		private List<MessageResult> validateOptionIsValid(CommandRegistration registration) {
 			return invalidOptionNodes.stream()
-				.map(on -> {
-					return MessageResult.of(ParserMessage.UNRECOGNISED_OPTION, 0, on.getName());
-				})
-				.collect(Collectors.toList());
+					.map(on -> {
+						return MessageResult.of(ParserMessage.UNRECOGNISED_OPTION, 0, on.getName());
+					})
+					.collect(Collectors.toList());
 		}
 	}
 }

@@ -59,7 +59,7 @@ public class InteractiveShellRunner implements ShellRunner {
 	private final ShellContext shellContext;
 
 	public InteractiveShellRunner(LineReader lineReader, PromptProvider promptProvider, Shell shell,
-			ShellContext shellContext) {
+								ShellContext shellContext) {
 		this.lineReader = lineReader;
 		this.promptProvider = promptProvider;
 		this.shell = shell;
@@ -98,7 +98,8 @@ public class InteractiveShellRunner implements ShellRunner {
 			catch (UserInterruptException e) {
 				if (e.getPartialLine().isEmpty()) {
 					throw new ExitRequest(1);
-				} else {
+				}
+				else {
 					return Input.EMPTY;
 				}
 			}

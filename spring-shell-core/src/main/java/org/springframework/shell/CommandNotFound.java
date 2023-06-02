@@ -41,7 +41,7 @@ public class CommandNotFound extends RuntimeException {
 	 *
 	 * @return a words
 	 */
-	public List<String> getWords(){
+	public List<String> getWords() {
 		return new ArrayList<>(words);
 	}
 }

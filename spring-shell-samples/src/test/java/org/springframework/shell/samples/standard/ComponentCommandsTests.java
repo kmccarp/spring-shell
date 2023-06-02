@@ -31,8 +31,8 @@ public class ComponentCommandsTests extends AbstractSampleTests {
 
 	@ParameterizedTest
 	@CsvSource({
-		"component single,false",
-		"component single,true"
+			"component single,false",
+			"component single,true"
 	})
 	void componentSingle(String command, boolean interactive) {
 		BaseShellSession<?> session = createSession(command, interactive);
@@ -58,8 +58,8 @@ public class ComponentCommandsTests extends AbstractSampleTests {
 
 	@ParameterizedTest
 	@CsvSource({
-		"component multi,false",
-		"component multi,true"
+			"component multi,false",
+			"component multi,true"
 	})
 	void componentMulti(String command, boolean interactive) {
 		BaseShellSession<?> session = createSession(command, interactive);

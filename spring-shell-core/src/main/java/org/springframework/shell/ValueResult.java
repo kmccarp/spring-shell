@@ -41,7 +41,7 @@ public class ValueResult {
 	}
 
 	public ValueResult(MethodParameter methodParameter, Object resolvedValue, BitSet wordsUsed,
-			BitSet wordsUsedForValue) {
+					 BitSet wordsUsedForValue) {
 
 		this.methodParameter = methodParameter;
 		this.resolvedValue = resolvedValue;

@@ -36,8 +36,8 @@ public class OptionalValueCommands {
 
 		@ShellMethod(key = LEGACY_ANNO + "optional-value", group = GROUP)
 		public String testOptionalValue(
-			@ShellOption(defaultValue = ShellOption.NULL) String arg1
-		) {
+	@ShellOption(defaultValue = ShellOption.NULL) String arg1
+	) {
 			return "Hello " + arg1;
 		}
 	}
@@ -47,10 +47,10 @@ public class OptionalValueCommands {
 
 		@Command(command = "optional-value")
 		public String testOptionalValueAnnotation(
-				@Option(longNames = "arg1")
-				String arg1
-		) {
-				return "Hello " + arg1;
+	@Option(longNames = "arg1")
+	String arg1
+	) {
+			return "Hello " + arg1;
 		}
 	}
 
@@ -60,18 +60,18 @@ public class OptionalValueCommands {
 		@Bean
 		public CommandRegistration testOptionalValueRegistration() {
 			return getBuilder()
-				.command(REG, "optional-value")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "optional-value")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						String arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 	}
 }

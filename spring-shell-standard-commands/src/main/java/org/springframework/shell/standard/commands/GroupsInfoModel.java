@@ -40,7 +40,7 @@ class GroupsInfoModel {
 	private boolean hasUnavailableCommands = false;
 
 	GroupsInfoModel(boolean showGroups, List<GroupCommandInfoModel> groups, List<CommandInfoModel> commands,
-			boolean hasUnavailableCommands) {
+				  boolean hasUnavailableCommands) {
 		this.showGroups = showGroups;
 		this.groups = groups;
 		this.commands = commands;
@@ -59,36 +59,36 @@ class GroupsInfoModel {
 		// collect commands into groups with sorting
 		HashSet<CommandRegistration> regsWithoutAliases = new HashSet<>(registrations.values());
 		SortedMap<String, Map<String, CommandRegistration>> commandsByGroupAndName = regsWithoutAliases.stream()
-			.collect(Collectors.toMap(r -> r.getCommand(), r -> r)).entrySet().stream()
-			.collect(Collectors.groupingBy(
-				e -> StringUtils.hasText(e.getValue().getGroup()) ? e.getValue().getGroup() : "Default",
-				TreeMap::new,
-				Collectors.toMap(Entry::getKey, Entry::getValue)
-			));
+				.collect(Collectors.toMap(r -> r.getCommand(), r -> r)).entrySet().stream()
+				.collect(Collectors.groupingBy(
+						e -> StringUtils.hasText(e.getValue().getGroup()) ? e.getValue().getGroup() : "Default",
+						TreeMap::new,
+						Collectors.toMap(Entry::getKey, Entry::getValue)
+				));
 
 
 		// build model
 		List<GroupCommandInfoModel> gcims = commandsByGroupAndName.entrySet().stream()
-			.map(e -> {
-				List<CommandInfoModel> cims = e.getValue().entrySet().stream()
-					.map(ee -> CommandInfoModel.of(ee.getKey(), ee.getValue()))
-					.collect(Collectors.toList());
-				return GroupCommandInfoModel.of(e.getKey(), cims);
-			})
-			.collect(Collectors.toList());
+				.map(e -> {
+					List<CommandInfoModel> cims = e.getValue().entrySet().stream()
+							.map(ee -> CommandInfoModel.of(ee.getKey(), ee.getValue()))
+							.collect(Collectors.toList());
+					return GroupCommandInfoModel.of(e.getKey(), cims);
+				})
+				.collect(Collectors.toList());
 		List<CommandInfoModel> commands = gcims.stream()
-			.flatMap(gcim -> gcim.getCommands().stream())
-			.collect(Collectors.toList());
+				.flatMap(gcim -> gcim.getCommands().stream())
+				.collect(Collectors.toList());
 		boolean hasUnavailableCommands = commands.stream()
-			.map(c -> {
-				if (c.getAvailability() != null) {
-					return c.getAvailability().getAvailable();
-				}
-				return true;
-			})
-			.filter(a -> !a)
-			.findFirst()
-			.isPresent();
+				.map(c -> {
+					if (c.getAvailability() != null) {
+						return c.getAvailability().getAvailable();
+					}
+					return true;
+				})
+				.filter(a -> !a)
+				.findFirst()
+				.isPresent();
 		return new GroupsInfoModel(showGroups, gcims, commands, hasUnavailableCommands);
 	}
 

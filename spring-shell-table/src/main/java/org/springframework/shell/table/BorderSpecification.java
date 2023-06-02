@@ -101,14 +101,14 @@ public class BorderSpecification {
 
 	private String matchConstants() {
 		try {
-			for (String field : new String[] {"NONE", "INNER", "FULL", "OUTLINE"}) {
+			for (String field : new String[]{"NONE", "INNER", "FULL", "OUTLINE"}) {
 				int value = ReflectionUtils.findField(getClass(), field).getInt(null);
 				if (match  == value) {
 					return field;
 				}
 			}
 			List<String> constants = new ArrayList<String>();
-			for (String field : new String[] {"TOP", "BOTTOM", "LEFT", "RIGHT", "INNER_HORIZONTAL", "INNER_VERTICAL"}) {
+			for (String field : new String[]{"TOP", "BOTTOM", "LEFT", "RIGHT", "INNER_HORIZONTAL", "INNER_VERTICAL"}) {
 				int value = ReflectionUtils.findField(getClass(), field).getInt(null);
 				if ((match & value) == value) {
 					constants.add(field);

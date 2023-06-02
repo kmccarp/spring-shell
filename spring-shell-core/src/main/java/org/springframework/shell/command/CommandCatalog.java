@@ -137,8 +137,8 @@ public interface CommandCatalog {
 				});
 			}
 			return regs.entrySet().stream()
-				.filter(filterByInteractionMode(shellContext))
-				.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
+					.filter(filterByInteractionMode(shellContext))
+					.collect(Collectors.toMap(Entry::getKey, Entry::getValue));
 		}
 
 		/**

@@ -59,7 +59,7 @@ public abstract class AbstractTextComponent<T, C extends TextComponentContext<T,
 		keyMap.bind(OPERATION_EXIT, "\r");
 		keyMap.bind(OPERATION_BACKSPACE, del(), key(getTerminal(), Capability.key_backspace));
 		// skip 127 - DEL
-		for (char i = 32; i < KeyMap.KEYMAP_LENGTH - 1; i++) {
+		for (char i = 32;i < KeyMap.KEYMAP_LENGTH - 1;i++) {
 			keyMap.bind(OPERATION_CHAR, Character.toString(i));
 		}
 	}

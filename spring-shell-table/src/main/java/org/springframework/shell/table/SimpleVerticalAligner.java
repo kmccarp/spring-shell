@@ -33,7 +33,7 @@ public enum SimpleVerticalAligner implements Aligner {
 		int blanksBefore = 0;
 		int blanksAfter = 0;
 		boolean atLeastOneNonEmptyRow = false;
-		for (int row = 0; row < text.length; row++) {
+		for (int row = 0;row < text.length;row++) {
 			if (text[row] == null || text[row].trim().equals("")) {
 				blanksBefore++;
 			}
@@ -44,7 +44,7 @@ public enum SimpleVerticalAligner implements Aligner {
 		}
 		// In case of full blank, don't count blank rows twice
 		if (atLeastOneNonEmptyRow) {
-			for (int row = text.length - 1; row >= 0; row--) {
+			for (int row = text.length - 1;row >= 0;row--) {
 				if (text[row] == null || text[row].trim().equals("")) {
 					blanksAfter++;
 				}

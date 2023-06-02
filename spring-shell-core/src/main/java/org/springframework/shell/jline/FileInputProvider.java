@@ -36,43 +36,44 @@ import java.io.Reader;
  */
 public class FileInputProvider implements InputProvider, Closeable {
 
-    private  static final String BACKSLASH_AT_EOL_REGEX = "(.*)\\\\\\s*$";
-    private final BufferedReader reader;
+	private  static final String BACKSLASH_AT_EOL_REGEX = "(.*)\\\\\\s*$";
+	private final BufferedReader reader;
 
-    private final Parser parser;
+	private final Parser parser;
 
-    public FileInputProvider(Reader reader, Parser parser) {
-        this.reader = new BufferedReader(reader);
-        this.parser = parser;
-    }
+	public FileInputProvider(Reader reader, Parser parser) {
+		this.reader = new BufferedReader(reader);
+		this.parser = parser;
+	}
 
-    @Override
-    public Input readInput() {
-        StringBuilder sb = new StringBuilder();
-        boolean continued = false;
-        String line;
-        try {
-            do {
-                line = reader.readLine();
-                if (line == null) {
-                    break;
-                }
-                continued = line.matches(BACKSLASH_AT_EOL_REGEX);
-                sb.append(line.replaceFirst(BACKSLASH_AT_EOL_REGEX, "$1 "));
-            } while (continued);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        if (line == null) {
-            return null;
-        } else {
-            ParsedLine parsedLine = parser.parse(sb.toString(), sb.toString().length());
-            return new ParsedLineInput(parsedLine);
-        }
-    }
+	@Override
+	public Input readInput() {
+		StringBuilder sb = new StringBuilder();
+		boolean continued = false;
+		String line;
+		try {
+			do {
+				line = reader.readLine();
+				if (line == null) {
+					break;
+				}
+				continued = line.matches(BACKSLASH_AT_EOL_REGEX);
+				sb.append(line.replaceFirst(BACKSLASH_AT_EOL_REGEX, "$1 "));
+			} while (continued);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		if (line == null) {
+			return null;
+		}
+		else {
+			ParsedLine parsedLine = parser.parse(sb.toString(), sb.toString().length());
+			return new ParsedLineInput(parsedLine);
+		}
+	}
 
-    @Override
-    public void close() throws IOException {
-        reader.close();
-    }
+	@Override
+	public void close() throws IOException {
+		reader.close();
+	}
 }

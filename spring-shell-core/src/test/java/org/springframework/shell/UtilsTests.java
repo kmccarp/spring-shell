@@ -43,22 +43,22 @@ public class UtilsTests {
 		Predicate<String> predicate = t -> t.startsWith("-");
 		List<List<String>> split = null;
 
-		split = Utils.split(new String[] { "-a1", "a1" }, predicate);
+		split = Utils.split(new String[]{"-a1", "a1"}, predicate);
 		assertThat(split).containsExactly(Arrays.asList("-a1", "a1"));
 
-		split = Utils.split(new String[] { "-a1", "a1", "-a2", "a2" }, predicate);
+		split = Utils.split(new String[]{"-a1", "a1", "-a2", "a2"}, predicate);
 		assertThat(split).containsExactly(Arrays.asList("-a1", "a1"), Arrays.asList("-a2", "a2"));
 
-		split = Utils.split(new String[] { "a0", "-a1", "a1" }, predicate);
+		split = Utils.split(new String[]{"a0", "-a1", "a1"}, predicate);
 		assertThat(split).containsExactly(Arrays.asList("a0"), Arrays.asList("-a1", "a1"));
 
-		split = Utils.split(new String[] { "-a1", "-a2" }, predicate);
+		split = Utils.split(new String[]{"-a1", "-a2"}, predicate);
 		assertThat(split).containsExactly(Arrays.asList("-a1"), Arrays.asList("-a2"));
 
-		split = Utils.split(new String[] { "a1", "a2" }, predicate);
+		split = Utils.split(new String[]{"a1", "a2"}, predicate);
 		assertThat(split).containsExactly(Arrays.asList("a1", "a2"));
 
-		split = Utils.split(new String[] { "-a1", "a1", "a2" }, predicate);
+		split = Utils.split(new String[]{"-a1", "a1", "a2"}, predicate);
 		assertThat(split).containsExactly(Arrays.asList("-a1", "a1", "a2"));
 	}
 }

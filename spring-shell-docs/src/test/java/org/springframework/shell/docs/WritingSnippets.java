@@ -40,14 +40,14 @@ class WritingSnippets {
 	void dump1() {
 		// tag::reg-terminal-writer[]
 		CommandRegistration.builder()
-			.command("example")
-			.withTarget()
+				.command("example")
+				.withTarget()
 				.consumer(ctx -> {
 					ctx.getTerminal().writer().println("hi");
 					ctx.getTerminal().writer().flush();
 				})
 				.and()
-			.build();
+				.build();
 		// end::reg-terminal-writer[]
 	}
 }

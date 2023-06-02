@@ -48,19 +48,19 @@ abstract class BaseE2ECommands {
 
 	static String stringOfInts(int[] values) {
 		String joined = IntStream.range(0, values.length)
-			.mapToLong(i -> values[i])
-			.boxed()
-			.map(d -> d.toString())
-			.collect(Collectors.joining(","));
+				.mapToLong(i -> values[i])
+				.boxed()
+				.map(d -> d.toString())
+				.collect(Collectors.joining(","));
 		return String.format("[%s]", joined);
 	}
 
 	static String stringOfFloats(float[] values) {
 		String joined = IntStream.range(0, values.length)
-			.mapToDouble(i -> values[i])
-			.boxed()
-			.map(d -> d.toString())
-			.collect(Collectors.joining(","));
+				.mapToDouble(i -> values[i])
+				.boxed()
+				.map(d -> d.toString())
+				.collect(Collectors.joining(","));
 		return String.format("[%s]", joined);
 	}
 }

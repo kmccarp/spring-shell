@@ -57,8 +57,8 @@ public class CommandModel {
 			}
 			else {
 				Optional<CommandInfo> nextInfo = info.getChildren().stream()
-					.filter(i -> i.command.equals(command))
-					.findFirst();
+						.filter(i -> i.command.equals(command))
+						.findFirst();
 				if (nextInfo.isEmpty()) {
 					break;
 				}
@@ -95,7 +95,7 @@ public class CommandModel {
 
 	void xxx(String command, CommandRegistration registration) {
 		String[] commands = command.split(" ");
-		for (int i = 0; i < commands.length; i++) {
+		for (int i = 0;i < commands.length;i++) {
 
 		}
 	}

@@ -124,7 +124,7 @@ public interface CommandOption {
 	 * @return default command option
 	 */
 	public static CommandOption of(String[] longNames, Character[] shortNames, String description,
-			ResolvableType type) {
+																																																																					 ResolvableType type) {
 		return of(longNames, shortNames, description, type, false, null, null, null, null, null, null);
 	}
 
@@ -145,8 +145,8 @@ public interface CommandOption {
 	 * @return default command option
 	 */
 	public static CommandOption of(String[] longNames, Character[] shortNames, String description,
-			ResolvableType type, boolean required, String defaultValue, Integer position, Integer arityMin,
-			Integer arityMax, String label, CompletionResolver completion) {
+																																																																																																																																				ResolvableType type, boolean required, String defaultValue, Integer position, Integer arityMin,
+																																																																																																																																				Integer arityMax, String label, CompletionResolver completion) {
 		return new DefaultCommandOption(longNames, shortNames, description, type, required, defaultValue, position,
 				arityMin, arityMax, label, completion);
 	}
@@ -169,9 +169,9 @@ public interface CommandOption {
 		private CompletionResolver completion;
 
 		public DefaultCommandOption(String[] longNames, Character[] shortNames, String description,
-				ResolvableType type, boolean required, String defaultValue, Integer position,
-				Integer arityMin, Integer arityMax, String label,
-				CompletionResolver completion) {
+							   ResolvableType type, boolean required, String defaultValue, Integer position,
+							   Integer arityMin, Integer arityMax, String label,
+							   CompletionResolver completion) {
 			this.longNames = longNames != null ? longNames : new String[0];
 			this.shortNames = shortNames != null ? shortNames : new Character[0];
 			this.description = description;

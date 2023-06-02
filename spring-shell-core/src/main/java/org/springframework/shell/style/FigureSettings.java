@@ -180,7 +180,7 @@ public abstract class FigureSettings {
 	}
 
 	public static String[] tags() {
-		return new String[] {
+		return new String[]{
 				TAG_TICK,
 				TAG_INFO,
 				TAG_WARNING,

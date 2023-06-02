@@ -48,7 +48,7 @@ public class BaseComponentContext<C extends ComponentContext<C>> extends LinkedH
 			throw new IllegalArgumentException("Incorrect type specified for key '" +
 					key + "'. Expected [" + type + "] but actual type is [" + value.getClass() + "]");
 		}
-		return (T) value;
+		return (T)value;
 	}
 
 	@Override

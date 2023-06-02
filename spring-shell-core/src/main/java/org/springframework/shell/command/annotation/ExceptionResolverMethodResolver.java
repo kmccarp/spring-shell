@@ -76,7 +76,7 @@ public class ExceptionResolverMethodResolver {
 		if (result.isEmpty()) {
 			for (Class<?> paramType : method.getParameterTypes()) {
 				if (Throwable.class.isAssignableFrom(paramType)) {
-					result.add((Class<? extends Throwable>) paramType);
+					result.add((Class<? extends Throwable>)paramType);
 				}
 			}
 		}
@@ -179,7 +179,7 @@ public class ExceptionResolverMethodResolver {
 
 	/**
 	 * For the {@link #NO_MATCHING_EXCEPTION_HANDLER_METHOD} constant.
- 	 */
+	 */
 	@SuppressWarnings("unused")
 	private void noMatchingExceptionHandler() {
 	}

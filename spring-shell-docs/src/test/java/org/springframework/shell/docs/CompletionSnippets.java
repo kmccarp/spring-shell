@@ -32,16 +32,17 @@ public class CompletionSnippets {
 	// tag::builder-1[]
 	void dump1() {
 		CommandRegistration.builder()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.completion(ctx -> {
 					return Arrays.asList("val1", "val2").stream()
-						.map(CompletionProposal::new)
-						.collect(Collectors.toList());
+							.map(CompletionProposal::new)
+							.collect(Collectors.toList());
 				})
 				.and()
-			.build();
+				.build();
 	}
+
 	// end::builder-1[]
 
 	// tag::resolver-1[]
@@ -50,10 +51,11 @@ public class CompletionSnippets {
 		@Override
 		public List<CompletionProposal> apply(CompletionContext t) {
 			return Arrays.asList("val1", "val2").stream()
-				.map(CompletionProposal::new)
-				.collect(Collectors.toList());
+					.map(CompletionProposal::new)
+					.collect(Collectors.toList());
 		}
 	}
+
 	// end::resolver-1[]
 
 	// tag::provider-1[]
@@ -62,17 +64,18 @@ public class CompletionSnippets {
 		@Override
 		public List<CompletionProposal> complete(CompletionContext completionContext) {
 			return Arrays.asList("val1", "val2").stream()
-				.map(CompletionProposal::new)
-				.collect(Collectors.toList());
+					.map(CompletionProposal::new)
+					.collect(Collectors.toList());
 		}
 	}
+
 	// end::provider-1[]
 
 	static class Dump1 {
 		// tag::anno-method[]
 		@ShellMethod(value = "complete", key = "complete")
 		public String complete(
-			@ShellOption(valueProvider = MyValuesProvider.class) String arg1)
+	@ShellOption(valueProvider = MyValuesProvider.class) String arg1)
 		{
 			return "You said " + arg1;
 		}

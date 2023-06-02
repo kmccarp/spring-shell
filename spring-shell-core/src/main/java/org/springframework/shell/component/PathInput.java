@@ -35,7 +35,7 @@ import org.springframework.shell.component.context.ComponentContext;
 import org.springframework.shell.component.support.AbstractTextComponent;
 import org.springframework.shell.component.support.AbstractTextComponent.TextComponentContext;
 import org.springframework.shell.component.support.AbstractTextComponent.TextComponentContext.MessageLevel;
-import org.springframework.util.StringUtils;;
+import org.springframework.util.StringUtils;
 
 /**
  * Component for a simple path input.

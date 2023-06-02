@@ -152,13 +152,13 @@ public class SingleItemSelector<T, I extends Nameable & Matchable & Enableable &
 				attributes.put("value", value);
 			});
 			List<Map<String, Object>> rows = getItemStateView().stream()
-				.map(is -> {
-					Map<String, Object> map = new HashMap<>();
-					map.put("name", is.getName());
-					map.put("selected", getCursorRow().intValue() == is.getIndex());
-					return map;
-				})
-				.collect(Collectors.toList());
+					.map(is -> {
+						Map<String, Object> map = new HashMap<>();
+						map.put("name", is.getName());
+						map.put("selected", getCursorRow().intValue() == is.getIndex());
+						return map;
+					})
+					.collect(Collectors.toList());
 			attributes.put("rows", rows);
 			// finally wrap it into 'model' as that's what
 			// we expect in stg template.

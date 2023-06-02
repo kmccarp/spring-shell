@@ -54,7 +54,7 @@ public class StringInput extends AbstractTextComponent<String, StringInputContex
 	}
 
 	public StringInput(Terminal terminal, String name, String defaultValue,
-			Function<StringInputContext, List<AttributedString>> renderer) {
+					 Function<StringInputContext, List<AttributedString>> renderer) {
 		super(terminal, name, null);
 		setRenderer(renderer != null ? renderer : new DefaultRenderer());
 		setTemplateLocation("classpath:org/springframework/shell/component/string-input-default.stg");

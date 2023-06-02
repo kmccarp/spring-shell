@@ -141,15 +141,15 @@ public class MultiItemSelector<T, I extends Nameable & Matchable & Enableable & 
 			Map<String, Object> attributes = super.toTemplateModel();
 			attributes.put("values", getValues());
 			List<Map<String, Object>> rows = getItemStateView().stream()
-				.map(is -> {
-					Map<String, Object> map = new HashMap<>();
-					map.put("name", is.getName());
-					map.put("selected", is.isSelected());
-					map.put("onrow", getCursorRow().intValue() == is.getIndex());
-					map.put("enabled", is.isEnabled());
-					return map;
-				})
-				.collect(Collectors.toList());
+					.map(is -> {
+						Map<String, Object> map = new HashMap<>();
+						map.put("name", is.getName());
+						map.put("selected", is.isSelected());
+						map.put("onrow", getCursorRow().intValue() == is.getIndex());
+						map.put("enabled", is.isEnabled());
+						return map;
+					})
+					.collect(Collectors.toList());
 			attributes.put("rows", rows);
 			// finally wrap it into 'model' as that's what
 			// we expect in stg template.

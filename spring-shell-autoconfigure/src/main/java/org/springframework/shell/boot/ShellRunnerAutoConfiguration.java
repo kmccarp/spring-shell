@@ -39,7 +39,7 @@ public class ShellRunnerAutoConfiguration {
 	private ShellContext shellContext;
 
 	public ShellRunnerAutoConfiguration(Shell shell, PromptProvider promptProvider, LineReader lineReader,
-			Parser parser, ShellContext shellContext) {
+									  Parser parser, ShellContext shellContext) {
 		this.shell = shell;
 		this.promptProvider = promptProvider;
 		this.lineReader = lineReader;

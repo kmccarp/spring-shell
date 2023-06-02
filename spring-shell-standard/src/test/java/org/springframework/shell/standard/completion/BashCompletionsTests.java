@@ -82,14 +82,14 @@ public class BashCompletionsTests {
 	private void registerFromMethod(CommandCatalog commandCatalog) {
 		Pojo1 pojo1 = new Pojo1();
 		CommandRegistration registration = CommandRegistration.builder()
-			.command("testmethod1")
-			.withTarget()
+				.command("testmethod1")
+				.withTarget()
 				.method(pojo1, "method1")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(registration);
 	}
 
@@ -99,19 +99,20 @@ public class BashCompletionsTests {
 			return String.format("hi, arg1 value is '%s'", arg1);
 		};
 		CommandRegistration registration = CommandRegistration.builder()
-			.command(command)
-			.withTarget()
+				.command(command)
+				.withTarget()
 				.function(function)
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(registration);
 	}
 
 	protected static class Pojo1 {
 
-		void method1() {}
+		void method1() {
+		}
 	}
 }

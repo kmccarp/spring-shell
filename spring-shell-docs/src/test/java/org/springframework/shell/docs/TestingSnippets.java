@@ -48,16 +48,17 @@ class TestingSnippets {
 
 			await().atMost(2, TimeUnit.SECONDS).untilAsserted(() -> {
 				ShellAssertions.assertThat(session.screen())
-					.containsText("shell");
+						.containsText("shell");
 			});
 
 			session.write(session.writeSequence().text("help").carriageReturn().build());
 			await().atMost(2, TimeUnit.SECONDS).untilAsserted(() -> {
 				ShellAssertions.assertThat(session.screen())
-					.containsText("AVAILABLE COMMANDS");
+						.containsText("AVAILABLE COMMANDS");
 			});
 		}
 	}
+
 	// end::testing-shelltest-interactive[]
 
 	// tag::testing-shelltest-noninteractive[]
@@ -71,32 +72,36 @@ class TestingSnippets {
 		@Test
 		void test() {
 			NonInteractiveShellSession session = client
-				.nonInterative("help", "help")
-				.run();
+					.nonInterative("help", "help")
+					.run();
 
 			await().atMost(2, TimeUnit.SECONDS).untilAsserted(() -> {
 				ShellAssertions.assertThat(session.screen())
-					.containsText("AVAILABLE COMMANDS");
+						.containsText("AVAILABLE COMMANDS");
 			});
 		}
 	}
+
 	// end::testing-shelltest-noninteractive[]
 
 	class Dump1 {
 
 		// tag::testing-shelltest-dimensions-props[]
 		@ShellTest(properties = {
-			"spring.shell.test.terminal-width=120",
-			"spring.shell.test.terminal-height=40"
+				"spring.shell.test.terminal-width=120",
+				"spring.shell.test.terminal-height=40"
 		})
-		class ShellSettingsSample {}
+		class ShellSettingsSample {
+		}
 		// end::testing-shelltest-dimensions-props[]
 	}
+
 	class Dump2 {
 
 		// tag::testing-shelltest-dimensions-field[]
 		@ShellTest(terminalWidth = 120, terminalHeight = 40)
-		class ShellSettingsSample {}
+		class ShellSettingsSample {
+		}
 		// end::testing-shelltest-dimensions-field[]
 	}
 

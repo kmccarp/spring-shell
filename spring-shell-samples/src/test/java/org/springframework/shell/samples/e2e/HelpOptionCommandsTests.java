@@ -23,7 +23,7 @@ import org.springframework.shell.samples.e2e.HelpOptionCommands.Registration;
 import org.springframework.shell.test.ShellTestClient.BaseShellSession;
 import org.springframework.test.context.ContextConfiguration;
 
-@ContextConfiguration(classes = { LegacyAnnotation.class, Registration.class })
+@ContextConfiguration(classes = {LegacyAnnotation.class, Registration.class})
 class HelpOptionCommandsTests extends AbstractSampleTests {
 
 	@ParameterizedTest

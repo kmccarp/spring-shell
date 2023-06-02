@@ -37,17 +37,17 @@ public class AliasCommands {
 		@Bean
 		public CommandRegistration testAlias1Registration(CommandRegistration.BuilderSupplier builder) {
 			return builder.get()
-				.command(REG, "alias-1")
-				.group(GROUP)
-				.withAlias()
+					.command(REG, "alias-1")
+					.group(GROUP)
+					.withAlias()
 					.command(REG, "aliasfor-1")
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						return "Hello from alias command";
 					})
 					.and()
-				.build();
+					.build();
 		}
 	}
 

@@ -53,7 +53,7 @@ public class ThemeSettingsTests {
 			StyleSettings.TAG_ITEM_SELECTED,
 			StyleSettings.TAG_ITEM_UNSELECTED,
 			StyleSettings.TAG_ITEM_SELECTOR,
-			StyleSettings.TAG_HIGHLIGHT })
+			StyleSettings.TAG_HIGHLIGHT})
 	public void testTags(String tag) {
 		ThemeSettings themeSettings = ThemeSettings.defaults();
 		String resolveTag = themeSettings.styles().resolveTag(StyleSettings.TAG_TITLE);

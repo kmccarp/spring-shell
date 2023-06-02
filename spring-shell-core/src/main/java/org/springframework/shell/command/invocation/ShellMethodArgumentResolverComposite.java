@@ -57,7 +57,7 @@ public class ShellMethodArgumentResolverComposite implements HandlerMethodArgume
 	 * @since 4.3
 	 */
 	public ShellMethodArgumentResolverComposite addResolvers(
-			@Nullable HandlerMethodArgumentResolver... resolvers) {
+	@Nullable HandlerMethodArgumentResolver... resolvers) {
 
 		if (resolvers != null) {
 			Collections.addAll(this.argumentResolvers, resolvers);
@@ -70,7 +70,7 @@ public class ShellMethodArgumentResolverComposite implements HandlerMethodArgume
 	 * Add the given {@link HandlerMethodArgumentResolver HandlerMethodArgumentResolvers}.
 	 */
 	public ShellMethodArgumentResolverComposite addResolvers(
-			@Nullable List<? extends HandlerMethodArgumentResolver> resolvers) {
+	@Nullable List<? extends HandlerMethodArgumentResolver> resolvers) {
 
 		if (resolvers != null) {
 			this.argumentResolvers.addAll(resolvers);

@@ -67,7 +67,7 @@ public class ResultHandlerConfig {
 
 	@Bean
 	public ThrowableResultHandler throwableResultHandler(Terminal terminal, CommandCatalog commandCatalog,
-			ShellContext shellContext, ObjectProvider<InteractiveShellRunner> interactiveApplicationRunner) {
+															  ShellContext shellContext, ObjectProvider<InteractiveShellRunner> interactiveApplicationRunner) {
 		return new ThrowableResultHandler(terminal, commandCatalog, shellContext, interactiveApplicationRunner);
 	}
 }

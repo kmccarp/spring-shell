@@ -56,7 +56,7 @@ public interface CommandExitCode {
 
 		private final List<Function<Throwable, Integer>> functions;
 
-		DefaultCommandExitCode(	List<Function<Throwable, Integer>> functions) {
+		DefaultCommandExitCode(List<Function<Throwable, Integer>> functions) {
 			this.functions = functions;
 		}
 

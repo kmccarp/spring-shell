@@ -31,8 +31,8 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Janne Valkealahti
  */
-@ShellTest(properties = { "spring.profiles.active=test", "spring.shell.test.terminal-width=81",
-		"spring.shell.test.terminal-height=25" })
+@ShellTest(properties = {"spring.profiles.active=test", "spring.shell.test.terminal-width=81",
+		"spring.shell.test.terminal-height=25"})
 @ContextConfiguration(classes = ExampleShellApplication.class)
 public class ShellTestPropertiesIntegrationTests {
 

@@ -42,7 +42,8 @@ public class Stacktrace extends AbstractShellComponent {
 	 *
 	 * @author Eric Bottard
 	 */
-	public interface Command {}
+	public interface Command {
+	}
 
 	private ObjectProvider<ThrowableResultHandler> throwableResultHandler;
 

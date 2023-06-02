@@ -21,14 +21,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class NormalizeTests {
 
-    @Test
-    void testNormalizeMap() {
-        assertThat(Normalize.normalized.get('á')).isEqualTo('a');
-        assertThat(Normalize.normalized.get('ự')).isEqualTo('u');
-    }
+	@Test
+	void testNormalizeMap() {
+		assertThat(Normalize.normalized.get('á')).isEqualTo('a');
+		assertThat(Normalize.normalized.get('ự')).isEqualTo('u');
+	}
 
-    @Test
-    void testNormalizeFunction() {
-        assertThat(Normalize.normalizeRunes("abcáự")).isEqualTo("abcau");
-    }
+	@Test
+	void testNormalizeFunction() {
+		assertThat(Normalize.normalizeRunes("abcáự")).isEqualTo("abcau");
+	}
 }

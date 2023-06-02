@@ -39,6 +39,7 @@ public interface ConfirmationInputSpec extends BaseInputSpec<ConfirmationInputSp
 	 * @return a builder
 	 */
 	ConfirmationInputSpec name(String name);
+
 	/**
 	 * Sets a result value.
 	 *

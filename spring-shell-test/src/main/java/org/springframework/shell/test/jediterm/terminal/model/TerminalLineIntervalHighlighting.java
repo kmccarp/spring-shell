@@ -26,7 +26,7 @@ public abstract class TerminalLineIntervalHighlighting {
 	private final int myEndOffset;
 	private boolean myDisposed = false;
 
-	TerminalLineIntervalHighlighting( TerminalLine line, int startOffset, int length) {
+	TerminalLineIntervalHighlighting(TerminalLine line, int startOffset, int length) {
 		if (startOffset < 0) {
 			throw new IllegalArgumentException("Negative startOffset: " + startOffset);
 		}
@@ -69,7 +69,7 @@ public abstract class TerminalLineIntervalHighlighting {
 		return !(myEndOffset <= otherStartOffset || otherEndOffset <= myStartOffset);
 	}
 
-	public  TextStyle mergeWith( TextStyle style) {
+	public  TextStyle mergeWith(TextStyle style) {
 		// TerminalColor foreground = myStyle.getForeground();
 		// if (foreground == null) {
 		//   foreground = style.getForeground();
@@ -84,7 +84,7 @@ public abstract class TerminalLineIntervalHighlighting {
 	@Override
 	public String toString() {
 		return "startOffset=" + myStartOffset +
-			", endOffset=" + myEndOffset +
-			", disposed=" + myDisposed;
+				", endOffset=" + myEndOffset +
+				", disposed=" + myDisposed;
 	}
 }

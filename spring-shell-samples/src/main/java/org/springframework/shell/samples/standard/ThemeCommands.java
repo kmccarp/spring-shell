@@ -98,7 +98,7 @@ public class ThemeCommands {
 
 	@ShellMethod(key = "theme style resolve", value = "Resolve given style", group = "Styles")
 	public AttributedString styleResolve(
-		@ShellOption(value = "--spec", defaultValue = "default") String spec
+	@ShellOption(value = "--spec", defaultValue = "default") String spec
 	) {
 		AttributedStringBuilder builder = new AttributedStringBuilder();
 		AttributedStyle style = themeResolver.resolveStyle(spec);
@@ -110,7 +110,7 @@ public class ThemeCommands {
 
 	@ShellMethod(key = "theme expression resolve", value = "Resolve given style expression", group = "Styles")
 	public AttributedString expressionResolve(
-		@ShellOption(value = "--expression", defaultValue = "hi @{bold from} expression") String expression
+	@ShellOption(value = "--expression", defaultValue = "hi @{bold from} expression") String expression
 	) {
 		AttributedStringBuilder builder = new AttributedStringBuilder();
 		AttributedString styledStr = themeResolver.evaluateExpression(expression);

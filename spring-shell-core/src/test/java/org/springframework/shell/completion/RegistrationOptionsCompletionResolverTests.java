@@ -33,17 +33,18 @@ public class RegistrationOptionsCompletionResolverTests {
 	@Test
 	void completesAllOptions() {
 		CommandRegistration registration = CommandRegistration.builder()
-			.command("hello world")
-			.withTarget()
-				.consumer(ctx -> {})
+				.command("hello world")
+				.withTarget()
+				.consumer(ctx -> {
+				})
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg2")
 				.and()
-			.build();
+				.build();
 		CompletionContext ctx = new CompletionContext(Arrays.asList("hello", "world", ""), 2, "".length(), registration, null);
 		List<CompletionProposal> proposals = resolver.apply(ctx);
 		assertThat(proposals).isNotNull();
@@ -53,17 +54,18 @@ public class RegistrationOptionsCompletionResolverTests {
 	@Test
 	void completesNonExistingOptions() {
 		CommandRegistration registration = CommandRegistration.builder()
-			.command("hello world")
-			.withTarget()
-				.consumer(ctx -> {})
+				.command("hello world")
+				.withTarget()
+				.consumer(ctx -> {
+				})
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg2")
 				.and()
-			.build();
+				.build();
 		CompletionContext ctx = new CompletionContext(Arrays.asList("hello", "world", "--arg1", ""), 2, "".length(), registration, null);
 		List<CompletionProposal> proposals = resolver.apply(ctx);
 		assertThat(proposals).isNotNull();

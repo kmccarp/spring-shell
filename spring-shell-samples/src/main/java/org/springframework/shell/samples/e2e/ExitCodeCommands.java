@@ -31,19 +31,19 @@ public class ExitCodeCommands {
 		@Bean
 		public CommandRegistration testExitCodeRegistration() {
 			return getBuilder()
-				.command(REG, "exit-code")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "exit-code")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.required()
 					.and()
-				.withTarget()
+					.withTarget()
 					.consumer(ctx -> {
 						String arg1 = ctx.getOptionValue("arg1");
 						throw new MyException(arg1);
 					})
 					.and()
-				.withExitCode()
+					.withExitCode()
 					.map(MyException.class, 3)
 					.map(t -> {
 						String msg = t.getMessage();
@@ -56,7 +56,7 @@ public class ExitCodeCommands {
 						return 0;
 					})
 					.and()
-				.build();
+					.build();
 		}
 	}
 

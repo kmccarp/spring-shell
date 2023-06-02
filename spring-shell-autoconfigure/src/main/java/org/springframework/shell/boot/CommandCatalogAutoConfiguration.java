@@ -43,9 +43,9 @@ public class CommandCatalogAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean(CommandCatalog.class)
 	public CommandCatalog commandCatalog(ObjectProvider<MethodTargetRegistrar> methodTargetRegistrars,
-			ObjectProvider<CommandResolver> commandResolvers,
-			ObjectProvider<CommandCatalogCustomizer> commandCatalogCustomizers,
-			ShellContext shellContext) {
+																							   ObjectProvider<CommandResolver> commandResolvers,
+																							   ObjectProvider<CommandCatalogCustomizer> commandCatalogCustomizers,
+																							   ShellContext shellContext) {
 		List<CommandResolver> resolvers = commandResolvers.orderedStream().collect(Collectors.toList());
 		CommandCatalog catalog = CommandCatalog.of(resolvers, shellContext);
 		methodTargetRegistrars.orderedStream().forEach(resolver -> {
@@ -72,10 +72,10 @@ public class CommandCatalogAutoConfiguration {
 			Help help = properties.getHelp();
 			if (help.isEnabled()) {
 				registration.withHelpOptions()
-					.enabled(true)
-					.longNames(help.getLongNames())
-					.shortNames(help.getShortNames())
-					.command(help.getCommand());
+						.enabled(true)
+						.longNames(help.getLongNames())
+						.shortNames(help.getShortNames())
+						.command(help.getCommand());
 			}
 		};
 	}
@@ -117,7 +117,7 @@ public class CommandCatalogAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public BuilderSupplier commandRegistrationBuilderSupplier(
-			ObjectProvider<CommandRegistrationCustomizer> customizerProvider) {
+	ObjectProvider<CommandRegistrationCustomizer> customizerProvider) {
 		return () -> {
 			CommandRegistration.Builder builder = CommandRegistration.builder();
 			customizerProvider.orderedStream().forEach((customizer) -> customizer.customize(builder));

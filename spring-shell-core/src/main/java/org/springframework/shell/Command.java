@@ -63,7 +63,7 @@ public interface Command {
 		public boolean equals(Object o) {
 			if (this == o) return true;
 			if (o == null || getClass() != o.getClass()) return false;
-			Help help = (Help) o;
+			Help help = (Help)o;
 			return Objects.equals(group, help.group) &&
 					Objects.equals(description, help.description);
 		}

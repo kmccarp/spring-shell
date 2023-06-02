@@ -40,7 +40,7 @@ public class CommandValueProvider implements ValueProvider {
 	@Override
 	public List<CompletionProposal> complete(CompletionContext completionContext) {
 		return commandRegistry.getRegistrations().keySet().stream()
-			.map(CompletionProposal::new)
-			.collect(Collectors.toList());
+				.map(CompletionProposal::new)
+				.collect(Collectors.toList());
 	}
 }

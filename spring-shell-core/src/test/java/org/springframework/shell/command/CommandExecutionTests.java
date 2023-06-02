@@ -53,36 +53,36 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testFunctionExecution() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.and()
-			.withTarget()
+				.withTarget()
 				.function(function1)
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		Object result = execution.evaluate(new String[] { "command1", "--arg1", "myarg1value" });
+		Object result = execution.evaluate(new String[]{"command1", "--arg1", "myarg1value"});
 		assertThat(result).isEqualTo("himyarg1value");
 	}
 
 	@Test
 	public void testMethodExecution1() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method3", String.class)
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		Object result = execution.evaluate(new String[] { "command1", "--arg1", "myarg1value" });
+		Object result = execution.evaluate(new String[]{"command1", "--arg1", "myarg1value"});
 		assertThat(result).isEqualTo("himyarg1value");
 		assertThat(pojo1.method3Count).isEqualTo(1);
 	}
@@ -90,18 +90,18 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testMethodExecution2() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method1")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "--arg1", "myarg1value" });
+		execution.evaluate(new String[]{"command1", "--arg1", "myarg1value"});
 		assertThat(pojo1.method1Count).isEqualTo(1);
 		assertThat(pojo1.method1Ctx).isNotNull();
 	}
@@ -109,19 +109,19 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testMethodArgWithoutValue() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.position(0)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method4")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "--arg1" });
+		execution.evaluate(new String[]{"command1", "--arg1"});
 		assertThat(pojo1.method4Count).isEqualTo(1);
 		assertThat(pojo1.method4Arg1).isNull();
 	}
@@ -129,20 +129,20 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testMethodSinglePositionalArgs() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.position(0)
 				.arity(OptionArity.EXACTLY_ONE)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method4")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "myarg1value" });
+		execution.evaluate(new String[]{"command1", "myarg1value"});
 		assertThat(pojo1.method4Count).isEqualTo(1);
 		assertThat(pojo1.method4Arg1).isEqualTo("myarg1value");
 	}
@@ -150,17 +150,17 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testMethodSingleWithNamedArgs() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method4")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		Object result = execution.evaluate(new String[] { "command1", "--arg1", "myarg1value" });
+		Object result = execution.evaluate(new String[]{"command1", "--arg1", "myarg1value"});
 		assertThat(pojo1.method4Count).isEqualTo(1);
 		assertThat(pojo1.method4Arg1).isEqualTo("myarg1value");
 		assertThat(result).isEqualTo("himyarg1value");
@@ -169,20 +169,20 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testMethodMultiPositionalArgs() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.position(0)
 				.arity(OptionArity.EXACTLY_ONE)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method4")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "myarg1value1", "myarg1value2" });
+		execution.evaluate(new String[]{"command1", "myarg1value1", "myarg1value2"});
 		assertThat(pojo1.method4Count).isEqualTo(1);
 		assertThat(pojo1.method4Arg1).isEqualTo("myarg1value1");
 	}
@@ -190,20 +190,20 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testMethodMultiPositionalArgsAll() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.position(0)
 				.arity(OptionArity.ONE_OR_MORE)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method4")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "myarg1value1", "myarg1value2" });
+		execution.evaluate(new String[]{"command1", "myarg1value1", "myarg1value2"});
 		assertThat(pojo1.method4Count).isEqualTo(1);
 		assertThat(pojo1.method4Arg1).isEqualTo("myarg1value1,myarg1value2");
 	}
@@ -211,70 +211,70 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testMethodMultiPositionalArgsAllToArray1() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.position(0)
 				.arity(OptionArity.ONE_OR_MORE)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method9")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "myarg1value1", "myarg1value2" });
+		execution.evaluate(new String[]{"command1", "myarg1value1", "myarg1value2"});
 		assertThat(pojo1.method9Count).isEqualTo(1);
-		assertThat(pojo1.method9Arg1).isEqualTo(new String[] { "myarg1value1", "myarg1value2" });
+		assertThat(pojo1.method9Arg1).isEqualTo(new String[]{"myarg1value1", "myarg1value2"});
 	}
 
 	@Test
 	public void testMethodMultiPositionalArgsAllToArray2() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.position(0)
 				.arity(OptionArity.ONE_OR_MORE)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method8")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "1", "2" });
+		execution.evaluate(new String[]{"command1", "1", "2"});
 		assertThat(pojo1.method8Count).isEqualTo(1);
-		assertThat(pojo1.method8Arg1).isEqualTo(new float[] { 1, 2 });
+		assertThat(pojo1.method8Arg1).isEqualTo(new float[]{1, 2});
 	}
 
 	@Test
 	public void testMethodMultipleArgs() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg2")
 				.description("some arg2")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg3")
 				.description("some arg3")
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method6")
 				.and()
-			.build();
+				.build();
 
 		commandCatalog.register(r1);
 		execution.evaluate(
-				new String[] { "command1", "--arg1", "myarg1value", "--arg2", "myarg2value", "--arg3", "myarg3value" });
+				new String[]{"command1", "--arg1", "myarg1value", "--arg2", "myarg2value", "--arg3", "myarg3value"});
 		assertThat(pojo1.method6Count).isEqualTo(1);
 		assertThat(pojo1.method6Arg1).isEqualTo("myarg1value");
 		assertThat(pojo1.method6Arg2).isEqualTo("myarg2value");
@@ -285,27 +285,27 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testMethodMultipleIntArgs() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg2")
 				.description("some arg2")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg3")
 				.description("some arg3")
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method7")
 				.and()
-			.build();
+				.build();
 
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "--arg1", "1", "--arg2", "2", "--arg3", "3" });
+		execution.evaluate(new String[]{"command1", "--arg1", "1", "--arg2", "2", "--arg3", "3"});
 		assertThat(pojo1.method7Count).isEqualTo(1);
 		assertThat(pojo1.method7Arg1).isEqualTo(1);
 		assertThat(pojo1.method7Arg2).isEqualTo(2);
@@ -315,33 +315,33 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testMethodMultiplePositionalStringArgs() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.position(0)
 				.arity(OptionArity.EXACTLY_ONE)
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg2")
 				.description("some arg2")
 				.position(1)
 				.arity(OptionArity.EXACTLY_ONE)
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg3")
 				.description("some arg3")
 				.position(2)
 				.arity(OptionArity.EXACTLY_ONE)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method6")
 				.and()
-			.build();
+				.build();
 
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "myarg1value", "myarg2value", "myarg3value" });
+		execution.evaluate(new String[]{"command1", "myarg1value", "myarg2value", "myarg3value"});
 		assertThat(pojo1.method6Count).isEqualTo(1);
 		assertThat(pojo1.method6Arg1).isEqualTo("myarg1value");
 		assertThat(pojo1.method6Arg2).isEqualTo("myarg2value");
@@ -351,36 +351,36 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@ParameterizedTest
 	@Disabled("concepts change")
 	@ValueSource(strings = {
-		"command1 myarg1value --arg2 myarg2value --arg3 myarg3value",
-		"command1 --arg1 myarg1value myarg2value --arg3 myarg3value",
-		"command1 --arg1 myarg1value --arg2 myarg2value myarg3value"
+			"command1 myarg1value --arg2 myarg2value --arg3 myarg3value",
+			"command1 --arg1 myarg1value myarg2value --arg3 myarg3value",
+			"command1 --arg1 myarg1value --arg2 myarg2value myarg3value"
 	})
 	public void testMethodMultiplePositionalStringArgsMixed(String arg) {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.position(0)
 				.arity(OptionArity.EXACTLY_ONE)
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg2")
 				.description("some arg2")
 				.position(1)
 				.arity(OptionArity.EXACTLY_ONE)
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg3")
 				.description("some arg3")
 				.position(2)
 				.arity(OptionArity.EXACTLY_ONE)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method6")
 				.and()
-			.build();
+				.build();
 		String[] args = arg.split(" ");
 		commandCatalog.register(r1);
 		execution.evaluate(args);
@@ -393,29 +393,29 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testShortCombinedWithoutValue() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.shortNames('a')
 				.description("short arg a")
 				.type(boolean.class)
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('b')
 				.description("short arg b")
 				.type(boolean.class)
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('c')
 				.description("short arg c")
 				.type(boolean.class)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method5")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "-abc" });
+		execution.evaluate(new String[]{"command1", "-abc"});
 		assertThat(pojo1.method5ArgA).isTrue();
 		assertThat(pojo1.method5ArgB).isTrue();
 		assertThat(pojo1.method5ArgC).isTrue();
@@ -424,29 +424,29 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testShortCombinedSomeHavingValue() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.shortNames('a')
 				.description("short arg a")
 				.type(boolean.class)
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('b')
 				.description("short arg b")
 				.type(boolean.class)
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('c')
 				.description("short arg c")
 				.type(boolean.class)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method5")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "-ac", "-b", "false" });
+		execution.evaluate(new String[]{"command1", "-ac", "-b", "false"});
 		assertThat(pojo1.method5ArgA).isTrue();
 		assertThat(pojo1.method5ArgB).isFalse();
 		assertThat(pojo1.method5ArgC).isTrue();
@@ -455,18 +455,18 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testFloatArrayOne() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.type(float[].class)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method8")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "--arg1", "0.1" });
+		execution.evaluate(new String[]{"command1", "--arg1", "0.1"});
 		assertThat(pojo1.method8Count).isEqualTo(1);
 		assertThat(pojo1.method8Arg1).isEqualTo(new float[]{0.1f});
 	}
@@ -474,18 +474,18 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testFloatArrayTwo() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.type(float[].class)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method8")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1", "--arg1", "0.1", "0.2" });
+		execution.evaluate(new String[]{"command1", "--arg1", "0.1", "0.2"});
 		assertThat(pojo1.method8Count).isEqualTo(1);
 		assertThat(pojo1.method8Arg1).isEqualTo(new float[]{0.1f, 0.2f});
 	}
@@ -493,16 +493,16 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testDefaultValueAsNull() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.withOption()
+				.command("command1")
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method4")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1" });
+		execution.evaluate(new String[]{"command1"});
 		assertThat(pojo1.method4Count).isEqualTo(1);
 		assertThat(pojo1.method4Arg1).isNull();
 	}
@@ -510,19 +510,19 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testDefaultValue() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.withOption()
+				.command("command1")
+				.withOption()
 				.longNames("arg1")
 				.defaultValue("defaultValue1")
 				// .position(0)
 				// .arity(OptionArity.EXACTLY_ONE)
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method4")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		execution.evaluate(new String[] { "command1" });
+		execution.evaluate(new String[]{"command1"});
 		assertThat(pojo1.method4Count).isEqualTo(1);
 		assertThat(pojo1.method4Arg1).isEqualTo("defaultValue1");
 	}
@@ -530,38 +530,38 @@ public class CommandExecutionTests extends AbstractCommandTests {
 	@Test
 	public void testRequiredArg() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.withOption()
+				.command("command1")
+				.withOption()
 				.longNames("arg1")
 				.required()
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method4")
 				.and()
-			.build();
+				.build();
 
 		commandCatalog.register(r1);
 		assertThatThrownBy(() -> {
-			execution.evaluate(new String[] { "command1" });
+			execution.evaluate(new String[]{"command1"});
 		}).isInstanceOf(CommandParserExceptionsException.class);
 	}
 
 	@Test
 	public void testCommandNotAvailable() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.and()
-			.availability(() -> Availability.unavailable("fake reason"))
-			.withTarget()
+				.availability(() -> Availability.unavailable("fake reason"))
+				.withTarget()
 				.function(function1)
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(r1);
-		Object result = execution.evaluate(new String[] { "command1", "--arg1", "myarg1value" });
+		Object result = execution.evaluate(new String[]{"command1", "--arg1", "myarg1value"});
 		assertThat(result).isInstanceOf(CommandNotCurrentlyAvailable.class);
 	}
 }

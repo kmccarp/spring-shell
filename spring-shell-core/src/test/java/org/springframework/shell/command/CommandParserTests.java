@@ -32,22 +32,22 @@ public class CommandParserTests extends AbstractCommandTests {
 	@Test
 	public void testMethodExecution1() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("command1")
-			.description("help")
-			.withOption()
+				.command("command1")
+				.description("help")
+				.withOption()
 				.longNames("arg1")
 				.description("some arg1")
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(pojo1, "method3", String.class)
 				.and()
-			.build();
+				.build();
 
 		ConversionService conversionService = new DefaultConversionService();
 		Map<String, CommandRegistration> registrations = new HashMap<>();
 		registrations.put("command1", r1);
 		CommandParser parser = CommandParser.of(conversionService, registrations, new ParserConfig());
-		CommandParserResults results = parser.parse(new String[] { "command1", "--arg1", "myarg1value" });
+		CommandParserResults results = parser.parse(new String[]{"command1", "--arg1", "myarg1value"});
 		assertThat(results.results()).hasSize(1);
 		assertThat(results.results().get(0).value()).isEqualTo("myarg1value");
 	}

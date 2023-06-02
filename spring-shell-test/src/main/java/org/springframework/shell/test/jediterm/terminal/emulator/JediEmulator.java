@@ -101,7 +101,8 @@ public class JediEmulator extends DataStreamIteratingEmulator {
 					StringBuilder sb = new StringBuilder("Unhandled control character:");
 					CharUtils.appendChar(sb, CharUtils.CharacterType.NONE, ch);
 					unhandledLogThrottler(sb.toString());
-				} else { // Plain characters
+				}
+				else { // Plain characters
 					myDataStream.pushChar(ch);
 					String nonControlCharacters = myDataStream.readNonControlCharacters(terminal.distanceToLineEnd());
 
@@ -399,7 +400,8 @@ public class JediEmulator extends DataStreamIteratingEmulator {
 				}
 				LOG.warn(msg);
 			}
-		} else {
+		}
+		else {
 			logThrottlerLimit *= 10;
 		}
 	}
@@ -483,7 +485,8 @@ public class JediEmulator extends DataStreamIteratingEmulator {
 			case 'r':
 				if (args.startsWithQuestionMark()) {
 					return restoreDecPrivateModeValues(args); //
-				} else {
+				}
+				else {
 					//Set Top and Bottom Margins
 					return setScrollingRegion(args); //DECSTBM
 				}
@@ -551,10 +554,12 @@ public class JediEmulator extends DataStreamIteratingEmulator {
 		if (mode == 0) { //Clear Current Column (default)
 			myTerminal.clearTabStopAtCursor();
 			return true;
-		} else if (mode == 3) {
+		}
+		else if (mode == 3) {
 			myTerminal.clearAllTabStops();
 			return true;
-		} else {
+		}
+		else {
 			return false;
 		}
 	}
@@ -673,7 +678,8 @@ public class JediEmulator extends DataStreamIteratingEmulator {
 				default:
 					return false;
 			}
-		} else {
+		}
+		else {
 			switch (args.getArg(0, -1)) {
 				case 2: //Keyboard Action Mode (AM)
 					setModeEnabled(TerminalMode.KeyboardAction, enabled);
@@ -719,7 +725,8 @@ public class JediEmulator extends DataStreamIteratingEmulator {
 			LOG.debug("Sending Device Report Status : " + str);
 			myTerminal.deviceStatusReport(str);
 			return true;
-		} else if (c == 6) {
+		}
+		else if (c == 6) {
 			int row = myTerminal.getCursorY();
 			int column = myTerminal.getCursorX();
 			String str = "\033[" + row + ";" + column + "R";
@@ -727,7 +734,8 @@ public class JediEmulator extends DataStreamIteratingEmulator {
 			LOG.debug("Sending Device Report Status : " + str);
 			myTerminal.deviceStatusReport(str);
 			return true;
-		} else {
+		}
+		else {
 			LOG.warn("Sending Device Report Status : unsupported parameter: " + args.toString());
 			return false;
 		}
@@ -917,7 +925,7 @@ public class JediEmulator extends DataStreamIteratingEmulator {
 	}
 
 
-	private static TextStyle createStyleState( TextStyle textStyle, ControlSequence args) {
+	private static TextStyle createStyleState(TextStyle textStyle, ControlSequence args) {
 		TextStyle.Builder builder = textStyle.toBuilder();
 		final int argCount = args.getCount();
 		if (argCount == 0) {
@@ -1098,7 +1106,7 @@ public class JediEmulator extends DataStreamIteratingEmulator {
 		myTerminal.setModeEnabled(mode, enabled);
 	}
 
-	public  CompletableFuture<?> getPromptUpdatedAfterResizeFuture( BiConsumer<Long, Runnable> taskScheduler) {
+	public  CompletableFuture<?> getPromptUpdatedAfterResizeFuture(BiConsumer<Long, Runnable> taskScheduler) {
 		CompletableFuture<Void> resizeFuture = new CompletableFuture<>();
 		taskScheduler.accept(100L, this::completeResize);
 		myResizeFutureQueue.add(resizeFuture);

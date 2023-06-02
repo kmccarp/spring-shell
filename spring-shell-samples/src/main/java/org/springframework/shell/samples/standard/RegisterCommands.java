@@ -35,47 +35,47 @@ public class RegisterCommands extends AbstractShellComponent {
 
 	public RegisterCommands() {
 		registered1 = CommandRegistration.builder()
-			.command("register registered1")
-			.group(GROUP)
-			.description("registered1 command")
-			.withTarget()
+				.command("register registered1")
+				.group(GROUP)
+				.description("registered1 command")
+				.withTarget()
 				.method(pojoMethods, "registered1")
 				.and()
-			.build();
+				.build();
 		registered2 = CommandRegistration.builder()
-			.command("register registered2")
-			.description("registered2 command")
-			.group(GROUP)
-			.withTarget()
+				.command("register registered2")
+				.description("registered2 command")
+				.group(GROUP)
+				.withTarget()
 				.method(pojoMethods, "registered2")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.build();
+				.build();
 		registered3 = CommandRegistration.builder()
-			.command("register registered3")
-			.description("registered3 command")
-			.group(GROUP)
-			.withTarget()
+				.command("register registered3")
+				.description("registered3 command")
+				.group(GROUP)
+				.withTarget()
 				.method(pojoMethods, "registered3")
 				.and()
-			.build();
+				.build();
 	}
 
-    @ShellMethod(key = "register add", value = "Register commands", group = GROUP)
-    public String register() {
+	@ShellMethod(key = "register add", value = "Register commands", group = GROUP)
+	public String register() {
 		getCommandCatalog().register(registered1, registered2, registered3);
 		registerFunctionCommand("register registered4");
 		return "Registered commands registered1, registered2, registered3, registered4";
-    }
+	}
 
-    @ShellMethod(key = "register remove", value = "Deregister commands", group = GROUP)
-    public String deregister() {
+	@ShellMethod(key = "register remove", value = "Deregister commands", group = GROUP)
+	public String deregister() {
 		getCommandCatalog().unregister("register registered1", "register registered2", "register registered3",
 				"register registered4");
 		return "Deregistered commands registered1, registered2, registered3, registered4";
-    }
+	}
 
 	private void registerFunctionCommand(String command) {
 		Function<CommandContext, String> function = ctx -> {
@@ -83,16 +83,16 @@ public class RegisterCommands extends AbstractShellComponent {
 			return String.format("hi, arg1 value is '%s'", arg1);
 		};
 		CommandRegistration registration = CommandRegistration.builder()
-			.command(command)
-			.description("registered4 command")
-			.group(GROUP)
-			.withTarget()
+				.command(command)
+				.description("registered4 command")
+				.group(GROUP)
+				.withTarget()
 				.function(function)
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.build();
+				.build();
 		getCommandCatalog().register(registration);
 	}
 

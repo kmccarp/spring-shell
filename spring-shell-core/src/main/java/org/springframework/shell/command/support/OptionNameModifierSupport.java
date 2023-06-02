@@ -95,37 +95,39 @@ public abstract class OptionNameModifierSupport {
 	}
 
 	private static String toCapitalizeCase(String name, final boolean capitalizeFirstLetter, final char... delimiters) {
-        if (!StringUtils.hasText(name)) {
-            return name;
-        }
-        String nameL = name.toLowerCase();
+		if (!StringUtils.hasText(name)) {
+			return name;
+		}
+		String nameL = name.toLowerCase();
 
 		final int strLen = nameL.length();
-        final int[] newCodePoints = new int[strLen];
-        final Set<Integer> delimiterSet = toDelimiterSet(delimiters);
+		final int[] newCodePoints = new int[strLen];
+		final Set<Integer> delimiterSet = toDelimiterSet(delimiters);
 
 		int outOffset = 0;
-        boolean capitalizeNext = capitalizeFirstLetter;
+		boolean capitalizeNext = capitalizeFirstLetter;
 
 		boolean delimiterFound = false;
 
-		for (int index = 0; index < strLen;) {
-            final int codePoint = nameL.codePointAt(index);
+		for (int index = 0;index < strLen;) {
+			final int codePoint = nameL.codePointAt(index);
 
-            if (delimiterSet.contains(codePoint)) {
-                capitalizeNext = outOffset != 0;
-                index += Character.charCount(codePoint);
-				delimiterFound  = true;
-            } else if (capitalizeNext || outOffset == 0 && capitalizeFirstLetter) {
-                final int titleCaseCodePoint = Character.toTitleCase(codePoint);
-                newCodePoints[outOffset++] = titleCaseCodePoint;
-                index += Character.charCount(titleCaseCodePoint);
-                capitalizeNext = false;
-            } else {
-                newCodePoints[outOffset++] = codePoint;
-                index += Character.charCount(codePoint);
-            }
-        }
+			if (delimiterSet.contains(codePoint)) {
+				capitalizeNext = outOffset != 0;
+				index += Character.charCount(codePoint);
+				delimiterFound = true;
+			}
+			else if (capitalizeNext || outOffset == 0 && capitalizeFirstLetter) {
+				final int titleCaseCodePoint = Character.toTitleCase(codePoint);
+				newCodePoints[outOffset++] = titleCaseCodePoint;
+				index += Character.charCount(titleCaseCodePoint);
+				capitalizeNext = false;
+			}
+			else {
+				newCodePoints[outOffset++] = codePoint;
+				index += Character.charCount(codePoint);
+			}
+		}
 
 		if (!delimiterFound) {
 			if (capitalizeFirstLetter) {
@@ -136,10 +138,10 @@ public abstract class OptionNameModifierSupport {
 			}
 		}
 
-        return new String(newCodePoints, 0, outOffset);
-    }
+		return new String(newCodePoints, 0, outOffset);
+	}
 
-    /**
+	/**
 	 * Converts an array of delimiters to a hash set of code points. Code point of
 	 * space(32) is added as the default value. The generated hash set provides O(1)
 	 * lookup time.
@@ -148,16 +150,16 @@ public abstract class OptionNameModifierSupport {
 	 *                   whitespace
 	 * @return Integers of code points
 	 */
-    private static Set<Integer> toDelimiterSet(final char[] delimiters) {
-        final Set<Integer> delimiterHashSet = new HashSet<>();
-        delimiterHashSet.add(Character.codePointAt(new char[]{' '}, 0));
+	private static Set<Integer> toDelimiterSet(final char[] delimiters) {
+		final Set<Integer> delimiterHashSet = new HashSet<>();
+		delimiterHashSet.add(Character.codePointAt(new char[]{' '}, 0));
 		if (ObjectUtils.isEmpty(delimiters)) {
-            return delimiterHashSet;
+			return delimiterHashSet;
 		}
 
-        for (int index = 0; index < delimiters.length; index++) {
-            delimiterHashSet.add(Character.codePointAt(delimiters, index));
-        }
-        return delimiterHashSet;
-    }
+		for (int index = 0;index < delimiters.length;index++) {
+			delimiterHashSet.add(Character.codePointAt(delimiters, index));
+		}
+		return delimiterHashSet;
+	}
 }

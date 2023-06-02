@@ -145,7 +145,7 @@ class CommandRegistrationFactoryBean implements FactoryBean<CommandRegistration>
 		// command
 		String[] deduceCommand = CommandAnnotationUtils.deduceCommand(classAnn, methodAnn);
 		if (deduceCommand.length == 0) {
-			deduceCommand = new String[] { Utils.unCamelify(method.getName()) };
+			deduceCommand = new String[]{Utils.unCamelify(method.getName())};
 		}
 		builder.command(deduceCommand);
 
@@ -171,10 +171,10 @@ class CommandRegistrationFactoryBean implements FactoryBean<CommandRegistration>
 		if (caAnn.isPresent()) {
 			String[] refs = caAnn.getStringArray("provider");
 			List<AvailabilityProvider> avails = Stream.of(refs)
-				.map(r -> {
-					return this.applicationContext.getBean(r, AvailabilityProvider.class);
-				})
-				.collect(Collectors.toList());
+					.map(r -> {
+						return this.applicationContext.getBean(r, AvailabilityProvider.class);
+					})
+					.collect(Collectors.toList());
 			if (!avails.isEmpty()) {
 				builder.availability(() -> {
 					for (AvailabilityProvider avail : avails) {
@@ -224,11 +224,11 @@ class CommandRegistrationFactoryBean implements FactoryBean<CommandRegistration>
 		if (so != null) {
 			List<String> longNames = new ArrayList<>();
 			List<Character> shortNames = new ArrayList<>();
-			for(int i = 0; i < so.shortNames().length; i++) {
+			for (int i = 0;i < so.shortNames().length;i++) {
 				shortNames.add(so.shortNames()[i]);
 			}
 			if (!ObjectUtils.isEmpty(so.longNames())) {
-				for(int i = 0; i < so.longNames().length; i++) {
+				for (int i = 0;i < so.longNames().length;i++) {
 					longNames.add(so.longNames()[i]);
 				}
 			}
@@ -284,7 +284,7 @@ class CommandRegistrationFactoryBean implements FactoryBean<CommandRegistration>
 				if (StringUtils.hasText(so.defaultValue())) {
 					optionSpec.defaultValue(so.defaultValue());
 				}
-				else if (ClassUtils.isAssignable(boolean.class, parameterType)){
+				else if (ClassUtils.isAssignable(boolean.class, parameterType)) {
 					optionSpec.required(false);
 					optionSpec.defaultValue("false");
 				}
@@ -300,12 +300,12 @@ class CommandRegistrationFactoryBean implements FactoryBean<CommandRegistration>
 					String[] providerBeanNames = ovAnn.provider();
 					if (providerBeanNames.length > 0) {
 						final List<CompletionProvider> resolvers = Arrays.stream(providerBeanNames)
-							.map(beanName -> this.applicationContext.getBean(beanName, CompletionProvider.class))
-							.collect(Collectors.toList());
+								.map(beanName -> this.applicationContext.getBean(beanName, CompletionProvider.class))
+								.collect(Collectors.toList());
 						optionSpec.completion(ctx -> {
 							return resolvers.stream()
-								.flatMap(resolver -> resolver.apply(ctx).stream())
-								.collect(Collectors.toList());
+									.flatMap(resolver -> resolver.apply(ctx).stream())
+									.collect(Collectors.toList());
 						});
 					}
 				}

@@ -50,28 +50,28 @@ public class WriteCommands {
 		@Bean
 		public CommandRegistration writeTerminalWriterRegistration() {
 			return getBuilder()
-				.command(REG, "write-terminalwriter")
-				.group(GROUP)
-				.withTarget()
+					.command(REG, "write-terminalwriter")
+					.group(GROUP)
+					.withTarget()
 					.consumer(ctx -> {
 						ctx.getTerminal().writer().println("hi");
 						ctx.getTerminal().writer().flush();
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration writeSystemOutRegistration() {
 			return getBuilder()
-				.command(REG, "write-terminalwriter")
-				.group(GROUP)
-				.withTarget()
+					.command(REG, "write-terminalwriter")
+					.group(GROUP)
+					.withTarget()
 					.consumer(ctx -> {
 						System.out.println("hi");
 					})
 					.and()
-				.build();
+					.build();
 		}
 	}
 }

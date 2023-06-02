@@ -37,6 +37,7 @@ class ErrorHandlingSnippets {
 			return 0;
 		}
 	}
+
 	// end::my-exception-class[]
 
 	// tag::my-exception-resolver-class[]
@@ -50,22 +51,23 @@ class ErrorHandlingSnippets {
 			return null;
 		}
 	}
+
 	// end::my-exception-resolver-class[]
 
 	void dump1() {
 		// tag::example1[]
 		CommandRegistration.builder()
-			.withErrorHandling()
+				.withErrorHandling()
 				.resolver(new CustomExceptionResolver())
 				.and()
-			.build();
+				.build();
 		// end::example1[]
 	}
 
 	static class Dump1 {
 
 		// tag::exception-resolver-with-type-in-annotation[]
-		@ExceptionResolver({ RuntimeException.class })
+		@ExceptionResolver({RuntimeException.class})
 		CommandHandlingResult errorHandler(Exception e) {
 			// Exception would be type of RuntimeException,
 			// optionally do something with it
@@ -112,7 +114,7 @@ class ErrorHandlingSnippets {
 		@ExitCode(code = 5)
 		void errorHandler(Exception e, Terminal terminal) {
 			PrintWriter writer = terminal.writer();
-			String msg =  "Hi, handled exception " + e.toString();
+			String msg = "Hi, handled exception " + e.toString();
 			writer.println(msg);
 			writer.flush();
 		}

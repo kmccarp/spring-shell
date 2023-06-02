@@ -31,7 +31,7 @@ public class GraphicSetState {
 
 	public GraphicSetState() {
 		myGraphicSets = new GraphicSet[4];
-		for (int i = 0; i < myGraphicSets.length; i++) {
+		for (int i = 0;i < myGraphicSets.length;i++) {
 			myGraphicSets[i] = new GraphicSet(i);
 		}
 
@@ -44,7 +44,7 @@ public class GraphicSetState {
 	 * @param graphicSet the graphic set to designate;
 	 * @param designator the designator of the character set.
 	 */
-	public void designateGraphicSet( GraphicSet graphicSet, char designator) {
+	public void designateGraphicSet(GraphicSet graphicSet, char designator) {
 		graphicSet.setDesignation(CharacterSet.valueOf(designator));
 	}
 
@@ -107,7 +107,7 @@ public class GraphicSetState {
 	 * Resets the state to its initial values.
 	 */
 	public void resetState() {
-		for (int i = 0; i < myGraphicSets.length; i++) {
+		for (int i = 0;i < myGraphicSets.length;i++) {
 			myGraphicSets[i].setDesignation(CharacterSet.valueOf((i == 1) ? '0' : 'B'));
 		}
 		myGL = myGraphicSets[0];

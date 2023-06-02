@@ -56,7 +56,7 @@ public class ComponentFlowAutoConfiguration {
 		@ConditionalOnMissingBean
 		@Order(0)
 		public ComponentFlowCustomizer shellCommonComponentFlowCustomizer(ObjectProvider<Terminal> terminal,
-				ObjectProvider<ResourceLoader> resourceLoader, ObjectProvider<TemplateExecutor> templateExecutor) {
+																													 ObjectProvider<ResourceLoader> resourceLoader, ObjectProvider<TemplateExecutor> templateExecutor) {
 			return new CommonComponentFlowCustomizer(terminal, resourceLoader, templateExecutor);
 		}
 
@@ -69,7 +69,7 @@ public class ComponentFlowAutoConfiguration {
 		private final ObjectProvider<TemplateExecutor> templateExecutor;
 
 		CommonComponentFlowCustomizer(ObjectProvider<Terminal> terminal, ObjectProvider<ResourceLoader> resourceLoader,
-				ObjectProvider<TemplateExecutor> templateExecutor) {
+								 ObjectProvider<TemplateExecutor> templateExecutor) {
 			this.terminal = terminal;
 			this.resourceLoader = resourceLoader;
 			this.templateExecutor = templateExecutor;

@@ -63,6 +63,6 @@ public class CommandValueProviderTests {
 		List<CompletionProposal> proposals = valueProvider.complete(completionContext);
 
 		assertThat(proposals).extracting("value", String.class)
-			.contains("me", "meow", "yourself");
+				.contains("me", "meow", "yourself");
 	}
 }

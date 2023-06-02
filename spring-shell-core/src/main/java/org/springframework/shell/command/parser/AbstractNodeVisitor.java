@@ -34,7 +34,7 @@ public abstract class AbstractNodeVisitor implements NodeVisitor {
 
 	@Override
 	public final ParseResult visit(List<NonterminalAstNode> nonterminalNodes,
-			List<TerminalAstNode> terminalNodes) {
+											List<TerminalAstNode> terminalNodes) {
 		for (NonterminalAstNode ntn : nonterminalNodes) {
 			log.debug("visit {}", ntn);
 			if (ntn instanceof CommandNode node) {

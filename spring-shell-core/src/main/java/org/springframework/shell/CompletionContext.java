@@ -46,7 +46,7 @@ public class CompletionContext {
 	 * @param wordIndex the index of the word the cursor is in
 	 * @param position the position inside the current word where the cursor is
 	 */
-	public CompletionContext(List<String> words, int wordIndex, int position, CommandRegistration commandRegistration,  CommandOption commandOption) {
+	public CompletionContext(List<String> words, int wordIndex, int position, CommandRegistration commandRegistration, CommandOption commandOption) {
 		this.words = words;
 		this.wordIndex = wordIndex;
 		this.position = position;

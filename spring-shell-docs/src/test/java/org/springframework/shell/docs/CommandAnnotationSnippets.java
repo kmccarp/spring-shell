@@ -21,46 +21,47 @@ import org.springframework.shell.command.annotation.EnableCommand;
 
 class CommandAnnotationSnippets {
 
-		class Dump1 {
+	class Dump1 {
 
-			// tag::enablecommand-with-class[]
-			@EnableCommand(Example.class)
-			class App {
-			}
-			// end::enablecommand-with-class[]
-
-			// tag::command-anno-in-method[]
-			class Example {
-
-				@Command(command = "example")
-				public String example() {
-					return "Hello";
-				}
-			}
-			// end::command-anno-in-method[]
+		// tag::enablecommand-with-class[]
+		@EnableCommand(Example.class)
+		class App {
 		}
 
-		class Dump2 {
+		// end::enablecommand-with-class[]
 
-			// tag::command-anno-in-class[]
-			@Command(command = "parent")
-			class Example {
+		// tag::command-anno-in-method[]
+		class Example {
 
-				@Command(command = "example")
-				public String example() {
-					return "Hello";
-				}
+			@Command(command = "example")
+			public String example() {
+				return "Hello";
 			}
-			// end::command-anno-in-class[]
 		}
+		// end::command-anno-in-method[]
+	}
 
-		class Dump3 {
+	class Dump2 {
 
-			// tag::commandscan-no-args[]
-			@CommandScan
-			class App {
+		// tag::command-anno-in-class[]
+		@Command(command = "parent")
+		class Example {
+
+			@Command(command = "example")
+			public String example() {
+				return "Hello";
 			}
-			// end::commandscan-no-args[]
 		}
+		// end::command-anno-in-class[]
+	}
+
+	class Dump3 {
+
+		// tag::commandscan-no-args[]
+		@CommandScan
+		class App {
+		}
+		// end::commandscan-no-args[]
+	}
 
 }

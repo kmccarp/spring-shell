@@ -24,7 +24,7 @@ import org.springframework.shell.samples.e2e.HiddenCommands.Registration;
 import org.springframework.shell.test.ShellTestClient.BaseShellSession;
 import org.springframework.test.context.ContextConfiguration;
 
-@ContextConfiguration(classes = { Registration.class })
+@ContextConfiguration(classes = {Registration.class})
 @EnableCommand(Annotation.class)
 class HiddenCommandsTests extends AbstractSampleTests {
 

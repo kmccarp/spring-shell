@@ -165,7 +165,7 @@ public class SpringShellPropertiesTests {
 				});
 	}
 
-	@EnableConfigurationProperties({ SpringShellProperties.class })
+	@EnableConfigurationProperties({SpringShellProperties.class})
 	private static class Config1 {
 	}
 }

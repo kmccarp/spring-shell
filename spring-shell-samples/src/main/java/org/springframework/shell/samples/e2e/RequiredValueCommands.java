@@ -36,8 +36,8 @@ public class RequiredValueCommands {
 
 		@ShellMethod(key = LEGACY_ANNO + "required-value", group = GROUP)
 		public String testRequiredValueAnnotation(
-			@ShellOption(help = "Desc arg1") String arg1
-		) {
+	@ShellOption(help = "Desc arg1") String arg1
+	) {
 			return "Hello " + arg1;
 		}
 	}
@@ -47,10 +47,10 @@ public class RequiredValueCommands {
 
 		@Command(command = "required-value")
 		public String testRequiredValueAnnotation(
-				@Option(longNames = "arg1", required = true, description = "Desc arg1")
-				String arg1
-		) {
-				return "Hello " + arg1;
+	@Option(longNames = "arg1", required = true, description = "Desc arg1")
+	String arg1
+	) {
+			return "Hello " + arg1;
 		}
 	}
 
@@ -60,20 +60,20 @@ public class RequiredValueCommands {
 		@Bean
 		public CommandRegistration testRequiredValueRegistration() {
 			return getBuilder()
-				.command(REG, "required-value")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "required-value")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.description("Desc arg1")
 					.required()
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						String arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 	}
 }

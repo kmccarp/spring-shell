@@ -25,28 +25,28 @@ public class FunctionCommands {
 	@Bean
 	public CommandRegistration commandRegistration1() {
 		return CommandRegistration.builder()
-			.command("function", "command1")
-			.description("function sample")
-			.group("Function Commands")
-			.withTarget()
+				.command("function", "command1")
+				.description("function sample")
+				.group("Function Commands")
+				.withTarget()
 				.function(ctx -> {
 					String arg1 = ctx.getOptionValue("arg1");
 					return String.format("hi, arg1 value is '%s'", arg1);
 				})
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.build();
+				.build();
 	}
 
 	@Bean
 	public CommandRegistration commandRegistration2() {
 		return CommandRegistration.builder()
-			.command("function", "command2")
-			.description("function sample")
-			.group("Function Commands")
-			.withTarget()
+				.command("function", "command2")
+				.description("function sample")
+				.group("Function Commands")
+				.withTarget()
 				.function(ctx -> {
 					Boolean a = ctx.getOptionValue("a");
 					Boolean b = ctx.getOptionValue("b");
@@ -54,55 +54,55 @@ public class FunctionCommands {
 					return String.format("hi, boolean values for a, b, c are '%s' '%s' '%s'", a, b, c);
 				})
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('a')
 				.type(boolean.class)
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('b')
 				.type(boolean.class)
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('c')
 				.type(boolean.class)
 				.and()
-			.build();
+				.build();
 	}
 
 	@Bean
 	public CommandRegistration commandRegistration3() {
 		return CommandRegistration.builder()
-			.command("function", "command3")
-			.description("function sample")
-			.group("Function Commands")
-			.withTarget()
+				.command("function", "command3")
+				.description("function sample")
+				.group("Function Commands")
+				.withTarget()
 				.consumer(ctx -> {
 					String arg1 = ctx.getOptionValue("arg1");
 					ctx.getTerminal().writer()
-						.println(String.format("hi, arg1 value is '%s'", arg1));
+							.println(String.format("hi, arg1 value is '%s'", arg1));
 				})
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.build();
+				.build();
 	}
 
 	@Bean
 	public CommandRegistration commandRegistration4() {
 		return CommandRegistration.builder()
-			.command("function", "command4")
-			.description("function sample")
-			.group("Function Commands")
-			.withTarget()
+				.command("function", "command4")
+				.description("function sample")
+				.group("Function Commands")
+				.withTarget()
 				.consumer(ctx -> {
 					ctx.getTerminal().writer()
-						.println(String.format("hi, command is '%s'", ctx.getCommandRegistration().getCommand()));
+							.println(String.format("hi, command is '%s'", ctx.getCommandRegistration().getCommand()));
 				})
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.build();
+				.build();
 	}
 }

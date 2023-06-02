@@ -30,7 +30,7 @@ public class ArrayTableModel extends TableModel {
 	public ArrayTableModel(Object[][] data) {
 		this.data = data;
 		int width = data.length > 0 ? data[0].length : 0;
-		for (int row = 0; row < data.length; row++) {
+		for (int row = 0;row < data.length;row++) {
 			Assert.isTrue(width == data[row].length, "All rows of array data must be of same length");
 		}
 	}

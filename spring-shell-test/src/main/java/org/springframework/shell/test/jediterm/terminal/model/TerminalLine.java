@@ -41,7 +41,7 @@ public final class TerminalLine {
 	public TerminalLine() {
 	}
 
-	public TerminalLine( TextEntry entry) {
+	public TerminalLine(TextEntry entry) {
 		myTextEntries.add(entry);
 	}
 
@@ -87,21 +87,21 @@ public final class TerminalLine {
 		myWrapped = wrapped;
 	}
 
-	public synchronized void clear( TextEntry filler) {
+	public synchronized void clear(TextEntry filler) {
 		myTextEntries.clear();
 		myTextEntries.add(filler);
 		setWrapped(false);
 	}
 
-	public void writeString(int x,  CharBuffer str,  TextStyle style) {
+	public void writeString(int x, CharBuffer str, TextStyle style) {
 		writeCharacters(x, style, str);
 	}
 
-	public void insertString(int x,  CharBuffer str,  TextStyle style) {
+	public void insertString(int x, CharBuffer str, TextStyle style) {
 		insertCharacters(x, style, str);
 	}
 
-	private synchronized void writeCharacters(int x,  TextStyle style,  CharBuffer characters) {
+	private synchronized void writeCharacters(int x, TextStyle style, CharBuffer characters) {
 		int len = myTextEntries.length();
 
 		if (x >= len) {
@@ -110,13 +110,14 @@ public final class TerminalLine {
 				myTextEntries.add(new TextEntry(TextStyle.EMPTY, new CharBuffer(CharUtils.NUL_CHAR, x - len)));
 			}
 			myTextEntries.add(new TextEntry(style, characters));
-		} else {
+		}
+		else {
 			len = Math.max(len, x + characters.length());
 			myTextEntries = merge(x, characters, style, myTextEntries, len);
 		}
 	}
 
-	private synchronized void insertCharacters(int x,  TextStyle style,  CharBuffer characters) {
+	private synchronized void insertCharacters(int x, TextStyle style, CharBuffer characters) {
 		int length = myTextEntries.length();
 		if (x > length) {
 			writeCharacters(x, style, characters);
@@ -125,21 +126,21 @@ public final class TerminalLine {
 
 		Pair<char[], TextStyle[]> pair = toBuf(myTextEntries, length + characters.length());
 
-		for (int i = length - 1; i >= x; i--) {
+		for (int i = length - 1;i >= x;i--) {
 			pair.first[i + characters.length()] = pair.first[i];
 			pair.second[i + characters.length()] = pair.second[i];
 		}
-		for (int i = 0; i < characters.length(); i++) {
+		for (int i = 0;i < characters.length();i++) {
 			pair.first[i + x] = characters.charAt(i);
 			pair.second[i + x] = style;
 		}
 		myTextEntries = collectFromBuffer(pair.first, pair.second);
 	}
 
-	private static TextEntries merge(int x,  CharBuffer str,  TextStyle style,  TextEntries entries, int lineLength) {
+	private static TextEntries merge(int x, CharBuffer str, TextStyle style, TextEntries entries, int lineLength) {
 		Pair<char[], TextStyle[]> pair = toBuf(entries, lineLength);
 
-		for (int i = 0; i < str.length(); i++) {
+		for (int i = 0;i < str.length();i++) {
 			pair.first[i + x] = str.charAt(i);
 			pair.second[i + x] = style;
 		}
@@ -153,7 +154,7 @@ public final class TerminalLine {
 
 		int p = 0;
 		for (TextEntry entry : entries) {
-			for (int i = 0; i < entry.getLength(); i++) {
+			for (int i = 0;i < entry.getLength();i++) {
 				pair.first[p + i] = entry.getText().charAt(i);
 				pair.second[p + i] = entry.getStyle();
 			}
@@ -162,13 +163,13 @@ public final class TerminalLine {
 		return pair;
 	}
 
-	private static TextEntries collectFromBuffer(char[] buf,  TextStyle[] styles) {
+	private static TextEntries collectFromBuffer(char[] buf, TextStyle[] styles) {
 		TextEntries result = new TextEntries();
 
 		TextStyle curStyle = styles[0];
 		int start = 0;
 
-		for (int i = 1; i < buf.length; i++) {
+		for (int i = 1;i < buf.length;i++) {
 			if (styles[i] != curStyle) {
 				result.add(new TextEntry(curStyle, new CharBuffer(buf, start, i - start)));
 				curStyle = styles[i];
@@ -185,13 +186,13 @@ public final class TerminalLine {
 		deleteCharacters(x, TextStyle.EMPTY);
 	}
 
-	public synchronized void deleteCharacters(int x,  TextStyle style) {
+	public synchronized void deleteCharacters(int x, TextStyle style) {
 		deleteCharacters(x, myTextEntries.length() - x, style);
 		// delete to the end of line : line is no more wrapped
 		setWrapped(false);
 	}
 
-	public synchronized void deleteCharacters(int x, int count,  TextStyle style) {
+	public synchronized void deleteCharacters(int x, int count, TextStyle style) {
 		int p = 0;
 		TextEntries newEntries = new TextEntries();
 
@@ -218,7 +219,8 @@ public final class TerminalLine {
 				//part that left after deleting count
 				newEntries.add(new TextEntry(entry.getStyle(), entry.getText().subBuffer(dx + remaining, len - (dx + remaining))));
 				remaining = 0;
-			} else {
+			}
+			else {
 				remaining -= (len - dx);
 				p = x;
 			}
@@ -230,7 +232,7 @@ public final class TerminalLine {
 		myTextEntries = newEntries;
 	}
 
-	public synchronized void insertBlankCharacters(int x, int count, int maxLen,  TextStyle style) {
+	public synchronized void insertBlankCharacters(int x, int count, int maxLen, TextStyle style) {
 		int len = myTextEntries.length();
 		len = Math.min(len + count, maxLen);
 
@@ -239,9 +241,9 @@ public final class TerminalLine {
 
 		int p = 0;
 		for (TextEntry entry : myTextEntries) {
-			for (int i = 0; i < entry.getLength() && p < len; i++) {
+			for (int i = 0;i < entry.getLength() && p < len;i++) {
 				if (p == x) {
-					for (int j = 0; j < count && p < len; j++) {
+					for (int j = 0;j < count && p < len;j++) {
 						buf[p] = CharUtils.EMPTY_CHAR;
 						styles[p] = style;
 						p++;
@@ -259,12 +261,12 @@ public final class TerminalLine {
 		}
 
 		// if not inserted yet (ie. x > len)
-		for (; p < x && p < len; p++) {
+		for (;p < x && p < len;p++) {
 			buf[p] = CharUtils.EMPTY_CHAR;
 			styles[p] = TextStyle.EMPTY;
 			p++;
 		}
-		for (; p < x + count && p < len; p++) {
+		for (;p < x + count && p < len;p++) {
 			buf[p] = CharUtils.EMPTY_CHAR;
 			styles[p] = style;
 			p++;
@@ -273,13 +275,13 @@ public final class TerminalLine {
 		myTextEntries = collectFromBuffer(buf, styles);
 	}
 
-	public synchronized void clearArea(int leftX, int rightX,  TextStyle style) {
+	public synchronized void clearArea(int leftX, int rightX, TextStyle style) {
 		if (rightX == -1) {
 			rightX = Math.max(myTextEntries.length(), leftX);
 		}
 		writeCharacters(leftX, style, new CharBuffer(
-						rightX >= myTextEntries.length() ? CharUtils.NUL_CHAR : CharUtils.EMPTY_CHAR,
-						rightX - leftX));
+				rightX >= myTextEntries.length() ? CharUtils.NUL_CHAR : CharUtils.EMPTY_CHAR,
+				rightX - leftX));
 	}
 
 	public synchronized TextStyle getStyleAt(int x) {
@@ -307,7 +309,8 @@ public final class TerminalLine {
 					nulIndex = x;
 				}
 				consumer.consumeNul(x, y, nulIndex, te.getStyle(), te.getText(), startRow);
-			} else {
+			}
+			else {
 				if (highlighting != null && te.getLength() > 0 && highlighting.intersectsWith(x, x + te.getLength())) {
 					processIntersection(x, y, te, consumer, startRow, highlighting);
 				}
@@ -320,21 +323,21 @@ public final class TerminalLine {
 		consumer.consumeQueue(x, y, nulIndex < 0 ? x : nulIndex, startRow);
 	}
 
-	private void processIntersection(int startTextOffset, int y,  TextEntry te,  StyledTextConsumer consumer,
-																	 int startRow,  TerminalLineIntervalHighlighting highlighting) {
+	private void processIntersection(int startTextOffset, int y, TextEntry te, StyledTextConsumer consumer,
+									int startRow, TerminalLineIntervalHighlighting highlighting) {
 		CharBuffer text = te.getText();
 		int endTextOffset = startTextOffset + text.length();
-		int[] offsets = new int[] {startTextOffset, endTextOffset, highlighting.getStartOffset(), highlighting.getEndOffset()};
+		int[] offsets = new int[]{startTextOffset, endTextOffset, highlighting.getStartOffset(), highlighting.getEndOffset()};
 		Arrays.sort(offsets);
 		int startTextOffsetInd = Arrays.binarySearch(offsets, startTextOffset);
 		int endTextOffsetInd = Arrays.binarySearch(offsets, endTextOffset);
 		if (startTextOffsetInd < 0 || endTextOffsetInd < 0) {
-			LOG.error("Cannot find " + Arrays.toString(new int[] {startTextOffset, endTextOffset})
-				+ " in " + Arrays.toString(offsets) + ": " + Arrays.toString(new int[] {startTextOffsetInd, endTextOffsetInd}));
+			LOG.error("Cannot find " + Arrays.toString(new int[]{startTextOffset, endTextOffset})
+					+ " in " + Arrays.toString(offsets) + ": " + Arrays.toString(new int[]{startTextOffsetInd, endTextOffsetInd}));
 			consumer.consume(startTextOffset, y, te.getStyle(), text, startRow);
 			return;
 		}
-		for (int i = startTextOffsetInd; i < endTextOffsetInd; i++) {
+		for (int i = startTextOffsetInd;i < endTextOffsetInd;i++) {
 			int length = offsets[i + 1] - offsets[i];
 			if (length == 0) continue;
 			CharBuffer subText = new SubCharBuffer(text, offsets[i] - startTextOffset, length);
@@ -357,7 +360,7 @@ public final class TerminalLine {
 		return true;
 	}
 
-	void forEachEntry( Consumer<TextEntry> action) {
+	void forEachEntry(Consumer<TextEntry> action) {
 		myTextEntries.forEach(action);
 	}
 
@@ -366,7 +369,7 @@ public final class TerminalLine {
 		return Collections.unmodifiableList(myTextEntries.entries());
 	}
 
-	void appendEntry( TextEntry entry) {
+	void appendEntry(TextEntry entry) {
 		myTextEntries.add(entry);
 	}
 
@@ -390,15 +393,15 @@ public final class TerminalLine {
 				(myWrapped ? "wrapped, " : "") +
 				myTextEntries.myTextEntries.size() + " entries: " +
 				myTextEntries.myTextEntries.stream()
-					.map(entry -> entry.getText().toString())
-					.collect(Collectors.joining("|"));
+						.map(entry -> entry.getText().toString())
+						.collect(Collectors.joining("|"));
 	}
 
 	public static class TextEntry {
 		private final TextStyle myStyle;
 		private final CharBuffer myText;
 
-		public TextEntry( TextStyle style,  CharBuffer text) {
+		public TextEntry(TextStyle style, CharBuffer text) {
 			myStyle = style;
 			myText = text.clone();
 		}

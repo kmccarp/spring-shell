@@ -71,11 +71,11 @@ public class ComponentCommands extends AbstractShellComponent {
 
 	@ShellMethod(key = "component path search", value = "Path search", group = "Components")
 	public String pathSearch(
-		@ShellOption(defaultValue = ShellOption.NULL) Integer maxPathsShow,
-		@ShellOption(defaultValue = ShellOption.NULL) Integer maxPathsSearch,
-		@ShellOption(defaultValue = "true") boolean searchForward,
-		@ShellOption(defaultValue = "false") boolean searchCaseSensitive,
-		@ShellOption(defaultValue = "false") boolean searchNormalize
+	@ShellOption(defaultValue = ShellOption.NULL) Integer maxPathsShow,
+	@ShellOption(defaultValue = ShellOption.NULL) Integer maxPathsSearch,
+	@ShellOption(defaultValue = "true") boolean searchForward,
+	@ShellOption(defaultValue = "false") boolean searchCaseSensitive,
+	@ShellOption(defaultValue = "false") boolean searchNormalize
 	) {
 		PathSearchConfig config = new PathSearch.PathSearchConfig();
 		if (maxPathsShow != null) {
@@ -105,7 +105,7 @@ public class ComponentCommands extends AbstractShellComponent {
 
 	@ShellMethod(key = "component single", value = "Single selector", group = "Components")
 	public String singleSelector(
-		@ShellOption(defaultValue = ShellOption.NULL) Boolean longKeys
+	@ShellOption(defaultValue = ShellOption.NULL) Boolean longKeys
 	) {
 		List<SelectorItem<String>> items = new ArrayList<>();
 		items.add(SelectorItem.of("key1", "value1"));
@@ -126,7 +126,7 @@ public class ComponentCommands extends AbstractShellComponent {
 
 	@ShellMethod(key = "component multi", value = "Multi selector", group = "Components")
 	public String multiSelector(
-		@ShellOption(defaultValue = ShellOption.NULL) Boolean longKeys
+	@ShellOption(defaultValue = ShellOption.NULL) Boolean longKeys
 	) {
 		List<SelectorItem<String>> items = new ArrayList<>();
 		items.add(SelectorItem.of("key1", "value1"));
@@ -172,7 +172,7 @@ public class ComponentCommands extends AbstractShellComponent {
 			if (context.getResultValue() != null) {
 				builder.append(context.getResultValue());
 			}
-			else  {
+			else {
 				String input = context.getInput();
 				if (StringUtils.hasText(input)) {
 					builder.append(input);

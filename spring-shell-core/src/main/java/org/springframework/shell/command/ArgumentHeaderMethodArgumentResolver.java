@@ -36,7 +36,7 @@ import org.springframework.util.Assert;
 public class ArgumentHeaderMethodArgumentResolver extends AbstractArgumentMethodArgumentResolver {
 
 	public ArgumentHeaderMethodArgumentResolver(ConversionService conversionService,
-			@Nullable ConfigurableBeanFactory beanFactory) {
+											  @Nullable ConfigurableBeanFactory beanFactory) {
 		super(conversionService, beanFactory);
 	}
 

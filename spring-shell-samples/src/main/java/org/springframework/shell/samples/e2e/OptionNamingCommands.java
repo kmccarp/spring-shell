@@ -29,11 +29,11 @@ public class OptionNamingCommands {
 
 		@ShellMethod(key = LEGACY_ANNO + "option-naming-1", group = GROUP)
 		public void testOptionNaming1Annotation(
-			@ShellOption("from_snake") String snake,
-			@ShellOption("fromCamel") String camel,
-			@ShellOption("from-kebab") String kebab,
-			@ShellOption("FromPascal") String pascal
-		) {
+	@ShellOption("from_snake") String snake,
+	@ShellOption("fromCamel") String camel,
+	@ShellOption("from-kebab") String kebab,
+	@ShellOption("FromPascal") String pascal
+	) {
 		}
 
 	}
@@ -44,33 +44,34 @@ public class OptionNamingCommands {
 		@Bean
 		public CommandRegistration testOptionNaming1Registration() {
 			return getBuilder()
-				.command(REG, "option-naming-1")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "option-naming-1")
+					.group(GROUP)
+					.withOption()
 					.longNames("from_snake")
 					.required()
 					.and()
-				.withOption()
+					.withOption()
 					.longNames("fromCamel")
 					.required()
 					.and()
-				.withOption()
+					.withOption()
 					.longNames("from-kebab")
 					.required()
 					.and()
-				.withOption()
+					.withOption()
 					.longNames("FromPascal")
 					.required()
 					.and()
-				.withOption()
+					.withOption()
 					.longNames("arg1")
 					.nameModifier(name -> "x" + name)
 					.required()
 					.and()
-				.withTarget()
-					.consumer(ctx -> {})
+					.withTarget()
+					.consumer(ctx -> {
+					})
 					.and()
-				.build();
+					.build();
 		}
 	}
 }

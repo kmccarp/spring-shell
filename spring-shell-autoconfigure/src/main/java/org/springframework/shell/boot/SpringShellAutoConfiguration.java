@@ -66,8 +66,8 @@ public class SpringShellAutoConfiguration {
 
 	@Bean
 	public Shell shell(ResultHandlerService resultHandlerService, CommandCatalog commandRegistry, Terminal terminal,
-			ShellConversionServiceSupplier shellConversionServiceSupplier, ShellContext shellContext,
-			ExitCodeMappings exitCodeMappings) {
+							ShellConversionServiceSupplier shellConversionServiceSupplier, ShellContext shellContext,
+							ExitCodeMappings exitCodeMappings) {
 		Shell shell = new Shell(resultHandlerService, commandRegistry, terminal, shellContext, exitCodeMappings);
 		shell.setConversionService(shellConversionServiceSupplier.get());
 		return shell;

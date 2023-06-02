@@ -33,7 +33,7 @@ final class SystemCommandSequence {
 	private final List<Object> myArgs = new ArrayList<>();
 	private final StringBuilder mySequence = new StringBuilder();
 
-	public SystemCommandSequence( TerminalDataStream stream) throws IOException {
+	public SystemCommandSequence(TerminalDataStream stream) throws IOException {
 		StringBuilder argBuilder = new StringBuilder();
 		boolean end = false;
 		while (!end) {
@@ -53,7 +53,7 @@ final class SystemCommandSequence {
 		}
 	}
 
-	private  Object parseArg( String arg) {
+	private  Object parseArg(String arg) {
 		if (arg.length() > 0 && Character.isDigit(arg.charAt(arg.length() - 1))) {
 			// check isDigit to reduce amount of expensive NumberFormatException
 			try {
@@ -80,7 +80,7 @@ final class SystemCommandSequence {
 	}
 
 	public  String getStringAt(int i) {
-		if (i>=myArgs.size()) {
+		if (i >= myArgs.size()) {
 			return null;
 		}
 		Object val = myArgs.get(i);
@@ -91,13 +91,13 @@ final class SystemCommandSequence {
 		if (position < myArgs.size()) {
 			Object val = myArgs.get(position);
 			if (val instanceof Integer) {
-				return (Integer) val;
+				return (Integer)val;
 			}
 		}
 		return defaultValue;
 	}
 
-	public  String format( String body) {
+	public  String format(String body) {
 		return (char)Ascii.ESC + "]" + body + getTerminator();
 	}
 

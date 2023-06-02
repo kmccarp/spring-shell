@@ -22,14 +22,14 @@ class CommandRegistrationHiddenSnippets {
 	// tag::snippet1[]
 	CommandRegistration commandRegistration() {
 		return CommandRegistration.builder()
-			.command("mycommand")
-			// define as hidden
-			.hidden()
-			// can be defined via a flag (false)
-			.hidden(false)
-			// can be defined via a flag (true)
-			.hidden(true)
-			.build();
+				.command("mycommand")
+				// define as hidden
+				.hidden()
+				// can be defined via a flag (false)
+				.hidden(false)
+				// can be defined via a flag (true)
+				.hidden(true)
+				.build();
 	}
 	// end::snippet1[]
 

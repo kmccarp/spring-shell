@@ -56,38 +56,38 @@ public class ComponentFlowCommands extends AbstractShellComponent {
 				SelectItem.of("key2", "value2"), SelectItem.of("key3", "value3"));
 		ComponentFlow flow = componentFlowBuilder.clone().reset()
 				.withStringInput("field1")
-					.name("Field1")
-					.defaultValue("defaultField1Value")
-					.and()
+				.name("Field1")
+				.defaultValue("defaultField1Value")
+				.and()
 				.withStringInput("field2")
-					.name("Field2")
-					.and()
+				.name("Field2")
+				.and()
 				.withConfirmationInput("confirmation1")
-					.name("Confirmation1")
-					.and()
+				.name("Confirmation1")
+				.and()
 				.withPathInput("path1")
-					.name("Path1")
-					.and()
+				.name("Path1")
+				.and()
 				.withSingleItemSelector("single1")
-					.name("Single1")
-					.selectItems(single1SelectItems)
-					.and()
+				.name("Single1")
+				.selectItems(single1SelectItems)
+				.and()
 				.withMultiItemSelector("multi1")
-					.name("Multi1")
-					.selectItems(multi1SelectItems)
-					.and()
+				.name("Multi1")
+				.selectItems(multi1SelectItems)
+				.and()
 				.build();
 		flow.run();
 	}
 
 	@ShellMethod(key = "flow showcase2", value = "Showcase with options", group = "Flow")
 	public String showcase2(
-		@ShellOption(help = "Field1 value", defaultValue = ShellOption.NULL) String field1,
-		@ShellOption(help = "Field2 value", defaultValue = ShellOption.NULL) String field2,
-		@ShellOption(help = "Confirmation1 value", defaultValue = ShellOption.NULL) Boolean confirmation1,
-		@ShellOption(help = "Path1 value", defaultValue = ShellOption.NULL) String path1,
-		@ShellOption(help = "Single1 value", defaultValue = ShellOption.NULL) String single1,
-		@ShellOption(help = "Multi1 value", defaultValue = ShellOption.NULL) List<String> multi1
+	@ShellOption(help = "Field1 value", defaultValue = ShellOption.NULL) String field1,
+	@ShellOption(help = "Field2 value", defaultValue = ShellOption.NULL) String field2,
+	@ShellOption(help = "Confirmation1 value", defaultValue = ShellOption.NULL) Boolean confirmation1,
+	@ShellOption(help = "Path1 value", defaultValue = ShellOption.NULL) String path1,
+	@ShellOption(help = "Single1 value", defaultValue = ShellOption.NULL) String single1,
+	@ShellOption(help = "Multi1 value", defaultValue = ShellOption.NULL) List<String> multi1
 	) {
 		Map<String, String> single1SelectItems = new HashMap<>();
 		single1SelectItems.put("key1", "value1");
@@ -97,38 +97,38 @@ public class ComponentFlowCommands extends AbstractShellComponent {
 		List<String> multi1ResultValues = multi1 != null ? multi1 : new ArrayList<>();
 		ComponentFlow flow = componentFlowBuilder.clone().reset()
 				.withStringInput("field1")
-					.name("Field1")
-					.defaultValue("defaultField1Value")
-					.resultValue(field1)
-					.resultMode(ResultMode.ACCEPT)
-					.and()
+				.name("Field1")
+				.defaultValue("defaultField1Value")
+				.resultValue(field1)
+				.resultMode(ResultMode.ACCEPT)
+				.and()
 				.withStringInput("field2")
-					.name("Field2")
-					.resultValue(field2)
-					.resultMode(ResultMode.ACCEPT)
-					.and()
+				.name("Field2")
+				.resultValue(field2)
+				.resultMode(ResultMode.ACCEPT)
+				.and()
 				.withConfirmationInput("confirmation1")
-					.name("Confirmation1")
-					.resultValue(confirmation1)
-					.resultMode(ResultMode.ACCEPT)
-					.and()
+				.name("Confirmation1")
+				.resultValue(confirmation1)
+				.resultMode(ResultMode.ACCEPT)
+				.and()
 				.withPathInput("path1")
-					.name("Path1")
-					.resultValue(path1)
-					.resultMode(ResultMode.ACCEPT)
-					.and()
+				.name("Path1")
+				.resultValue(path1)
+				.resultMode(ResultMode.ACCEPT)
+				.and()
 				.withSingleItemSelector("single1")
-					.name("Single1")
-					.selectItems(single1SelectItems)
-					.resultValue(single1)
-					.resultMode(ResultMode.ACCEPT)
-					.and()
+				.name("Single1")
+				.selectItems(single1SelectItems)
+				.resultValue(single1)
+				.resultMode(ResultMode.ACCEPT)
+				.and()
 				.withMultiItemSelector("multi1")
-					.name("Multi1")
-					.selectItems(multi1SelectItems)
-					.resultValues(multi1ResultValues)
-					.resultMode(ResultMode.ACCEPT)
-					.and()
+				.name("Multi1")
+				.selectItems(multi1SelectItems)
+				.resultValues(multi1ResultValues)
+				.resultMode(ResultMode.ACCEPT)
+				.and()
 				.build();
 		ComponentFlowResult result = flow.run();
 		StringBuilder buf = new StringBuilder();
@@ -144,28 +144,28 @@ public class ComponentFlowCommands extends AbstractShellComponent {
 	@Bean
 	public CommandRegistration showcaseRegistration() {
 		return CommandRegistration.builder()
-			.command("flow", "showcase3")
-			.description("Showcase")
-			.withOption()
+				.command("flow", "showcase3")
+				.description("Showcase")
+				.withOption()
 				.longNames("field1")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("field2")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("confirmation1")
 				.type(Boolean.class)
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("path1")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("single1")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("multi1")
 				.and()
-			.withTarget()
+				.withTarget()
 				.consumer(ctx -> {
 
 					String field1 = ctx.getOptionValue("field1");
@@ -186,38 +186,38 @@ public class ComponentFlowCommands extends AbstractShellComponent {
 							SelectItem.of("key2", "value2"), SelectItem.of("key3", "value3"));
 					ComponentFlow flow = componentFlowBuilder.clone().reset()
 							.withStringInput("field1")
-								.name("Field1")
-								.defaultValue("defaultField1Value")
-								.resultValue(field1)
-								.resultMode(ResultMode.ACCEPT)
-								.and()
+							.name("Field1")
+							.defaultValue("defaultField1Value")
+							.resultValue(field1)
+							.resultMode(ResultMode.ACCEPT)
+							.and()
 							.withStringInput("field2")
-								.name("Field2")
-								.resultValue(field2)
-								.resultMode(ResultMode.ACCEPT)
-								.and()
+							.name("Field2")
+							.resultValue(field2)
+							.resultMode(ResultMode.ACCEPT)
+							.and()
 							.withConfirmationInput("confirmation1")
-								.name("Confirmation1")
-								.resultValue(confirmation1)
-								.resultMode(ResultMode.ACCEPT)
-								.and()
+							.name("Confirmation1")
+							.resultValue(confirmation1)
+							.resultMode(ResultMode.ACCEPT)
+							.and()
 							.withPathInput("path1")
-								.name("Path1")
-								.resultValue(path1)
-								.resultMode(ResultMode.ACCEPT)
-								.and()
+							.name("Path1")
+							.resultValue(path1)
+							.resultMode(ResultMode.ACCEPT)
+							.and()
 							.withSingleItemSelector("single1")
-								.name("Single1")
-								.selectItems(single1SelectItems)
-								.resultValue(single1)
-								.resultMode(ResultMode.ACCEPT)
-								.and()
+							.name("Single1")
+							.selectItems(single1SelectItems)
+							.resultValue(single1)
+							.resultMode(ResultMode.ACCEPT)
+							.and()
 							.withMultiItemSelector("multi1")
-								.name("Multi1")
-								.selectItems(multi1SelectItems)
-								.resultValues(multi1)
-								.resultMode(ResultMode.ACCEPT)
-								.and()
+							.name("Multi1")
+							.selectItems(multi1SelectItems)
+							.resultValues(multi1)
+							.resultMode(ResultMode.ACCEPT)
+							.and()
 							.build();
 					ComponentFlowResult result = flow.run();
 
@@ -249,7 +249,7 @@ public class ComponentFlowCommands extends AbstractShellComponent {
 					}
 				})
 				.and()
-			.build();
+				.build();
 	}
 
 	@ShellMethod(key = "flow conditional", value = "Second component based on first", group = "Flow")
@@ -259,39 +259,39 @@ public class ComponentFlowCommands extends AbstractShellComponent {
 		single1SelectItems.put("Field2", "field2");
 		ComponentFlow flow = componentFlowBuilder.clone().reset()
 				.withSingleItemSelector("single1")
-					.name("Single1")
-					.selectItems(single1SelectItems)
-					.next(ctx -> ctx.getResultItem().get().getItem())
-					.and()
+				.name("Single1")
+				.selectItems(single1SelectItems)
+				.next(ctx -> ctx.getResultItem().get().getItem())
+				.and()
 				.withStringInput("field1")
-					.name("Field1")
-					.defaultValue("defaultField1Value")
-					.next(ctx -> null)
-					.and()
+				.name("Field1")
+				.defaultValue("defaultField1Value")
+				.next(ctx -> null)
+				.and()
 				.withStringInput("field2")
-					.name("Field2")
-					.defaultValue("defaultField2Value")
-					.next(ctx -> null)
-					.and()
+				.name("Field2")
+				.defaultValue("defaultField2Value")
+				.next(ctx -> null)
+				.and()
 				.build();
 		flow.run();
 	}
 
 	@ShellMethod(key = "flow autoselect", value = "Autoselect item", group = "Flow")
 	public void autoselect(
-			@ShellOption(defaultValue = "Field3") String defaultValue
-		) {
+	@ShellOption(defaultValue = "Field3") String defaultValue
+	) {
 		Map<String, String> single1SelectItems = IntStream.range(1, 10)
-			.boxed()
-			.collect(Collectors.toMap(i -> "Field" + i, i -> "field" + i));
+				.boxed()
+				.collect(Collectors.toMap(i -> "Field" + i, i -> "field" + i));
 
 		ComponentFlow flow = componentFlowBuilder.clone().reset()
 				.withSingleItemSelector("single1")
-					.name("Single1")
-					.selectItems(single1SelectItems)
-					.defaultSelect(defaultValue)
-					.sort((o1, o2) -> o1.getName().compareTo(o2.getName()))
-					.and()
+				.name("Single1")
+				.selectItems(single1SelectItems)
+				.defaultSelect(defaultValue)
+				.sort((o1, o2) -> o1.getName().compareTo(o2.getName()))
+				.and()
 				.build();
 		flow.run();
 	}

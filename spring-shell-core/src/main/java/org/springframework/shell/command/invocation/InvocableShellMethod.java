@@ -246,7 +246,7 @@ public class InvocableShellMethod {
 		ResolvedHolder[] holders = new ResolvedHolder[parameters.length];
 
 		int unresolvedCount = 0;
-		for (int i = 0; i < parameters.length; i++) {
+		for (int i = 0;i < parameters.length;i++) {
 			MethodParameter parameter = parameters[i];
 			parameter.initParameterNameDiscovery(this.parameterNameDiscoverer);
 			boolean supports = this.resolvers.supportsParameter(parameter);
@@ -262,7 +262,7 @@ public class InvocableShellMethod {
 
 		Object[] args = new Object[parameters.length];
 		int providedArgsIndex = 0;
-		for (int i = 0; i < parameters.length; i++) {
+		for (int i = 0;i < parameters.length;i++) {
 			if (!holders[i].resolved) {
 				if (providedArgs != null && unresolvedCount <= providedArgs.length) {
 					if (conversionService.canConvert(providedArgs[providedArgsIndex].getClass(), holders[i].parameter.getParameterType())) {
@@ -314,13 +314,13 @@ public class InvocableShellMethod {
 			// Unwrap for HandlerExceptionResolvers ...
 			Throwable targetException = ex.getTargetException();
 			if (targetException instanceof RuntimeException) {
-				throw (RuntimeException) targetException;
+				throw (RuntimeException)targetException;
 			}
 			else if (targetException instanceof Error) {
-				throw (Error) targetException;
+				throw (Error)targetException;
 			}
 			else if (targetException instanceof Exception) {
-				throw (Exception) targetException;
+				throw (Exception)targetException;
 			}
 			else {
 				throw new IllegalStateException(formatInvokeError("Invocation failure", args), targetException);
@@ -336,7 +336,7 @@ public class InvocableShellMethod {
 	private MethodParameter[] initMethodParameters() {
 		int count = this.bridgedMethod.getParameterCount();
 		MethodParameter[] result = new MethodParameter[count];
-		for (int i = 0; i < count; i++) {
+		for (int i = 0;i < count;i++) {
 			result[i] = new HandlerMethodParameter(i);
 		}
 		return result;
@@ -442,7 +442,7 @@ public class InvocableShellMethod {
 		Object handler = this.bean;
 		if (this.bean instanceof String) {
 			Assert.state(this.beanFactory != null, "Cannot resolve bean name without BeanFactory");
-			String beanName = (String) this.bean;
+			String beanName = (String)this.bean;
 			handler = this.beanFactory.getBean(beanName);
 		}
 		return new InvocableShellMethod(this, handler);
@@ -465,7 +465,7 @@ public class InvocableShellMethod {
 		if (!(other instanceof InvocableShellMethod)) {
 			return false;
 		}
-		InvocableShellMethod otherMethod = (InvocableShellMethod) other;
+		InvocableShellMethod otherMethod = (InvocableShellMethod)other;
 		return (this.bean.equals(otherMethod.bean) && this.method.equals(otherMethod.method));
 	}
 

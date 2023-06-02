@@ -22,20 +22,20 @@ public class CommandRegistrationSnippets {
 	void dump1() {
 		// tag::snippet1[]
 		CommandRegistration.builder()
-			.withOption()
+				.withOption()
 				.longNames("myopt")
 				.and()
-			.build();
+				.build();
 		// end::snippet1[]
 	}
 
 	void dump2() {
 		// tag::snippet2[]
 		CommandRegistration.builder()
-			.withOption()
+				.withOption()
 				.shortNames('s')
 				.and()
-			.build();
+				.build();
 		// end::snippet2[]
 	}
 }

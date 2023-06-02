@@ -60,11 +60,11 @@ public class KeyValueHorizontalAligner implements Aligner {
 
 	private String pad(int left, int right, String original) {
 		StringBuilder sb = new StringBuilder(left + original.length() + right);
-		for (int i = 0; i < left; i++) {
+		for (int i = 0;i < left;i++) {
 			sb.append(' ');
 		}
 		sb.append(original);
-		for (int i = 0; i < right; i++) {
+		for (int i = 0;i < right;i++) {
 			sb.append(' ');
 		}
 		return sb.toString();

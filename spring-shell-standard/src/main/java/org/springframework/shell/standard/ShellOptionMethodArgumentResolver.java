@@ -37,7 +37,7 @@ import org.springframework.util.StringUtils;
 public class ShellOptionMethodArgumentResolver extends AbstractArgumentMethodArgumentResolver {
 
 	public ShellOptionMethodArgumentResolver(ConversionService conversionService,
-			@Nullable ConfigurableBeanFactory beanFactory) {
+										   @Nullable ConfigurableBeanFactory beanFactory) {
 		super(conversionService, beanFactory);
 	}
 
@@ -51,8 +51,8 @@ public class ShellOptionMethodArgumentResolver extends AbstractArgumentMethodArg
 		ShellOption annot = parameter.getParameterAnnotation(ShellOption.class);
 		Assert.state(annot != null, "No ShellOption annotation");
 		List<String> names = Arrays.stream(annot != null ? annot.value() : new String[0])
-			.map(v -> StringUtils.trimLeadingCharacter(v, '-'))
-			.collect(Collectors.toList());
+				.map(v -> StringUtils.trimLeadingCharacter(v, '-'))
+				.collect(Collectors.toList());
 		return new HeaderNamedValueInfo(annot, names);
 	}
 

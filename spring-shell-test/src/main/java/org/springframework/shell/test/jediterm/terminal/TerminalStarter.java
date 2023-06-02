@@ -98,7 +98,7 @@ public class TerminalStarter implements TerminalOutputStream {
 	 * Resizes terminal and tty connector, should be called on a pooled thread.
 	 */
 	public static void resize(Emulator emulator, Terminal terminal, TtyConnector ttyConnector, int width, int height,
-			RequestOrigin origin, BiConsumer<Long, Runnable> taskScheduler) {
+																												   RequestOrigin origin, BiConsumer<Long, Runnable> taskScheduler) {
 		CompletableFuture<?> promptUpdated = ((JediEmulator)emulator).getPromptUpdatedAfterResizeFuture(taskScheduler);
 		terminal.resize(width, height, origin, promptUpdated);
 		ttyConnector.resize(width, height);

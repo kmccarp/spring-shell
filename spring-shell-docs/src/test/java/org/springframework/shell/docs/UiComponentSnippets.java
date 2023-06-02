@@ -56,7 +56,7 @@ public class UiComponentSnippets {
 			if (context.getResultValue() != null) {
 				builder.append(context.getResultValue());
 			}
-			else  {
+			else {
 				String input = context.getInput();
 				if (StringUtils.hasText(input)) {
 					builder.append(input);
@@ -68,6 +68,7 @@ public class UiComponentSnippets {
 			return Arrays.asList(builder.toAttributedString());
 		}
 	}
+
 	// end::snippet1[]
 
 	class Dump1 extends AbstractShellComponent {

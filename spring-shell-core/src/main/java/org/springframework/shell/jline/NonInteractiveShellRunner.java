@@ -60,8 +60,8 @@ public class NonInteractiveShellRunner implements ShellRunner {
 
 	private Parser lineParser;
 
-    private static final String SINGLE_QUOTE = "\'";
-    private static final String DOUBLE_QUOTE = "\"";
+	private static final String SINGLE_QUOTE = "\'";
+	private static final String DOUBLE_QUOTE = "\"";
 
 	private Function<ApplicationArguments, List<String>> commandsFromInputArgs = args -> {
 		if (args.getSourceArgs().length == 0) {
@@ -69,13 +69,13 @@ public class NonInteractiveShellRunner implements ShellRunner {
 		}
 		// re-quote if needed having whitespace
 		String raw = Arrays.stream(args.getSourceArgs())
-			.map(a -> {
-				if (!isQuoted(a) && StringUtils.containsWhitespace(a)) {
-					return "\"" + a + "\"";
-				}
-				return a;
-			})
-			.collect(Collectors.joining(" "));
+				.map(a -> {
+					if (!isQuoted(a) && StringUtils.containsWhitespace(a)) {
+						return "\"" + a + "\"";
+					}
+					return a;
+				})
+				.collect(Collectors.joining(" "));
 		return Collections.singletonList(raw);
 	};
 

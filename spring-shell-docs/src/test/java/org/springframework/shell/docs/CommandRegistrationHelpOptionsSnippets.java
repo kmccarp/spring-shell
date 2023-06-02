@@ -25,14 +25,14 @@ class CommandRegistrationHelpOptionsSnippets {
 		@Bean
 		CommandRegistration commandRegistration() {
 			return CommandRegistration.builder()
-				.command("mycommand")
-				.withHelpOptions()
+					.command("mycommand")
+					.withHelpOptions()
 					.enabled(true)
 					.longNames("help")
 					.shortNames('h')
 					.command("help")
 					.and()
-				.build();
+					.build();
 		}
 		// end::defaults[]
 	}

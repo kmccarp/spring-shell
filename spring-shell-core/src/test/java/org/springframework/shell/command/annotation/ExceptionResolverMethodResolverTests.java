@@ -37,7 +37,7 @@ class ExceptionResolverMethodResolverTests {
 
 	private static class InAnnotation {
 
-		@ExceptionResolver({ RuntimeException.class, IOException.class })
+		@ExceptionResolver({RuntimeException.class, IOException.class})
 		void errorHandler() {
 		}
 	}

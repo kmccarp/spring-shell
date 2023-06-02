@@ -71,12 +71,12 @@ public class TableModelBuilderTests {
 	public void simpleBuild() {
 		TableModelBuilder<Number> builder = new TableModelBuilder<Number>();
 		builder
-			.addRow()
-			.addValue(7).addValue(2)
-			.addRow()
-			.addValue(3).addValue(5.5)
-			.addRow()
-			.addValue(1).addValue(4);
+				.addRow()
+				.addValue(7).addValue(2)
+				.addRow()
+				.addValue(3).addValue(5.5)
+				.addRow()
+				.addValue(1).addValue(4);
 
 		TableModel model = builder.build();
 		assertThat(model.getColumnCount()).isEqualTo(2);

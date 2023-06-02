@@ -84,7 +84,7 @@ public class TemplateExecutor {
 
 		// define styled figures as dictionary
 		Map<String, Object> figureDict = Stream.of(FigureSettings.tags())
-			.collect(Collectors.toMap(tag -> tag, tag -> this.themeResolver.resolveFigureTag(tag)));
+				.collect(Collectors.toMap(tag -> tag, tag -> this.themeResolver.resolveFigureTag(tag)));
 		group.defineDictionary("figures", figureDict);
 
 		ST st = group.getInstanceOf("main");

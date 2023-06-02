@@ -147,7 +147,7 @@ abstract class AbstractSearchMatchAlgorithm implements SearchMatchAlgorithm {
 	}
 
 	static CalculateScore calculateScore(boolean caseSensitive, boolean normalize, String text, String pattern,
-			int sidx, int eidx) {
+									   int sidx, int eidx) {
 		int pidx = 0;
 		int score = 0;
 		boolean inGap = false;
@@ -160,7 +160,7 @@ abstract class AbstractSearchMatchAlgorithm implements SearchMatchAlgorithm {
 			prevClass = charClassOfAscii(text.charAt(sidx - 1));
 		}
 
-		for (int idx = sidx; idx < eidx; idx++) {
+		for (int idx = sidx;idx < eidx;idx++) {
 			char c = text.charAt(idx);
 			CharClass clazz = charClassOfAscii(c);
 
@@ -251,7 +251,7 @@ abstract class AbstractSearchMatchAlgorithm implements SearchMatchAlgorithm {
 		int firstIndex = 0;
 		int idx = 0;
 
-		for (int pidx = 0; pidx < pattern.length(); pidx++) {
+		for (int pidx = 0;pidx < pattern.length();pidx++) {
 			idx = trySkip(input, caseSensitive, pattern.charAt(pidx), idx);
 			if (idx < 0) {
 				return -1;

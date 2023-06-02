@@ -173,9 +173,9 @@ public interface Lexer {
 					continue;
 				}
 				if (!foundDoubleDash && "--".equals(argument)) {
-						tokenList.add(Token.of(argument, TokenType.DOUBLEDASH, i2));
-						foundDoubleDash = true;
-						continue;
+					tokenList.add(Token.of(argument, TokenType.DOUBLEDASH, i2));
+					foundDoubleDash = true;
+					continue;
 				}
 
 				String argumentToCheck = argument;

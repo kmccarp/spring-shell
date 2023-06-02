@@ -25,15 +25,15 @@ public class GraphicSet
 	private final int myIndex; // 0..3
 	private CharacterSet myDesignation;
 
-	public GraphicSet( int index )
+	public GraphicSet(int index)
 	{
-		if ( index < 0 || index > 3 )
+		if (index < 0 || index > 3)
 		{
 			throw new IllegalArgumentException( "Invalid index!" );
 		}
 		myIndex = index;
 		// The default mapping, based on XTerm...
-		myDesignation = CharacterSet.valueOf( ( index == 1 ) ? '0' : 'B' );
+		myDesignation = CharacterSet.valueOf((index == 1) ? '0' : 'B');
 	}
 
 	/**
@@ -62,10 +62,10 @@ public class GraphicSet
 	 * @return the mapped character, or the given original if no mapping could
 	 *         be made.
 	 */
-	public int map( char original, int index )
+	public int map(char original, int index)
 	{
-		int result = myDesignation.map( index );
-		if ( result < 0 )
+		int result = myDesignation.map(index);
+		if (result < 0)
 		{
 			// No mapping, simply return the given original one...
 			result = original;
@@ -76,7 +76,7 @@ public class GraphicSet
 	/**
 	 * Sets the designation of this graphic set.
 	 */
-	public void setDesignation(CharacterSet designation )
+	public void setDesignation(CharacterSet designation)
 	{
 		myDesignation = designation;
 	}

@@ -112,5 +112,6 @@ public final class Ascii {
 	 */
 	public static final byte DEL = 127;
 
-	private Ascii() {}
+	private Ascii() {
+	}
 }

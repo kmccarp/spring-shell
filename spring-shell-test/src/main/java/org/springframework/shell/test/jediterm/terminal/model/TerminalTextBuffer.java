@@ -73,7 +73,7 @@ public class TerminalTextBuffer {
 
 	private final List<TerminalModelListener> myTypeAheadListeners = new CopyOnWriteArrayList<>();
 
-	public TerminalTextBuffer(final int width, final int height,  StyleState styleState) {
+	public TerminalTextBuffer(final int width, final int height, StyleState styleState) {
 		this(width, height, styleState, LinesBuffer.DEFAULT_MAX_LINES_COUNT);
 	}
 
@@ -193,10 +193,12 @@ public class TerminalTextBuffer {
 	public void deleteCharacters(final int x, final int y, final int count) {
 		if (y > myHeight - 1 || y < 0) {
 			LOG.error("attempt to delete in line " + y + "\n" +
-							"args were x:" + x + " count:" + count);
-		} else if (count < 0) {
+					"args were x:" + x + " count:" + count);
+		}
+		else if (count < 0) {
 			LOG.error("Attempt to delete negative chars number: count:" + count);
-		} else if (count > 0) {
+		}
+		else if (count > 0) {
 			myScreenBuffer.deleteCharacters(x, y, count, createEmptyStyleWithCurrentColor());
 
 			fireModelChangeEvent();
@@ -206,27 +208,29 @@ public class TerminalTextBuffer {
 	public void insertBlankCharacters(final int x, final int y, final int count) {
 		if (y > myHeight - 1 || y < 0) {
 			LOG.error("attempt to insert blank chars in line " + y + "\n" +
-							"args were x:" + x + " count:" + count);
-		} else if (count < 0) {
+					"args were x:" + x + " count:" + count);
+		}
+		else if (count < 0) {
 			LOG.error("Attempt to insert negative blank chars number: count:" + count);
-		} else if (count > 0) { //nothing to do
+		}
+		else if (count > 0) { //nothing to do
 			myScreenBuffer.insertBlankCharacters(x, y, count, myWidth, createEmptyStyleWithCurrentColor());
 
 			fireModelChangeEvent();
 		}
 	}
 
-	public void writeString(final int x, final int y,  final CharBuffer str) {
+	public void writeString(final int x, final int y, final CharBuffer str) {
 		writeString(x, y, str, myStyleState.getCurrent());
 	}
 
-	public void addLine( final TerminalLine line) {
+	public void addLine(final TerminalLine line) {
 		myScreenBuffer.addLines(List.of(line));
 
 		fireModelChangeEvent();
 	}
 
-	private void writeString(int x, int y,  CharBuffer str,  TextStyle style) {
+	private void writeString(int x, int y, CharBuffer str, TextStyle style) {
 		myScreenBuffer.writeString(x, y - 1, str, style);
 
 		fireModelChangeEvent();
@@ -238,7 +242,8 @@ public class TerminalTextBuffer {
 		}
 		if (dy > 0) {
 			insertLines(scrollRegionTop - 1, dy, scrollRegionBottom);
-		} else {
+		}
+		else {
 			LinesBuffer removed = deleteLines(scrollRegionTop - 1, -dy, scrollRegionBottom);
 			if (scrollRegionTop == 1) {
 				removed.moveTopLinesTo(removed.getLineCount(), myHistoryBuffer);
@@ -257,7 +262,7 @@ public class TerminalTextBuffer {
 				int count = 0;
 
 				@Override
-				public void consume(int x, int y,  TextStyle style,  CharBuffer characters, int startRow) {
+				public void consume(int x, int y, TextStyle style, CharBuffer characters, int startRow) {
 					if (x == 0) {
 						sb.append("\n");
 					}
@@ -287,7 +292,8 @@ public class TerminalTextBuffer {
 				return TerminalLine.createEmpty();
 			}
 			return myScreenBuffer.getLine(index);
-		} else {
+		}
+		else {
 			if (index < -getHistoryLinesCount()) {
 				LOG.error("Attempt to get line out of bounds: " + index + " < " + -getHistoryLinesCount());
 				return TerminalLine.createEmpty();
@@ -300,10 +306,10 @@ public class TerminalTextBuffer {
 		myLock.lock();
 		List<String> lines = new ArrayList<>();
 		try {
-			for (int row = 0; row < myHeight; row++) {
+			for (int row = 0;row < myHeight;row++) {
 				StringBuilder line = new StringBuilder(myScreenBuffer.getLine(row).getText());
 
-				for (int i = line.length(); i < myWidth; i++) {
+				for (int i = line.length();i < myWidth;i++) {
 					line.append(' ');
 				}
 				if (line.length() > myWidth) {
@@ -385,7 +391,8 @@ public class TerminalTextBuffer {
 				myHistoryBuffer = createHistoryBuffer();
 				myUsingAlternateBuffer = true;
 			}
-		} else {
+		}
+		else {
 			if (myUsingAlternateBuffer) {
 				myScreenBuffer = myScreenBufferBackup;
 				myHistoryBuffer = myHistoryBufferBackup;
@@ -424,7 +431,8 @@ public class TerminalTextBuffer {
 		if (y >= 0) {
 			myScreenBuffer.clearArea(leftX, y, rightX, y + 1, style);
 			fireModelChangeEvent();
-		} else {
+		}
+		else {
 			LOG.error("Attempt to erase characters in line: " + y);
 		}
 	}
@@ -438,7 +446,7 @@ public class TerminalTextBuffer {
 	 * @param scrollOrigin row where a scrolling window starts, should be in the range [-history_lines_count, 0]
 	 */
 	public void processHistoryAndScreenLines(int scrollOrigin, int maximalLinesToProcess, StyledTextConsumer consumer) {
-		if (maximalLinesToProcess<0) {
+		if (maximalLinesToProcess < 0) {
 			//Process all lines in this case
 
 			maximalLinesToProcess = myHistoryBuffer.getLineCount() + myScreenBuffer.getLineCount();
@@ -487,7 +495,7 @@ public class TerminalTextBuffer {
 		return myUsingAlternateBuffer ? myScreenBufferBackup : myScreenBuffer;
 	}
 
-	public int findScreenLineIndex( TerminalLine line) {
+	public int findScreenLineIndex(TerminalLine line) {
 		return myScreenBuffer.findLineIndex(line);
 	}
 

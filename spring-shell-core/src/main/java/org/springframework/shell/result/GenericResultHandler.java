@@ -6,9 +6,9 @@ import org.springframework.core.convert.TypeDescriptor;
 
 public interface GenericResultHandler {
 
-    Set<Class<?>> getHandlerTypes();
+	Set<Class<?>> getHandlerTypes();
 
-    void handle(Object result, TypeDescriptor resultType);
+	void handle(Object result, TypeDescriptor resultType);
 
-    boolean matches(TypeDescriptor resultType);
+	boolean matches(TypeDescriptor resultType);
 }

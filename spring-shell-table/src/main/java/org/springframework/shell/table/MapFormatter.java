@@ -33,7 +33,7 @@ public class MapFormatter implements Formatter {
 
 	@Override
 	public String[] format(Object value) {
-		Map<?, ?> map = (Map<?, ?>) value;
+		Map<?, ?> map = (Map<?, ?>)value;
 		String[] result = new String[map.size()];
 		int i = 0;
 		for (Map.Entry<?, ?> kv : map.entrySet()) {

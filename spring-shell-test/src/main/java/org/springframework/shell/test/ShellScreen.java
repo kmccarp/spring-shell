@@ -29,7 +29,7 @@ public interface ShellScreen {
 	 *
 	 * @return visible lines in a screen
 	 */
-    List<String> lines();
+	List<String> lines();
 
 	/**
 	 * Get {@code ShellScreen} out of lines.
@@ -43,16 +43,16 @@ public interface ShellScreen {
 
 	class DefaultShellScreen implements ShellScreen {
 
-    	List<String> lines;
+		List<String> lines;
 
-    	DefaultShellScreen(List<String> lines) {
-    		this.lines = lines;
-    	}
+		DefaultShellScreen(List<String> lines) {
+			this.lines = lines;
+		}
 
-    	@Override
-    	public List<String> lines() {
-    		return lines;
-    	}
-    }
+		@Override
+		public List<String> lines() {
+			return lines;
+		}
+	}
 
 }

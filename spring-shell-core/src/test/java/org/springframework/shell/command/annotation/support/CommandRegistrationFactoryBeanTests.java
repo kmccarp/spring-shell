@@ -58,7 +58,7 @@ class CommandRegistrationFactoryBeanTests {
 	private static class HiddenOnClassBean {
 
 		@Command
-		void command(){
+		void command() {
 		}
 	}
 
@@ -82,13 +82,13 @@ class CommandRegistrationFactoryBeanTests {
 	private static class OnBothClassAndMethod {
 
 		@Command(command = "two", alias = "four", group = "group2")
-		void command(){
+		void command() {
 		}
 	}
 
 	@Test
 	void setsRequiredOption() {
-		configCommon(RequiredOption.class, new RequiredOption(), "command1", new Class[] { String.class })
+		configCommon(RequiredOption.class, new RequiredOption(), "command1", new Class[]{String.class})
 				.run((context) -> {
 					CommandRegistrationFactoryBean fb = context.getBean(FACTORYBEANREF,
 							CommandRegistrationFactoryBean.class);
@@ -97,8 +97,8 @@ class CommandRegistrationFactoryBeanTests {
 					assertThat(registration).isNotNull();
 					assertThat(registration.getOptions()).hasSize(1);
 					assertThat(registration.getOptions().get(0).isRequired()).isTrue();
-		});
-		configCommon(RequiredOption.class, new RequiredOption(), "command2", new Class[] { String.class })
+				});
+		configCommon(RequiredOption.class, new RequiredOption(), "command2", new Class[]{String.class})
 				.run((context) -> {
 					CommandRegistrationFactoryBean fb = context.getBean(FACTORYBEANREF,
 							CommandRegistrationFactoryBean.class);
@@ -107,7 +107,7 @@ class CommandRegistrationFactoryBeanTests {
 					assertThat(registration).isNotNull();
 					assertThat(registration.getOptions()).hasSize(1);
 					assertThat(registration.getOptions().get(0).isRequired()).isFalse();
-		});
+				});
 	}
 
 	@Command
@@ -124,7 +124,7 @@ class CommandRegistrationFactoryBeanTests {
 
 	@Test
 	void setsAvailabilitySupplier() {
-		configCommon(AvailabilityIndicator.class, new AvailabilityIndicator(), "command1", new Class[] { })
+		configCommon(AvailabilityIndicator.class, new AvailabilityIndicator(), "command1", new Class[]{})
 				.run((context) -> {
 					CommandRegistrationFactoryBean fb = context.getBean(FACTORYBEANREF,
 							CommandRegistrationFactoryBean.class);
@@ -133,7 +133,7 @@ class CommandRegistrationFactoryBeanTests {
 					assertThat(registration).isNotNull();
 					assertThat(registration.getAvailability()).isNotNull();
 					assertThat(registration.getAvailability().getReason()).isEqualTo("fakereason");
-		});
+				});
 	}
 
 	@Command
@@ -153,7 +153,7 @@ class CommandRegistrationFactoryBeanTests {
 
 	@Test
 	void setsOptionValuesWithBoolean() {
-		configCommon(OptionValuesWithBoolean.class, new OptionValuesWithBoolean(), "command1", new Class[] { boolean.class })
+		configCommon(OptionValuesWithBoolean.class, new OptionValuesWithBoolean(), "command1", new Class[]{boolean.class})
 				.run((context) -> {
 					CommandRegistrationFactoryBean fb = context.getBean(FACTORYBEANREF,
 							CommandRegistrationFactoryBean.class);
@@ -162,8 +162,8 @@ class CommandRegistrationFactoryBeanTests {
 					assertThat(registration).isNotNull();
 					assertThat(registration.getOptions().get(0).getArityMin()).isEqualTo(0);
 					assertThat(registration.getOptions().get(0).getArityMax()).isEqualTo(1);
-		});
-		configCommon(OptionValuesWithBoolean.class, new OptionValuesWithBoolean(), "command2", new Class[] { Boolean.class })
+				});
+		configCommon(OptionValuesWithBoolean.class, new OptionValuesWithBoolean(), "command2", new Class[]{Boolean.class})
 				.run((context) -> {
 					CommandRegistrationFactoryBean fb = context.getBean(FACTORYBEANREF,
 							CommandRegistrationFactoryBean.class);
@@ -172,8 +172,8 @@ class CommandRegistrationFactoryBeanTests {
 					assertThat(registration).isNotNull();
 					assertThat(registration.getOptions().get(0).getArityMin()).isEqualTo(0);
 					assertThat(registration.getOptions().get(0).getArityMax()).isEqualTo(1);
-		});
-		configCommon(OptionValuesWithBoolean.class, new OptionValuesWithBoolean(), "command3", new Class[] { Boolean.class })
+				});
+		configCommon(OptionValuesWithBoolean.class, new OptionValuesWithBoolean(), "command3", new Class[]{Boolean.class})
 				.run((context) -> {
 					CommandRegistrationFactoryBean fb = context.getBean(FACTORYBEANREF,
 							CommandRegistrationFactoryBean.class);
@@ -182,8 +182,8 @@ class CommandRegistrationFactoryBeanTests {
 					assertThat(registration).isNotNull();
 					assertThat(registration.getOptions().get(0).getArityMin()).isEqualTo(0);
 					assertThat(registration.getOptions().get(0).getArityMax()).isEqualTo(1);
-		});
-		configCommon(OptionValuesWithBoolean.class, new OptionValuesWithBoolean(), "command4", new Class[] { Boolean.class })
+				});
+		configCommon(OptionValuesWithBoolean.class, new OptionValuesWithBoolean(), "command4", new Class[]{Boolean.class})
 				.run((context) -> {
 					CommandRegistrationFactoryBean fb = context.getBean(FACTORYBEANREF,
 							CommandRegistrationFactoryBean.class);
@@ -192,8 +192,8 @@ class CommandRegistrationFactoryBeanTests {
 					assertThat(registration).isNotNull();
 					assertThat(registration.getOptions().get(0).getArityMin()).isEqualTo(0);
 					assertThat(registration.getOptions().get(0).getArityMax()).isEqualTo(1);
-		});
-		configCommon(OptionValuesWithBoolean.class, new OptionValuesWithBoolean(), "command5", new Class[] { boolean.class })
+				});
+		configCommon(OptionValuesWithBoolean.class, new OptionValuesWithBoolean(), "command5", new Class[]{boolean.class})
 				.run((context) -> {
 					CommandRegistrationFactoryBean fb = context.getBean(FACTORYBEANREF,
 							CommandRegistrationFactoryBean.class);
@@ -204,7 +204,7 @@ class CommandRegistrationFactoryBeanTests {
 					assertThat(registration.getOptions().get(0).getArityMax()).isEqualTo(1);
 					assertThat(registration.getOptions().get(0).isRequired()).isFalse();
 					assertThat(registration.getOptions().get(0).getDefaultValue()).isEqualTo("false");
-		});
+				});
 	}
 
 	@Command
@@ -233,7 +233,7 @@ class CommandRegistrationFactoryBeanTests {
 
 	@Test
 	void setsOptionWithCompletion() {
-		configCommon(OptionWithCompletion.class, new OptionWithCompletion(), "command1", new Class[] { String.class })
+		configCommon(OptionWithCompletion.class, new OptionWithCompletion(), "command1", new Class[]{String.class})
 				.run((context) -> {
 					CommandRegistrationFactoryBean fb = context.getBean(FACTORYBEANREF,
 							CommandRegistrationFactoryBean.class);
@@ -241,7 +241,7 @@ class CommandRegistrationFactoryBeanTests {
 					CommandRegistration registration = fb.getObject();
 					assertThat(registration).isNotNull();
 					assertThat(registration.getOptions().get(0).getCompletion()).isNotNull();
-		});
+				});
 	}
 
 	@Command
@@ -262,7 +262,7 @@ class CommandRegistrationFactoryBeanTests {
 
 	@Test
 	void setsOptionWithArity() {
-		configCommon(OptionWithArity.class, new OptionWithArity(), "command1", new Class[] { String.class })
+		configCommon(OptionWithArity.class, new OptionWithArity(), "command1", new Class[]{String.class})
 				.run((context) -> {
 					CommandRegistrationFactoryBean fb = context.getBean(FACTORYBEANREF,
 							CommandRegistrationFactoryBean.class);
@@ -271,8 +271,8 @@ class CommandRegistrationFactoryBeanTests {
 					assertThat(registration).isNotNull();
 					assertThat(registration.getOptions().get(0).getArityMin()).isEqualTo(1);
 					assertThat(registration.getOptions().get(0).getArityMax()).isEqualTo(1);
-		});
-		configCommon(OptionWithArity.class, new OptionWithArity(), "command2", new Class[] { String.class })
+				});
+		configCommon(OptionWithArity.class, new OptionWithArity(), "command2", new Class[]{String.class})
 				.run((context) -> {
 					CommandRegistrationFactoryBean fb = context.getBean(FACTORYBEANREF,
 							CommandRegistrationFactoryBean.class);
@@ -281,8 +281,8 @@ class CommandRegistrationFactoryBeanTests {
 					assertThat(registration).isNotNull();
 					assertThat(registration.getOptions().get(0).getArityMin()).isEqualTo(1);
 					assertThat(registration.getOptions().get(0).getArityMax()).isEqualTo(1);
-		});
-		configCommon(OptionWithArity.class, new OptionWithArity(), "command3", new Class[] { String.class })
+				});
+		configCommon(OptionWithArity.class, new OptionWithArity(), "command3", new Class[]{String.class})
 				.run((context) -> {
 					CommandRegistrationFactoryBean fb = context.getBean(FACTORYBEANREF,
 							CommandRegistrationFactoryBean.class);
@@ -291,8 +291,8 @@ class CommandRegistrationFactoryBeanTests {
 					assertThat(registration).isNotNull();
 					assertThat(registration.getOptions().get(0).getArityMin()).isEqualTo(0);
 					assertThat(registration.getOptions().get(0).getArityMax()).isEqualTo(2);
-		});
-		configCommon(OptionWithArity.class, new OptionWithArity(), "command4", new Class[] { String.class })
+				});
+		configCommon(OptionWithArity.class, new OptionWithArity(), "command4", new Class[]{String.class})
 				.run((context) -> {
 					CommandRegistrationFactoryBean fb = context.getBean(FACTORYBEANREF,
 							CommandRegistrationFactoryBean.class);
@@ -301,7 +301,7 @@ class CommandRegistrationFactoryBeanTests {
 					assertThat(registration).isNotNull();
 					assertThat(registration.getOptions().get(0).getArityMin()).isEqualTo(0);
 					assertThat(registration.getOptions().get(0).getArityMax()).isEqualTo(2);
-		});
+				});
 	}
 
 	@Command
@@ -326,7 +326,7 @@ class CommandRegistrationFactoryBeanTests {
 
 	@Test
 	void setsOptionWithLabel() {
-		configCommon(OptionWithLabel.class, new OptionWithLabel(), "command1", new Class[] { String.class })
+		configCommon(OptionWithLabel.class, new OptionWithLabel(), "command1", new Class[]{String.class})
 				.run((context) -> {
 					CommandRegistrationFactoryBean fb = context.getBean(FACTORYBEANREF,
 							CommandRegistrationFactoryBean.class);
@@ -334,7 +334,7 @@ class CommandRegistrationFactoryBeanTests {
 					CommandRegistration registration = fb.getObject();
 					assertThat(registration).isNotNull();
 					assertThat(registration.getOptions().get(0).getLabel()).isEqualTo("label");
-		});
+				});
 	}
 
 	@Command

@@ -26,7 +26,7 @@ class ExactMatchNaiveSearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 
 	@Override
 	public SearchMatchResult match(boolean caseSensitive, boolean normalize, boolean forward, String text,
-			String pattern) {
+											String pattern) {
 
 		if (!StringUtils.hasText(pattern)) {
 			return SearchMatchResult.ofZeros();
@@ -44,7 +44,7 @@ class ExactMatchNaiveSearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 		int bonus = 0;
 		int bestBonus = -1;
 
-		for (int index = 0; index < lenRunes; index++) {
+		for (int index = 0;index < lenRunes;index++) {
 			int index_ = indexAt(index, lenRunes, forward);
 			char c = text.charAt(index_);
 

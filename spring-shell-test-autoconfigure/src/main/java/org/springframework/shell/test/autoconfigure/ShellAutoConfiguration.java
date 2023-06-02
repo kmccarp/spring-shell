@@ -41,8 +41,8 @@ public class ShellAutoConfiguration {
 	TerminalCustomizer terminalStreamsTerminalCustomizer(TerminalStreams terminalStreams) {
 		return builder -> {
 			builder.streams(terminalStreams.input, terminalStreams.output)
-				.jansi(false)
-				.jna(false);
+					.jansi(false)
+					.jna(false);
 		};
 	}
 

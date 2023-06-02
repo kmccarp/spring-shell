@@ -52,7 +52,7 @@ public final class CommandRegistrationBeanRegistrar {
 
 	public CommandRegistrationBeanRegistrar(BeanDefinitionRegistry registry) {
 		this.registry = registry;
-		this.beanFactory = (BeanFactory) this.registry;
+		this.beanFactory = (BeanFactory)this.registry;
 	}
 
 	public void register(Class<?> type) {
@@ -87,14 +87,14 @@ public final class CommandRegistrationBeanRegistrar {
 	}
 
 	private void registerCommandClassBeanDefinition(String beanName, Class<?> type,
-			MergedAnnotation<Command> annotation) {
+												  MergedAnnotation<Command> annotation) {
 		Assert.state(annotation.isPresent(), () -> "No " + Command.class.getSimpleName()
 				+ " annotation found on  '" + type.getName() + "'.");
 		this.registry.registerBeanDefinition(beanName, createCommandClassBeanDefinition(type));
 	}
 
 	private void registerCommandMethodBeanDefinition(Class<?> commandBeanType, String commandBeanName, String containerBean, String methodName,
-			Class<?>[] methodParameterTypes) {
+												   Class<?>[] methodParameterTypes) {
 		this.registry.registerBeanDefinition(commandBeanName,
 				createCommandMethodBeanDefinition(commandBeanType, containerBean, methodName, methodParameterTypes));
 	}
@@ -105,7 +105,7 @@ public final class CommandRegistrationBeanRegistrar {
 	}
 
 	private BeanDefinition createCommandMethodBeanDefinition(Class<?> commandBeanType, String commandBeanName,
-			String commandMethodName, Class<?>[] commandMethodParameters) {
+														   String commandMethodName, Class<?>[] commandMethodParameters) {
 		RootBeanDefinition definition = new RootBeanDefinition(CommandRegistrationFactoryBean.class);
 		definition.getPropertyValues().add(CommandRegistrationFactoryBean.COMMAND_BEAN_TYPE, commandBeanType);
 		definition.getPropertyValues().add(CommandRegistrationFactoryBean.COMMAND_BEAN_NAME, commandBeanName);

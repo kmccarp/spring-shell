@@ -91,11 +91,11 @@ public class TextStyle {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		TextStyle textStyle = (TextStyle) o;
+		TextStyle textStyle = (TextStyle)o;
 		return
-			// Objects.equals(myForeground, textStyle.myForeground) &&
-			// Objects.equals(myBackground, textStyle.myBackground) &&
-			myOptions.equals(textStyle.myOptions);
+				// Objects.equals(myForeground, textStyle.myForeground) &&
+				// Objects.equals(myBackground, textStyle.myBackground) &&
+				myOptions.equals(textStyle.myOptions);
 	}
 
 	@Override

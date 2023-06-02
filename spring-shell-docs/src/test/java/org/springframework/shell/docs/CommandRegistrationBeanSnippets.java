@@ -26,8 +26,8 @@ public class CommandRegistrationBeanSnippets {
 		@Bean
 		CommandRegistration commandRegistration() {
 			return CommandRegistration.builder()
-				.command("mycommand")
-				.build();
+					.command("mycommand")
+					.build();
 		}
 		// end::plain[]
 	}
@@ -37,8 +37,8 @@ public class CommandRegistrationBeanSnippets {
 		@Bean
 		CommandRegistration commandRegistration(CommandRegistration.BuilderSupplier builder) {
 			return builder.get()
-				.command("mycommand")
-				.build();
+					.command("mycommand")
+					.build();
 		}
 		// end::fromsupplier[]
 	}

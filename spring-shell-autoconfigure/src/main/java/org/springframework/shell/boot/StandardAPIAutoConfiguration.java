@@ -53,7 +53,7 @@ public class StandardAPIAutoConfiguration {
 
 	@Bean
 	public MethodTargetRegistrar standardMethodTargetResolver(ApplicationContext applicationContext,
-			CommandRegistration.BuilderSupplier builder) {
+																   CommandRegistration.BuilderSupplier builder) {
 		return new StandardMethodTargetRegistrar(applicationContext, builder);
 	}
 }

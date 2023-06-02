@@ -120,7 +120,7 @@ public abstract class BaseMultiItemSelector extends BaseInput<MultiItemSelectorS
 
 	@Override
 	public MultiItemSelectorSpec next(
-			Function<MultiItemSelectorContext<String, SelectorItem<String>>, String> next) {
+	Function<MultiItemSelectorContext<String, SelectorItem<String>>, String> next) {
 		this.next = next;
 		return this;
 	}

@@ -37,9 +37,9 @@ import org.springframework.shell.CompletingParsedLine;
  */
 public class ExtendedDefaultParser implements Parser {
 
-	private char[] quoteChars = { '\'', '"' };
+	private char[] quoteChars = {'\'', '"'};
 
-	private char[] escapeChars = { '\\' };
+	private char[] escapeChars = {'\\'};
 
 	private boolean eofOnUnclosedQuote;
 
@@ -84,7 +84,7 @@ public class ExtendedDefaultParser implements Parser {
 		int wordIndex = -1;
 		int quoteStart = -1;
 
-		for (int i = 0; (line != null) && (i < line.length()); i++) {
+		for (int i = 0;(line != null) && (i < line.length());i++) {
 			// once we reach the cursor, set the
 			// position of the selected index
 			if (i == cursor) {
@@ -169,7 +169,7 @@ public class ExtendedDefaultParser implements Parser {
 			return false;
 		}
 
-		for (int i = 0; (quoteChars != null) && (i < quoteChars.length); i++) {
+		for (int i = 0;(quoteChars != null) && (i < quoteChars.length);i++) {
 			if (buffer.charAt(pos) == quoteChars[i]) {
 				return !isEscaped(buffer, pos);
 			}
@@ -186,7 +186,7 @@ public class ExtendedDefaultParser implements Parser {
 			return false;
 		}
 
-		for (int i = 0; (escapeChars != null) && (i < escapeChars.length); i++) {
+		for (int i = 0;(escapeChars != null) && (i < escapeChars.length);i++) {
 			if (buffer.charAt(pos) == escapeChars[i]) {
 				return !isEscaped(buffer, pos); // escape escape
 			}
@@ -241,7 +241,7 @@ public class ExtendedDefaultParser implements Parser {
 		private final String openingQuote;
 
 		public ExtendedArgumentList(final String line, final List<String> words, final int wordIndex,
-				final int wordCursor, final int cursor, final String openingQuote) {
+							   final int wordCursor, final int cursor, final String openingQuote) {
 			this.line = line;
 			this.words = Collections.unmodifiableList(Objects.requireNonNull(words));
 			this.wordIndex = wordIndex;
@@ -287,12 +287,13 @@ public class ExtendedDefaultParser implements Parser {
 			// Also, close the quote at the end
 			if (openingQuote != null) {
 				needToBeEscaped = i -> isRawEscapeChar(sb.charAt(i)) || String.valueOf(sb.charAt(i)).equals(openingQuote);
-			} // No quote protection, need to escape everything: delimiter chars (spaces), quote chars
+			}
+			// No quote protection, need to escape everything: delimiter chars (spaces), quote chars
 			// and escapes themselves
 			else {
 				needToBeEscaped = i -> isDelimiterChar(sb, i) || isRawEscapeChar(sb.charAt(i)) || isRawQuoteChar(sb.charAt(i));
 			}
-			for (int i = 0; i < sb.length(); i++) {
+			for (int i = 0;i < sb.length();i++) {
 				if (needToBeEscaped.test(i)) {
 					sb.insert(i++, escapeChars[0]);
 				}
@@ -329,7 +330,7 @@ public class ExtendedDefaultParser implements Parser {
 	 */
 	private static org.jline.reader.CompletingParsedLine wrap(ParsedLine line) {
 		if (line instanceof org.jline.reader.CompletingParsedLine) {
-			return (org.jline.reader.CompletingParsedLine) line;
+			return (org.jline.reader.CompletingParsedLine)line;
 		}
 		else {
 			return new org.jline.reader.CompletingParsedLine() {

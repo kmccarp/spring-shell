@@ -84,7 +84,7 @@ public class ArrayTerminalDataStream implements TerminalDataStream {
 
 	@Override
 	public void pushBackBuffer(final char[] bytes, final int length) throws EOF {
-		for (int i = length - 1; i >= 0; i--) {
+		for (int i = length - 1;i >= 0;i--) {
 			pushChar(bytes[i]);
 		}
 	}

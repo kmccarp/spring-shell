@@ -101,7 +101,8 @@ public class JediTermWidget implements TerminalSession, TerminalWidget {
 	public String getSessionName() {
 		if (ttyConnector != null) {
 			return ttyConnector.getName();
-		} else {
+		}
+		else {
 			return "Session";
 		}
 	}
@@ -110,7 +111,8 @@ public class JediTermWidget implements TerminalSession, TerminalWidget {
 		if (!sessionRunning.get()) {
 			emuThread = new Thread(new EmulatorTask());
 			emuThread.start();
-		} else {
+		}
+		else {
 			log.error("Should not try to start session again at this point... ");
 		}
 	}

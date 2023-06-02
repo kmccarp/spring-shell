@@ -25,7 +25,7 @@ import org.springframework.shell.samples.e2e.RequiredValueCommands.Registration;
 import org.springframework.shell.test.ShellTestClient.BaseShellSession;
 import org.springframework.test.context.ContextConfiguration;
 
-@ContextConfiguration(classes = { LegacyAnnotation.class, Registration.class })
+@ContextConfiguration(classes = {LegacyAnnotation.class, Registration.class})
 @EnableCommand(Annotation.class)
 class RequiredValueCommandsTests extends AbstractSampleTests {
 

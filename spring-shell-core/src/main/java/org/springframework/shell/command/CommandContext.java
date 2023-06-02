@@ -87,7 +87,7 @@ public interface CommandContext {
 	 * @return a command context
 	 */
 	static CommandContext of(String[] args, CommandParserResults results, Terminal terminal,
-			CommandRegistration commandRegistration) {
+																																																																					   CommandRegistration commandRegistration) {
 		return new DefaultCommandContext(args, results, terminal, commandRegistration);
 	}
 
@@ -102,7 +102,7 @@ public interface CommandContext {
 		private final CommandRegistration commandRegistration;
 
 		DefaultCommandContext(String[] args, CommandParserResults results, Terminal terminal,
-				CommandRegistration commandRegistration) {
+						 CommandRegistration commandRegistration) {
 			this.args = args;
 			this.results = results;
 			this.terminal = terminal;
@@ -134,7 +134,7 @@ public interface CommandContext {
 		public <T> T getOptionValue(String name) {
 			Optional<CommandParserResult> find = find(name);
 			if (find.isPresent()) {
-				return (T) find.get().value();
+				return (T)find.get().value();
 			}
 			return null;
 		}
@@ -146,15 +146,15 @@ public interface CommandContext {
 
 		private Optional<CommandParserResult> find(String name) {
 			return results.results().stream()
-				.filter(r -> {
-					Stream<String> l = Arrays.asList(r.option().getLongNames()).stream();
-					Stream<String> s = Arrays.asList(r.option().getShortNames()).stream().map(n -> Character.toString(n));
-					return Stream.concat(l, s)
-						.filter(o -> ObjectUtils.nullSafeEquals(o, name))
-						.findFirst()
-						.isPresent();
-				})
-				.findFirst();
+					.filter(r -> {
+						Stream<String> l = Arrays.asList(r.option().getLongNames()).stream();
+						Stream<String> s = Arrays.asList(r.option().getShortNames()).stream().map(n -> Character.toString(n));
+						return Stream.concat(l, s)
+								.filter(o -> ObjectUtils.nullSafeEquals(o, name))
+								.findFirst()
+								.isPresent();
+					})
+					.findFirst();
 		}
 	}
 }

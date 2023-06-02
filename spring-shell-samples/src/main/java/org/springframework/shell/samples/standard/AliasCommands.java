@@ -25,7 +25,7 @@ public class AliasCommands {
 
 	private final static String DESCRIPTION = "main1 with main2 as alias";
 
-	@ShellMethod(key = { "alias anno main1", "alias anno main2" }, group = "Alias Commands", value = DESCRIPTION)
+	@ShellMethod(key = {"alias anno main1", "alias anno main2"}, group = "Alias Commands", value = DESCRIPTION)
 	public String annoMain1() {
 		return "Hello annoMain1";
 	}
@@ -33,19 +33,19 @@ public class AliasCommands {
 	@Bean
 	public CommandRegistration regMain1() {
 		return CommandRegistration.builder()
-			.command("alias", "reg", "main1")
-			.group("Alias Commands")
-			.description(DESCRIPTION)
-			.withAlias()
+				.command("alias", "reg", "main1")
+				.group("Alias Commands")
+				.description(DESCRIPTION)
+				.withAlias()
 				.command("alias", "reg", "main2")
 				.group("Alias Commands")
 				.and()
-			.withTarget()
+				.withTarget()
 				.function(ctx -> {
 					return "Hello regMain1";
 				})
 				.and()
-			.build();
+				.build();
 	}
 
 }

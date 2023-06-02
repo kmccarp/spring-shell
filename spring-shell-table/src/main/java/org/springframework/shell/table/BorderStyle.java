@@ -231,7 +231,7 @@ public enum BorderStyle {
 	}
 
 	private static long key(char above, char below, char left, char right) {
-		return (long) above << 48 | (long) below << 32 | (long) left << 16 | (long) right;
+		return (long)above << 48 | (long)below << 32 | (long)left << 16 | (long)right;
 	}
 
 	BorderStyle(char vertical, char horizontal) {

@@ -38,8 +38,8 @@ public class TableCommands {
 		TableBuilder tableBuilder = new TableBuilder(model);
 
 		Random r = new Random();
-		for (int i = 0; i < 3; i++) {
-			for (int j = 0; j < 3; j++) {
+		for (int i = 0;i < 3;i++) {
+			for (int j = 0;j < 3;j++) {
 				data[i][j] = TEXT.substring(0, TEXT.length() / 2 + r.nextInt(TEXT.length() / 2));
 				tableBuilder.on(at(i, j)).addAligner(SimpleHorizontalAligner.values()[j]);
 				tableBuilder.on(at(i, j)).addAligner(SimpleVerticalAligner.values()[i]);

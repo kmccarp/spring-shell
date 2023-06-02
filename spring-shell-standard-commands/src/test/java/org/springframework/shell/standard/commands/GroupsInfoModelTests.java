@@ -44,17 +44,19 @@ public class GroupsInfoModelTests {
 	@Test
 	void simpleCommandsAreSeparated() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("main1")
-			.withTarget()
-				.consumer(ctx -> {})
+				.command("main1")
+				.withTarget()
+				.consumer(ctx -> {
+				})
 				.and()
-			.build();
+				.build();
 		CommandRegistration r2 = CommandRegistration.builder()
-			.command("main2")
-			.withTarget()
-				.consumer(ctx -> {})
+				.command("main2")
+				.withTarget()
+				.consumer(ctx -> {
+				})
 				.and()
-			.build();
+				.build();
 		this.commandCatalog.register(r1, r2);
 		GroupsInfoModel gim = buildGIM();
 
@@ -65,14 +67,15 @@ public class GroupsInfoModelTests {
 	@Test
 	void aliasNotAddedToTopModel() {
 		CommandRegistration r1 = CommandRegistration.builder()
-			.command("main1")
-			.withAlias()
+				.command("main1")
+				.withAlias()
 				.command("alias1")
 				.and()
-			.withTarget()
-				.consumer(ctx -> {})
+				.withTarget()
+				.consumer(ctx -> {
+				})
 				.and()
-			.build();
+				.build();
 		this.commandCatalog.register(r1);
 		GroupsInfoModel gim = buildGIM();
 

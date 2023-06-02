@@ -31,7 +31,7 @@ public class OptionSnippets {
 	class Dump1Legacy {
 		// tag::option-with-annotation[]
 		@ShellMethod
-		public String example(@ShellOption(value = { "--arg" }) String arg1) {
+		public String example(@ShellOption(value = {"--arg"}) String arg1) {
 			return "Hello " + arg1;
 		}
 		// end::option-with-annotation[]
@@ -49,7 +49,7 @@ public class OptionSnippets {
 	class Dump7 {
 		// tag::option-with-annotation-without-prefix[]
 		@ShellMethod
-		public String example(@ShellOption(value = { "arg" }) String arg1) {
+		public String example(@ShellOption(value = {"arg"}) String arg1) {
 			return "Hello " + arg1;
 		}
 		// end::option-with-annotation-without-prefix[]
@@ -67,10 +67,10 @@ public class OptionSnippets {
 	class Dump3 {
 		// tag::option-with-annotation-shortarg[]
 		public String example(
-			@ShellOption(value = { "-a" }) String arg1,
-			@ShellOption(value = { "-b" }) String arg2,
-			@ShellOption(value = { "-c" }) String arg3
-		) {
+	@ShellOption(value = {"-a"}) String arg1,
+	@ShellOption(value = {"-b"}) String arg2,
+	@ShellOption(value = {"-c"}) String arg3
+	) {
 			return "Hello " + arg1;
 		}
 		// end::option-with-annotation-shortarg[]
@@ -87,8 +87,8 @@ public class OptionSnippets {
 	class Dump5 {
 		// tag::option-with-annotation-optional[]
 		public String example(
-			@ShellOption(defaultValue = ShellOption.NULL) String arg1
-		) {
+	@ShellOption(defaultValue = ShellOption.NULL) String arg1
+	) {
 			return "Hello " + arg1;
 		}
 		// end::option-with-annotation-optional[]
@@ -97,8 +97,8 @@ public class OptionSnippets {
 	class Dump6 {
 		// tag::option-with-annotation-default[]
 		public String example(
-			@ShellOption(defaultValue = "defaultValue") String arg1
-		) {
+	@ShellOption(defaultValue = "defaultValue") String arg1
+	) {
 			return "Hello " + arg1;
 		}
 		// end::option-with-annotation-default[]
@@ -109,50 +109,50 @@ public class OptionSnippets {
 
 		// tag::option-registration-longarg[]
 		CommandRegistration registration = CommandRegistration.builder()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.build();
+				.build();
 		// end::option-registration-longarg[]
 
 		// tag::option-registration-shortarg[]
 		CommandRegistration.builder()
-			.withOption()
+				.withOption()
 				.shortNames('a')
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('b')
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('c')
 				.and()
-			.build();
+				.build();
 		// end::option-registration-shortarg[]
 
 		// tag::option-registration-shortargbooleans[]
 		CommandRegistration.builder()
-			.withOption()
+				.withOption()
 				.shortNames('a')
 				.type(boolean.class)
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('b')
 				.type(boolean.class)
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('c')
 				.type(boolean.class)
 				.and()
-			.build();
+				.build();
 		// end::option-registration-shortargbooleans[]
 
 		// tag::option-registration-arityenum[]
 		CommandRegistration.builder()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.arity(OptionArity.EXACTLY_ONE)
 				.and()
-			.build();
+				.build();
 		// end::option-registration-arityenum[]
 
 		// // tag::option-registration-arityints[]
@@ -166,105 +166,105 @@ public class OptionSnippets {
 
 		// tag::option-registration-aritystrings-sample[]
 		CommandRegistration.builder()
-			.command("arity-errors")
-			.withOption()
+				.command("arity-errors")
+				.withOption()
 				.longNames("arg1")
 				.type(String[].class)
 				.required()
 				.arity(1, 2)
 				.and()
-			.withTarget()
+				.withTarget()
 				.function(ctx -> {
 					String[] arg1 = ctx.getOptionValue("arg1");
 					return "Hello " + Arrays.asList(arg1);
 				})
 				.and()
-			.build();
+				.build();
 		// end::option-registration-aritystrings-sample[]
 
 		// tag::option-registration-aritystrings-position[]
 		CommandRegistration.builder()
-			.command("arity-strings-2")
-			.withOption()
+				.command("arity-strings-2")
+				.withOption()
 				.longNames("arg1")
 				.required()
 				.type(String[].class)
 				.arity(0, 2)
 				.position(0)
 				.and()
-			.withTarget()
+				.withTarget()
 				.function(ctx -> {
 					String[] arg1 = ctx.getOptionValue("arg1");
 					return "Hello " + Arrays.asList(arg1);
 				})
 				.and()
-			.build();
+				.build();
 		// end::option-registration-aritystrings-position[]
 
 		// tag::option-registration-aritystrings-noposition[]
 		CommandRegistration.builder()
-			.command("arity-strings-1")
-			.withOption()
+				.command("arity-strings-1")
+				.withOption()
 				.longNames("arg1")
 				.required()
 				.type(String[].class)
 				.arity(0, 2)
 				.and()
-			.withTarget()
+				.withTarget()
 				.function(ctx -> {
 					String[] arg1 = ctx.getOptionValue("arg1");
 					return "Hello " + Arrays.asList(arg1);
 				})
 				.and()
-			.build();
+				.build();
 		// end::option-registration-aritystrings-noposition[]
 
 		// tag::option-registration-optional[]
 		CommandRegistration.builder()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.required()
 				.and()
-			.build();
+				.build();
 		// end::option-registration-optional[]
 
 		// tag::option-registration-positional[]
 		CommandRegistration.builder()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.position(0)
 				.and()
-			.build();
+				.build();
 		// end::option-registration-positional[]
 
 		// tag::option-registration-default[]
 		CommandRegistration.builder()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.defaultValue("defaultValue")
 				.and()
-			.build();
+				.build();
 		// end::option-registration-default[]
 
 		// tag::option-registration-label[]
 		CommandRegistration.builder()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg2")
 				.label("MYLABEL")
 				.and()
-			.build();
+				.build();
 		// end::option-registration-label[]
 
 		// tag::option-registration-naming-case-req[]
 		CommandRegistration.builder()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.nameModifier(name -> "x" + name)
 				.and()
-			.build();
+				.build();
 		// end::option-registration-naming-case-req[]
 	}
 
@@ -274,16 +274,18 @@ public class OptionSnippets {
 		OptionNameModifier sampleOptionNameModifier() {
 			return name -> "x" + name;
 		}
+
 		// end::option-registration-naming-case-bean[]
 
 		// tag::option-registration-naming-case-sample1[]
 		@ShellMethod(key = "option-naming-sample")
 		public void optionNamingSample(
-			@ShellOption("from_snake") String snake,
-			@ShellOption("fromCamel") String camel,
-			@ShellOption("from-kebab") String kebab,
-			@ShellOption("FromPascal") String pascal
-		) {}
+	@ShellOption("from_snake") String snake,
+	@ShellOption("fromCamel") String camel,
+	@ShellOption("from-kebab") String kebab,
+	@ShellOption("FromPascal") String pascal
+	) {
+		}
 		// end::option-registration-naming-case-sample1[]
 
 	}
@@ -293,39 +295,43 @@ public class OptionSnippets {
 		// tag::option-registration-zeroorone-legacyannotation[]
 		@ShellMethod(key = "example")
 		String zeroOrOne(
-			@ShellOption(arity = 1) String arg)
+	@ShellOption(arity = 1) String arg)
 		{
 			return String.format("Hi '%s'", arg);
 		}
+
 		// end::option-registration-zeroorone-legacyannotation[]
 
 		// tag::option-registration-zerooronewithminmax-legacyannotation[]
 		@ShellMethod(key = "example")
 		String zeroOrOneWithMinMax(
-			@ShellOption(arity = 1) String arg)
+	@ShellOption(arity = 1) String arg)
 		{
 			return String.format("Hi '%s'", arg);
 		}
+
 		// end::option-registration-zerooronewithminmax-legacyannotation[]
 
 		// tag::option-optional-legacyannotation[]
 		void optionalOption(
-			@ShellOption(defaultValue = ShellOption.NULL) String arg
-		) {
+	@ShellOption(defaultValue = ShellOption.NULL) String arg
+	) {
 		}
+
 		// end::option-optional-legacyannotation[]
 
 		// tag::option-mandatory-legacyannotation[]
 		void mandatoryOption(
-			@ShellOption() String arg
-		) {
+	@ShellOption() String arg
+	) {
 		}
+
 		// end::option-mandatory-legacyannotation[]
 
 		// tag::option-default-legacyannotation[]
 		void defaultOption(
-			@ShellOption(defaultValue = "default") String arg
-		) {
+	@ShellOption(defaultValue = "default") String arg
+	) {
 		}
 		// end::option-default-legacyannotation[]
 
@@ -336,46 +342,51 @@ public class OptionSnippets {
 		// tag::option-registration-zeroorone-annotation[]
 		@Command(command = "example")
 		String zeroOrOne(
-			@Option(arity = OptionArity.ZERO_OR_ONE) String arg)
+	@Option(arity = OptionArity.ZERO_OR_ONE) String arg)
 		{
 			return String.format("Hi '%s'", arg);
 		}
+
 		// end::option-registration-zeroorone-annotation[]
 
 		// tag::option-registration-zerooronewithminmax-annotation[]
 		@Command(command = "example")
 		String zeroOrOneWithMinMax(
-			@Option(arityMin = 0, arityMax = 1) String arg)
+	@Option(arityMin = 0, arityMax = 1) String arg)
 		{
 			return String.format("Hi '%s'", arg);
 		}
+
 		// end::option-registration-zerooronewithminmax-annotation[]
 
 		// tag::option-optional-annotation[]
 		void optionalOption(
-			@Option(required = false) String arg
-		) {
+	@Option(required = false) String arg
+	) {
 		}
+
 		// end::option-optional-annotation[]
 
 		// tag::option-mandatory-annotation[]
 		void mandatoryOption(
-			@Option(required = true) String arg
-		) {
+	@Option(required = true) String arg
+	) {
 		}
+
 		// end::option-mandatory-annotation[]
 
 		// tag::option-default-annotation[]
 		void defaultOption(
-			@Option(defaultValue = "default") String arg
-		) {
+	@Option(defaultValue = "default") String arg
+	) {
 		}
+
 		// end::option-default-annotation[]
 
 		// tag::option-label-annotation[]
 		void labelOption(
-			@Option(label = "MYLABEL") String arg
-		) {
+	@Option(label = "MYLABEL") String arg
+	) {
 		}
 		// end::option-label-annotation[]
 
@@ -386,71 +397,76 @@ public class OptionSnippets {
 		// tag::option-registration-zeroorone-programmatic[]
 		CommandRegistration zeroOrOne() {
 			return CommandRegistration.builder()
-				.command("example")
-				.withOption()
+					.command("example")
+					.withOption()
 					.longNames("arg")
 					.arity(OptionArity.ZERO_OR_ONE)
 					.and()
-				.build();
+					.build();
 		}
+
 		// end::option-registration-zeroorone-programmatic[]
 
 		// tag::option-registration-zerooronewithminmax-programmatic[]
 		CommandRegistration zeroOrOneWithMinMax() {
 			return CommandRegistration.builder()
-				.command("example")
-				.withOption()
+					.command("example")
+					.withOption()
 					.longNames("arg")
 					.arity(0, 1)
 					.and()
-				.build();
+					.build();
 		}
+
 		// end::option-registration-zerooronewithminmax-programmatic[]
 
 		// tag::option-optional-programmatic[]
 		CommandRegistration optionalOption() {
 			return CommandRegistration.builder()
-				.command("optionalOption")
-				.withOption()
+					.command("optionalOption")
+					.withOption()
 					.longNames("arg")
 					.required(false)
 					.and()
-				.build();
+					.build();
 		}
+
 		// end::option-optional-programmatic[]
 
 		// tag::option-mandatory-programmatic[]
 		CommandRegistration mandatoryOption() {
 			return CommandRegistration.builder()
-				.command("optionalOption")
-				.withOption()
+					.command("optionalOption")
+					.withOption()
 					.longNames("arg")
 					.required()
 					.and()
-				.build();
+					.build();
 		}
+
 		// end::option-mandatory-programmatic[]
 
 		// tag::option-default-programmatic[]
 		CommandRegistration defaultOption() {
 			return CommandRegistration.builder()
-				.command("defaultOption")
-				.withOption()
+					.command("defaultOption")
+					.withOption()
 					.longNames("arg")
 					.defaultValue("default")
 					.and()
-				.build();
+					.build();
 		}
+
 		// end::option-default-programmatic[]
 
 		// tag::option-label-programmatic[]
 		CommandRegistration labelOption() {
 			return CommandRegistration.builder()
-				.withOption()
+					.withOption()
 					.longNames("arg")
 					.label("MYLABEL")
 					.and()
-				.build();
+					.build();
 		}
 		// end::option-label-programmatic[]
 	}

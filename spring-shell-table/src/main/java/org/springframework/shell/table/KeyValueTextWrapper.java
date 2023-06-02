@@ -61,7 +61,7 @@ public class KeyValueTextWrapper implements TextWrapper {
 
 	private String rightPad(String raw, int width) {
 		StringBuilder result = new StringBuilder(raw);
-		for (int i = raw.length(); i < width; i++) {
+		for (int i = raw.length();i < width;i++) {
 			result.append(' ');
 		}
 		return result.toString();

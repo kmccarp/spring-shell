@@ -72,7 +72,7 @@ public class StandardMethodTargetRegistrar implements MethodTargetRegistrar {
 	private CommandRegistration.BuilderSupplier commandRegistrationBuilderSupplier;
 
 	public StandardMethodTargetRegistrar(ApplicationContext applicationContext,
-	CommandRegistration.BuilderSupplier commandRegistrationBuilderSupplier) {
+									   CommandRegistration.BuilderSupplier commandRegistrationBuilderSupplier) {
 		this.applicationContext = applicationContext;
 		this.commandRegistrationBuilderSupplier = commandRegistrationBuilderSupplier;
 	}
@@ -87,7 +87,7 @@ public class StandardMethodTargetRegistrar implements MethodTargetRegistrar {
 				ShellMethod shellMapping = method.getAnnotation(ShellMethod.class);
 				String[] keys = shellMapping.key();
 				if (keys.length == 0) {
-					keys = new String[] { Utils.unCamelify(method.getName()) };
+					keys = new String[]{Utils.unCamelify(method.getName())};
 				}
 				String group = getOrInferGroup(method);
 
@@ -96,13 +96,13 @@ public class StandardMethodTargetRegistrar implements MethodTargetRegistrar {
 				Supplier<Availability> availabilityIndicator = findAvailabilityIndicator(keys, bean, method);
 
 				Builder builder = commandRegistrationBuilderSupplier.get()
-					.command(key)
-					.group(group)
-					.description(shellMapping.value())
-					.interactionMode(shellMapping.interactionMode())
-					.availability(availabilityIndicator);
+						.command(key)
+						.group(group)
+						.description(shellMapping.value())
+						.interactionMode(shellMapping.interactionMode())
+						.availability(availabilityIndicator);
 
-				for (int i = 1; i < keys.length; i++) {
+				for (int i = 1;i < keys.length;i++) {
 					builder.withAlias().command(keys[i]).group(group);
 				}
 
@@ -149,11 +149,11 @@ public class StandardMethodTargetRegistrar implements MethodTargetRegistrar {
 							Class<?> parameterType = mp.getParameterType();
 							Type genericParameterType = mp.getGenericParameterType();
 							OptionSpec optionSpec = builder.withOption()
-								.type(genericParameterType)
-								.longNames(longNames.toArray(new String[0]))
-								.shortNames(shortNames.toArray(new Character[0]))
-								.position(mp.getParameterIndex())
-								.description(so.help());
+									.type(genericParameterType)
+									.longNames(longNames.toArray(new String[0]))
+									.shortNames(shortNames.toArray(new Character[0]))
+									.position(mp.getParameterIndex())
+									.description(so.help());
 							if (so.arity() > -1) {
 								optionSpec.arity(0, so.arity());
 							}
@@ -195,10 +195,10 @@ public class StandardMethodTargetRegistrar implements MethodTargetRegistrar {
 						if (longName != null) {
 							log.debug("Using mp='{}' longName='{}' parameterType='{}'", mp, longName, parameterType);
 							OptionSpec optionSpec = builder.withOption()
-								.longNames(longName)
-								.type(parameterType)
-								.required()
-								.position(mp.getParameterIndex());
+									.longNames(longName)
+									.type(parameterType)
+									.required()
+									.position(mp.getParameterIndex());
 							if (ClassUtils.isAssignable(boolean.class, parameterType)) {
 								optionSpec.arity(OptionArity.ZERO_OR_ONE);
 								optionSpec.required(false);
@@ -278,12 +278,14 @@ public class StandardMethodTargetRegistrar implements MethodTargetRegistrar {
 					+ Availability.class.getSimpleName() +
 					". Found " + Arrays.asList(explicit.value()) + " for " + method);
 			indicator = ReflectionUtils.findMethod(bean.getClass(), explicit.value()[0]);
-		} // Try "<method>Availability"
+		}
+		// Try "<method>Availability"
 		else {
 			Method implicit = ReflectionUtils.findMethod(bean.getClass(), method.getName() + "Availability");
 			if (implicit != null) {
 				indicator = implicit;
-			} else {
+			}
+			else {
 				Map<Method, Collection<String>> candidates = new HashMap<>();
 				ReflectionUtils.doWithMethods(bean.getClass(), candidate -> {
 					List<String> matchKeys = new ArrayList<>(Arrays.asList(candidate.getAnnotation(ShellMethodAvailability.class).value()));
@@ -292,7 +294,8 @@ public class StandardMethodTargetRegistrar implements MethodTargetRegistrar {
 								ShellMethodAvailability.class.getSimpleName() + ", this can be the only value. Found " +
 								matchKeys + " on method " + candidate);
 						candidates.put(candidate, matchKeys);
-					} else {
+					}
+					else {
 						matchKeys.retainAll(Arrays.asList(commandKeys));
 						if (!matchKeys.isEmpty()) {
 							candidates.put(candidate, matchKeys);
@@ -313,10 +316,12 @@ public class StandardMethodTargetRegistrar implements MethodTargetRegistrar {
 
 				if (notUsingWildcard.size() == 1) {
 					indicator = notUsingWildcard.iterator().next();
-				} // Wildcard was available
+				}
+				// Wildcard was available
 				else if (candidates.size() == 1) {
 					indicator = candidates.keySet().iterator().next();
-				} else {
+				}
+				else {
 					indicator = null;
 				}
 			}
@@ -327,7 +332,7 @@ public class StandardMethodTargetRegistrar implements MethodTargetRegistrar {
 					"Method " + indicator + " should return " + Availability.class.getSimpleName());
 			Assert.isTrue(indicator.getParameterCount() == 0, "Method " + indicator + " should be a no-arg method");
 			ReflectionUtils.makeAccessible(indicator);
-			return () -> (Availability) ReflectionUtils.invokeMethod(indicator, bean);
+			return () -> (Availability)ReflectionUtils.invokeMethod(indicator, bean);
 		}
 		else {
 			return null;

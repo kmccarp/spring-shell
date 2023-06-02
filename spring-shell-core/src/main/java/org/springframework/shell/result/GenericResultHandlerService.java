@@ -103,7 +103,7 @@ public class GenericResultHandlerService implements ResultHandlerService {
 
 	@Nullable
 	private Object handleResultHandlerNotFound(
-			@Nullable Object source, @Nullable TypeDescriptor sourceType) {
+	@Nullable Object source, @Nullable TypeDescriptor sourceType) {
 		if (source == null) {
 			return null;
 		}
@@ -134,7 +134,7 @@ public class GenericResultHandlerService implements ResultHandlerService {
 		Class<?> result;
 
 		public ResultHandlerAdapter(ResultHandler<?> handler, ResolvableType resultType) {
-			this.handler = (ResultHandler<Object>) handler;
+			this.handler = (ResultHandler<Object>)handler;
 			this.result = resultType.toClass();
 		}
 
@@ -261,14 +261,14 @@ public class GenericResultHandlerService implements ResultHandlerService {
 		}
 
 		private void addInterfacesToClassHierarchy(Class<?> type, boolean asArray,
-				List<Class<?>> hierarchy, Set<Class<?>> visited) {
+											  List<Class<?>> hierarchy, Set<Class<?>> visited) {
 			for (Class<?> implementedInterface : type.getInterfaces()) {
 				addToClassHierarchy(hierarchy.size(), implementedInterface, asArray, hierarchy, visited);
 			}
 		}
 
 		private void addToClassHierarchy(int index, Class<?> type, boolean asArray,
-				List<Class<?>> hierarchy, Set<Class<?>> visited) {
+									List<Class<?>> hierarchy, Set<Class<?>> visited) {
 			if (asArray) {
 				type = Array.newInstance(type, 0).getClass();
 			}
@@ -279,6 +279,7 @@ public class GenericResultHandlerService implements ResultHandlerService {
 	}
 
 	private static void invokeHandler(GenericResultHandler handler, Object result, TypeDescriptor resultType) {
-		handler.handle(result, resultType);;
+		handler.handle(result, resultType);
+		;
 	}
 }

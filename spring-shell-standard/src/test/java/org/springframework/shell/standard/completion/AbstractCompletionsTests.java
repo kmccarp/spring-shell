@@ -37,38 +37,38 @@ public class AbstractCompletionsTests {
 		TestCommands commands = new TestCommands();
 
 		CommandRegistration registration1 = CommandRegistration.builder()
-			.command("test1")
-			.withTarget()
+				.command("test1")
+				.withTarget()
 				.method(commands, "test1")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("param1")
 				.and()
-			.build();
+				.build();
 
 		CommandRegistration registration2 = CommandRegistration.builder()
-			.command("test2")
-			.withTarget()
+				.command("test2")
+				.withTarget()
 				.method(commands, "test2")
 				.and()
-			.build();
+				.build();
 
 		CommandRegistration registration3 = CommandRegistration.builder()
-			.command("test3")
-			.withTarget()
+				.command("test3")
+				.withTarget()
 				.method(commands, "test3")
 				.and()
-			.build();
+				.build();
 
 		CommandRegistration registration4 = CommandRegistration.builder()
-			.command("test3", "test4")
-			.withTarget()
+				.command("test3", "test4")
+				.withTarget()
 				.method(commands, "test4")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("param4")
 				.and()
-			.build();
+				.build();
 
 		commandCatalog.register(registration1);
 		commandCatalog.register(registration2);

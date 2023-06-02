@@ -74,40 +74,40 @@ public abstract class AbstractCompletions {
 		HashMap<String, DefaultCommandModelCommand> commands = new HashMap<>();
 		HashSet<CommandModelCommand> topCommands = new HashSet<>();
 		commandsByName.stream()
-			.forEach(registration -> {
-				String key = registration.getCommand();
-				String[] splitKeys = key.split(" ");
-				String commandKey = "";
-				for (int i = 0; i < splitKeys.length; i++) {
-					DefaultCommandModelCommand parent = null;
-					String main = splitKeys[i];
-					if (i > 0) {
-						parent = commands.get(commandKey);
-						commandKey = commandKey + " " + splitKeys[i];
-					}
-					else {
-						commandKey = splitKeys[i];
-					}
-					DefaultCommandModelCommand command = commands.computeIfAbsent(commandKey,
-							(fullCommand) -> new DefaultCommandModelCommand(fullCommand, main));
+				.forEach(registration -> {
+					String key = registration.getCommand();
+					String[] splitKeys = key.split(" ");
+					String commandKey = "";
+					for (int i = 0;i < splitKeys.length;i++) {
+						DefaultCommandModelCommand parent = null;
+						String main = splitKeys[i];
+						if (i > 0) {
+							parent = commands.get(commandKey);
+							commandKey = commandKey + " " + splitKeys[i];
+						}
+						else {
+							commandKey = splitKeys[i];
+						}
+						DefaultCommandModelCommand command = commands.computeIfAbsent(commandKey,
+								(fullCommand) -> new DefaultCommandModelCommand(fullCommand, main));
 
-					// TODO long vs short
-					List<CommandModelOption> options = registration.getOptions().stream()
-						.flatMap(co -> Arrays.stream(co.getLongNames()))
-						.map(lo -> CommandModelOption.of("--", lo))
-						.collect(Collectors.toList());
+						// TODO long vs short
+						List<CommandModelOption> options = registration.getOptions().stream()
+								.flatMap(co -> Arrays.stream(co.getLongNames()))
+								.map(lo -> CommandModelOption.of("--", lo))
+								.collect(Collectors.toList());
 
-					if (i == splitKeys.length - 1) {
-						command.addOptions(options);
+						if (i == splitKeys.length - 1) {
+							command.addOptions(options);
+						}
+						if (parent != null) {
+							parent.addCommand(command);
+						}
+						if (i == 0) {
+							topCommands.add(command);
+						}
 					}
-					if (parent != null) {
-						parent.addCommand(command);
-					}
-					if (i == 0) {
-						topCommands.add(command);
-					}
-				}
-			});
+				});
 		return new DefaultCommandModel(new ArrayList<>(topCommands));
 	}
 
@@ -144,7 +144,7 @@ public abstract class AbstractCompletions {
 	 * Interface for a command in a model. Also contains methods which makes it
 	 * easier to work with ST4 templates.
 	 */
-	interface CommandModelCommand  {
+	interface CommandModelCommand {
 
 		/**
 		 * Gets sub-commands known to this command.
@@ -316,7 +316,7 @@ public abstract class AbstractCompletions {
 			if (getClass() != obj.getClass()) {
 				return false;
 			}
-			DefaultCommandModelCommand other = (DefaultCommandModelCommand) obj;
+			DefaultCommandModelCommand other = (DefaultCommandModelCommand)obj;
 			if (!getEnclosingInstance().equals(other.getEnclosingInstance())) {
 				return false;
 			}
@@ -324,7 +324,8 @@ public abstract class AbstractCompletions {
 				if (other.fullCommand != null) {
 					return false;
 				}
-			} else if (!fullCommand.equals(other.fullCommand)) {
+			}
+			else if (!fullCommand.equals(other.fullCommand)) {
 				return false;
 			}
 			return true;
@@ -360,8 +361,11 @@ public abstract class AbstractCompletions {
 	interface Builder {
 
 		Builder attribute(String name, Object value);
+
 		Builder group(String resource);
+
 		Builder appendGroup(String instance);
+
 		String build();
 	}
 

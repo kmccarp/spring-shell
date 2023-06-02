@@ -34,7 +34,7 @@ public class AvailabilityCommands {
 		// find from <methodName>Availability
 		@ShellMethod(key = LEGACY_ANNO + "availability-1", group = GROUP)
 		public String testAvailability1LegacyAnnotation(
-		) {
+	) {
 			return "Hello";
 		}
 
@@ -46,7 +46,7 @@ public class AvailabilityCommands {
 		@ShellMethod(key = LEGACY_ANNO + "availability-2", group = GROUP)
 		@ShellMethodAvailability("testAvailability2LegacyAnnotationAvailability2")
 		public String testAvailability2LegacyAnnotation(
-		) {
+	) {
 			return "Hello";
 		}
 
@@ -57,7 +57,7 @@ public class AvailabilityCommands {
 		// find backwards from @ShellMethodAvailability command name
 		@ShellMethod(key = LEGACY_ANNO + "availability-3", group = GROUP)
 		public String testAvailability3LegacyAnnotation(
-		) {
+	) {
 			return "Hello";
 		}
 
@@ -73,7 +73,7 @@ public class AvailabilityCommands {
 		@Command(command = "availability-1")
 		@CommandAvailability(provider = "testAvailability1AnnotationAvailability")
 		public String testAvailability1Annotation(
-		) {
+	) {
 			return "Hello";
 		}
 
@@ -89,31 +89,31 @@ public class AvailabilityCommands {
 		@Bean
 		public CommandRegistration testAvailability1Registration() {
 			return getBuilder()
-				.command(REG, "availability-1")
-				.group(GROUP)
-				.availability(() -> {
-					return Availability.unavailable("not available");
-				})
-				.withTarget()
+					.command(REG, "availability-1")
+					.group(GROUP)
+					.availability(() -> {
+						return Availability.unavailable("not available");
+					})
+					.withTarget()
 					.function(ctx -> {
 						return "Hello";
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration testAvailability2Registration() {
 			return getBuilder()
-				.command(REG, "availability-2")
-				.group(GROUP)
-				.availability(testAvailability2AnnotationAvailability())
-				.withTarget()
+					.command(REG, "availability-2")
+					.group(GROUP)
+					.availability(testAvailability2AnnotationAvailability())
+					.withTarget()
 					.function(ctx -> {
 						return "Hello";
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		AvailabilityProvider testAvailability2AnnotationAvailability() {

@@ -69,19 +69,19 @@ class CommandAnnotationUtilsTests {
 	private static class CommandDefault {
 	}
 
-	@Command(command = { "one", "two" })
+	@Command(command = {"one", "two"})
 	private static class CommandValues1 {
 	}
 
-	@Command(command = { "three", "four" })
+	@Command(command = {"three", "four"})
 	private static class CommandValues2 {
 	}
 
-	@Command(command = { " five", "six ", " seven " })
+	@Command(command = {" five", "six ", " seven "})
 	private static class CommandValues3 {
 	}
 
-	@Command(command = { " eight nine " })
+	@Command(command = {" eight nine "})
 	private static class CommandValues4 {
 	}
 
@@ -89,13 +89,13 @@ class CommandAnnotationUtilsTests {
 	void testCommand() {
 		assertThat(CommandAnnotationUtils.deduceCommand(commandDefault, commandDefault)).isEmpty();
 		assertThat(CommandAnnotationUtils.deduceCommand(commandDefault, commandValues1))
-				.isEqualTo(new String[] { "one", "two" });
+				.isEqualTo(new String[]{"one", "two"});
 		assertThat(CommandAnnotationUtils.deduceCommand(commandValues1, commandValues2))
-				.isEqualTo(new String[] { "one", "two", "three", "four" });
+				.isEqualTo(new String[]{"one", "two", "three", "four"});
 		assertThat(CommandAnnotationUtils.deduceCommand(commandDefault, commandValues3))
-				.isEqualTo(new String[] { "five", "six", "seven" });
+				.isEqualTo(new String[]{"five", "six", "seven"});
 		assertThat(CommandAnnotationUtils.deduceCommand(commandDefault, commandValues4))
-				.isEqualTo(new String[] { "eight", "nine" });
+				.isEqualTo(new String[]{"eight", "nine"});
 	}
 
 	private static MergedAnnotation<Command> aliasDefault = MergedAnnotations.from(AliasDefault.class)
@@ -113,19 +113,19 @@ class CommandAnnotationUtilsTests {
 	private static class AliasDefault {
 	}
 
-	@Command(alias = { "one", "two" })
+	@Command(alias = {"one", "two"})
 	private static class AliasValues1 {
 	}
 
-	@Command(alias = { "three", "four" })
+	@Command(alias = {"three", "four"})
 	private static class AliasValues2 {
 	}
 
-	@Command(alias = { " five", "six ", " seven " })
+	@Command(alias = {" five", "six ", " seven "})
 	private static class AliasValues3 {
 	}
 
-	@Command(alias = { " eight nine " })
+	@Command(alias = {" eight nine "})
 	private static class AliasValues4 {
 	}
 
@@ -133,13 +133,13 @@ class CommandAnnotationUtilsTests {
 	void testAlias() {
 		assertThat(CommandAnnotationUtils.deduceAlias(aliasDefault, aliasDefault)).isEmpty();
 		assertThat(CommandAnnotationUtils.deduceAlias(aliasDefault, aliasValues1))
-				.isEqualTo(new String[] { "one", "two" });
+				.isEqualTo(new String[]{"one", "two"});
 		assertThat(CommandAnnotationUtils.deduceAlias(aliasValues1, aliasValues2))
-				.isEqualTo(new String[] { "one", "two", "three", "four" });
+				.isEqualTo(new String[]{"one", "two", "three", "four"});
 		assertThat(CommandAnnotationUtils.deduceAlias(aliasDefault, aliasValues3))
-				.isEqualTo(new String[] { "five", "six", "seven" });
+				.isEqualTo(new String[]{"five", "six", "seven"});
 		assertThat(CommandAnnotationUtils.deduceAlias(aliasDefault, aliasValues4))
-				.isEqualTo(new String[] { "eight", "nine" });
+				.isEqualTo(new String[]{"eight", "nine"});
 	}
 
 	private static MergedAnnotation<Command> groupValue1 = MergedAnnotations.from(GroupValues1.class)

@@ -74,11 +74,11 @@ public class Table implements TerminalSizeAware {
 	 * @see TableBuilder#build()
 	 */
 	/*package*/ Table(TableModel model,
-	      LinkedHashMap<CellMatcher, Formatter> formatters,
-	      LinkedHashMap<CellMatcher, SizeConstraints> sizeConstraints,
-	      LinkedHashMap<CellMatcher, TextWrapper> wrappers,
-	      LinkedHashMap<CellMatcher, Aligner> aligners,
-	      List<BorderSpecification> borderSpecifications) {
+																																																																				  LinkedHashMap<CellMatcher, Formatter> formatters,
+																																																																				  LinkedHashMap<CellMatcher, SizeConstraints> sizeConstraints,
+																																																																				  LinkedHashMap<CellMatcher, TextWrapper> wrappers,
+																																																																				  LinkedHashMap<CellMatcher, Aligner> aligners,
+																																																																				  List<BorderSpecification> borderSpecifications) {
 		this.model = model;
 		this.formatters = formatters;
 		this.sizeConstraints = sizeConstraints;
@@ -108,8 +108,8 @@ public class Table implements TerminalSizeAware {
 		int widthAvailableForContents = totalAvailableWidth - borders.getNumberOfVerticalBorders();
 
 		// First, compute desired column widths
-		for (int row = 0; row < rows; row++) {
-			for (int column = 0; column < columns; column++) {
+		for (int row = 0;row < rows;row++) {
+			for (int column = 0;column < columns;column++) {
 				Object value = model.getValue(row, column);
 				String[] lines = getFormatter(row, column).format(value);
 				subLines[row][column] = lines;
@@ -125,12 +125,12 @@ public class Table implements TerminalSizeAware {
 
 		cellWidths = computeColumnWidths(widthAvailableForContents, minCellWidths, maxCellWidths);
 		// Now that widths are known, apply wrapping & render
-		for (int row = 0; row < rows; row++) {
-			for (int column = 0; column < columns; column++) {
+		for (int row = 0;row < rows;row++) {
+			for (int column = 0;column < columns;column++) {
 				subLines[row][column] = getWrapper(row, column).wrap(subLines[row][column], cellWidths[column]);
 				cellHeights[row] = Math.max(cellHeights[row], subLines[row][column].length);
 			}
-			for (int column = 0; column < columns; column++) {
+			for (int column = 0;column < columns;column++) {
 				for (Map.Entry<CellMatcher, Aligner> kv : aligners.entrySet()) {
 					if (kv.getKey().matches(row, column, model)) {
 						subLines[row][column] = kv.getValue().align(subLines[row][column], cellWidths[column], cellHeights[row]);
@@ -140,11 +140,11 @@ public class Table implements TerminalSizeAware {
 		}
 
 
-		for (int row = 0; row < rows; row++) {
+		for (int row = 0;row < rows;row++) {
 
 			// TOP CELL BORDER
 			int before = result.length();
-			for (int column = 0; column < columns; column++) {
+			for (int column = 0;column < columns;column++) {
 				borders.paintCorner(row, column, result);
 				borders.paintHorizontal(row, column, cellWidths[column], result);
 			}
@@ -153,8 +153,8 @@ public class Table implements TerminalSizeAware {
 				result.append('\n');
 			}
 
-			for (int subRow = 0; subRow < cellHeights[row]; subRow++) {
-				for (int column = 0; column < columns; column++) {
+			for (int subRow = 0;subRow < cellHeights[row];subRow++) {
+				for (int column = 0;column < columns;column++) {
 					// LEFT CELL BORDER
 					borders.paintVertical(row, column, result);
 					String[] lines = subLines[row][column];
@@ -168,7 +168,7 @@ public class Table implements TerminalSizeAware {
 
 		// TABLE BOTTOM BORDER
 		int before = result.length();
-		for (int column = 0; column < columns; column++) {
+		for (int column = 0;column < columns;column++) {
 			borders.paintCorner(rows, column, result);
 			borders.paintHorizontal(rows, column, cellWidths[column], result);
 		}
@@ -185,7 +185,7 @@ public class Table implements TerminalSizeAware {
 
 		int[] cellWidths;
 		int minTableWidth = 0, maxTableWidth = 0;
-		for (int column = 0; column < columns; column++) {
+		for (int column = 0;column < columns;column++) {
 			minTableWidth += minCellWidths[column];
 			maxTableWidth += maxCellWidths[column];
 		}
@@ -193,15 +193,17 @@ public class Table implements TerminalSizeAware {
 		// Can use max desired width
 		if (maxTableWidth <= availableWidth) {
 			cellWidths = maxCellWidths;
-		} // will overflow
+		}
+		// will overflow
 		else if (minTableWidth >= availableWidth) {
 			cellWidths = minCellWidths;
-		} // Redistribute nicely
+		}
+		// Redistribute nicely
 		else {
 			int W = availableWidth - minTableWidth;
 			int D = maxTableWidth - minTableWidth;
 			cellWidths = new int[columns];
-			for (int column = 0; column < columns; column++) {
+			for (int column = 0;column < columns;column++) {
 				cellWidths[column] = minCellWidths[column] + W * (maxCellWidths[column] - minCellWidths[column]) / D;
 			}
 		}
@@ -280,8 +282,8 @@ public class Table implements TerminalSizeAware {
 
 		private void init() {
 
-			for (int row = 0; row <= rows; row++) {
-				for (int column = 0; column <= columns; column++) {
+			for (int row = 0;row <= rows;row++) {
+				for (int column = 0;column <= columns;column++) {
 					for (BorderSpecification bs : borderSpecifications) {
 						if (row < rows) {
 							char verticalThere = bs.verticals(row, column);
@@ -302,8 +304,8 @@ public class Table implements TerminalSizeAware {
 			}
 
 			// Compute corners when horizontals & verticals intersect
-			for (int row = 0; row <= rows; row++) {
-				for (int column = 0; column <= columns; column++) {
+			for (int row = 0;row <= rows;row++) {
+				for (int column = 0;column <= columns;column++) {
 					char left = (column - 1 >= 0) ? horizontals[row][column - 1] : NONE;
 					char right = (column < columns) ? horizontals[row][column] : NONE;
 					char above = (row - 1 >= 0) ? verticals[row - 1][column] : NONE;
@@ -316,7 +318,8 @@ public class Table implements TerminalSizeAware {
 		private void paintCorner(int row, int column, StringBuilder stringBuilder) {
 			if (corners[row][column] != NONE) {
 				stringBuilder.append(corners[row][column]);
-			} // If there is a border in same row|column, paint filler
+			}
+			// If there is a border in same row|column, paint filler
 			else if (vFillers[column] && hFillers[row]) {
 				stringBuilder.append(' ');
 			}
@@ -333,12 +336,12 @@ public class Table implements TerminalSizeAware {
 
 		private void paintHorizontal(int row, int column, int width, StringBuilder stringBuilder) {
 			if (horizontals[row][column] != NONE) {
-				for (int i = 0; i < width; i++) {
+				for (int i = 0;i < width;i++) {
 					stringBuilder.append(horizontals[row][column]);
 				}
 			}
 			else if (hFillers[row]) {
-				for (int i = 0; i < width; i++) {
+				for (int i = 0;i < width;i++) {
 					stringBuilder.append(' ');
 				}
 			}

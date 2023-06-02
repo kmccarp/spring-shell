@@ -36,9 +36,9 @@ public class ValidatedValueCommands {
 
 		@ShellMethod(key = LEGACY_ANNO + "validated-value", group = GROUP)
 		public String testValidatedValueAnnotation(
-			@ShellOption @Min(value = 1) Integer arg1,
-			@ShellOption @Min(value = 1) Integer arg2
-		) {
+	@ShellOption @Min(value = 1) Integer arg1,
+	@ShellOption @Min(value = 1) Integer arg2
+	) {
 			return "Hello " + arg1;
 		}
 	}
@@ -49,25 +49,25 @@ public class ValidatedValueCommands {
 		@Bean
 		public CommandRegistration testValidatedValueRegistration() {
 			return getBuilder()
-				.command(REG, "validated-value")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "validated-value")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(Integer.class)
 					.required()
 					.and()
-				.withOption()
+					.withOption()
 					.longNames("arg2")
 					.type(Integer.class)
 					.required()
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						Integer arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 	}
 }

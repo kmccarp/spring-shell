@@ -29,14 +29,14 @@ public class UnrecognisedOptionCommands {
 
 		@ShellMethod(key = LEGACY_ANNO + "unrecognised-option-noother", group = GROUP)
 		public String testUnrecognisedOptionNoOtherAnnotation(
-		) {
+	) {
 			return "Hi";
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "unrecognised-option-withrequired", group = GROUP)
 		public String testUnrecognisedOptionWithRequiredAnnotation(
-			@ShellOption(help = "Desc arg1") String arg1
-		) {
+	@ShellOption(help = "Desc arg1") String arg1
+	) {
 			return "Hello " + arg1;
 		}
 	}
@@ -47,33 +47,33 @@ public class UnrecognisedOptionCommands {
 		@Bean
 		public CommandRegistration testUnrecognisedOptionNoOtherRegistration() {
 			return getBuilder()
-				.command(REG, "unrecognised-option-noother")
-				.group(GROUP)
-				.withTarget()
+					.command(REG, "unrecognised-option-noother")
+					.group(GROUP)
+					.withTarget()
 					.function(ctx -> {
 						return "Hi";
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration testUnrecognisedOptionWithRequiredRegistration() {
 			return getBuilder()
-				.command(REG, "unrecognised-option-withrequired")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "unrecognised-option-withrequired")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.description("Desc arg1")
 					.required()
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						String arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 	}
 }

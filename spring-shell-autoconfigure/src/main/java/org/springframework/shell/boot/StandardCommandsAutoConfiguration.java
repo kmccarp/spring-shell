@@ -48,7 +48,7 @@ import org.springframework.shell.style.TemplateExecutor;
  * @author Eric Bottard
  */
 @AutoConfiguration
-@ConditionalOnClass({ Help.Command.class })
+@ConditionalOnClass({Help.Command.class})
 @EnableConfigurationProperties(SpringShellProperties.class)
 public class StandardCommandsAutoConfiguration {
 
@@ -111,7 +111,7 @@ public class StandardCommandsAutoConfiguration {
 	@ConditionalOnMissingBean(Version.Command.class)
 	@ConditionalOnProperty(prefix = "spring.shell.command.version", value = "enabled", havingValue = "true", matchIfMissing = true)
 	public Version version(SpringShellProperties properties, ObjectProvider<BuildProperties> buildProperties,
-			ObjectProvider<GitProperties> gitProperties, ObjectProvider<TemplateExecutor> templateExecutor) {
+																																																				   ObjectProvider<GitProperties> gitProperties, ObjectProvider<TemplateExecutor> templateExecutor) {
 		Version version = new Version(templateExecutor.getIfAvailable());
 		version.setBuildProperties(buildProperties.getIfAvailable());
 		version.setGitProperties(gitProperties.getIfAvailable());

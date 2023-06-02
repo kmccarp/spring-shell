@@ -72,11 +72,11 @@ public class ShellTests {
 		doThrow(new Exit()).when(resultHandlerService).handle(any());
 
 		CommandRegistration registration = CommandRegistration.builder()
-			.command("hello world")
-			.withTarget()
+				.command("hello world")
+				.withTarget()
 				.method(this, "helloWorld")
 				.and()
-			.build();
+				.build();
 		Map<String, CommandRegistration> registrations = new HashMap<>();
 		registrations.put("hello world", registration);
 		when(commandRegistry.getRegistrations()).thenReturn(registrations);
@@ -98,11 +98,11 @@ public class ShellTests {
 		doThrow(new Exit()).when(resultHandlerService).handle(isA(CommandNotFound.class));
 
 		CommandRegistration registration = CommandRegistration.builder()
-			.command("bonjour")
-			.withTarget()
+				.command("bonjour")
+				.withTarget()
 				.method(this, "helloWorld")
 				.and()
-			.build();
+				.build();
 		Map<String, CommandRegistration> registrations = new HashMap<>();
 		registrations.put("hello world", registration);
 		when(commandRegistry.getRegistrations()).thenReturn(registrations);
@@ -123,11 +123,11 @@ public class ShellTests {
 		doThrow(new Exit()).when(resultHandlerService).handle(isA(CommandNotFound.class));
 
 		CommandRegistration registration = CommandRegistration.builder()
-			.command("hello world")
-			.withTarget()
+				.command("hello world")
+				.withTarget()
 				.method(this, "helloWorld")
 				.and()
-			.build();
+				.build();
 		Map<String, CommandRegistration> registrations = new HashMap<>();
 		registrations.put("hello world", registration);
 		when(commandRegistry.getRegistrations()).thenReturn(registrations);
@@ -147,11 +147,11 @@ public class ShellTests {
 		doThrow(new Exit()).when(resultHandlerService).handle(any());
 
 		CommandRegistration registration = CommandRegistration.builder()
-			.command("hello world")
-			.withTarget()
+				.command("hello world")
+				.withTarget()
 				.method(this, "helloWorld")
 				.and()
-			.build();
+				.build();
 		Map<String, CommandRegistration> registrations = new HashMap<>();
 		registrations.put("hello world", registration);
 		when(commandRegistry.getRegistrations()).thenReturn(registrations);
@@ -173,11 +173,11 @@ public class ShellTests {
 		doThrow(new Exit()).when(resultHandlerService).handle(isA(SomeException.class));
 
 		CommandRegistration registration = CommandRegistration.builder()
-			.command("fail")
-			.withTarget()
+				.command("fail")
+				.withTarget()
 				.method(this, "failing")
 				.and()
-			.build();
+				.build();
 		Map<String, CommandRegistration> registrations = new HashMap<>();
 		registrations.put("fail", registration);
 		when(commandRegistry.getRegistrations()).thenReturn(registrations);
@@ -196,7 +196,7 @@ public class ShellTests {
 
 	@Test
 	public void comments() throws Exception {
-		when(inputProvider.readInput()).thenReturn(() -> "// This is a comment", (Input) null);
+		when(inputProvider.readInput()).thenReturn(() -> "// This is a comment", (Input)null);
 
 		shell.run(inputProvider);
 	}
@@ -204,17 +204,17 @@ public class ShellTests {
 	@Test
 	public void commandNameCompletion() throws Exception {
 		CommandRegistration registration1 = CommandRegistration.builder()
-			.command("hello world")
-			.withTarget()
+				.command("hello world")
+				.withTarget()
 				.method(this, "helloWorld")
 				.and()
-			.build();
+				.build();
 		CommandRegistration registration2 = CommandRegistration.builder()
-			.command("another command")
-			.withTarget()
+				.command("another command")
+				.withTarget()
 				.method(this, "helloWorld")
 				.and()
-			.build();
+				.build();
 		Map<String, CommandRegistration> registrations = new HashMap<>();
 		registrations.put("hello world", registration1);
 		registrations.put("another command", registration2);
@@ -270,15 +270,15 @@ public class ShellTests {
 	@Test
 	public void completionArgWithMethod() throws Exception {
 		CommandRegistration registration1 = CommandRegistration.builder()
-			.command("hello world")
-			.withTarget()
+				.command("hello world")
+				.withTarget()
 				.method(this, "helloWorld")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.description("arg1 desc")
 				.and()
-			.build();
+				.build();
 		Map<String, CommandRegistration> registrations = new HashMap<>();
 		registrations.put("hello world", registration1);
 		when(commandRegistry.getRegistrations()).thenReturn(registrations);
@@ -291,17 +291,17 @@ public class ShellTests {
 	@Test
 	public void completionArgWithFunction() throws Exception {
 		CommandRegistration registration1 = CommandRegistration.builder()
-			.command("hello world")
-			.withTarget()
+				.command("hello world")
+				.withTarget()
 				.function(ctx -> {
 					return null;
 				})
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.description("arg1 desc")
 				.and()
-			.build();
+				.build();
 		Map<String, CommandRegistration> registrations = new HashMap<>();
 		registrations.put("hello world", registration1);
 		when(commandRegistry.getRegistrations()).thenReturn(registrations);
@@ -314,19 +314,19 @@ public class ShellTests {
 	@Test
 	public void shouldCompleteWithCorrectArgument() throws Exception {
 		CommandRegistration registration1 = CommandRegistration.builder()
-			.command("hello world")
-			.withTarget()
+				.command("hello world")
+				.withTarget()
 				.method(this, "helloWorld")
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg1")
 				.completion(ctx -> Arrays.asList("arg1Comp1").stream().map(CompletionProposal::new).collect(Collectors.toList()))
 				.and()
-			.withOption()
+				.withOption()
 				.longNames("arg2")
 				.completion(ctx -> Arrays.asList("arg2Comp1").stream().map(CompletionProposal::new).collect(Collectors.toList()))
 				.and()
-			.build();
+				.build();
 		Map<String, CommandRegistration> registrations = new HashMap<>();
 		registrations.put("hello world", registration1);
 		when(commandRegistry.getRegistrations()).thenReturn(registrations);

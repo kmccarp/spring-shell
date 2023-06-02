@@ -25,9 +25,9 @@ import org.springframework.shell.test.jediterm.terminal.TextStyle;
 public final class TerminalTypeAheadSettings {
 
 	public static final TerminalTypeAheadSettings DEFAULT = new TerminalTypeAheadSettings(
-		true,
-		TimeUnit.MILLISECONDS.toNanos(100),
-		new TextStyle(null)
+			true,
+			TimeUnit.MILLISECONDS.toNanos(100),
+			new TextStyle(null)
 	);
 
 	private final boolean myEnabled;

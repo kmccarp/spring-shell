@@ -39,22 +39,22 @@ public class ArityCommands {
 
 		@ShellMethod(key = LEGACY_ANNO + "arity-boolean-default-true", group = GROUP)
 		public String testArityBooleanDefaultTrueLegacyAnnotation(
-			@ShellOption(value = "--overwrite", arity = 1, defaultValue = "true") Boolean overwrite
-		) {
+	@ShellOption(value = "--overwrite", arity = 1, defaultValue = "true") Boolean overwrite
+	) {
 			return "Hello " + overwrite;
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "arity-string-array", group = GROUP)
 		public String testArityStringArrayLegacyAnnotation(
-			@ShellOption(value = "--arg1", arity = 3) String[] arg1
-		) {
+	@ShellOption(value = "--arg1", arity = 3) String[] arg1
+	) {
 			return "Hello " + Arrays.asList(arg1);
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "arity-float-array", group = GROUP)
 		public String testArityFloatArrayLegacyAnnotation(
-			@ShellOption(value = "--arg1", arity = 3) float[] arg1
-		) {
+	@ShellOption(value = "--arg1", arity = 3) float[] arg1
+	) {
 			return "Hello " + stringOfFloats(arg1);
 		}
 
@@ -65,26 +65,26 @@ public class ArityCommands {
 
 		@Command(command = "arity-boolean-default-true")
 		public String testArityBooleanDefaultTrueAnnotation(
-				@Option(longNames = "overwrite", defaultValue = "true", arity = OptionArity.ZERO_OR_ONE)
-				Boolean overwrite
-		) {
-				return "Hello " + overwrite;
+	@Option(longNames = "overwrite", defaultValue = "true", arity = OptionArity.ZERO_OR_ONE)
+	Boolean overwrite
+	) {
+			return "Hello " + overwrite;
 		}
 
 		@Command(command = "arity-string-array")
 		public String testArityStringArrayAnnotation(
-				@Option(longNames = "arg1", defaultValue = "true", arityMax = 3)
-				String[] arg1
-		) {
-				return "Hello " + Arrays.asList(arg1);
+	@Option(longNames = "arg1", defaultValue = "true", arityMax = 3)
+	String[] arg1
+	) {
+			return "Hello " + Arrays.asList(arg1);
 		}
 
 		@Command(command = "arity-float-array")
 		public String testArityFloatArrayAnnotation(
-				@Option(longNames = "arg1", defaultValue = "true", arity = OptionArity.ZERO_OR_MORE)
-				float[] arg1
-		) {
-				return "Hello " + stringOfFloats(arg1);
+	@Option(longNames = "arg1", defaultValue = "true", arity = OptionArity.ZERO_OR_MORE)
+	float[] arg1
+	) {
+			return "Hello " + stringOfFloats(arg1);
 		}
 	}
 
@@ -94,81 +94,81 @@ public class ArityCommands {
 		@Bean
 		public CommandRegistration testArityBooleanDefaultTrueRegistration() {
 			return getBuilder()
-				.command(REG, "arity-boolean-default-true")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "arity-boolean-default-true")
+					.group(GROUP)
+					.withOption()
 					.longNames("overwrite")
 					.type(Boolean.class)
 					.defaultValue("true")
 					.arity(OptionArity.ZERO_OR_ONE)
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						Boolean overwrite = ctx.getOptionValue("overwrite");
 						return "Hello " + overwrite;
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration testArityStringArrayRegistration() {
 			return getBuilder()
-				.command(REG, "arity-string-array")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "arity-string-array")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.required()
 					.type(String[].class)
 					.arity(0, 3)
 					.position(0)
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						String[] arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + Arrays.asList(arg1);
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration testArityFloatArrayRegistration() {
 			return getBuilder()
-				.command(REG, "arity-float-array")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "arity-float-array")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(float[].class)
 					.arity(0, 3)
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						float[] arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + stringOfFloats(arg1);
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration testArityErrorsRegistration() {
 			return getBuilder()
-				.command(REG, "arity-errors")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "arity-errors")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.type(String[].class)
 					.required()
 					.arity(1, 2)
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						String[] arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + Arrays.asList(arg1);
 					})
 					.and()
-				.build();
+					.build();
 		}
 	}
 }

@@ -32,7 +32,7 @@ import org.springframework.shell.component.support.SelectorItem;
  *
  * @author Janne Valkealahti
  */
-public interface MultiItemSelectorSpec extends BaseInputSpec<MultiItemSelectorSpec>{
+public interface MultiItemSelectorSpec extends BaseInputSpec<MultiItemSelectorSpec> {
 
 	/**
 	 * Sets a name.

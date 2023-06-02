@@ -54,10 +54,10 @@ public class AbstractTestWithSample {
 	 */
 	protected TableModel generate(int rows, int columns) {
 		Character[][] data = new Character[rows][columns];
-		for (int row = 0; row < rows; row++) {
+		for (int row = 0;row < rows;row++) {
 			data[row] = new Character[columns];
-			for (int column = 0; column < columns; column++) {
-				data[row][column] = (char) ('a' + row * columns + column);
+			for (int column = 0;column < columns;column++) {
+				data[row][column] = (char)('a' + row * columns + column);
 			}
 		}
 		return new ArrayTableModel(data);

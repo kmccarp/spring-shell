@@ -57,9 +57,9 @@ class StringToStyleExpressionRendererTests {
 
 	static Stream<Arguments> truncate() {
 		return Stream.of(
-			Arguments.of("0123456789", "truncate-width:6-prefix:2", "01.."),
-			Arguments.of("0123456789", "truncate-width:6-prefix:0", "0123.."),
-			Arguments.of("0123456789", "truncate-width:11-prefix:0", "0123456789")
+				Arguments.of("0123456789", "truncate-width:6-prefix:2", "01.."),
+				Arguments.of("0123456789", "truncate-width:6-prefix:0", "0123.."),
+				Arguments.of("0123456789", "truncate-width:11-prefix:0", "0123456789")
 		);
 	}
 

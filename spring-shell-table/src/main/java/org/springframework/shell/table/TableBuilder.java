@@ -167,7 +167,7 @@ public class TableBuilder {
 	private <K, V> LinkedHashMap<K, V> reverse(Map<K, V> original) {
 		LinkedHashMap<K, V> result = new LinkedHashMap<K, V>(original.size());
 		List<Map.Entry<K, V>> entries = new ArrayList<Map.Entry<K, V>>(original.entrySet());
-		for (int i = entries.size() - 1; i >= 0; i--) {
+		for (int i = entries.size() - 1;i >= 0;i--) {
 			Map.Entry<K, V> entry = entries.get(i);
 			result.put(entry.getKey(), entry.getValue());
 		}

@@ -65,8 +65,8 @@ public class LineReaderAutoConfiguration {
 	private UserConfigPathProvider userConfigPathProvider;
 
 	public LineReaderAutoConfiguration(Terminal terminal, Completer completer, Parser parser,
-			CommandCatalog commandRegistry, org.jline.reader.History jLineHistory,
-			SpringShellProperties springShellProperties, UserConfigPathProvider userConfigPathProvider) {
+									 CommandCatalog commandRegistry, org.jline.reader.History jLineHistory,
+									 SpringShellProperties springShellProperties, UserConfigPathProvider userConfigPathProvider) {
 		this.terminal = terminal;
 		this.completer = completer;
 		this.parser = parser;

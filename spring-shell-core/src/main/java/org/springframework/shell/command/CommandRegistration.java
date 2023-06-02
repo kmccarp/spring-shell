@@ -387,7 +387,7 @@ public interface CommandRegistration {
 			private final Consumer<CommandContext> consumer;
 
 			public DefaultTargetInfo(TargetType targetType, Object bean, Method method,
-					Function<CommandContext, ?> function, Consumer<CommandContext> consumer) {
+							 Function<CommandContext, ?> function, Consumer<CommandContext> consumer) {
 				this.targetType = targetType;
 				this.bean = bean;
 				this.method = method;
@@ -1048,11 +1048,11 @@ public interface CommandRegistration {
 		public AliasSpec command(String... commands) {
 			Assert.notNull(commands, "commands must be set");
 			this.commands = Arrays.asList(commands).stream()
-				.flatMap(c -> Stream.of(c.split(" ")))
-				.filter(c -> StringUtils.hasText(c))
-				.map(c -> c.trim())
-				.collect(Collectors.toList())
-				.toArray(new String[0]);
+					.flatMap(c -> Stream.of(c.split(" ")))
+					.filter(c -> StringUtils.hasText(c))
+					.map(c -> c.trim())
+					.collect(Collectors.toList())
+					.toArray(new String[0]);
 			return this;
 		}
 
@@ -1151,7 +1151,7 @@ public interface CommandRegistration {
 
 		@Override
 		public HelpOptionsSpec longNames(String... longNames) {
-				this.longNames = longNames;
+			this.longNames = longNames;
 			return this;
 		}
 
@@ -1190,9 +1190,9 @@ public interface CommandRegistration {
 		private DefaultHelpOptionsSpec helpOptionsSpec;
 
 		public DefaultCommandRegistration(String[] commands, InteractionMode interactionMode, String group,
-				boolean hidden,	String description, Supplier<Availability> availability,
-				List<DefaultOptionSpec> optionSpecs, DefaultTargetSpec targetSpec, List<DefaultAliasSpec> aliasSpecs,
-				DefaultExitCodeSpec exitCodeSpec, DefaultErrorHandlingSpec errorHandlingSpec, DefaultHelpOptionsSpec helpOptionsSpec) {
+									 boolean hidden, String description, Supplier<Availability> availability,
+									 List<DefaultOptionSpec> optionSpecs, DefaultTargetSpec targetSpec, List<DefaultAliasSpec> aliasSpecs,
+									 DefaultExitCodeSpec exitCodeSpec, DefaultErrorHandlingSpec errorHandlingSpec, DefaultHelpOptionsSpec helpOptionsSpec) {
 			this.command = commandArrayToName(commands);
 			this.interactionMode = interactionMode;
 			this.group = group;
@@ -1243,17 +1243,17 @@ public interface CommandRegistration {
 				return options;
 			}
 			options = optionSpecs.stream()
-				.map(o -> {
-					String[] longNames = o.getLongNames();
-					Function<String, String> modifier = o.getOptionNameModifier();
-					if (modifier != null) {
-						longNames = Arrays.stream(longNames).map(modifier).toArray(String[]::new);
-					}
-					return CommandOption.of(longNames, o.getShortNames(), o.getDescription(), o.getType(),
-							o.isRequired(), o.getDefaultValue(), o.getPosition(), o.getArityMin(), o.getArityMax(),
-							o.getLabel(), o.getCompletion());
+					.map(o -> {
+						String[] longNames = o.getLongNames();
+						Function<String, String> modifier = o.getOptionNameModifier();
+						if (modifier != null) {
+							longNames = Arrays.stream(longNames).map(modifier).toArray(String[]::new);
+						}
+						return CommandOption.of(longNames, o.getShortNames(), o.getDescription(), o.getType(),
+								o.isRequired(), o.getDefaultValue(), o.getPosition(), o.getArityMin(), o.getArityMax(),
+								o.getLabel(), o.getCompletion());
 					})
-				.collect(Collectors.toList());
+					.collect(Collectors.toList());
 			if (helpOptionsSpec != null) {
 				String[] longNames = helpOptionsSpec.longNames != null ? helpOptionsSpec.longNames : null;
 				Character[] shortNames = helpOptionsSpec.shortNames != null ? helpOptionsSpec.shortNames : null;
@@ -1280,10 +1280,10 @@ public interface CommandRegistration {
 		@Override
 		public List<CommandAlias> getAliases() {
 			return this.aliasSpecs.stream()
-				.map(spec -> {
-					return CommandAlias.of(commandArrayToName(spec.commands), spec.group);
-				})
-				.collect(Collectors.toList());
+					.map(spec -> {
+						return CommandAlias.of(commandArrayToName(spec.commands), spec.group);
+					})
+					.collect(Collectors.toList());
 		}
 
 		@Override
@@ -1319,10 +1319,10 @@ public interface CommandRegistration {
 
 		private static String commandArrayToName(String[] commands) {
 			return Arrays.asList(commands).stream()
-				.flatMap(c -> Stream.of(c.split(" ")))
-				.filter(c -> StringUtils.hasText(c))
-				.map(c -> c.trim())
-				.collect(Collectors.joining(" "));
+					.flatMap(c -> Stream.of(c.split(" ")))
+					.filter(c -> StringUtils.hasText(c))
+					.map(c -> c.trim())
+					.collect(Collectors.joining(" "));
 		}
 	}
 
@@ -1349,11 +1349,11 @@ public interface CommandRegistration {
 		public Builder command(String... commands) {
 			Assert.notNull(commands, "commands must be set");
 			this.commands = Arrays.asList(commands).stream()
-				.flatMap(c -> Stream.of(c.split(" ")))
-				.filter(c -> StringUtils.hasText(c))
-				.map(c -> c.trim())
-				.collect(Collectors.toList())
-				.toArray(new String[0]);
+					.flatMap(c -> Stream.of(c.split(" ")))
+					.filter(c -> StringUtils.hasText(c))
+					.map(c -> c.trim())
+					.collect(Collectors.toList())
+					.toArray(new String[0]);
 			return this;
 		}
 
@@ -1393,7 +1393,7 @@ public interface CommandRegistration {
 		}
 
 		@Override
-		public Builder defaultOptionNameModifier(Function<String,String> modifier) {
+		public Builder defaultOptionNameModifier(Function<String, String> modifier) {
 			this.defaultOptionNameModifier = modifier;
 			return this;
 		}

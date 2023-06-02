@@ -40,7 +40,7 @@ class CommandInfoModel {
 	private CommandAvailabilityInfoModel availability;
 
 	CommandInfoModel(String name, List<String> aliases, String description, List<CommandParameterInfoModel> parameters,
-			CommandAvailabilityInfoModel availability) {
+				   CommandAvailabilityInfoModel availability) {
 		this.name = name;
 		this.aliases = aliases;
 		this.description = description;
@@ -58,18 +58,18 @@ class CommandInfoModel {
 	static CommandInfoModel of(String name, CommandRegistration registration) {
 		List<CommandOption> options = registration.getOptions();
 		List<CommandParameterInfoModel> parameters = options.stream()
-			.map(o -> {
-				String type = commandOptionType(o);
-				List<String> arguments = Stream.concat(
-						Stream.of(o.getLongNames()).map(a -> "--" + a),
-						Stream.of(o.getShortNames()).map(s -> "-" + s))
-					.collect(Collectors.toList());
-				boolean required = o.isRequired();
-				String description = o.getDescription();
-				String defaultValue = o.getDefaultValue();
-				return CommandParameterInfoModel.of(type, arguments, required, description, defaultValue);
-			})
-			.collect(Collectors.toList());
+				.map(o -> {
+					String type = commandOptionType(o);
+					List<String> arguments = Stream.concat(
+							Stream.of(o.getLongNames()).map(a -> "--" + a),
+							Stream.of(o.getShortNames()).map(s -> "-" + s))
+							.collect(Collectors.toList());
+					boolean required = o.isRequired();
+					String description = o.getDescription();
+					String defaultValue = o.getDefaultValue();
+					return CommandParameterInfoModel.of(type, arguments, required, description, defaultValue);
+				})
+				.collect(Collectors.toList());
 
 		List<String> aliases = registration.getAliases().stream().map(ca -> ca.getCommand())
 				.collect(Collectors.toList());

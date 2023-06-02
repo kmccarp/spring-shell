@@ -78,7 +78,7 @@ public interface CommandExecution {
 	 * @return default command execution
 	 */
 	public static CommandExecution of(List<? extends HandlerMethodArgumentResolver> resolvers, Validator validator,
-			Terminal terminal, ConversionService conversionService) {
+																																																																																		Terminal terminal, ConversionService conversionService) {
 		return new DefaultCommandExecution(resolvers, validator, terminal, conversionService, null);
 	}
 
@@ -92,7 +92,7 @@ public interface CommandExecution {
 	 * @return default command execution
 	 */
 	public static CommandExecution of(List<? extends HandlerMethodArgumentResolver> resolvers, Validator validator,
-			Terminal terminal, ConversionService conversionService, CommandCatalog commandCatalog) {
+																																																																																		Terminal terminal, ConversionService conversionService, CommandCatalog commandCatalog) {
 		return new DefaultCommandExecution(resolvers, validator, terminal, conversionService, commandCatalog);
 	}
 
@@ -108,7 +108,7 @@ public interface CommandExecution {
 		private CommandCatalog commandCatalog;
 
 		public DefaultCommandExecution(List<? extends HandlerMethodArgumentResolver> resolvers, Validator validator,
-				Terminal terminal, ConversionService conversionService, CommandCatalog commandCatalog) {
+								  Terminal terminal, ConversionService conversionService, CommandCatalog commandCatalog) {
 			this.resolvers = resolvers;
 			this.validator = validator;
 			this.terminal = terminal;
@@ -132,27 +132,27 @@ public interface CommandExecution {
 			HelpOptionInfo helpOption = registration.getHelpOption();
 			if (helpOption.isEnabled() && helpOption.getCommand() != null && (!ObjectUtils.isEmpty(helpOption.getLongNames()) || !ObjectUtils.isEmpty(helpOption.getShortNames()))) {
 				handleHelpOption = results.results().stream()
-					.filter(cpr -> {
-						boolean present = false;
-						if (helpOption.getLongNames() != null) {
-							present = Arrays.asList(cpr.option().getLongNames()).stream()
-								.filter(ln -> ObjectUtils.containsElement(helpOption.getLongNames(), ln))
-								.findFirst()
-								.isPresent();
-						}
-						if (present) {
-							return true;
-						}
-						if (helpOption.getShortNames() != null) {
-							present = Arrays.asList(cpr.option().getShortNames()).stream()
-								.filter(sn -> ObjectUtils.containsElement(helpOption.getShortNames(), sn))
-								.findFirst()
-								.isPresent();
-						}
-						return present;
-					})
-					.findFirst()
-					.isPresent();
+						.filter(cpr -> {
+							boolean present = false;
+							if (helpOption.getLongNames() != null) {
+								present = Arrays.asList(cpr.option().getLongNames()).stream()
+										.filter(ln -> ObjectUtils.containsElement(helpOption.getLongNames(), ln))
+										.findFirst()
+										.isPresent();
+							}
+							if (present) {
+								return true;
+							}
+							if (helpOption.getShortNames() != null) {
+								present = Arrays.asList(cpr.option().getShortNames()).stream()
+										.filter(sn -> ObjectUtils.containsElement(helpOption.getShortNames(), sn))
+										.findFirst()
+										.isPresent();
+							}
+							return present;
+						})
+						.findFirst()
+						.isPresent();
 			}
 
 			// if needed switch registration to help command if we're short circuiting
@@ -163,7 +163,7 @@ public interface CommandExecution {
 						new ParserConfig());
 				CommandRegistration helpCommandRegistration = commandCatalog.getRegistrations()
 						.get(registration.getHelpOption().getCommand());
-				CommandParserResults helpResults = helpParser.parse(new String[] { "help", "--command", command });
+				CommandParserResults helpResults = helpParser.parse(new String[]{"help", "--command", command});
 				results = helpResults;
 				usedRegistration = helpCommandRegistration;
 			}

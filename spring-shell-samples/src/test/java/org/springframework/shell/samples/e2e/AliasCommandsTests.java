@@ -24,7 +24,7 @@ import org.springframework.shell.samples.e2e.AliasCommands.AliasCommandsRegistra
 import org.springframework.shell.test.ShellTestClient.BaseShellSession;
 import org.springframework.test.context.ContextConfiguration;
 
-@ContextConfiguration(classes = { AliasCommandsRegistration.class })
+@ContextConfiguration(classes = {AliasCommandsRegistration.class})
 @EnableCommand(AliasCommandsAnnotation.class)
 public class AliasCommandsTests extends AbstractSampleTests {
 

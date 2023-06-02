@@ -39,5 +39,7 @@ public interface Input {
 	 * to parsing rules (for example, handling quoted portions of the readInput as a single
 	 * "word")
 	 */
-	default List<String> words() {return "".equals(rawText()) ? Collections.emptyList() : Arrays.asList(rawText().split(" "));}
+	default List<String> words() {
+		return "".equals(rawText()) ? Collections.emptyList() : Arrays.asList(rawText().split(" "));
+	}
 }

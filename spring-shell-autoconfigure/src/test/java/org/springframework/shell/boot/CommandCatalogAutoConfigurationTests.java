@@ -173,13 +173,13 @@ public class CommandCatalogAutoConfigurationTests {
 		@Bean
 		CommandRegistration commandRegistration() {
 			return CommandRegistration.builder()
-				.command("customcommand")
-				.withTarget()
+					.command("customcommand")
+					.withTarget()
 					.function(ctx -> {
 						return null;
 					})
 					.and()
-				.build();
+					.build();
 		}
 	}
 }

@@ -30,226 +30,246 @@ import org.springframework.shell.command.parser.Parser.ParseResult;
 abstract class AbstractParsingTests {
 
 	static final CommandRegistration ROOT1 = CommandRegistration.builder()
-		.command("root1")
-		.withTarget()
-			.consumer(ctx -> {})
+			.command("root1")
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	static final CommandRegistration ROOT1_UP = CommandRegistration.builder()
-		.command("ROOT1")
-		.withTarget()
-			.consumer(ctx -> {})
+			.command("ROOT1")
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	static final CommandRegistration ROOT2 = CommandRegistration.builder()
-		.command("root2")
-		.withTarget()
-			.consumer(ctx -> {})
+			.command("root2")
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	static final CommandRegistration ROOT2_SUB1 = CommandRegistration.builder()
 			.command("root2", "sub1")
 			.withOption()
-				.longNames("arg1")
-				.and()
+			.longNames("arg1")
+			.and()
 			.withTarget()
-				.consumer(ctx -> {})
-				.and()
+			.consumer(ctx -> {
+			})
+			.and()
 			.build();
 
 	static final CommandRegistration ROOT2_SUB2 = CommandRegistration.builder()
 			.command("root2", "sub2")
 			.withOption()
-				.longNames("arg1")
-				.and()
+			.longNames("arg1")
+			.and()
 			.withTarget()
-				.consumer(ctx -> {})
-				.and()
+			.consumer(ctx -> {
+			})
+			.and()
 			.build();
 
 	static final CommandRegistration ROOT2_SUB1_SUB2 = CommandRegistration.builder()
 			.command("root2", "sub1", "sub2")
 			.withOption()
-				.longNames("arg1")
-				.and()
+			.longNames("arg1")
+			.and()
 			.withTarget()
-				.consumer(ctx -> {})
-				.and()
+			.consumer(ctx -> {
+			})
+			.and()
 			.build();
 
 	static final CommandRegistration ROOT2_SUB1_SUB3 = CommandRegistration.builder()
 			.command("root2", "sub1", "sub3")
 			.withOption()
-				.longNames("arg1")
-				.and()
+			.longNames("arg1")
+			.and()
 			.withTarget()
-				.consumer(ctx -> {})
-				.and()
+			.consumer(ctx -> {
+			})
+			.and()
 			.build();
 
 	static final CommandRegistration ROOT2_SUB1_SUB4 = CommandRegistration.builder()
 			.command("root2", "sub1", "sub4")
 			.withOption()
-				.longNames("arg1")
-				.and()
+			.longNames("arg1")
+			.and()
 			.withTarget()
-				.consumer(ctx -> {})
-				.and()
+			.consumer(ctx -> {
+			})
+			.and()
 			.build();
 
 	static final CommandRegistration ROOT3 = CommandRegistration.builder()
-		.command("root3")
-		.withOption()
+			.command("root3")
+			.withOption()
 			.longNames("arg1")
 			.and()
-		.withTarget()
-			.consumer(ctx -> {})
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	static final CommandRegistration ROOT3_OPTION_ARG1_ARG2 = CommandRegistration.builder()
-		.command("root3")
-		.withOption()
+			.command("root3")
+			.withOption()
 			.longNames("arg1")
 			.and()
-		.withOption()
+			.withOption()
 			.longNames("arg2")
 			.and()
-		.withTarget()
-			.consumer(ctx -> {})
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	static final CommandRegistration ROOT3_SHORT_OPTION_A = CommandRegistration.builder()
-		.command("root3")
-		.withOption()
+			.command("root3")
+			.withOption()
 			.shortNames('a')
 			.and()
-		.withTarget()
-			.consumer(ctx -> {})
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	static final CommandRegistration ROOT3_SHORT_OPTION_A_B = CommandRegistration.builder()
-		.command("root3")
-		.withOption()
+			.command("root3")
+			.withOption()
 			.shortNames('a')
 			.and()
-		.withOption()
+			.withOption()
 			.shortNames('b')
 			.and()
-		.withTarget()
-			.consumer(ctx -> {})
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	static final CommandRegistration ROOT3_SHORT_OPTION_A_B_REQUIRED = CommandRegistration.builder()
-		.command("root3")
-		.withOption()
+			.command("root3")
+			.withOption()
 			.shortNames('a')
 			.required()
 			.and()
-		.withOption()
+			.withOption()
 			.required()
 			.shortNames('b')
 			.and()
-		.withTarget()
-			.consumer(ctx -> {})
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	static final CommandRegistration ROOT4 = CommandRegistration.builder()
-		.command("root4")
-		.withOption()
+			.command("root4")
+			.withOption()
 			.longNames("arg1")
 			.required()
 			.and()
-		.withTarget()
-			.consumer(ctx -> {})
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	static final CommandRegistration ROOT5 = CommandRegistration.builder()
-		.command("root5")
-		.withOption()
+			.command("root5")
+			.withOption()
 			.longNames("arg1")
 			.required()
 			.and()
-		.withOption()
+			.withOption()
 			.longNames("arg2")
 			.required()
 			.and()
-		.withTarget()
-			.consumer(ctx -> {})
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	static final CommandRegistration ROOT6_OPTION_INT = CommandRegistration.builder()
-		.command("root6")
-		.withOption()
+			.command("root6")
+			.withOption()
 			.longNames("arg1")
 			.type(int.class)
 			.required()
 			.and()
-		.withTarget()
-			.consumer(ctx -> {})
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	static final CommandRegistration ROOT6_OPTION_INTARRAY = CommandRegistration.builder()
-		.command("root6")
-		.withOption()
+			.command("root6")
+			.withOption()
 			.longNames("arg1")
 			.type(int[].class)
 			.required()
 			.and()
-		.withTarget()
-			.consumer(ctx -> {})
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	static final CommandRegistration ROOT6_OPTION_DEFAULT_VALUE = CommandRegistration.builder()
-		.command("root6")
-		.withOption()
+			.command("root6")
+			.withOption()
 			.longNames("arg1")
 			.defaultValue("defaultvalue")
 			.and()
-		.withTarget()
-			.consumer(ctx -> {})
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	static final CommandRegistration ROOT7_POSITIONAL_ONE_ARG_STRING = CommandRegistration.builder()
-		.command("root7")
-		.withOption()
+			.command("root7")
+			.withOption()
 			.longNames("arg1")
 			.type(String.class)
 			.position(0)
 			.and()
-		.withTarget()
-			.consumer(ctx -> {})
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	static final CommandRegistration ROOT7_POSITIONAL_TWO_ARG_STRING = CommandRegistration.builder()
-		.command("root7")
-		.withOption()
+			.command("root7")
+			.withOption()
 			.longNames("arg1")
 			.type(String.class)
 			.position(0)
 			.and()
-		.withOption()
+			.withOption()
 			.longNames("arg2")
 			.type(String.class)
 			.position(1)
 			.and()
-		.withTarget()
-			.consumer(ctx -> {})
+			.withTarget()
+			.consumer(ctx -> {
+			})
 			.and()
-		.build();
+			.build();
 
 	Map<String, CommandRegistration> registrations = new HashMap<>();
 

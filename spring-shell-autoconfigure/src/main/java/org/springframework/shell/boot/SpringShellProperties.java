@@ -524,12 +524,12 @@ public class SpringShellProperties {
 		/**
 		 * Long style help option, without a prefix "--".
 		 */
-		private String[] longNames = new String[] { "help" };
+		private String[] longNames = new String[]{"help"};
 
 		/**
 		 * Short style help option, without a prefix "-".
 		 */
-		private Character[] shortNames = new Character[] { 'h' };
+		private Character[] shortNames = new Character[]{'h'};
 
 		/**
 		 * Whether to enable help options for commands.

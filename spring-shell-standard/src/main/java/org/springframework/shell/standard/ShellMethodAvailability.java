@@ -40,9 +40,9 @@ import java.lang.annotation.*;
 @Documented
 public @interface ShellMethodAvailability {
 
-    /**
-     * @return  the name of the availability method for this command method, or if placed on an availability method, the names of
-     * the commands it is for.
-     */
-    String[] value() default "*";
+	/**
+	* @return  the name of the availability method for this command method, or if placed on an availability method, the names of
+	* the commands it is for.
+	*/
+	String[] value() default "*";
 }

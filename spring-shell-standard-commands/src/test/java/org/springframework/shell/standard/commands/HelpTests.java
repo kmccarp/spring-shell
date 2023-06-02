@@ -93,35 +93,35 @@ public class HelpTests {
 	@Test
 	public void testCommandHelp() throws Exception {
 		CommandRegistration registration = CommandRegistration.builder()
-			.command("first-command")
-			.description("A rather extensive description of some command.")
-			.withTarget()
+				.command("first-command")
+				.description("A rather extensive description of some command.")
+				.withTarget()
 				.method(commandsPojo, "firstCommand")
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('r')
 				.description("Whether to delete recursively")
 				.type(boolean.class)
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('f')
 				.description("Do not ask for confirmation. YOLO")
 				.type(boolean.class)
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('n')
 				.description("The answer to everything")
 				.defaultValue("42")
 				.type(int.class)
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('o')
 				.description("Some other parameters")
 				.type(float[].class)
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(registration);
-		String help = this.help.help(new String[] { "first-command" }).toString();
+		String help = this.help.help(new String[]{"first-command"}).toString();
 		help = removeNewLines(help);
 		assertThat(help).isEqualTo(sample());
 	}
@@ -146,7 +146,7 @@ public class HelpTests {
 	@Test
 	public void testUnknownCommand() throws Exception {
 		assertThatThrownBy(() -> {
-			this.help.help(new String[] { "some", "unknown", "command" });
+			this.help.help(new String[]{"some", "unknown", "command"});
 		}).isInstanceOf(IllegalArgumentException.class);
 	}
 
@@ -161,59 +161,59 @@ public class HelpTests {
 
 	private void registerCommandListCommands() throws Exception {
 		CommandRegistration registration1 = CommandRegistration.builder()
-			.command("first-command")
-			.description("A rather extensive description of some command.")
-			.withAlias()
+				.command("first-command")
+				.description("A rather extensive description of some command.")
+				.withAlias()
 				.command("1st-command")
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(commandsPojo, "firstCommand")
 				.and()
-			.withOption()
+				.withOption()
 				.shortNames('r')
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(registration1);
 
 		CommandRegistration registration2 = CommandRegistration.builder()
-			.command("second-command")
-			.description("The second command. This one is known under several aliases as well.")
-			.withAlias()
+				.command("second-command")
+				.description("The second command. This one is known under several aliases as well.")
+				.withAlias()
 				.command("yet-another-command")
 				.and()
-			.withTarget()
+				.withTarget()
 				.method(commandsPojo, "secondCommand")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(registration2);
 
 		CommandRegistration registration3 = CommandRegistration.builder()
-			.command("third-command")
-			.description("The last command.")
-			.withTarget()
+				.command("third-command")
+				.description("The last command.")
+				.withTarget()
 				.method(commandsPojo, "thirdCommand")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(registration3);
 
 		CommandRegistration registration4 = CommandRegistration.builder()
-			.command("first-group-command")
-			.description("The first command in a separate group.")
-			.group("Example Group")
-			.withTarget()
+				.command("first-group-command")
+				.description("The first command in a separate group.")
+				.group("Example Group")
+				.withTarget()
 				.method(commandsPojo, "firstCommandInGroup")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(registration4);
 
 		CommandRegistration registration5 = CommandRegistration.builder()
-			.command("second-group-command")
-			.description("The second command in a separate group.")
-			.group("Example Group")
-			.withTarget()
+				.command("second-group-command")
+				.description("The second command in a separate group.")
+				.group("Example Group")
+				.withTarget()
 				.method(commandsPojo, "secondCommandInGroup")
 				.and()
-			.build();
+				.build();
 		commandCatalog.register(registration5);
 	}
 
@@ -243,16 +243,16 @@ public class HelpTests {
 
 		@ShellMethod(prefix = "--")
 		public void firstCommand(
-				// Single key and arity = 0. Help displayed on same line
-				@ShellOption(help = "Whether to delete recursively", arity = 0, value = "-r") boolean r,
-				// Multiple keys and arity 0. Help displayed on next line
-				@ShellOption(help = "Do not ask for confirmation. YOLO", arity = 0, value = {"-f", "--force"}) boolean force,
-				// Single key, arity >= 1. Help displayed on next line. Optional
-				// Also, bears bean validation annotation
-				@ShellOption(help = "The answer to everything", defaultValue = "42", value = "-n") @Max(5) int n,
-		        // Single key, arity > 1.
-		        @ShellOption(help = "Some other parameters", arity = 3, value = "-o") float[] o
-		) {
+	// Single key and arity = 0. Help displayed on same line
+	@ShellOption(help = "Whether to delete recursively", arity = 0, value = "-r") boolean r,
+	// Multiple keys and arity 0. Help displayed on next line
+	@ShellOption(help = "Do not ask for confirmation. YOLO", arity = 0, value = {"-f", "--force"}) boolean force,
+	// Single key, arity >= 1. Help displayed on next line. Optional
+	// Also, bears bean validation annotation
+	@ShellOption(help = "The answer to everything", defaultValue = "42", value = "-n") @Max(5) int n,
+	// Single key, arity > 1.
+	@ShellOption(help = "Some other parameters", arity = 3, value = "-o") float[] o
+	) {
 		}
 
 		@ShellMethod

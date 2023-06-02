@@ -51,7 +51,7 @@ public class ResolvedCommands {
 		private final Server2CommandResolver server2CommandResolver;
 
 		ResolvedCommandsCommands(Server1CommandResolver server1CommandResolver,
-				Server2CommandResolver server2CommandResolver) {
+							Server2CommandResolver server2CommandResolver) {
 			this.server1CommandResolver = server1CommandResolver;
 			this.server2CommandResolver = server2CommandResolver;
 		}
@@ -88,15 +88,15 @@ public class ResolvedCommands {
 
 		Server1CommandResolver() {
 			CommandRegistration resolved1 = CommandRegistration.builder()
-				.command("resolve server1 command1")
-				.group(GROUP)
-				.description("server1 command1")
-				.withTarget()
+					.command("resolve server1 command1")
+					.group(GROUP)
+					.description("server1 command1")
+					.withTarget()
 					.function(ctx -> {
 						return "hi from server1 command1";
 					})
 					.and()
-				.build();
+					.build();
 			registrations.add(resolved1);
 		}
 
@@ -113,25 +113,25 @@ public class ResolvedCommands {
 
 		Server2CommandResolver() {
 			CommandRegistration resolved1 = CommandRegistration.builder()
-				.command("resolve server2 command1")
-				.group(GROUP)
-				.description("server2 command1")
-				.withTarget()
+					.command("resolve server2 command1")
+					.group(GROUP)
+					.description("server2 command1")
+					.withTarget()
 					.function(ctx -> {
 						return "hi from server2 command1";
 					})
 					.and()
-				.build();
+					.build();
 			CommandRegistration resolved2 = CommandRegistration.builder()
-				.command("resolve server2 command2")
-				.group(GROUP)
-				.description("server2 command2")
-				.withTarget()
+					.command("resolve server2 command2")
+					.group(GROUP)
+					.description("server2 command2")
+					.withTarget()
 					.function(ctx -> {
 						return "hi from server2 command2";
 					})
 					.and()
-				.build();
+					.build();
 			registrations.add(resolved1);
 			registrations.add(resolved2);
 		}

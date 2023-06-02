@@ -135,7 +135,7 @@ public abstract class BaseSingleItemSelector extends BaseInput<SingleItemSelecto
 
 	@Override
 	public SingleItemSelectorSpec next(
-			Function<SingleItemSelectorContext<String, SelectorItem<String>>, String> next) {
+	Function<SingleItemSelectorContext<String, SelectorItem<String>>, String> next) {
 		this.next = next;
 		return this;
 	}

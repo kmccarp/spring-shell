@@ -62,7 +62,7 @@ public abstract class AbstractSelectorComponent<T, C extends SelectorComponentCo
 	private boolean expose = false;
 
 	public AbstractSelectorComponent(Terminal terminal, String name, List<I> items, boolean exitSelects,
-			Comparator<I> comparator) {
+								   Comparator<I> comparator) {
 		super(terminal);
 		this.name = name;
 		this.items = items;
@@ -130,7 +130,7 @@ public abstract class AbstractSelectorComponent<T, C extends SelectorComponentCo
 		keyMap.bind(OPERATION_EXIT, "\r");
 		keyMap.bind(OPERATION_BACKSPACE, del(), key(getTerminal(), Capability.key_backspace));
 		// skip 32 - SPACE, 127 - DEL
-		for (char i = 33; i < KeyMap.KEYMAP_LENGTH - 1; i++) {
+		for (char i = 33;i < KeyMap.KEYMAP_LENGTH - 1;i++) {
 			keyMap.bind(OPERATION_CHAR, Character.toString(i));
 		}
 	}
@@ -260,7 +260,7 @@ public abstract class AbstractSelectorComponent<T, C extends SelectorComponentCo
 					.map(item -> ItemState.of(item, item.getName(), index.getAndIncrement(), item.isEnabled(), item.isSelected()))
 					.collect(Collectors.toList());
 		}
-		for (int i = 0; i < itemStates.size(); i++) {
+		for (int i = 0;i < itemStates.size();i++) {
 			if (ObjectUtils.nullSafeEquals(itemStates.get(i).getName(), defaultExpose.getName())) {
 				if (i < maxItems) {
 					this.pos.set(i);
@@ -286,24 +286,25 @@ public abstract class AbstractSelectorComponent<T, C extends SelectorComponentCo
 		}
 		AtomicInteger reindex = new AtomicInteger(0);
 		List<ItemState<I>> filtered = itemStates.stream()
-			.filter(i -> {
-				return i.matches(context.getInput());
-			})
-			.map(i -> {
-				i.index = reindex.getAndIncrement();
-				return i;
-			})
-			.collect(Collectors.toList());
+				.filter(i -> {
+					return i.matches(context.getInput());
+				})
+				.map(i -> {
+					i.index = reindex.getAndIncrement();
+					return i;
+				})
+				.collect(Collectors.toList());
 		List<ItemState<I>> items = filtered.stream()
-			.skip(skip)
-			.limit(maxItems)
-			.collect(Collectors.toList());
+				.skip(skip)
+				.limit(maxItems)
+				.collect(Collectors.toList());
 		return new ItemStateViewProjection(items, filtered.size());
 	}
 
 	private class ItemStateViewProjection {
 		List<ItemState<I>> items;
 		int total;
+
 		ItemStateViewProjection(List<ItemState<I>> items, int total) {
 			this.items = items;
 			this.total = total;
@@ -473,7 +474,7 @@ public abstract class AbstractSelectorComponent<T, C extends SelectorComponentCo
 		@Override
 		public void setItemStates(List<ItemState<I>> itemStates) {
 			this.itemStates = itemStates;
-		};
+		}
 
 		@Override
 		public List<ItemState<I>> getItemStateView() {
@@ -483,7 +484,7 @@ public abstract class AbstractSelectorComponent<T, C extends SelectorComponentCo
 		@Override
 		public void setItemStateView(List<ItemState<I>> itemStateView) {
 			this.itemStateView = itemStateView;
-		};
+		}
 
 		@Override
 		public boolean isResult() {
@@ -496,7 +497,7 @@ public abstract class AbstractSelectorComponent<T, C extends SelectorComponentCo
 		}
 
 		@Override
-		public java.util.Map<String,Object> toTemplateModel() {
+		public java.util.Map<String, Object> toTemplateModel() {
 			Map<String, Object> attributes = super.toTemplateModel();
 			attributes.put("name", getName());
 			attributes.put("input", getInput());
@@ -505,11 +506,11 @@ public abstract class AbstractSelectorComponent<T, C extends SelectorComponentCo
 			attributes.put("isResult", isResult());
 			attributes.put("cursorRow", getCursorRow());
 			return attributes;
-		};
+		}
 
 		public void setCursorRow(Integer cursorRow) {
 			this.cursorRow = cursorRow;
-		};
+		}
 
 		@Override
 		public List<I> getItems() {
@@ -557,7 +558,7 @@ public abstract class AbstractSelectorComponent<T, C extends SelectorComponentCo
 
 		public boolean matches(String match) {
 			return item.matches(match);
-		};
+		}
 
 		public int getIndex() {
 			return index;

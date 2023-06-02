@@ -64,7 +64,7 @@ public class ErrorHandlingCommands {
 			return "Hello " + arg1;
 		}
 
-		@ExceptionResolver({ CustomException1.class })
+		@ExceptionResolver({CustomException1.class})
 		CommandHandlingResult errorHandler1(CustomException1 e) {
 			return CommandHandlingResult.of("Hi, handled custom exception\n", 42);
 		}
@@ -74,13 +74,13 @@ public class ErrorHandlingCommands {
 			return CommandHandlingResult.of("Hi, handled illegal exception\n", 42);
 		}
 
-		@ExceptionResolver({ CustomException3.class })
+		@ExceptionResolver({CustomException3.class})
 		@ExitCode(3)
 		String errorHandler3(CustomException3 e) {
 			return "Hi, handled custom exception 3\n";
 		}
 
-		@ExceptionResolver({ CustomException4.class })
+		@ExceptionResolver({CustomException4.class})
 		@ExitCode(code = 4)
 		void errorHandler3(CustomException4 e, Terminal terminal) {
 			PrintWriter writer = terminal.writer();
@@ -95,16 +95,16 @@ public class ErrorHandlingCommands {
 		@Bean
 		CommandRegistration testErrorHandlingRegistration() {
 			return getBuilder()
-				.command(REG, "error-handling")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "error-handling")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.required()
 					.and()
-				.withErrorHandling()
+					.withErrorHandling()
 					.resolver(new CustomExceptionResolver())
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						String arg1 = ctx.getOptionValue("arg1");
 						if ("throw1".equals(arg1)) {
@@ -129,7 +129,7 @@ public class ErrorHandlingCommands {
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 	}
 

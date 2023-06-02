@@ -41,7 +41,7 @@ public class ParameterValidationExceptionResultHandler
 		result.getConstraintViolations().stream()
 				.forEach(v -> {
 					terminal.writer().println(new AttributedString(v.toString(),
-						AttributedStyle.DEFAULT.foreground(AttributedStyle.RED)).toAnsi(terminal));
+							AttributedStyle.DEFAULT.foreground(AttributedStyle.RED)).toAnsi(terminal));
 				});
 	}
 

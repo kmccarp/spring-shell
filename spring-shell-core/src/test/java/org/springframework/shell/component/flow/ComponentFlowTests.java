@@ -46,23 +46,23 @@ public class ComponentFlowTests extends AbstractShellTests {
 				.resourceLoader(getResourceLoader())
 				.templateExecutor(getTemplateExecutor())
 				.withStringInput("field1")
-					.name("Field1")
-					.defaultValue("defaultField1Value")
-					.and()
+				.name("Field1")
+				.defaultValue("defaultField1Value")
+				.and()
 				.withStringInput("field2")
-					.name("Field2")
-					.and()
+				.name("Field2")
+				.and()
 				.withPathInput("path1")
-					.name("Path1")
-					.and()
+				.name("Path1")
+				.and()
 				.withSingleItemSelector("single1")
-					.name("Single1")
-					.selectItems(single1SelectItems)
-					.and()
+				.name("Single1")
+				.selectItems(single1SelectItems)
+				.and()
 				.withMultiItemSelector("multi1")
-					.name("Multi1")
-					.selectItems(multi1SelectItems)
-					.and()
+				.name("Multi1")
+				.selectItems(multi1SelectItems)
+				.and()
 				.build();
 
 		ExecutorService service = Executors.newFixedThreadPool(1);
@@ -109,80 +109,80 @@ public class ComponentFlowTests extends AbstractShellTests {
 	@Test
 	public void testSkipsGivenComponents() throws InterruptedException {
 		ComponentFlow wizard = ComponentFlow.builder()
-			.terminal(getTerminal())
-			.withStringInput("id1")
+				.terminal(getTerminal())
+				.withStringInput("id1")
 				.name("name")
 				.resultValue("value1")
 				.resultMode(ResultMode.ACCEPT)
 				.and()
-			.withPathInput("id2")
+				.withPathInput("id2")
 				.name("name")
 				.resultValue("value2")
 				.resultMode(ResultMode.ACCEPT)
 				.and()
-			.withSingleItemSelector("id3")
+				.withSingleItemSelector("id3")
 				.resultValue("value3")
 				.resultMode(ResultMode.ACCEPT)
 				.and()
-			.withMultiItemSelector("id4")
+				.withMultiItemSelector("id4")
 				.resultValues(Arrays.asList("value4"))
 				.resultMode(ResultMode.ACCEPT)
 				.and()
-			.withConfirmationInput("id5")
+				.withConfirmationInput("id5")
 				.resultValue(false)
 				.resultMode(ResultMode.ACCEPT)
 				.and()
-			.build();
+				.build();
 
-			ExecutorService service = Executors.newFixedThreadPool(1);
-			CountDownLatch latch = new CountDownLatch(1);
-			AtomicReference<ComponentFlowResult> result = new AtomicReference<>();
+		ExecutorService service = Executors.newFixedThreadPool(1);
+		CountDownLatch latch = new CountDownLatch(1);
+		AtomicReference<ComponentFlowResult> result = new AtomicReference<>();
 
-			service.execute(() -> {
-				result.set(wizard.run());
-				latch.countDown();
-			});
+		service.execute(() -> {
+			result.set(wizard.run());
+			latch.countDown();
+		});
 
-			latch.await(4, TimeUnit.SECONDS);
-			ComponentFlowResult inputWizardResult = result.get();
-			assertThat(inputWizardResult).isNotNull();
+		latch.await(4, TimeUnit.SECONDS);
+		ComponentFlowResult inputWizardResult = result.get();
+		assertThat(inputWizardResult).isNotNull();
 
-			String id1 = inputWizardResult.getContext().get("id1");
-			Path id2 = inputWizardResult.getContext().get("id2");
-			String id3 = inputWizardResult.getContext().get("id3");
-			List<String> id4 = inputWizardResult.getContext().get("id4");
-			Boolean id5 = inputWizardResult.getContext().get("id5");
+		String id1 = inputWizardResult.getContext().get("id1");
+		Path id2 = inputWizardResult.getContext().get("id2");
+		String id3 = inputWizardResult.getContext().get("id3");
+		List<String> id4 = inputWizardResult.getContext().get("id4");
+		Boolean id5 = inputWizardResult.getContext().get("id5");
 
-			assertThat(id1).isEqualTo("value1");
-			assertThat(id2.toString()).contains("value2");
-			assertThat(id3).isEqualTo("value3");
-			assertThat(id4).containsExactlyInAnyOrder("value4");
-			assertThat(id5).isFalse();
-		}
+		assertThat(id1).isEqualTo("value1");
+		assertThat(id2.toString()).contains("value2");
+		assertThat(id3).isEqualTo("value3");
+		assertThat(id4).containsExactlyInAnyOrder("value4");
+		assertThat(id5).isFalse();
+	}
 
 	@Test
 	public void testChoosesDynamicallyShouldJumpOverAndStop() throws InterruptedException {
 		ComponentFlow wizard = ComponentFlow.builder()
-			.terminal(getTerminal())
-			.resourceLoader(getResourceLoader())
-			.templateExecutor(getTemplateExecutor())
-			.withStringInput("id1")
+				.terminal(getTerminal())
+				.resourceLoader(getResourceLoader())
+				.templateExecutor(getTemplateExecutor())
+				.withStringInput("id1")
 				.name("name")
 				.next(ctx -> ctx.get("id1"))
 				.and()
-			.withStringInput("id2")
+				.withStringInput("id2")
 				.name("name")
 				.resultValue("value2")
 				.resultMode(ResultMode.ACCEPT)
 				.next(ctx -> null)
 				.and()
-			.withStringInput("id3")
+				.withStringInput("id3")
 				.name("name")
 				.resultValue("value3")
 				.resultMode(ResultMode.ACCEPT)
 				.next(ctx -> null)
 				.and()
-			.build();
+				.build();
 
 		ExecutorService service = Executors.newFixedThreadPool(1);
 		CountDownLatch latch = new CountDownLatch(1);
@@ -211,26 +211,26 @@ public class ComponentFlowTests extends AbstractShellTests {
 	@Test
 	public void testChoosesDynamicallyShouldNotContinueToNext() throws InterruptedException {
 		ComponentFlow wizard = ComponentFlow.builder()
-			.terminal(getTerminal())
-			.resourceLoader(getResourceLoader())
-			.templateExecutor(getTemplateExecutor())
-			.withStringInput("id1")
+				.terminal(getTerminal())
+				.resourceLoader(getResourceLoader())
+				.templateExecutor(getTemplateExecutor())
+				.withStringInput("id1")
 				.name("name")
 				.next(ctx -> ctx.get("id1"))
 				.and()
-			.withStringInput("id2")
+				.withStringInput("id2")
 				.name("name")
 				.resultValue("value2")
 				.resultMode(ResultMode.ACCEPT)
 				.next(ctx -> null)
 				.and()
-			.withStringInput("id3")
+				.withStringInput("id3")
 				.name("name")
 				.resultValue("value3")
 				.resultMode(ResultMode.ACCEPT)
 				.next(ctx -> null)
 				.and()
-			.build();
+				.build();
 
 		ExecutorService service = Executors.newFixedThreadPool(1);
 		CountDownLatch latch = new CountDownLatch(1);
@@ -259,26 +259,26 @@ public class ComponentFlowTests extends AbstractShellTests {
 	@Test
 	public void testChoosesNonExistingComponent() throws InterruptedException {
 		ComponentFlow wizard = ComponentFlow.builder()
-			.terminal(getTerminal())
-			.resourceLoader(getResourceLoader())
-			.templateExecutor(getTemplateExecutor())
-			.withStringInput("id1")
+				.terminal(getTerminal())
+				.resourceLoader(getResourceLoader())
+				.templateExecutor(getTemplateExecutor())
+				.withStringInput("id1")
 				.name("name")
 				.next(ctx -> ctx.get("id1"))
 				.and()
-			.withStringInput("id2")
+				.withStringInput("id2")
 				.name("name")
 				.resultValue("value2")
 				.resultMode(ResultMode.ACCEPT)
 				.next(ctx -> null)
 				.and()
-			.withStringInput("id3")
+				.withStringInput("id3")
 				.name("name")
 				.resultValue("value3")
 				.resultMode(ResultMode.ACCEPT)
 				.next(ctx -> null)
 				.and()
-			.build();
+				.build();
 
 		ExecutorService service = Executors.newFixedThreadPool(1);
 		CountDownLatch latch = new CountDownLatch(1);
@@ -314,10 +314,10 @@ public class ComponentFlowTests extends AbstractShellTests {
 				.resourceLoader(getResourceLoader())
 				.templateExecutor(getTemplateExecutor())
 				.withSingleItemSelector("single1")
-					.name("Single1")
-					.selectItems(single1SelectItems)
-					.defaultSelect("key2")
-					.and()
+				.name("Single1")
+				.selectItems(single1SelectItems)
+				.defaultSelect("key2")
+				.and()
 				.build();
 
 		ExecutorService service = Executors.newFixedThreadPool(1);

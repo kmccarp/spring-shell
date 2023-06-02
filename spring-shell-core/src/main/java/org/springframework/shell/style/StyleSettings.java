@@ -200,7 +200,7 @@ public abstract class StyleSettings {
 	 * @return array of all tags
 	 */
 	public static String[] tags() {
-		return new String[] {
+		return new String[]{
 				TAG_TITLE,
 				TAG_VALUE,
 				TAG_LIST_KEY,

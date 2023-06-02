@@ -31,22 +31,22 @@ public class ShortOptionTypeCommands {
 
 		@ShellMethod(key = LEGACY_ANNO + "short-option-type-string", group = GROUP)
 		public String shortOptionTypeStringLegacyAnnotation(
-				@ShellOption(value = { "--arg", "-a" }) String arg)		{
+	@ShellOption(value = {"--arg", "-a"}) String arg) {
 			return String.format("Hi '%s'", arg);
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "short-option-type-single-boolean", group = GROUP)
 		public String shortOptionTypeSingleBooleanLegacyAnnotation(
-				@ShellOption(value = "-a") boolean a)
+	@ShellOption(value = "-a") boolean a)
 		{
 			return String.format("Hi '%s'", a);
 		}
 
 		@ShellMethod(key = LEGACY_ANNO + "short-option-type-multi-boolean", group = GROUP)
 		public String shortOptionTypeMultiBooleanLegacyAnnotation(
-				@ShellOption(value = "-a") boolean a,
-				@ShellOption(value = "-b") boolean b,
-				@ShellOption(value = "-c") boolean c)
+	@ShellOption(value = "-a") boolean a,
+	@ShellOption(value = "-b") boolean b,
+	@ShellOption(value = "-c") boolean c)
 		{
 			return String.format("Hi a='%s' b='%s' c='%s'", a, b, c);
 		}
@@ -57,21 +57,21 @@ public class ShortOptionTypeCommands {
 
 		@Command(command = "short-option-type-string")
 		public String shortOptionTypeStringAnnotation(
-				@Option(longNames = "arg", shortNames = 'a', required = true) String arg) {
+	@Option(longNames = "arg", shortNames = 'a', required = true) String arg) {
 			return String.format("Hi '%s'", arg);
 		}
 
 		@Command(command = "short-option-type-single-boolean")
 		public String shortOptionTypeSingleBooleanAnnotation(
-				@Option(shortNames = 'a') boolean a) {
+	@Option(shortNames = 'a') boolean a) {
 			return String.format("Hi '%s'", a);
 		}
 
 		@Command(command = "short-option-type-multi-boolean")
 		public String shortOptionTypeMultiBooleanAnnotation(
-				@Option(shortNames = 'a') boolean a,
-				@Option(shortNames = 'b') boolean b,
-				@Option(shortNames = 'c') boolean c) {
+	@Option(shortNames = 'a') boolean a,
+	@Option(shortNames = 'b') boolean b,
+	@Option(shortNames = 'c') boolean c) {
 			return String.format("Hi a='%s' b='%s' c='%s'", a, b, c);
 		}
 	}
@@ -82,47 +82,47 @@ public class ShortOptionTypeCommands {
 		@Bean
 		public CommandRegistration shortOptionTypeStringRegistration() {
 			return getBuilder()
-				.command(REG, "short-option-type-string")
-				.group(GROUP)
-				.withTarget()
+					.command(REG, "short-option-type-string")
+					.group(GROUP)
+					.withTarget()
 					.function(ctx -> {
 						String arg = ctx.hasMappedOption("arg") ? ctx.getOptionValue("arg") : null;
 						return String.format("Hi arg='%s'", arg);
 					})
 					.and()
-				.withOption()
+					.withOption()
 					.longNames("arg")
 					.shortNames('a')
 					.required()
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration shortOptionTypeSingleBooleanRegistration() {
 			return getBuilder()
-				.command(REG, "short-option-type-single-boolean")
-				.group(GROUP)
-				.withTarget()
+					.command(REG, "short-option-type-single-boolean")
+					.group(GROUP)
+					.withTarget()
 					.function(ctx -> {
 						Boolean a = ctx.hasMappedOption("a") ? ctx.getOptionValue("a") : null;
 						return String.format("Hi a='%s'", a);
 					})
 					.and()
-				.withOption()
+					.withOption()
 					.shortNames('a')
 					.type(boolean.class)
 					.defaultValue("false")
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration shortOptionTypeMultiBooleanRegistration() {
 			return getBuilder()
-				.command(REG, "short-option-type-multi-boolean")
-				.group(GROUP)
-				.withTarget()
+					.command(REG, "short-option-type-multi-boolean")
+					.group(GROUP)
+					.withTarget()
 					.function(ctx -> {
 						Boolean a = ctx.hasMappedOption("a") ? ctx.getOptionValue("a") : null;
 						Boolean b = ctx.hasMappedOption("b") ? ctx.getOptionValue("b") : null;
@@ -130,22 +130,22 @@ public class ShortOptionTypeCommands {
 						return String.format("Hi a='%s' b='%s' c='%s'", a, b, c);
 					})
 					.and()
-				.withOption()
+					.withOption()
 					.shortNames('a')
 					.type(boolean.class)
 					.defaultValue("false")
 					.and()
-				.withOption()
+					.withOption()
 					.shortNames('b')
 					.type(boolean.class)
 					.defaultValue("false")
 					.and()
-				.withOption()
+					.withOption()
 					.shortNames('c')
 					.type(boolean.class)
 					.defaultValue("false")
 					.and()
-				.build();
+					.build();
 		}
 	}
 }

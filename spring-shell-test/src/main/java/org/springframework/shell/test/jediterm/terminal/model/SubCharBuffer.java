@@ -22,7 +22,7 @@ public class SubCharBuffer extends CharBuffer {
 	private final CharBuffer myParent;
 	private final int myOffset;
 
-	public SubCharBuffer( CharBuffer parent, int offset, int length) {
+	public SubCharBuffer(CharBuffer parent, int offset, int length) {
 		super(parent.getBuf(), parent.getStart() + offset, length);
 		myParent = parent;
 		myOffset = offset;

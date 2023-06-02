@@ -92,7 +92,7 @@ public class CommandScanRegistrar implements ImportBeanDefinitionRegistrar {
 		scanner.setResourceLoader(this.resourceLoader);
 		scanner.addIncludeFilter(new AnnotationTypeFilter(Command.class));
 		TypeExcludeFilter typeExcludeFilter = new TypeExcludeFilter();
-		typeExcludeFilter.setBeanFactory((BeanFactory) registry);
+		typeExcludeFilter.setBeanFactory((BeanFactory)registry);
 		scanner.addExcludeFilter(typeExcludeFilter);
 		return scanner;
 	}

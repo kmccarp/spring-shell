@@ -58,7 +58,7 @@ public class ConfirmationInput extends AbstractTextComponent<Boolean, Confirmati
 	}
 
 	public ConfirmationInput(Terminal terminal, String name, boolean defaultValue,
-			Function<ConfirmationInputContext, List<AttributedString>> renderer) {
+						   Function<ConfirmationInputContext, List<AttributedString>> renderer) {
 		super(terminal, name, null);
 		setRenderer(renderer != null ? renderer : new DefaultRenderer());
 		setTemplateLocation("classpath:org/springframework/shell/component/confirmation-input-default.stg");
@@ -147,7 +147,7 @@ public class ConfirmationInput extends AbstractTextComponent<Boolean, Confirmati
 			context.setMessage(null);
 			return;
 		}
-		Boolean yesno =  parseBoolean(input);
+		Boolean yesno = parseBoolean(input);
 		if (yesno == null) {
 			String msg = String.format("Sorry, your input is invalid: '%s', try again", input);
 			context.setMessage(msg, MessageLevel.ERROR);

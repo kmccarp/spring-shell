@@ -36,11 +36,11 @@ class AstTests extends AbstractParsingTests {
 
 		assertThat(result).isNotNull();
 		assertThat(result.nonterminalNodes()).satisfiesExactly(
-			node -> {
-				assertThat(node).isInstanceOf(CommandNode.class);
-				CommandNode cn = (CommandNode)node;
-				assertThat(cn.getCommand()).isEqualTo("root1");
-			});
+				node -> {
+					assertThat(node).isInstanceOf(CommandNode.class);
+					CommandNode cn = (CommandNode)node;
+					assertThat(cn.getCommand()).isEqualTo("root1");
+				});
 	}
 
 	@Test
@@ -55,35 +55,35 @@ class AstTests extends AbstractParsingTests {
 
 		assertThat(result).isNotNull();
 		assertThat(result.nonterminalNodes()).satisfiesExactly(
-			n1 ->  {
-				assertThat(n1).isInstanceOf(CommandNode.class);
-				CommandNode cn1 = (CommandNode)n1;
-				assertThat(cn1.getCommand()).isEqualTo("root1");
-				assertThat(cn1.getChildren()).satisfiesExactly(
-					n2 -> {
-						assertThat(n2).isInstanceOf(CommandNode.class);
-						CommandNode cn2 = (CommandNode)n2;
-						assertThat(cn2.getCommand()).isEqualTo("sub1");
-						assertThat(cn2.getChildren()).satisfiesExactly(
-							n3 -> {
-								assertThat(n3).isInstanceOf(CommandNode.class);
-								CommandNode cn3 = (CommandNode)n3;
-								assertThat(cn3.getCommand()).isEqualTo("sub2");
-								assertThat(cn3.getChildren()).satisfiesExactly(
-									n4 -> {
-										assertThat(n4).isInstanceOf(OptionNode.class);
-										OptionNode on4 = (OptionNode)n4;
-										assertThat(on4.getChildren()).satisfiesExactly(
-											n5 -> {
-												assertThat(n5).isInstanceOf(OptionArgumentNode.class);
-											}
-										);
-									}
+				n1 -> {
+					assertThat(n1).isInstanceOf(CommandNode.class);
+					CommandNode cn1 = (CommandNode)n1;
+					assertThat(cn1.getCommand()).isEqualTo("root1");
+					assertThat(cn1.getChildren()).satisfiesExactly(
+							n2 -> {
+								assertThat(n2).isInstanceOf(CommandNode.class);
+								CommandNode cn2 = (CommandNode)n2;
+								assertThat(cn2.getCommand()).isEqualTo("sub1");
+								assertThat(cn2.getChildren()).satisfiesExactly(
+										n3 -> {
+											assertThat(n3).isInstanceOf(CommandNode.class);
+											CommandNode cn3 = (CommandNode)n3;
+											assertThat(cn3.getCommand()).isEqualTo("sub2");
+											assertThat(cn3.getChildren()).satisfiesExactly(
+													n4 -> {
+														assertThat(n4).isInstanceOf(OptionNode.class);
+														OptionNode on4 = (OptionNode)n4;
+														assertThat(on4.getChildren()).satisfiesExactly(
+																n5 -> {
+																	assertThat(n5).isInstanceOf(OptionArgumentNode.class);
+																}
+														);
+													}
+											);
+										}
 								);
-							}
-						);
-					});
-			});
+							});
+				});
 	}
 
 	@Test
@@ -101,11 +101,11 @@ class AstTests extends AbstractParsingTests {
 			assertThat(cn.getCommand()).isEqualTo("root3");
 			assertThat(cn.getChildren()).hasSize(1);
 			assertThat(cn.getChildren())
-				.filteredOn(on -> on instanceof OptionNode)
-				.extracting(on -> {
-					return ((OptionNode)on).getName();
-				})
-				.containsExactly("--arg1");
+					.filteredOn(on -> on instanceof OptionNode)
+					.extracting(on -> {
+						return ((OptionNode)on).getName();
+					})
+					.containsExactly("--arg1");
 		});
 	}
 
@@ -125,14 +125,14 @@ class AstTests extends AbstractParsingTests {
 			assertThat(cn.getCommand()).isEqualTo("root3");
 			assertThat(cn.getChildren()).hasSize(1);
 			assertThat(cn.getChildren())
-				.filteredOn(on -> on instanceof OptionNode)
-				.extracting(on -> {
-					return ((OptionNode)on).getName();
-				})
-				.containsExactly("--arg1");
-			OptionNode on = (OptionNode) cn.getChildren().get(0);
+					.filteredOn(on -> on instanceof OptionNode)
+					.extracting(on -> {
+						return ((OptionNode)on).getName();
+					})
+					.containsExactly("--arg1");
+			OptionNode on = (OptionNode)cn.getChildren().get(0);
 			assertThat(on.getChildren()).hasSize(1);
-			OptionArgumentNode oan = (OptionArgumentNode) on.getChildren().get(0);
+			OptionArgumentNode oan = (OptionArgumentNode)on.getChildren().get(0);
 			assertThat(oan.getValue()).isEqualTo("value1");
 		});
 	}
@@ -155,18 +155,18 @@ class AstTests extends AbstractParsingTests {
 			assertThat(cn.getCommand()).isEqualTo("root3");
 			assertThat(cn.getChildren()).hasSize(2);
 			assertThat(cn.getChildren())
-				.filteredOn(on -> on instanceof OptionNode)
-				.extracting(on -> {
-					return ((OptionNode)on).getName();
-				})
-				.containsExactly("--arg1", "--arg2");
-			OptionNode on1 = (OptionNode) cn.getChildren().get(0);
+					.filteredOn(on -> on instanceof OptionNode)
+					.extracting(on -> {
+						return ((OptionNode)on).getName();
+					})
+					.containsExactly("--arg1", "--arg2");
+			OptionNode on1 = (OptionNode)cn.getChildren().get(0);
 			assertThat(on1.getChildren()).hasSize(1);
-			OptionArgumentNode oan1 = (OptionArgumentNode) on1.getChildren().get(0);
+			OptionArgumentNode oan1 = (OptionArgumentNode)on1.getChildren().get(0);
 			assertThat(oan1.getValue()).isEqualTo("value1");
-			OptionNode on2 = (OptionNode) cn.getChildren().get(1);
+			OptionNode on2 = (OptionNode)cn.getChildren().get(1);
 			assertThat(on2.getChildren()).hasSize(1);
-			OptionArgumentNode oan2 = (OptionArgumentNode) on2.getChildren().get(0);
+			OptionArgumentNode oan2 = (OptionArgumentNode)on2.getChildren().get(0);
 			assertThat(oan2.getValue()).isEqualTo("value2");
 		});
 	}
@@ -187,14 +187,14 @@ class AstTests extends AbstractParsingTests {
 			assertThat(cn.getCommand()).isEqualTo("root3");
 			assertThat(cn.getChildren()).hasSize(1);
 			assertThat(cn.getChildren())
-				.filteredOn(on -> on instanceof OptionNode)
-				.extracting(on -> {
-					return ((OptionNode)on).getName();
-				})
-				.containsExactly("-a");
-			OptionNode on = (OptionNode) cn.getChildren().get(0);
+					.filteredOn(on -> on instanceof OptionNode)
+					.extracting(on -> {
+						return ((OptionNode)on).getName();
+					})
+					.containsExactly("-a");
+			OptionNode on = (OptionNode)cn.getChildren().get(0);
 			assertThat(on.getChildren()).hasSize(1);
-			OptionArgumentNode oan = (OptionArgumentNode) on.getChildren().get(0);
+			OptionArgumentNode oan = (OptionArgumentNode)on.getChildren().get(0);
 			assertThat(oan.getValue()).isEqualTo("value1");
 		});
 	}
@@ -217,18 +217,18 @@ class AstTests extends AbstractParsingTests {
 			assertThat(cn.getCommand()).isEqualTo("root3");
 			assertThat(cn.getChildren()).hasSize(2);
 			assertThat(cn.getChildren())
-				.filteredOn(on -> on instanceof OptionNode)
-				.extracting(on -> {
-					return ((OptionNode)on).getName();
-				})
-				.containsExactly("-a", "-b");
-			OptionNode on1 = (OptionNode) cn.getChildren().get(0);
+					.filteredOn(on -> on instanceof OptionNode)
+					.extracting(on -> {
+						return ((OptionNode)on).getName();
+					})
+					.containsExactly("-a", "-b");
+			OptionNode on1 = (OptionNode)cn.getChildren().get(0);
 			assertThat(on1.getChildren()).hasSize(1);
-			OptionArgumentNode oan1 = (OptionArgumentNode) on1.getChildren().get(0);
+			OptionArgumentNode oan1 = (OptionArgumentNode)on1.getChildren().get(0);
 			assertThat(oan1.getValue()).isEqualTo("value1");
-			OptionNode on2 = (OptionNode) cn.getChildren().get(1);
+			OptionNode on2 = (OptionNode)cn.getChildren().get(1);
 			assertThat(on2.getChildren()).hasSize(1);
-			OptionArgumentNode oan2 = (OptionArgumentNode) on2.getChildren().get(0);
+			OptionArgumentNode oan2 = (OptionArgumentNode)on2.getChildren().get(0);
 			assertThat(oan2.getValue()).isEqualTo("value2");
 		});
 	}
@@ -249,11 +249,11 @@ class AstTests extends AbstractParsingTests {
 			assertThat(cn.getCommand()).isEqualTo("root3");
 			assertThat(cn.getChildren()).hasSize(2);
 			assertThat(cn.getChildren())
-				.filteredOn(on -> on instanceof OptionNode)
-				.extracting(on -> {
-					return ((OptionNode)on).getName();
-				})
-				.containsExactly("--arg1", "--arg2");
+					.filteredOn(on -> on instanceof OptionNode)
+					.extracting(on -> {
+						return ((OptionNode)on).getName();
+					})
+					.containsExactly("--arg1", "--arg2");
 		});
 	}
 
@@ -266,7 +266,7 @@ class AstTests extends AbstractParsingTests {
 
 		assertThat(result.terminalNodes()).hasSize(1);
 		assertThat(result.terminalNodes().get(0)).isInstanceOf(DirectiveNode.class);
-		DirectiveNode dn = (DirectiveNode) result.terminalNodes().get(0);
+		DirectiveNode dn = (DirectiveNode)result.terminalNodes().get(0);
 		assertThat(dn.getName()).isEqualTo("fake");
 		assertThat(dn.getValue()).isNull();
 	}
@@ -280,7 +280,7 @@ class AstTests extends AbstractParsingTests {
 
 		assertThat(result.terminalNodes()).hasSize(1);
 		assertThat(result.terminalNodes().get(0)).isInstanceOf(DirectiveNode.class);
-		DirectiveNode dn = (DirectiveNode) result.terminalNodes().get(0);
+		DirectiveNode dn = (DirectiveNode)result.terminalNodes().get(0);
 		assertThat(dn.getName()).isEqualTo("fake");
 		assertThat(dn.getValue()).isEqualTo("value");
 	}
@@ -295,10 +295,10 @@ class AstTests extends AbstractParsingTests {
 
 		assertThat(result.terminalNodes()).hasSize(2);
 		assertThat(result.terminalNodes().get(0)).isInstanceOf(DirectiveNode.class);
-		DirectiveNode dn1 = (DirectiveNode) result.terminalNodes().get(0);
+		DirectiveNode dn1 = (DirectiveNode)result.terminalNodes().get(0);
 		assertThat(dn1.getName()).isEqualTo("fake1");
 		assertThat(dn1.getValue()).isEqualTo("value1");
-		DirectiveNode dn2 = (DirectiveNode) result.terminalNodes().get(1);
+		DirectiveNode dn2 = (DirectiveNode)result.terminalNodes().get(1);
 		assertThat(dn2.getName()).isEqualTo("fake2");
 		assertThat(dn2.getValue()).isEqualTo("value2");
 	}

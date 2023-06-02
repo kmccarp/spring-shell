@@ -43,7 +43,8 @@ public class Clear extends AbstractShellComponent {
 	 *
 	 * @author Eric Bottard
 	 */
-	public interface Command {}
+	public interface Command {
+	}
 
 	public Clear() {
 	}

@@ -30,8 +30,8 @@ public class HelpOptionCommands extends BaseE2ECommands {
 
 		@ShellMethod(key = LEGACY_ANNO + "help-option-default", group = GROUP)
 		public String testHelpOptionDefault(
-			@ShellOption(defaultValue = "hi") String arg1
-		) {
+	@ShellOption(defaultValue = "hi") String arg1
+	) {
 			return "Hello " + arg1;
 		}
 	}
@@ -42,40 +42,40 @@ public class HelpOptionCommands extends BaseE2ECommands {
 		@Bean
 		public CommandRegistration testHelpOptionDefaultRegistration() {
 			return getBuilder()
-				.command(REG, "help-option-default")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "help-option-default")
+					.group(GROUP)
+					.withOption()
 					.longNames("arg1")
 					.defaultValue("hi")
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						String arg1 = ctx.getOptionValue("arg1");
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 
 		@Bean
 		public CommandRegistration testHelpOptionExistsRegistration() {
 			return getBuilder()
-				.command(REG, "help-option-exists")
-				.group(GROUP)
-				.withOption()
+					.command(REG, "help-option-exists")
+					.group(GROUP)
+					.withOption()
 					.longNames("help")
 					.defaultValue("hi")
 					.and()
-				.withHelpOptions()
+					.withHelpOptions()
 					.longNames("myhelp")
 					.and()
-				.withTarget()
+					.withTarget()
 					.function(ctx -> {
 						String arg1 = ctx.getOptionValue("help");
 						return "Hello " + arg1;
 					})
 					.and()
-				.build();
+					.build();
 		}
 	}
 }

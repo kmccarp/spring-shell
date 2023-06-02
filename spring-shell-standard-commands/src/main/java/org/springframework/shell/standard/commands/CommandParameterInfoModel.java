@@ -33,7 +33,7 @@ class CommandParameterInfoModel {
 	private String defaultValue;
 
 	CommandParameterInfoModel(String type, List<String> arguments, boolean required, String description,
-			String defaultValue) {
+							String defaultValue) {
 		this.type = type;
 		this.arguments = arguments;
 		this.required = required;
@@ -52,7 +52,7 @@ class CommandParameterInfoModel {
 	 * @return a command parameter info model
 	 */
 	static CommandParameterInfoModel of(String type, List<String> arguments, boolean required,
-			String description, String defaultValue) {
+																																																																																String description, String defaultValue) {
 		return new CommandParameterInfoModel(type, arguments, required, description, defaultValue);
 	}
 

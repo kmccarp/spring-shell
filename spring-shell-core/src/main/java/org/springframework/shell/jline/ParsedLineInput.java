@@ -30,19 +30,19 @@ import org.springframework.shell.Utils;
  */
 class ParsedLineInput implements Input {
 
-    private final ParsedLine parsedLine;
+	private final ParsedLine parsedLine;
 
-    ParsedLineInput(ParsedLine parsedLine) {
-        this.parsedLine = parsedLine;
-    }
+	ParsedLineInput(ParsedLine parsedLine) {
+		this.parsedLine = parsedLine;
+	}
 
-    @Override
-    public String rawText() {
-        return parsedLine.line();
-    }
+	@Override
+	public String rawText() {
+		return parsedLine.line();
+	}
 
-    @Override
-    public List<String> words() {
-        return Utils.sanitizeInput(parsedLine.words());
-    }
+	@Override
+	public List<String> words() {
+		return Utils.sanitizeInput(parsedLine.words());
+	}
 }

@@ -33,21 +33,22 @@ public class ExitCodeSnippets {
 			return code;
 		}
 	}
+
 	// end::my-exception-class[]
 
 	void dump1() {
 		// tag::example1[]
 		CommandRegistration.builder()
-			.withExitCode()
+				.withExitCode()
 				.map(MyException.class, 3)
 				.map(t -> {
 					if (t instanceof MyException) {
-						return ((MyException) t).getCode();
+						return ((MyException)t).getCode();
 					}
 					return 0;
 				})
 				.and()
-			.build();
+				.build();
 		// end::example1[]
 	}
 }

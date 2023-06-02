@@ -21,9 +21,13 @@ import java.util.List;
 public interface SelectorList<T extends Nameable> {
 
 	void reset(List<T> items);
+
 	T getSelected();
+
 	void scrollUp();
+
 	void scrollDown();
+
 	List<ProjectionItem<T>> getProjection();
 
 	public static <T extends Nameable> SelectorList<T> of(int max) {
@@ -92,12 +96,12 @@ public interface SelectorList<T extends Nameable> {
 				position++;
 			}
 			// at lowest position in page, can't go further, start over from top
-			else if(start + position + 1 >= items.size()) {
+			else if (start + position + 1 >= items.size()) {
 				start = 0;
 				position = 0;
 			}
 			// in middle of a page, nor highest or lowest
-			else if(position < max - 1) {
+			else if (position < max - 1) {
 				position++;
 			}
 			// at lowest position in page, scroll down
@@ -109,7 +113,7 @@ public interface SelectorList<T extends Nameable> {
 		@Override
 		public List<ProjectionItem<T>> getProjection() {
 			List<ProjectionItem<T>> projection = new ArrayList<>();
-			for (int i = start; i < start + Math.min(items.size(), max); i++) {
+			for (int i = start;i < start + Math.min(items.size(), max);i++) {
 				boolean selected = i == start + position;
 				BaseProjectionItem<T> item = new BaseProjectionItem<>(items.get(i), selected);
 				projection.add(item);

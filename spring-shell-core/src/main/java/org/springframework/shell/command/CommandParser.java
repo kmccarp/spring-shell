@@ -113,7 +113,7 @@ public interface CommandParser {
 		 * @return a new instance of results
 		 */
 		static CommandParserResults of(CommandRegistration registration, List<CommandParserResult> results,
-				List<String> positional, List<CommandParserException> errors) {
+																																																																																   List<String> positional, List<CommandParserException> errors) {
 			return new DefaultCommandParserResults(registration, results, positional, errors);
 		}
 	}
@@ -138,7 +138,7 @@ public interface CommandParser {
 	 * @return instance of a default command parser
 	 */
 	static CommandParser of(ConversionService conversionService, Map<String, CommandRegistration> registrations,
-			ParserConfig config) {
+																																																																					  ParserConfig config) {
 		return new AstCommandParser(registrations, config, conversionService);
 	}
 
@@ -153,7 +153,7 @@ public interface CommandParser {
 		private List<CommandParserException> errors;
 
 		DefaultCommandParserResults(CommandRegistration registration, List<CommandParserResult> results,
-				List<String> positional, List<CommandParserException> errors) {
+							   List<String> positional, List<CommandParserException> errors) {
 			this.registration = registration;
 			this.results = results;
 			this.positional = positional;
@@ -215,7 +215,7 @@ public interface CommandParser {
 		private final ConversionService conversionService;
 
 		public AstCommandParser(Map<String, CommandRegistration> registrations, ParserConfig configuration,
-				ConversionService conversionService) {
+						   ConversionService conversionService) {
 			this.registrations = registrations;
 			this.configuration = configuration;
 			this.conversionService = conversionService;

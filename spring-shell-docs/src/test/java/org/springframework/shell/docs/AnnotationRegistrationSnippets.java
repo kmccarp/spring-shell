@@ -28,6 +28,7 @@ public class AnnotationRegistrationSnippets {
 		public void mycommand() {
 		}
 	}
+
 	// end::snippet1[]
 
 	static class Dump1 {

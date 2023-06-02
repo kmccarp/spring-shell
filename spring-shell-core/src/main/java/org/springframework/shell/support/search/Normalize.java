@@ -488,7 +488,7 @@ public class Normalize {
 
 	public static String normalizeRunes(String text) {
 		char[] chars = text.toCharArray();
-		for (int i = 0; i < chars.length; i++) {
+		for (int i = 0;i < chars.length;i++) {
 			char r = chars[i];
 			if (r < 0x00C0 || r > 0x2184) {
 				continue;

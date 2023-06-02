@@ -30,7 +30,7 @@ class FuzzyMatchV1SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 		int lenRunes = text.length();
 		int lenPattern = pattern.length();
 
-		for (int index = 0; index < lenRunes; index++) {
+		for (int index = 0;index < lenRunes;index++) {
 			char c = text.charAt(indexAt(index, lenRunes, forward));
 
 			if (!caseSensitive) {
@@ -60,7 +60,7 @@ class FuzzyMatchV1SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 
 		if (sidx >= 0 && eidx >= 0) {
 			pidx--;
-			for (int i = eidx - 1; i >= sidx; i--) {
+			for (int i = eidx - 1;i >= sidx;i--) {
 				int tidx = indexAt(i, lenRunes, forward);
 				char c = text.charAt(tidx);
 				if (!caseSensitive) {

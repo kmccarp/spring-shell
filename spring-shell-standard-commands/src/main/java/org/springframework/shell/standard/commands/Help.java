@@ -77,16 +77,16 @@ public class Help extends AbstractShellComponent {
 
 	@ShellMethod(value = "Display help about available commands")
 	public AttributedString help(
-			@ShellOption(defaultValue = ShellOption.NULL, valueProvider = CommandValueProvider.class, value = { "-C",
-					"--command" }, help = "The command to obtain help for.", arity = Integer.MAX_VALUE) String[] command)
+	@ShellOption(defaultValue = ShellOption.NULL, valueProvider = CommandValueProvider.class, value = {"-C",
+			"--command"}, help = "The command to obtain help for.", arity = Integer.MAX_VALUE) String[] command)
 			throws IOException {
 		if (command == null) {
 			return renderCommands();
 		}
 		else {
 			String commandStr = Stream.of(command)
-				.map(c -> c.trim())
-				.collect(Collectors.joining(" "));
+					.map(c -> c.trim())
+					.collect(Collectors.joining(" "));
 			return renderCommand(commandStr);
 		}
 	}

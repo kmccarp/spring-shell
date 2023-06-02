@@ -120,10 +120,10 @@ public class ControlSequence {
 			bytes[i++] = (byte)'>';
 		}
 
-		for (int argi = 0; argi < myArgc; argi++) {
+		for (int argi = 0;argi < myArgc;argi++) {
 			if (argi != 0) bytes[i++] = ';';
 			String s = Integer.toString(myArgv[argi]);
-			for (int j = 0; j < s.length(); j++) {
+			for (int j = 0;j < s.length();j++) {
 				bytes[i++] = s.charAt(j);
 			}
 		}
@@ -155,7 +155,7 @@ public class ControlSequence {
 		}
 
 		String sep = "";
-		for (int i = 0; i < myArgc; i++) {
+		for (int i = 0;i < myArgc;i++) {
 			sb.append(sep);
 			sb.append(myArgv[i]);
 			sep = ";";
