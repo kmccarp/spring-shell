@@ -30,7 +30,7 @@ public class TableModelBuilder<T> {
 
 	public static final int DEFAULT_ROW_CAPACITY = 3;
 
-	private List<List<T>> rows = new ArrayList<List<T>>();
+	private final List<List<T>> rows = new ArrayList<>();
 
 	private int previousRowSize = -1;
 
@@ -44,10 +44,10 @@ public class TableModelBuilder<T> {
 			Assert.isTrue(currentRowSize == previousRowSize,
 					"Can't switch to next row, as the current one does not have as many elements as the previous one");
 		}
-		if (rows.size() > 0) {
+		if (!rows.isEmpty()) {
 			previousRowSize = rows.get(0).size();
 		}
-		rows.add(new ArrayList<T>(previousRowSize == -1 ? DEFAULT_ROW_CAPACITY : previousRowSize));
+		rows.add(new ArrayList<>(previousRowSize == -1 ? DEFAULT_ROW_CAPACITY : previousRowSize));
 		return this;
 	}
 
