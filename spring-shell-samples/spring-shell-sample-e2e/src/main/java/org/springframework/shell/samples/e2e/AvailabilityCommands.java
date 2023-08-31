@@ -91,13 +91,9 @@ public class AvailabilityCommands {
 			return getBuilder()
 				.command(REG, "availability-1")
 				.group(GROUP)
-				.availability(() -> {
-					return Availability.unavailable("not available");
-				})
+				.availability(() -> Availability.unavailable("not available"))
 				.withTarget()
-					.function(ctx -> {
-						return "Hello";
-					})
+					.function(ctx -> "Hello")
 					.and()
 				.build();
 		}
@@ -109,9 +105,7 @@ public class AvailabilityCommands {
 				.group(GROUP)
 				.availability(testAvailability2AnnotationAvailability())
 				.withTarget()
-					.function(ctx -> {
-						return "Hello";
-					})
+					.function(ctx -> "Hello")
 					.and()
 				.build();
 		}

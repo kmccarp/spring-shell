@@ -122,8 +122,7 @@ public class Version extends AbstractShellComponent {
 		attributes.put("gitCommitId", gitCommitId);
 		attributes.put("gitShortCommitId", gitShortCommitId);
 		attributes.put("gitCommitTime", gitCommitTime);
-		AttributedString rendered = templateExecutor.render(templateResource, attributes);
-		return rendered;
+		return templateExecutor.render(templateResource, attributes);
 	}
 
 	public void setBuildProperties(BuildProperties buildProperties) {

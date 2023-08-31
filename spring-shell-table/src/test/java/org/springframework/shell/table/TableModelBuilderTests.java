@@ -30,7 +30,7 @@ public class TableModelBuilderTests {
 
 	@Test
 	public void emptyModel() {
-		TableModelBuilder<Number> builder = new TableModelBuilder<Number>();
+		TableModelBuilder<Number> builder = new TableModelBuilder<>();
 		TableModel model = builder.build();
 		assertThat(model.getColumnCount()).isEqualTo(0);
 		assertThat(model.getColumnCount()).isEqualTo(0);
@@ -69,7 +69,7 @@ public class TableModelBuilderTests {
 
 	@Test
 	public void simpleBuild() {
-		TableModelBuilder<Number> builder = new TableModelBuilder<Number>();
+		TableModelBuilder<Number> builder = new TableModelBuilder<>();
 		builder
 			.addRow()
 			.addValue(7).addValue(2)

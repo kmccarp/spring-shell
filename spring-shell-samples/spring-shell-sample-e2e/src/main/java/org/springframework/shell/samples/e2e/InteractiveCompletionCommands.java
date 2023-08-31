@@ -97,11 +97,11 @@ public class InteractiveCompletionCommands {
 				.group(GROUP)
 				.withOption()
 					.longNames("arg1")
-					.completion(ctx -> test1ValuesProvider.complete(ctx))
+					.completion(test1ValuesProvider::complete)
 					.and()
 				.withOption()
 					.longNames("arg2")
-					.completion(ctx -> test2ValuesProvider.complete(ctx))
+					.completion(test2ValuesProvider::complete)
 					.and()
 				.withTarget()
 					.function(ctx -> {
@@ -115,7 +115,7 @@ public class InteractiveCompletionCommands {
 
 	static class Test1ValuesProvider implements ValueProvider {
 
-		private final static String[] VALUES = new String[] {
+		private static final String[] VALUES = new String[] {
 			"values1Complete1",
 			"values1Complete2"
 		};
@@ -130,7 +130,7 @@ public class InteractiveCompletionCommands {
 
 	static class Test2ValuesProvider implements ValueProvider {
 
-		private final static String[] VALUES = new String[] {
+		private static final String[] VALUES = new String[] {
 			"values2Complete1",
 			"values2Complete2"
 		};

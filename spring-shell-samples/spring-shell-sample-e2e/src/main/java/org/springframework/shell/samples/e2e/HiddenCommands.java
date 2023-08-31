@@ -42,9 +42,7 @@ public class HiddenCommands {
 				.group(GROUP)
 				.hidden()
 				.withTarget()
-					.function(ctx -> {
-						return "Hello from hidden command";
-					})
+					.function(ctx -> "Hello from hidden command")
 					.and()
 				.build();
 		}

@@ -50,7 +50,10 @@ public class BorderSpecification {
 
 	public static final int INNER = INNER_HORIZONTAL | INNER_VERTICAL;
 
-	private final int row1, row2, column1, column2;
+	private final int row1;
+	private final int row2;
+	private final int column1;
+	private final int column2;
 
 	private final int match;
 
@@ -107,7 +110,7 @@ public class BorderSpecification {
 					return field;
 				}
 			}
-			List<String> constants = new ArrayList<String>();
+			List<String> constants = new ArrayList<>();
 			for (String field : new String[] {"TOP", "BOTTOM", "LEFT", "RIGHT", "INNER_HORIZONTAL", "INNER_VERTICAL"}) {
 				int value = ReflectionUtils.findField(getClass(), field).getInt(null);
 				if ((match & value) == value) {

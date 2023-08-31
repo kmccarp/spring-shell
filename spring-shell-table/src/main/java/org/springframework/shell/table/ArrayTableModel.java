@@ -25,7 +25,7 @@ import org.springframework.util.Assert;
  */
 public class ArrayTableModel extends TableModel {
 
-	private Object[][] data;
+	private final Object[][] data;
 
 	public ArrayTableModel(Object[][] data) {
 		this.data = data;
