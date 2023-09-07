@@ -45,7 +45,7 @@ public class ComponentFlowAutoConfiguration {
 	@ConditionalOnMissingBean
 	public ComponentFlow.Builder componentFlowBuilder(ObjectProvider<ComponentFlowCustomizer> customizerProvider) {
 		ComponentFlow.Builder builder = ComponentFlow.builder();
-		customizerProvider.orderedStream().forEach((customizer) -> customizer.customize(builder));
+		customizerProvider.orderedStream().forEach(customizer -> customizer.customize(builder));
 		return builder;
 	}
 
@@ -77,9 +77,9 @@ public class ComponentFlowAutoConfiguration {
 
 		@Override
 		public void customize(Builder componentFlowBuilder) {
-			terminal.ifAvailable(dep -> componentFlowBuilder.terminal(dep));
-			resourceLoader.ifAvailable(dep -> componentFlowBuilder.resourceLoader(dep));
-			templateExecutor.ifAvailable(dep -> componentFlowBuilder.templateExecutor(dep));
+			terminal.ifAvailable(componentFlowBuilder::terminal);
+			resourceLoader.ifAvailable(componentFlowBuilder::resourceLoader);
+			templateExecutor.ifAvailable(componentFlowBuilder::templateExecutor);
 		}
 	}
 }

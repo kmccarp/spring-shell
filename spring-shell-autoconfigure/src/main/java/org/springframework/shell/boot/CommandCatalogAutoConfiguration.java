@@ -60,9 +60,7 @@ public class CommandCatalogAutoConfiguration {
 	@Bean
 	public CommandCatalogCustomizer defaultCommandCatalogCustomizer(ObjectProvider<CommandRegistration> commandRegistrations) {
 		return catalog -> {
-			commandRegistrations.orderedStream().forEach(registration -> {
-				catalog.register(registration);
-			});
+			commandRegistrations.orderedStream().forEach(catalog::register);
 		};
 	}
 
@@ -120,7 +118,7 @@ public class CommandCatalogAutoConfiguration {
 			ObjectProvider<CommandRegistrationCustomizer> customizerProvider) {
 		return () -> {
 			CommandRegistration.Builder builder = CommandRegistration.builder();
-			customizerProvider.orderedStream().forEach((customizer) -> customizer.customize(builder));
+			customizerProvider.orderedStream().forEach(customizer -> customizer.customize(builder));
 			return builder;
 		};
 	}

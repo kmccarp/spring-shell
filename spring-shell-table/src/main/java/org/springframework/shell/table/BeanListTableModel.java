@@ -43,12 +43,12 @@ public class BeanListTableModel<T> extends TableModel {
 	private final List<Object> headerRow;
 
 	public BeanListTableModel(Class<T> clazz, Iterable<T> list) {
-		this.data = new ArrayList<BeanWrapper>();
+		this.data = new ArrayList<>();
 		for (T bean : list) {
 			this.data.add(new BeanWrapperImpl(bean));
 		}
 		this.headerRow = null;
-		propertyNames = new ArrayList<String>();
+		propertyNames = new ArrayList<>();
 		for (PropertyDescriptor propertyName : BeanUtils.getPropertyDescriptors(clazz)) {
 			if ("class".equals(propertyName.getName())) {
 				continue;
@@ -58,7 +58,7 @@ public class BeanListTableModel<T> extends TableModel {
 	}
 
 	public BeanListTableModel(Iterable<T> list, String... propertyNames) {
-		this.data = new ArrayList<BeanWrapper>();
+		this.data = new ArrayList<>();
 		for (T bean : list) {
 			this.data.add(new BeanWrapperImpl(bean));
 		}
@@ -67,12 +67,12 @@ public class BeanListTableModel<T> extends TableModel {
 	}
 
 	public BeanListTableModel(Iterable<T> list, LinkedHashMap<String, Object> header) {
-		this.data = new ArrayList<BeanWrapper>();
+		this.data = new ArrayList<>();
 		for (T bean : list) {
 			this.data.add(new BeanWrapperImpl(bean));
 		}
-		this.headerRow = new ArrayList<Object>(header.values());
-		propertyNames = new ArrayList<String>(header.keySet());
+		this.headerRow = new ArrayList<>(header.values());
+		propertyNames = new ArrayList<>(header.keySet());
 	}
 
 	@Override

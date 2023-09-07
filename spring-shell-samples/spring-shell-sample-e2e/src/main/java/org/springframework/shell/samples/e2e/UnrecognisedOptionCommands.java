@@ -50,9 +50,7 @@ public class UnrecognisedOptionCommands {
 				.command(REG, "unrecognised-option-noother")
 				.group(GROUP)
 				.withTarget()
-					.function(ctx -> {
-						return "Hi";
-					})
+					.function(ctx -> "Hi")
 					.and()
 				.build();
 		}

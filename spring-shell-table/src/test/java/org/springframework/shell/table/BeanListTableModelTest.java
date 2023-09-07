@@ -58,7 +58,7 @@ public class BeanListTableModelTest extends AbstractTestWithSample {
 
 		List<Person> data = data();
 
-		LinkedHashMap<String, Object> header = new LinkedHashMap<String, Object>();
+		LinkedHashMap<String, Object> header = new LinkedHashMap<>();
 		header.put("lastName", "Last Name");
 		header.put("firstName", "First Name");
 
@@ -68,7 +68,7 @@ public class BeanListTableModelTest extends AbstractTestWithSample {
 	}
 
 	private List<Person> data() {
-		List<Person> data = new ArrayList<Person>();
+		List<Person> data = new ArrayList<>();
 		data.add(new Person("Alice", "Clark", 12));
 		data.add(new Person("Bob", "Smith", 42));
 		data.add(new Person("Sarah", "Connor", 38));

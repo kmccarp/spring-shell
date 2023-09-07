@@ -54,17 +54,17 @@ public class Table implements TerminalSizeAware {
 
 	private final int columns;
 
-	private TableModel model;
+	private final TableModel model;
 
-	private Map<CellMatcher, Formatter> formatters = new LinkedHashMap<CellMatcher, Formatter>();
+	private Map<CellMatcher, Formatter> formatters = new LinkedHashMap<>();
 
-	private Map<CellMatcher, SizeConstraints> sizeConstraints = new LinkedHashMap<CellMatcher, SizeConstraints>();
+	private Map<CellMatcher, SizeConstraints> sizeConstraints = new LinkedHashMap<>();
 
-	private Map<CellMatcher, TextWrapper> wrappers = new LinkedHashMap<CellMatcher, TextWrapper>();
+	private Map<CellMatcher, TextWrapper> wrappers = new LinkedHashMap<>();
 
-	private Map<CellMatcher, Aligner> aligners = new LinkedHashMap<CellMatcher, Aligner>();
+	private Map<CellMatcher, Aligner> aligners = new LinkedHashMap<>();
 
-	private List<BorderSpecification> borderSpecifications = new ArrayList<BorderSpecification>();
+	private List<BorderSpecification> borderSpecifications = new ArrayList<>();
 
 	/**
 	 * Construct a new Table with the given model and customizers.
@@ -184,7 +184,8 @@ public class Table implements TerminalSizeAware {
 	private int[] computeColumnWidths(int availableWidth, int[] minCellWidths, int[] maxCellWidths) {
 
 		int[] cellWidths;
-		int minTableWidth = 0, maxTableWidth = 0;
+		int minTableWidth = 0;
+		int maxTableWidth = 0;
 		for (int column = 0; column < columns; column++) {
 			minTableWidth += minCellWidths[column];
 			maxTableWidth += maxCellWidths[column];

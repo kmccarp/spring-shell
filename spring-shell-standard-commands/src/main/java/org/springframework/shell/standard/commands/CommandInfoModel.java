@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import org.springframework.shell.Availability;
+import org.springframework.shell.command.CommandAlias;
 import org.springframework.shell.command.CommandOption;
 import org.springframework.shell.command.CommandRegistration;
 import org.springframework.util.ClassUtils;
@@ -33,11 +34,11 @@ import org.springframework.util.StringUtils;
  */
 class CommandInfoModel {
 
-	private String name;
-	private List<String> aliases;
-	private String description;
-	private List<CommandParameterInfoModel> parameters;
-	private CommandAvailabilityInfoModel availability;
+	private final String name;
+	private final List<String> aliases;
+	private final String description;
+	private final List<CommandParameterInfoModel> parameters;
+	private final CommandAvailabilityInfoModel availability;
 
 	CommandInfoModel(String name, List<String> aliases, String description, List<CommandParameterInfoModel> parameters,
 			CommandAvailabilityInfoModel availability) {
@@ -71,7 +72,7 @@ class CommandInfoModel {
 			})
 			.collect(Collectors.toList());
 
-		List<String> aliases = registration.getAliases().stream().map(ca -> ca.getCommand())
+		List<String> aliases = registration.getAliases().stream().map(CommandAlias::getCommand)
 				.collect(Collectors.toList());
 
 		String description = registration.getDescription();

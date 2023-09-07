@@ -38,7 +38,7 @@ public class DelimiterTextWrapper implements TextWrapper {
 
 	@Override
 	public String[] wrap(String[] original, int columnWidth) {
-		List<String> result = new ArrayList<String>(original.length);
+		List<String> result = new ArrayList<>(original.length);
 		for (String line : original) {
 			while (line.length() > columnWidth) {
 				int split = line.lastIndexOf(delimiter, columnWidth);
