@@ -29,7 +29,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserConfigAutoConfigurationTests {
 
-	private final static Logger log = LoggerFactory.getLogger(UserConfigAutoConfigurationTests.class);
+	private static final Logger log = LoggerFactory.getLogger(UserConfigAutoConfigurationTests.class);
 
 	private final ApplicationContextRunner contextRunner = new ApplicationContextRunner()
 			.withConfiguration(AutoConfigurations.of(UserConfigAutoConfiguration.class));

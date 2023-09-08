@@ -420,15 +420,13 @@ public class OptionTypeCommands {
 					.type(void.class)
 					.and()
 				.withTarget()
-					.function(ctx -> {
-						return "Hello ";
-					})
+					.function(ctx -> "Hello ")
 					.and()
 				.build();
 		}
 	}
 
-	public static enum OptionTypeEnum {
+	public enum OptionTypeEnum {
 		ONE,TWO,THREE
 	}
 }

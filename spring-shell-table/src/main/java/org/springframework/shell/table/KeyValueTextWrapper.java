@@ -38,7 +38,7 @@ public class KeyValueTextWrapper implements TextWrapper {
 
 	@Override
 	public String[] wrap(String[] original, int columnWidth) {
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		for (String line : original) {
 			line = line.trim();
 			while (line.length() > columnWidth) {

@@ -37,7 +37,7 @@ class GroupsInfoModel {
 	private boolean showGroups = true;
 	private final List<GroupCommandInfoModel> groups;
 	private final List<CommandInfoModel> commands;
-	private boolean hasUnavailableCommands = false;
+	private final boolean hasUnavailableCommands;
 
 	GroupsInfoModel(boolean showGroups, List<GroupCommandInfoModel> groups, List<CommandInfoModel> commands,
 			boolean hasUnavailableCommands) {
@@ -59,7 +59,7 @@ class GroupsInfoModel {
 		// collect commands into groups with sorting
 		HashSet<CommandRegistration> regsWithoutAliases = new HashSet<>(registrations.values());
 		SortedMap<String, Map<String, CommandRegistration>> commandsByGroupAndName = regsWithoutAliases.stream()
-			.collect(Collectors.toMap(r -> r.getCommand(), r -> r)).entrySet().stream()
+			.collect(Collectors.toMap(CommandRegistration::getCommand, r -> r)).entrySet().stream()
 			.collect(Collectors.groupingBy(
 				e -> StringUtils.hasText(e.getValue().getGroup()) ? e.getValue().getGroup() : "Default",
 				TreeMap::new,

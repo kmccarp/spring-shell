@@ -52,7 +52,7 @@ public class ExitCodeAutoConfiguration {
 	@Bean
 	@ConditionalOnMissingBean
 	public ExitCodeExceptionProvider exitCodeExceptionProvider() {
-		return (exception, code) -> new ShellExitCodeException(exception, code);
+		return ShellExitCodeException::new;
 	}
 
 	static class ShellExitCodeExceptionMapper implements ExitCodeExceptionMapper {

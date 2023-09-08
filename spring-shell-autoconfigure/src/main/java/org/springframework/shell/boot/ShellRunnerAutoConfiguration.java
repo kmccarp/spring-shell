@@ -48,7 +48,7 @@ public class ShellRunnerAutoConfiguration {
 				ObjectProvider<NonInteractiveShellRunnerCustomizer> customizer, SpringShellProperties properties) {
 			NonInteractiveShellRunner shellRunner = new NonInteractiveShellRunner(shell, shellContext,
 					properties.getNoninteractive().getPrimaryCommand());
-			customizer.orderedStream().forEach((c) -> c.customize(shellRunner));
+			customizer.orderedStream().forEach(c -> c.customize(shellRunner));
 			return shellRunner;
 		}
 
@@ -70,7 +70,7 @@ public class ShellRunnerAutoConfiguration {
 		public NonInteractiveShellRunner nonInteractiveApplicationRunner(Shell shell, ShellContext shellContext,
 				ObjectProvider<NonInteractiveShellRunnerCustomizer> customizer) {
 			NonInteractiveShellRunner shellRunner = new NonInteractiveShellRunner(shell, shellContext);
-			customizer.orderedStream().forEach((c) -> c.customize(shellRunner));
+			customizer.orderedStream().forEach(c -> c.customize(shellRunner));
 			return shellRunner;
 		}
 

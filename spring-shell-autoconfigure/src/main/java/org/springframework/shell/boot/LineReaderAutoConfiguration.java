@@ -46,7 +46,7 @@ import org.springframework.util.StringUtils;
 @EnableConfigurationProperties(SpringShellProperties.class)
 public class LineReaderAutoConfiguration {
 
-	private final static Logger log = LoggerFactory.getLogger(LineReaderAutoConfiguration.class);
+	private static final Logger log = LoggerFactory.getLogger(LineReaderAutoConfiguration.class);
 
 	private Terminal terminal;
 
