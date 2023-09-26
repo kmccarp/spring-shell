@@ -84,7 +84,7 @@ public class ResolvedCommands {
 	static class Server1CommandResolver implements CommandResolver {
 
 		private final List<CommandRegistration> registrations = new ArrayList<>();
-		boolean enabled = false;
+		boolean enabled;
 
 		Server1CommandResolver() {
 			CommandRegistration resolved1 = CommandRegistration.builder()
@@ -92,9 +92,7 @@ public class ResolvedCommands {
 				.group(GROUP)
 				.description("server1 command1")
 				.withTarget()
-					.function(ctx -> {
-						return "hi from server1 command1";
-					})
+					.function(ctx -> "hi from server1 command1")
 					.and()
 				.build();
 			registrations.add(resolved1);
@@ -109,7 +107,7 @@ public class ResolvedCommands {
 	static class Server2CommandResolver implements CommandResolver {
 
 		private final List<CommandRegistration> registrations = new ArrayList<>();
-		boolean enabled = false;
+		boolean enabled;
 
 		Server2CommandResolver() {
 			CommandRegistration resolved1 = CommandRegistration.builder()
@@ -117,9 +115,7 @@ public class ResolvedCommands {
 				.group(GROUP)
 				.description("server2 command1")
 				.withTarget()
-					.function(ctx -> {
-						return "hi from server2 command1";
-					})
+					.function(ctx -> "hi from server2 command1")
 					.and()
 				.build();
 			CommandRegistration resolved2 = CommandRegistration.builder()
@@ -127,9 +123,7 @@ public class ResolvedCommands {
 				.group(GROUP)
 				.description("server2 command2")
 				.withTarget()
-					.function(ctx -> {
-						return "hi from server2 command2";
-					})
+					.function(ctx -> "hi from server2 command2")
 					.and()
 				.build();
 			registrations.add(resolved1);

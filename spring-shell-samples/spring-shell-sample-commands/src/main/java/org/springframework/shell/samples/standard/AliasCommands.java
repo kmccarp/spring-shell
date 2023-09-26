@@ -23,7 +23,7 @@ import org.springframework.shell.standard.ShellMethod;
 @ShellComponent
 public class AliasCommands {
 
-	private final static String DESCRIPTION = "main1 with main2 as alias";
+	private static final String DESCRIPTION = "main1 with main2 as alias";
 
 	@ShellMethod(key = { "alias anno main1", "alias anno main2" }, group = "Alias Commands", value = DESCRIPTION)
 	public String annoMain1() {
@@ -41,9 +41,7 @@ public class AliasCommands {
 				.group("Alias Commands")
 				.and()
 			.withTarget()
-				.function(ctx -> {
-					return "Hello regMain1";
-				})
+				.function(ctx -> "Hello regMain1")
 				.and()
 			.build();
 	}

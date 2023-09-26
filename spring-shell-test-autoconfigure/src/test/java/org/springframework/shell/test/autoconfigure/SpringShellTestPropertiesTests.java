@@ -30,7 +30,7 @@ class SpringShellTestPropertiesTests {
 	public void defaultNoPropertiesSet() {
 		this.contextRunner
 				.withUserConfiguration(Config1.class)
-				.run((context) -> {
+				.run(context -> {
 					SpringShellTestProperties properties = context.getBean(SpringShellTestProperties.class);
 					assertThat(properties.getTerminalWidth()).isEqualTo(80);
 					assertThat(properties.getTerminalHeight()).isEqualTo(24);
@@ -43,7 +43,7 @@ class SpringShellTestPropertiesTests {
 				.withPropertyValues("spring.shell.test.terminal-width=81")
 				.withPropertyValues("spring.shell.test.terminal-height=25")
 				.withUserConfiguration(Config1.class)
-				.run((context) -> {
+				.run(context -> {
 					SpringShellTestProperties properties = context.getBean(SpringShellTestProperties.class);
 					assertThat(properties.getTerminalWidth()).isEqualTo(81);
 					assertThat(properties.getTerminalHeight()).isEqualTo(25);

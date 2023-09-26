@@ -27,7 +27,7 @@ import org.springframework.shell.standard.ShellOption;
 @ShellComponent
 public class RegisterCommands extends AbstractShellComponent {
 
-	private final static String GROUP = "Register Commands";
+	private static final String GROUP = "Register Commands";
 	private final PojoMethods pojoMethods = new PojoMethods();
 	private final CommandRegistration registered1;
 	private final CommandRegistration registered2;
