@@ -34,7 +34,7 @@ public record Rectangle(int x, int y, int width, int height) {
 		}
 		w += x;
 		h += y;
-		return ((w < x || w > X) && (h < y || h > Y));
+		return (w < x || w > X) && (h < y || h > Y);
 	}
 
 	/**

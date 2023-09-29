@@ -46,7 +46,7 @@ public interface ListCell<T> extends Cell<T> {
 	 * @return a default list cell
 	 */
 	static <T> ListCell<T> of(T item, ItemStyle itemStyle) {
-		return new DefaultListCell<T>(item, itemStyle);
+		return new DefaultListCell<>(item, itemStyle);
 	}
 
 	static class DefaultListCell<T> extends AbstractListCell<T> {

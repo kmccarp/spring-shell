@@ -46,9 +46,9 @@ public enum ParserMessage {
 	TOO_MANY_OPTION_ARGUMENTS(Type.ERROR, 2004, "Too many arguments for option ''{0}'', requires at most ''{1}''")
 	;
 
-	private Type type;
-	private int code;
-	private String message;
+	private final Type type;
+	private final int code;
+	private final String message;
 
 	ParserMessage(Type type, int code, String message) {
 		this.type = type;
@@ -88,13 +88,10 @@ public enum ParserMessage {
 		StringBuilder msg = new StringBuilder();
 		if (useCode) {
 			msg.append(code);
-			switch (type) {
-				case WARNING:
-					msg.append("W");
-					break;
-				case ERROR:
-					msg.append("E");
-					break;
+			if (type == org.springframework.shell.command.parser.ParserMessage$Type.WARNING) {
+				msg.append("W");
+			} else if (type == org.springframework.shell.command.parser.ParserMessage$Type.ERROR) {
+				msg.append("E");
 			}
 			msg.append(":");
 		}

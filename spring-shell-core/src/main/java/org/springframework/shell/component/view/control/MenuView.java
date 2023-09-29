@@ -189,9 +189,9 @@ public class MenuView extends BoxView {
 	protected void initInternal() {
 		registerKeyBinding(Key.CursorUp, () -> move(-1));
 		registerKeyBinding(Key.CursorDown, () -> move(1));
-		registerKeyBinding(Key.Enter, () -> keySelect());
+		registerKeyBinding(Key.Enter, this::keySelect);
 
-		registerMouseBinding(MouseEvent.Type.Released | MouseEvent.Button.Button1, event -> mouseSelect(event));
+		registerMouseBinding(MouseEvent.Type.Released | MouseEvent.Button.Button1, this::mouseSelect);
 		registerMouseBinding(MouseEvent.Type.Wheel | MouseEvent.Button.WheelDown, () -> move(1));
 		registerMouseBinding(MouseEvent.Type.Wheel | MouseEvent.Button.WheelUp, () -> move(-1));
 	}
@@ -331,7 +331,7 @@ public class MenuView extends BoxView {
 		private final MenuItemCheckStyle checkStyle;
 		private final List<MenuItem> items;
 		private Runnable action;
-		private boolean initialCheckState = false;
+		private boolean initialCheckState;
 
 		/**
 		 * Construct menu item with a title.

@@ -22,10 +22,10 @@ package org.springframework.shell.component.flow;
  */
 public class DefaultSelectItem implements SelectItem {
 
-	private String name;
-	private String item;
-	private boolean enabled;
-	private boolean selected;
+	private final String name;
+	private final String item;
+	private final boolean enabled;
+	private final boolean selected;
 
 	public DefaultSelectItem(String name, String item, boolean enabled, boolean selected) {
 		this.name = name;

@@ -100,8 +100,7 @@ public final class CommandRegistrationBeanRegistrar {
 	}
 
 	private BeanDefinition createCommandClassBeanDefinition(Class<?> type) {
-		RootBeanDefinition definition = new RootBeanDefinition(type);
-		return definition;
+		return new RootBeanDefinition(type);
 	}
 
 	private BeanDefinition createCommandMethodBeanDefinition(Class<?> commandBeanType, String commandBeanName,

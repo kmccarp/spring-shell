@@ -152,7 +152,7 @@ public class ExceptionResolverMethodResolver {
 			method = getMappedMethod(exceptionType);
 			this.exceptionLookupCache.put(exceptionType, method);
 		}
-		return (method != NO_MATCHING_EXCEPTION_HANDLER_METHOD ? method : null);
+		return method != NO_MATCHING_EXCEPTION_HANDLER_METHOD ? method : null;
 	}
 
 	/**

@@ -47,7 +47,7 @@ public class StandardMethodTargetRegistrarTests {
 	private AnnotationConfigApplicationContext applicationContext;
 	private CommandCatalog catalog;
 	private DefaultShellContext shellContext;
-	private CommandRegistration.BuilderSupplier builder = () -> CommandRegistration.builder();
+	private final CommandRegistration.BuilderSupplier builder = CommandRegistration::builder;
 
 	@BeforeEach
 	public void setup() {

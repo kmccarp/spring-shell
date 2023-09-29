@@ -128,7 +128,7 @@ public class GenericResultHandlerService implements ResultHandlerService {
 	}
 
 	@SuppressWarnings("unchecked")
-	private final static class ResultHandlerAdapter implements GenericResultHandler {
+	private static final class ResultHandlerAdapter implements GenericResultHandler {
 
 		ResultHandler<Object> handler;
 		Class<?> result;
@@ -240,7 +240,7 @@ public class GenericResultHandlerService implements ResultHandlerService {
 			int i = 0;
 			while (i < hierarchy.size()) {
 				Class<?> candidate = hierarchy.get(i);
-				candidate = (array ? candidate.getComponentType() : ClassUtils.resolvePrimitiveIfNecessary(candidate));
+				candidate = array ? candidate.getComponentType() : ClassUtils.resolvePrimitiveIfNecessary(candidate);
 				Class<?> superclass = candidate.getSuperclass();
 				if (superclass != null && superclass != Object.class && superclass != Enum.class) {
 					addToClassHierarchy(i + 1, candidate.getSuperclass(), array, hierarchy, visited);
@@ -279,6 +279,6 @@ public class GenericResultHandlerService implements ResultHandlerService {
 	}
 
 	private static void invokeHandler(GenericResultHandler handler, Object result, TypeDescriptor resultType) {
-		handler.handle(result, resultType);;
+		handler.handle(result, resultType);
 	}
 }

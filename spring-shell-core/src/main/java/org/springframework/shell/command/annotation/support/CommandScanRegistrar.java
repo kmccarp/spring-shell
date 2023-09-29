@@ -71,7 +71,7 @@ public class CommandScanRegistrar implements ImportBeanDefinitionRegistrar {
 		if (packagesToScan.isEmpty()) {
 			packagesToScan.add(ClassUtils.getPackageName(metadata.getClassName()));
 		}
-		packagesToScan.removeIf((candidate) -> !StringUtils.hasText(candidate));
+		packagesToScan.removeIf(candidate -> !StringUtils.hasText(candidate));
 		return packagesToScan;
 	}
 

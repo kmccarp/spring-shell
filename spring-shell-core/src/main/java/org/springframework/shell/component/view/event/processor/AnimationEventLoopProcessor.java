@@ -48,14 +48,12 @@ public class AnimationEventLoopProcessor implements EventLoopProcessor {
 	public Flux<? extends Message<?>> process(Message<?> message) {
 		return Flux.range(0, 40)
 			.delayElements(Duration.ofMillis(100))
-			.map(i -> {
-				return MessageBuilder
+			.map(i -> MessageBuilder
 					.withPayload(i)
 					.setHeader(ShellMessageHeaderAccessor.EVENT_TYPE, EventLoop.Type.SYSTEM)
 					.setHeader("animationtick", true)
 					.setHeader("animationfrom", 0)
 					.setHeader("animationto", 9)
-					.build();
-			});
+					.build());
 	}
 }

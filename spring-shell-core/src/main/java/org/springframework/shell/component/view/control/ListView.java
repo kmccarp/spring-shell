@@ -51,8 +51,8 @@ public class ListView<T> extends BoxView {
 	private final List<T> items = new ArrayList<>();
 	private final List<ListCell<T>> cells = new ArrayList<>();
 	private final ItemStyle itemStyle;
-	private int start = 0;
-	private int pos = 0;
+	private int start;
+	private int pos;
 	private final Set<Integer> selected = new HashSet<>();
 	private BiFunction<ListView<T>, T, ListCell<T>> factory = (listView, item) -> ListCell.of(item,
 			listView.getItemStyle());
@@ -100,17 +100,17 @@ public class ListView<T> extends BoxView {
 
 	@Override
 	protected void initInternal() {
-		registerViewCommand(ViewCommand.LINE_UP, () -> up());
-		registerViewCommand(ViewCommand.LINE_DOWN, () -> down());
+		registerViewCommand(ViewCommand.LINE_UP, this::up);
+		registerViewCommand(ViewCommand.LINE_DOWN, this::down);
 
 		registerKeyBinding(Key.CursorUp, ViewCommand.LINE_UP);
 		registerKeyBinding(Key.CursorDown, ViewCommand.LINE_DOWN);
-		registerKeyBinding(Key.Enter, () -> enter());
-		registerKeyBinding(Key.Space, () -> space());
+		registerKeyBinding(Key.Enter, this::enter);
+		registerKeyBinding(Key.Space, this::space);
 
 		registerMouseBinding(MouseEvent.Type.Wheel | MouseEvent.Button.WheelUp, ViewCommand.LINE_UP);
 		registerMouseBinding(MouseEvent.Type.Wheel | MouseEvent.Button.WheelDown, ViewCommand.LINE_DOWN);
-		registerMouseBinding(MouseEvent.Type.Released | MouseEvent.Button.Button1, event -> click(event));
+		registerMouseBinding(MouseEvent.Type.Released | MouseEvent.Button.Button1, this::click);
 	}
 
 	public ItemStyle getItemStyle() {
@@ -298,7 +298,7 @@ public class ListView<T> extends BoxView {
 	public record ListViewItemEventArgs<T>(T item) implements ViewEventArgs {
 
 		public static <T> ListViewItemEventArgs<T> of(T item) {
-			return new ListViewItemEventArgs<T>(item);
+			return new ListViewItemEventArgs<>(item);
 		}
 	}
 
@@ -311,7 +311,7 @@ public class ListView<T> extends BoxView {
 	public record ListViewOpenSelectedItemEvent<T>(View view, ListViewItemEventArgs<T> args) implements ViewEvent {
 
 		public static <T> ListViewOpenSelectedItemEvent<T> of(View view, T item) {
-			return new ListViewOpenSelectedItemEvent<T>(view, ListViewItemEventArgs.of(item));
+			return new ListViewOpenSelectedItemEvent<>(view, ListViewItemEventArgs.of(item));
 		}
 	}
 
@@ -324,7 +324,7 @@ public class ListView<T> extends BoxView {
 	public record ListViewSelectedItemChangedEvent<T>(View view, ListViewItemEventArgs<T> args) implements ViewEvent {
 
 		public static <T> ListViewSelectedItemChangedEvent<T> of(View view, T item) {
-			return new ListViewSelectedItemChangedEvent<T>(view, ListViewItemEventArgs.of(item));
+			return new ListViewSelectedItemChangedEvent<>(view, ListViewItemEventArgs.of(item));
 		}
 	}
 

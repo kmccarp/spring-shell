@@ -68,8 +68,8 @@ import org.springframework.util.StringUtils;
 public class StandardMethodTargetRegistrar implements MethodTargetRegistrar {
 
 	private final Logger log = LoggerFactory.getLogger(StandardMethodTargetRegistrar.class);
-	private ApplicationContext applicationContext;
-	private CommandRegistration.BuilderSupplier commandRegistrationBuilderSupplier;
+	private final ApplicationContext applicationContext;
+	private final CommandRegistration.BuilderSupplier commandRegistrationBuilderSupplier;
 
 	public StandardMethodTargetRegistrar(ApplicationContext applicationContext,
 	CommandRegistration.BuilderSupplier commandRegistrationBuilderSupplier) {
@@ -181,8 +181,7 @@ public class StandardMethodTargetRegistrar implements MethodTargetRegistrar {
 							if (!ClassUtils.isAssignable(NoValueProvider.class, so.valueProvider())) {
 								CompletionResolver completionResolver = ctx -> {
 									ValueProvider valueProviderBean = this.applicationContext.getBean(so.valueProvider());
-									List<CompletionProposal> complete = valueProviderBean.complete(ctx);
-									return complete;
+									return valueProviderBean.complete(ctx);
 								};
 								optionSpec.completion(completionResolver);
 							}

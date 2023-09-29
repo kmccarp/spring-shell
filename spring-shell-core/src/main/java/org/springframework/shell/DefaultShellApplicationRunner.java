@@ -41,7 +41,7 @@ public class DefaultShellApplicationRunner implements ShellApplicationRunner {
 	 */
 	public static final int PRECEDENCE = 0;
 
-	private final static Logger log = LoggerFactory.getLogger(DefaultShellApplicationRunner.class);
+	private static final Logger log = LoggerFactory.getLogger(DefaultShellApplicationRunner.class);
 	private final List<ShellRunner> shellRunners;
 
 	public DefaultShellApplicationRunner(List<ShellRunner> shellRunners) {

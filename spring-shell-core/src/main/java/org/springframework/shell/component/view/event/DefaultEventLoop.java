@@ -54,7 +54,7 @@ import org.springframework.util.Assert;
  */
 public class DefaultEventLoop implements EventLoop {
 
-	private final static Logger log = LoggerFactory.getLogger(DefaultEventLoop.class);
+	private static final Logger log = LoggerFactory.getLogger(DefaultEventLoop.class);
 	private final Queue<Message<?>> messageQueue = new PriorityQueue<>(MessageComparator.comparingPriority());
 	private final Many<Message<?>> many = Sinks.many().unicast().onBackpressureBuffer(messageQueue);
 	private Flux<Message<?>> sink;
@@ -120,7 +120,7 @@ public class DefaultEventLoop implements EventLoop {
 	public <T> Flux<T> events(EventLoop.Type type, Class<T> clazz) {
 		return events()
 			.filter(m -> type.equals(StaticShellMessageHeaderAccessor.getEventType(m)))
-			.map(m -> m.getPayload())
+			.map(org.springframework.messaging.Message::getPayload)
 			.ofType(clazz);
 	}
 
@@ -130,7 +130,7 @@ public class DefaultEventLoop implements EventLoop {
 		ResolvableType resolvableType = ResolvableType.forType(typeRef);
 		return (Flux<T>) events()
 			.filter(m -> type.equals(StaticShellMessageHeaderAccessor.getEventType(m)))
-			.map(m -> m.getPayload())
+			.map(org.springframework.messaging.Message::getPayload)
 			.ofType(resolvableType.getRawClass());
 	}
 
@@ -138,7 +138,7 @@ public class DefaultEventLoop implements EventLoop {
 	public Flux<KeyEvent> keyEvents() {
 		return events()
 			.filter(m -> EventLoop.Type.KEY.equals(StaticShellMessageHeaderAccessor.getEventType(m)))
-			.map(m -> m.getPayload())
+			.map(org.springframework.messaging.Message::getPayload)
 			.ofType(KeyEvent.class);
 	}
 
@@ -146,7 +146,7 @@ public class DefaultEventLoop implements EventLoop {
 	public Flux<MouseEvent> mouseEvents() {
 		return events()
 			.filter(m -> EventLoop.Type.MOUSE.equals(StaticShellMessageHeaderAccessor.getEventType(m)))
-			.map(m -> m.getPayload())
+			.map(org.springframework.messaging.Message::getPayload)
 			.ofType(MouseEvent.class);
 	}
 
@@ -235,7 +235,7 @@ public class DefaultEventLoop implements EventLoop {
 			Flux.from(publisher)
 				// .delaySubscription(subscribedSignal.asFlux().filter(Boolean::booleanValue).next())
 				.publishOn(scheduler)
-				.flatMap((message) ->
+				.flatMap(message ->
 						Mono.just(message)
 								.handle((messageToHandle, syncSink) -> sendReactiveMessage(messageToHandle))
 								.contextWrite(StaticShellMessageHeaderAccessor.getReactorContext(message))

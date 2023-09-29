@@ -35,12 +35,12 @@ import org.springframework.util.StringUtils;
  */
 class CommandAnnotationUtils {
 
-	private final static String COMMAND = "command";
-	private final static String ALIAS = "alias";
-	private final static String HIDDEN = "hidden";
-	private final static String GROUP = "group";
-	private final static String DESCRIPTION = "description";
-	private final static String INTERACTION_MODE = "interactionMode";
+	private static final String COMMAND = "command";
+	private static final String ALIAS = "alias";
+	private static final String HIDDEN = "hidden";
+	private static final String GROUP = "group";
+	private static final String DESCRIPTION = "description";
+	private static final String INTERACTION_MODE = "interactionMode";
 
 	/**
 	 * Deduce {@link Command#hidden()} from annotations.
@@ -155,13 +155,13 @@ class CommandAnnotationUtils {
 		List<String> prefix = Stream.of(left.getStringArray(field))
 			.flatMap(command -> Stream.of(command.split(" ")))
 			.filter(command -> StringUtils.hasText(command))
-			.map(command -> command.strip())
+			.map(String::strip)
 			.collect(Collectors.toList());
 
 		return Stream.of(right.getStringArray(field))
 			.flatMap(command -> Stream.of(command.split(" ")))
 			.filter(command -> StringUtils.hasText(command))
-			.map(command -> command.strip())
+			.map(String::strip)
 			.map(command -> Stream.concat(prefix.stream(), Stream.of(command)).collect(Collectors.toList()))
 			.map(arr -> arr.toArray(String[]::new))
 			.toArray(String[][]::new);
@@ -172,7 +172,7 @@ class CommandAnnotationUtils {
 				.flatMap(commands -> Stream.of(commands))
 				.flatMap(command -> Stream.of(command.split(" ")))
 				.filter(command -> StringUtils.hasText(command))
-				.map(command -> command.strip())
+				.map(String::strip)
 				.toArray(String[]::new);
 	}
 

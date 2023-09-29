@@ -35,7 +35,7 @@ import org.springframework.util.Assert;
 
 public class MethodCommandExceptionResolver implements CommandExceptionResolver {
 
-	private final static Logger log = LoggerFactory.getLogger(MethodCommandExceptionResolver.class);
+	private static final Logger log = LoggerFactory.getLogger(MethodCommandExceptionResolver.class);
 	private final Object bean;
 	private final Terminal terminal;
 
@@ -68,7 +68,7 @@ public class MethodCommandExceptionResolver implements CommandExceptionResolver 
 			while (exToExpose != null) {
 				exceptions.add(exToExpose);
 				Throwable cause = exToExpose.getCause();
-				exToExpose = (cause != exToExpose ? cause : null);
+				exToExpose = cause != exToExpose ? cause : null;
 			}
 			Object[] arguments = new Object[exceptions.size() + 1];
 			exceptions.toArray(arguments);
@@ -122,8 +122,7 @@ public class MethodCommandExceptionResolver implements CommandExceptionResolver 
 
 		@Override
 		public Object resolveArgument(MethodParameter parameter, Message<?> message) throws Exception {
-			Terminal terminal = message.getHeaders().get("terminal", Terminal.class);
-			return terminal;
+			return message.getHeaders().get("terminal", Terminal.class);
 		}
 
 	}

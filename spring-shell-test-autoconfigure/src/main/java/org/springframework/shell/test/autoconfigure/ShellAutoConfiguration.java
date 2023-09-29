@@ -83,7 +83,7 @@ public class ShellAutoConfiguration {
 
 	private static class TestTtyConnector implements TtyConnector {
 
-		private final static Logger log = LoggerFactory.getLogger(TestTtyConnector.class);
+		private static final Logger log = LoggerFactory.getLogger(TestTtyConnector.class);
 		InputStreamReader myReader;
 		OutputStreamWriter myWriter;
 

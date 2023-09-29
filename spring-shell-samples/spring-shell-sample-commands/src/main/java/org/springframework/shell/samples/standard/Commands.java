@@ -78,12 +78,11 @@ public class Commands {
 	@ShellMethod("Get iterables.")
 	public Iterable<String> iterables() {
 		List<String> list = Arrays.asList("first", "second");
-		Iterable<String> iterable = new Iterable<String>() {
+		return new Iterable<>() {
 			@Override
 			public Iterator<String> iterator() {
 				return list.iterator();
 			}
 		};
-		return iterable;
 	}
 }

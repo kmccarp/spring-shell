@@ -31,10 +31,10 @@ import org.springframework.shell.style.ThemeResolver.ResolvedValues;
  */
 public abstract class AbstractControl implements Control {
 
-	private int x = 0;
-	private int y = 0;
-	private int width = 0;
-	private int height = 0;
+	private int x;
+	private int y;
+	private int width;
+	private int height;
 	private ThemeResolver themeResolver;
 	private String themeName;
 

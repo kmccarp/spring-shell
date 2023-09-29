@@ -80,13 +80,12 @@ public class ShellMessageHeaderAccessor extends MessageHeaderAccessor {
 	@Nullable
 	public Integer getPriority() {
 		Number priority = getHeader(PRIORITY, Number.class);
-		return (priority != null ? priority.intValue() : null);
+		return priority != null ? priority.intValue() : null;
 	}
 
 	@Nullable
 	public View getView() {
-		View view = getHeader(VIEW, View.class);
-		return view;
+		return getHeader(VIEW, View.class);
 	}
 
 	/**

@@ -56,13 +56,13 @@ import org.springframework.util.StringUtils;
  */
 public abstract class AbstractComponent<T extends ComponentContext<T>> implements ResourceLoaderAware {
 
-	private final static Logger log = LoggerFactory.getLogger(AbstractComponent.class);
-	public final static String OPERATION_EXIT = "EXIT";
-	public final static String OPERATION_BACKSPACE = "BACKSPACE";
-	public final static String OPERATION_CHAR = "CHAR";
-	public final static String OPERATION_SELECT = "SELECT";
-	public final static String OPERATION_DOWN = "DOWN";
-	public final static String OPERATION_UP = "UP";
+	private static final Logger log = LoggerFactory.getLogger(AbstractComponent.class);
+	public static final String OPERATION_EXIT = "EXIT";
+	public static final String OPERATION_BACKSPACE = "BACKSPACE";
+	public static final String OPERATION_CHAR = "CHAR";
+	public static final String OPERATION_SELECT = "SELECT";
+	public static final String OPERATION_DOWN = "DOWN";
+	public static final String OPERATION_UP = "UP";
 
 	private final Terminal terminal;
 	private final BindingReader bindingReader;

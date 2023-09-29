@@ -17,7 +17,7 @@ package org.springframework.shell.command.parser;
 
 public class Token {
 
-	private final static int IMPLICIT_POSITION = -1;
+	private static final int IMPLICIT_POSITION = -1;
 	private final String value;
 	private final TokenType type;
 	private final int position;

@@ -27,7 +27,7 @@ public interface SelectorList<T extends Nameable> {
 	List<ProjectionItem<T>> getProjection();
 
 	public static <T extends Nameable> SelectorList<T> of(int max) {
-		return new DefaultSelectorList<T>(max);
+		return new DefaultSelectorList<>(max);
 	}
 
 	public interface ProjectionItem<T> extends Nameable, Selectable {

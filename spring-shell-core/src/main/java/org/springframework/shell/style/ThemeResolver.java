@@ -34,10 +34,10 @@ import org.springframework.util.StringUtils;
  */
 public class ThemeResolver {
 
-	private StyleSource styleSource = new MemoryStyleSource();
-	private StyleResolver styleResolver = new StyleResolver(styleSource, "default");
-	private StyleExpression styleExpression = new StyleExpression(styleResolver);
-	private ThemeRegistry themeRegistry;
+	private final StyleSource styleSource = new MemoryStyleSource();
+	private final StyleResolver styleResolver = new StyleResolver(styleSource, "default");
+	private final StyleExpression styleExpression = new StyleExpression(styleResolver);
+	private final ThemeRegistry themeRegistry;
 	private final Theme theme;
 
 	public ThemeResolver(ThemeRegistry themeRegistry, String themeName) {
@@ -72,7 +72,7 @@ public class ThemeResolver {
 	public ResolvedValues resolveValues(AttributedStyle attributedStyle) {
 		long style = attributedStyle.getStyle();
 		long s = style & ~(F_FOREGROUND | F_BACKGROUND);
-		s = (s & 0x00007FFF);
+		s = s & 0x00007FFF;
 		int fg = (int) ((style & FG_COLOR) >> FG_COLOR_EXP);
 		int bg = (int) ((style & BG_COLOR) >> BG_COLOR_EXP);
 		// if jline "ind" bit is set, resort to using

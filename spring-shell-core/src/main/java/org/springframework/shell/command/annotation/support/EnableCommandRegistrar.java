@@ -40,8 +40,8 @@ public final class EnableCommandRegistrar implements ImportBeanDefinitionRegistr
 
 	private Set<Class<?>> getTypes(AnnotationMetadata metadata) {
 		return metadata.getAnnotations().stream(EnableCommand.class)
-				.flatMap((annotation) -> Arrays.stream(annotation.getClassArray(MergedAnnotation.VALUE)))
-				.filter((type) -> void.class != type)
+				.flatMap(annotation -> Arrays.stream(annotation.getClassArray(MergedAnnotation.VALUE)))
+				.filter(type -> void.class != type)
 				.collect(Collectors.toSet());
 	}
 }

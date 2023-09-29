@@ -30,9 +30,7 @@ public abstract class AbstractCommandTests {
 		return "hi" + arg1;
 	};
 
-	protected Function<CommandContext, Void> function2 = ctx -> {
-		return null;
-	};
+	protected Function<CommandContext, Void> function2 = ctx -> null;
 
 	@BeforeEach
 	public void setupAbstractCommandTests() {

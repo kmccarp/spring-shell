@@ -61,7 +61,7 @@ import org.springframework.util.StringUtils;
  */
 public class Shell {
 
-	private final static Logger log = LoggerFactory.getLogger(Shell.class);
+	private static final Logger log = LoggerFactory.getLogger(Shell.class);
 	private final ResultHandlerService resultHandlerService;
 
 	/**
@@ -77,8 +77,8 @@ public class Shell {
 	private ConversionService conversionService = new DefaultConversionService();
 	private final ShellContext shellContext;
 	private final ExitCodeMappings exitCodeMappings;
-	private Exception handlingResultNonInt = null;
-	private CommandHandlingResult processExceptionNonInt = null;
+	private Exception handlingResultNonInt;
+	private CommandHandlingResult processExceptionNonInt;
 
 	/**
 	 * Marker object to distinguish unresolved arguments from {@code null}, which is a valid
@@ -234,7 +234,7 @@ public class Shell {
 		}
 
 		Thread commandThread = Thread.currentThread();
-		Object sh = Signals.register("INT", () -> commandThread.interrupt());
+		Object sh = Signals.register("INT", commandThread::interrupt);
 
 		CommandExecution execution = CommandExecution.of(
 				argumentResolvers != null ? argumentResolvers.getResolvers() : null, validator, terminal,
@@ -354,7 +354,7 @@ public class Shell {
 
 			// Try to complete arguments
 			List<CommandOption> matchedArgOptions = new ArrayList<>();
-			if (argsContext.getWords().size() > 0 && argsContext.getWordIndex() > 0 && argsContext.getWords().size() > argsContext.getWordIndex()) {
+			if (!argsContext.getWords().isEmpty() && argsContext.getWordIndex() > 0 && argsContext.getWords().size() > argsContext.getWordIndex()) {
 				matchedArgOptions.addAll(matchOptions(registration.getOptions(), argsContext.getWords().get(argsContext.getWordIndex() - 1)));
 			}
 

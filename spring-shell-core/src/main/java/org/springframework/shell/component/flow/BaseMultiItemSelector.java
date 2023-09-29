@@ -36,14 +36,14 @@ import org.springframework.shell.component.support.SelectorItem;
 public abstract class BaseMultiItemSelector extends BaseInput<MultiItemSelectorSpec> implements MultiItemSelectorSpec {
 
 	private String name;
-	private List<String> resultValues = new ArrayList<>();
+	private final List<String> resultValues = new ArrayList<>();
 	private ResultMode resultMode;
 	private List<SelectItem> selectItems = new ArrayList<>();
 	private Comparator<SelectorItem<String>> comparator;
 	private Function<MultiItemSelectorContext<String, SelectorItem<String>>, List<AttributedString>> renderer;
 	private Integer maxItems;
-	private List<Consumer<MultiItemSelectorContext<String, SelectorItem<String>>>> preHandlers = new ArrayList<>();
-	private List<Consumer<MultiItemSelectorContext<String, SelectorItem<String>>>> postHandlers = new ArrayList<>();
+	private final List<Consumer<MultiItemSelectorContext<String, SelectorItem<String>>>> preHandlers = new ArrayList<>();
+	private final List<Consumer<MultiItemSelectorContext<String, SelectorItem<String>>>> postHandlers = new ArrayList<>();
 	private boolean storeResult = true;
 	private String templateLocation;
 	private Function<MultiItemSelectorContext<String, SelectorItem<String>>, String> next;

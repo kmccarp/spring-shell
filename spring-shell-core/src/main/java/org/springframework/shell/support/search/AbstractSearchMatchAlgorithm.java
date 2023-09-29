@@ -39,12 +39,12 @@ abstract class AbstractSearchMatchAlgorithm implements SearchMatchAlgorithm {
 	public static final int BONUS_CONSECUTIVE = -(SCORE_GAP_START + SCORE_GAP_EXTENSION);
 	public static final int BONUS_FIRST_CHAR_MULTIPLIER = 2;
 	public static final int BONUS_BOUNDARY_WHITE = BONUS_BOUNDARY + 2; // default +2
-	public static final int BONUS_BOUNDARY_DELIMITER = BONUS_BOUNDARY + 1 + 1; // default +1
+	public static final int BONUS_BOUNDARY_DELIMITER = BONUS_BOUNDARY + 1 + 1;  // default +1
 
 	/**
 	 * Enumeration of matched characters.
 	 */
-	static enum CharClass {
+	enum CharClass {
 		WHITE,
 		NONWORD,
 		DELIMITER,
@@ -56,7 +56,7 @@ abstract class AbstractSearchMatchAlgorithm implements SearchMatchAlgorithm {
 
 	static class CalculateScore {
 		int score;
-		int pos[];
+		int[] pos;
 
 		CalculateScore(int score, int[] pos) {
 			this.score = score;
@@ -71,7 +71,7 @@ abstract class AbstractSearchMatchAlgorithm implements SearchMatchAlgorithm {
 		return max - index - 1;
 	}
 
-	private final static String DELIMITER_CHARS = "/,:;|";
+	private static final String DELIMITER_CHARS = "/,:;|";
 
 	static CharClass charClassOfAscii(char c) {
 		if (c >= 'a' && c <= 'z') {

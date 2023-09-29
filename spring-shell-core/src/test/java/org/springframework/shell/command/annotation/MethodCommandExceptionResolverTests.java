@@ -121,7 +121,7 @@ class MethodCommandExceptionResolverTests {
 		}
 	}
 
-	private static CommandHandlingResult RESULT = CommandHandlingResult.of("Hi, handled exception\n", 42);
+	private static final CommandHandlingResult RESULT = CommandHandlingResult.of("Hi, handled exception\n", 42);
 
 	private static class CustomException1 extends RuntimeException {
 	}

@@ -39,8 +39,8 @@ public abstract class BaseStringInput extends BaseInput<StringInputSpec> impleme
 	private String defaultValue;
 	private Character maskCharacter;
 	private Function<StringInputContext, List<AttributedString>> renderer;
-	private List<Consumer<StringInputContext>> preHandlers = new ArrayList<>();
-	private List<Consumer<StringInputContext>> postHandlers = new ArrayList<>();
+	private final List<Consumer<StringInputContext>> preHandlers = new ArrayList<>();
+	private final List<Consumer<StringInputContext>> postHandlers = new ArrayList<>();
 	private boolean storeResult = true;
 	private String templateLocation;
 	private Function<StringInputContext, String> next;

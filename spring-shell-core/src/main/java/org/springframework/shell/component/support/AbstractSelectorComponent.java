@@ -48,18 +48,18 @@ import static org.jline.keymap.KeyMap.key;
 public abstract class AbstractSelectorComponent<T, C extends SelectorComponentContext<T, I, C>, I extends Nameable & Matchable & Enableable & Selectable & Itemable<T>>
 		extends AbstractComponent<C> {
 
-	private final static Logger log = LoggerFactory.getLogger(AbstractSelectorComponent.class);
+	private static final Logger log = LoggerFactory.getLogger(AbstractSelectorComponent.class);
 	protected final String name;
 	private final List<I> items;
 	private Comparator<I> comparator = (o1, o2) -> 0;
-	private boolean exitSelects;
+	private final boolean exitSelects;
 	private int maxItems = 5;
-	private Function<T, String> itemMapper = item -> item.toString();
-	private boolean stale = false;
-	private AtomicInteger start = new AtomicInteger(0);
-	private AtomicInteger pos = new AtomicInteger(0);
+	private Function<T, String> itemMapper = Object::toString;
+	private boolean stale;
+	private final AtomicInteger start = new AtomicInteger(0);
+	private final AtomicInteger pos = new AtomicInteger(0);
 	private I defaultExpose;
-	private boolean expose = false;
+	private boolean expose;
 
 	public AbstractSelectorComponent(Terminal terminal, String name, List<I> items, boolean exitSelects,
 			Comparator<I> comparator) {
@@ -222,7 +222,7 @@ public abstract class AbstractSelectorComponent<T, C extends SelectorComponentCo
 				break;
 			case OPERATION_EXIT:
 				if (exitSelects) {
-					if (itemStateView.size() == 0) {
+					if (itemStateView.isEmpty()) {
 						// filter shows nothing, prevent exit
 						break;
 					}
@@ -286,9 +286,7 @@ public abstract class AbstractSelectorComponent<T, C extends SelectorComponentCo
 		}
 		AtomicInteger reindex = new AtomicInteger(0);
 		List<ItemState<I>> filtered = itemStates.stream()
-			.filter(i -> {
-				return i.matches(context.getInput());
-			})
+			.filter(i -> i.matches(context.getInput()))
 			.map(i -> {
 				i.index = reindex.getAndIncrement();
 				return i;
@@ -496,7 +494,7 @@ public abstract class AbstractSelectorComponent<T, C extends SelectorComponentCo
 		}
 
 		@Override
-		public java.util.Map<String,Object> toTemplateModel() {
+		public Map<String,Object> toTemplateModel() {
 			Map<String, Object> attributes = super.toTemplateModel();
 			attributes.put("name", getName());
 			attributes.put("input", getInput());
@@ -576,7 +574,7 @@ public abstract class AbstractSelectorComponent<T, C extends SelectorComponentCo
 		}
 
 		static <I extends Matchable> ItemState<I> of(I item, String name, int index, boolean enabled, boolean selected) {
-			return new ItemState<I>(item, name, index, enabled, selected);
+			return new ItemState<>(item, name, index, enabled, selected);
 		}
 	}
 

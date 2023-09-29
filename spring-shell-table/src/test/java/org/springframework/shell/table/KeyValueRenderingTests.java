@@ -33,7 +33,7 @@ public class KeyValueRenderingTests extends AbstractTestWithSample {
 
 	@Test
 	public void testRenderConstrained() throws IOException {
-		Map<String, String> values = new LinkedHashMap<String, String>();
+		Map<String, String> values = new LinkedHashMap<>();
 		values.put("a", "b");
 		values.put("long-key", "c");
 		values.put("d", "long-value");
@@ -48,7 +48,7 @@ public class KeyValueRenderingTests extends AbstractTestWithSample {
 
 	@Test
 	public void testRenderUnconstrained() throws IOException {
-		Map<String, String> values = new LinkedHashMap<String, String>();
+		Map<String, String> values = new LinkedHashMap<>();
 		values.put("a", "b");
 		values.put("long-key", "c");
 		values.put("d", "long-value");

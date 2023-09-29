@@ -35,11 +35,11 @@ import org.stringtemplate.v4.misc.STMessage;
  */
 public class TemplateExecutor {
 
-	private final static Logger log = LoggerFactory.getLogger(TemplateExecutor.class);
-	private final static STErrorListener ERROR_LISTENER = new LoggingSTErrorListener();
+	private static final Logger log = LoggerFactory.getLogger(TemplateExecutor.class);
+	private static final STErrorListener ERROR_LISTENER = new LoggingSTErrorListener();
 	private final ThemeResolver themeResolver;
-	private StringToStyleExpressionRenderer renderer1;
-	private PartsTextRenderer renderer2;
+	private final StringToStyleExpressionRenderer renderer1;
+	private final PartsTextRenderer renderer2;
 
 	public TemplateExecutor(ThemeResolver themeResolver) {
 		this.themeResolver = themeResolver;
@@ -84,7 +84,7 @@ public class TemplateExecutor {
 
 		// define styled figures as dictionary
 		Map<String, Object> figureDict = Stream.of(FigureSettings.tags())
-			.collect(Collectors.toMap(tag -> tag, tag -> this.themeResolver.resolveFigureTag(tag)));
+			.collect(Collectors.toMap(tag -> tag, this.themeResolver::resolveFigureTag));
 		group.defineDictionary("figures", figureDict);
 
 		ST st = group.getInstanceOf("main");
@@ -101,7 +101,7 @@ public class TemplateExecutor {
 
 	private static class LoggingSTErrorListener implements STErrorListener {
 
-		private final static Logger log = LoggerFactory.getLogger(LoggingSTErrorListener.class);
+		private static final Logger log = LoggerFactory.getLogger(LoggingSTErrorListener.class);
 
 		@Override
 		public void compileTimeError(STMessage msg) {

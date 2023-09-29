@@ -28,10 +28,10 @@ import org.springframework.shell.style.StyleSettings;
 public class WindowView extends AbstractView {
 
 	private int backgroundColor = -1;
-	private int minWidth = 30;
-	private int maxWidth = 60;
-	private int minHeight = 8;
-	private int maxHeight = 12;
+	private final int minWidth = 30;
+	private final int maxWidth = 60;
+	private final int minHeight = 8;
+	private final int maxHeight = 12;
 
 	/**
 	 * Sets a background color. If color is set to {@code null} it indicates that

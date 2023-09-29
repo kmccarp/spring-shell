@@ -41,7 +41,7 @@ import org.springframework.util.StringUtils;
  */
 public class ConfirmationInput extends AbstractTextComponent<Boolean, ConfirmationInputContext> {
 
-	private final static Logger log = LoggerFactory.getLogger(ConfirmationInput.class);
+	private static final Logger log = LoggerFactory.getLogger(ConfirmationInput.class);
 	private final boolean defaultValue;
 	private ConfirmationInputContext currentContext;
 

@@ -20,7 +20,7 @@ import java.util.List;
 
 public class PartsText {
 
-	private List<PartText> parts;
+	private final List<PartText> parts;
 
 	PartsText(List<PartText> parts) {
 		this.parts = parts;

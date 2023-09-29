@@ -182,7 +182,7 @@ public class UiComponentSnippets {
 				MultiItemSelectorContext<String, SelectorItem<String>> context = component
 						.run(MultiItemSelectorContext.empty());
 				String result = context.getResultItems().stream()
-						.map(si -> si.getItem())
+						.map(org.springframework.shell.component.support.Itemable::getItem)
 						.collect(Collectors.joining(","));
 				return "Got value " + result;
 			}

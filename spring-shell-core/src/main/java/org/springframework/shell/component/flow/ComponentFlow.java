@@ -180,7 +180,7 @@ public interface ComponentFlow {
 		ComponentFlow build();
 	}
 
-	static abstract class BaseBuilder implements Builder {
+	abstract static class BaseBuilder implements Builder {
 
 		private final List<BaseStringInput> stringInputs = new ArrayList<>();
 		private final List<BasePathInput> pathInputs = new ArrayList<>();
@@ -446,7 +446,7 @@ public interface ComponentFlow {
 		private Stream<OrderedInputOperation> stringInputsStream() {
 			return stringInputs.stream().map(input -> {
 				StringInput selector = new StringInput(terminal, input.getName(), input.getDefaultValue());
-				Function<ComponentContext<?>, ComponentContext<?>> operation = (context) -> {
+				Function<ComponentContext<?>, ComponentContext<?>> operation = context -> {
 						if (input.getResultMode() == ResultMode.ACCEPT && input.isStoreResult()
 								&& StringUtils.hasText(input.getResultValue())) {
 							context.put(input.getId(), input.getResultValue());
@@ -490,7 +490,7 @@ public interface ComponentFlow {
 		private Stream<OrderedInputOperation> pathInputsStream() {
 			return pathInputs.stream().map(input -> {
 				PathInput selector = new PathInput(terminal, input.getName());
-				Function<ComponentContext<?>, ComponentContext<?>> operation = (context) -> {
+				Function<ComponentContext<?>, ComponentContext<?>> operation = context -> {
 						if (input.getResultMode() == ResultMode.ACCEPT && input.isStoreResult()
 								&& StringUtils.hasText(input.getResultValue())) {
 							context.put(input.getId(), Paths.get(input.getResultValue()));
@@ -528,7 +528,7 @@ public interface ComponentFlow {
 		private Stream<OrderedInputOperation> confirmationInputsStream() {
 			return confirmationInputs.stream().map(input -> {
 				ConfirmationInput selector = new ConfirmationInput(terminal, input.getName(), input.getDefaultValue());
-				Function<ComponentContext<?>, ComponentContext<?>> operation = (context) -> {
+				Function<ComponentContext<?>, ComponentContext<?>> operation = context -> {
 						if (input.getResultMode() == ResultMode.ACCEPT && input.isStoreResult()
 								&& input.getResultValue() != null) {
 							context.put(input.getId(), input.getResultValue());
@@ -582,7 +582,7 @@ public interface ComponentFlow {
 				SingleItemSelector<String, SelectorItem<String>> selector = new SingleItemSelector<>(terminal,
 						selectorItems, input.getName(), input.getComparator());
 				selector.setDefaultExpose(defaultExpose);
-				Function<ComponentContext<?>, ComponentContext<?>> operation = (context) -> {
+				Function<ComponentContext<?>, ComponentContext<?>> operation = context -> {
 					if (input.getResultMode() == ResultMode.ACCEPT && input.isStoreResult()
 							&& StringUtils.hasText(input.getResultValue())) {
 						context.put(input.getId(), input.getResultValue());
@@ -629,7 +629,7 @@ public interface ComponentFlow {
 						.collect(Collectors.toList());
 				MultiItemSelector<String, SelectorItem<String>> selector = new MultiItemSelector<>(terminal,
 						selectorItems, input.getName(), input.getComparator());
-				Function<ComponentContext<?>, ComponentContext<?>> operation = (context) -> {
+				Function<ComponentContext<?>, ComponentContext<?>> operation = context -> {
 					if (input.getResultMode() == ResultMode.ACCEPT && input.isStoreResult()
 							&& !ObjectUtils.isEmpty(input.getResultValues())) {
 						context.put(input.getId(), input.getResultValues());

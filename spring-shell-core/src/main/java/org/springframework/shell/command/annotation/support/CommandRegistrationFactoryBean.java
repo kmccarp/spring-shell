@@ -93,8 +93,7 @@ class CommandRegistrationFactoryBean implements FactoryBean<CommandRegistration>
 
 	@Override
 	public CommandRegistration getObject() throws Exception {
-		CommandRegistration registration = buildRegistration();
-		return registration;
+		return buildRegistration();
 	}
 
 	@Override
@@ -130,7 +129,7 @@ class CommandRegistrationFactoryBean implements FactoryBean<CommandRegistration>
 	}
 
 	private CommandRegistration.Builder getBuilder() {
-		return supplier.getIfAvailable(() -> () -> CommandRegistration.builder()).get();
+		return supplier.getIfAvailable(() -> CommandRegistration::builder).get();
 	}
 
 	private CommandRegistration buildRegistration() {
@@ -171,9 +170,7 @@ class CommandRegistrationFactoryBean implements FactoryBean<CommandRegistration>
 		if (caAnn.isPresent()) {
 			String[] refs = caAnn.getStringArray("provider");
 			List<AvailabilityProvider> avails = Stream.of(refs)
-				.map(r -> {
-					return this.applicationContext.getBean(r, AvailabilityProvider.class);
-				})
+				.map(r -> this.applicationContext.getBean(r, AvailabilityProvider.class))
 				.collect(Collectors.toList());
 			if (!avails.isEmpty()) {
 				builder.availability(() -> {
@@ -210,8 +207,7 @@ class CommandRegistrationFactoryBean implements FactoryBean<CommandRegistration>
 		methodCommandExceptionResolver.exceptionResolverMethodResolver = exceptionResolverMethodResolver;
 		builder.withErrorHandling().resolver(methodCommandExceptionResolver);
 
-		CommandRegistration registration = builder.build();
-		return registration;
+		return builder.build();
 	}
 
 	private void onCommandParameter(MethodParameter mp, Builder builder) {
@@ -302,11 +298,9 @@ class CommandRegistrationFactoryBean implements FactoryBean<CommandRegistration>
 						final List<CompletionProvider> resolvers = Arrays.stream(providerBeanNames)
 							.map(beanName -> this.applicationContext.getBean(beanName, CompletionProvider.class))
 							.collect(Collectors.toList());
-						optionSpec.completion(ctx -> {
-							return resolvers.stream()
+						optionSpec.completion(ctx -> resolvers.stream()
 								.flatMap(resolver -> resolver.apply(ctx).stream())
-								.collect(Collectors.toList());
-						});
+								.collect(Collectors.toList()));
 					}
 				}
 				// if (ovAnn != null && StringUtils.hasText(ovAnn.ref())) {

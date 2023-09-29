@@ -36,10 +36,10 @@ import org.springframework.util.StringUtils;
 public abstract class OptionNameModifierSupport {
 
 	public static final OptionNameModifier NOOP = name -> name;
-	public static final OptionNameModifier CAMELCASE = name -> toCamelCase(name);
-	public static final OptionNameModifier SNAKECASE = name -> toSnakeCase(name);
-	public static final OptionNameModifier KEBABCASE = name -> toKebabCase(name);
-	public static final OptionNameModifier PASCALCASE = name -> toPascalCase(name);
+	public static final OptionNameModifier CAMELCASE = OptionNameModifierSupport::toCamelCase;
+	public static final OptionNameModifier SNAKECASE = OptionNameModifierSupport::toSnakeCase;
+	public static final OptionNameModifier KEBABCASE = OptionNameModifierSupport::toKebabCase;
+	public static final OptionNameModifier PASCALCASE = OptionNameModifierSupport::toPascalCase;
 
 	private static final Pattern PATTERN = Pattern
 			.compile("[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+");

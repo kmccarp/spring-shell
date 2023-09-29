@@ -45,7 +45,7 @@ public final class StaticShellMessageHeaderAccessor {
 		if (value == null) {
 			return null;
 		}
-		return (value instanceof UUID ? (UUID) value : UUID.fromString(value.toString()));
+		return value instanceof UUID ? (UUID) value : UUID.fromString(value.toString());
 	}
 
 	@Nullable
@@ -54,19 +54,18 @@ public final class StaticShellMessageHeaderAccessor {
 		if (value == null) {
 			return null;
 		}
-		return (value instanceof Long ? (Long) value : Long.parseLong(value.toString()));
+		return value instanceof Long ? (Long) value : Long.parseLong(value.toString());
 	}
 
 	@Nullable
 	public static Integer getPriority(Message<?> message) {
 		Number priority = message.getHeaders().get(ShellMessageHeaderAccessor.PRIORITY, Number.class);
-		return (priority != null ? priority.intValue() : null);
+		return priority != null ? priority.intValue() : null;
 	}
 
 	@Nullable
 	public static View getView(Message<?> message) {
-		View view = message.getHeaders().get(ShellMessageHeaderAccessor.VIEW, View.class);
-		return view;
+		return message.getHeaders().get(ShellMessageHeaderAccessor.VIEW, View.class);
 	}
 
 	/**
@@ -91,8 +90,7 @@ public final class StaticShellMessageHeaderAccessor {
 	 * @return the {@link EventLoop.Type} header if present.
 	 */
 	public static EventLoop.Type getEventType(Message<?> message) {
-		EventLoop.Type eventType = message.getHeaders()
+		return message.getHeaders()
 				.get(ShellMessageHeaderAccessor.EVENT_TYPE, EventLoop.Type.class);
-		return eventType;
 	}
 }

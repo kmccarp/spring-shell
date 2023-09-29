@@ -89,7 +89,7 @@ public abstract class AbstractCompletions {
 						commandKey = splitKeys[i];
 					}
 					DefaultCommandModelCommand command = commands.computeIfAbsent(commandKey,
-							(fullCommand) -> new DefaultCommandModelCommand(fullCommand, main));
+							fullCommand -> new DefaultCommandModelCommand(fullCommand, main));
 
 					// TODO long vs short
 					List<CommandModelOption> options = registration.getOptions().stream()
@@ -220,19 +220,19 @@ public abstract class AbstractCompletions {
 		@Override
 		public List<CommandModelCommand> getAllCommands() {
 			return getCommands().stream()
-					.flatMap(c -> flatten(c))
+					.flatMap(this::flatten)
 					.collect(Collectors.toList());
 		}
 
 		@Override
 		public List<String> getRootCommands() {
 			return getCommands().stream()
-					.map(c -> c.getLastCommandPart())
+					.map(org.springframework.shell.standard.completion.AbstractCompletions.CommandModelCommand::getLastCommandPart)
 					.collect(Collectors.toList());
 		}
 
 		private Stream<CommandModelCommand> flatten(CommandModelCommand command) {
-			return Stream.concat(Stream.of(command), command.getCommands().stream().flatMap(c -> flatten(c)));
+			return Stream.concat(Stream.of(command), command.getCommands().stream().flatMap(this::flatten));
 		}
 	}
 
@@ -267,14 +267,14 @@ public abstract class AbstractCompletions {
 		@Override
 		public List<String> getSubCommands() {
 			return this.commands.stream()
-					.map(c -> c.getMainCommand())
+					.map(org.springframework.shell.standard.completion.AbstractCompletions.CommandModelCommand::getMainCommand)
 					.collect(Collectors.toList());
 		}
 
 		@Override
 		public List<String> getFlags() {
 			return this.options.stream()
-					.map(o -> o.option())
+					.map(org.springframework.shell.standard.completion.AbstractCompletions.CommandModelOption::option)
 					.collect(Collectors.toList());
 		}
 
@@ -301,7 +301,7 @@ public abstract class AbstractCompletions {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + getEnclosingInstance().hashCode();
-			result = prime * result + ((fullCommand == null) ? 0 : fullCommand.hashCode());
+			result = prime * result + (fullCommand == null ? 0 : fullCommand.hashCode());
 			return result;
 		}
 

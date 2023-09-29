@@ -22,12 +22,12 @@ import org.springframework.util.StringUtils;
  */
 public final class CommandNotFoundResultHandler extends TerminalAwareResultHandler<CommandNotFound> {
 
-	private CommandNotFoundMessageProvider provider;
+	private final CommandNotFoundMessageProvider provider;
 
 	public CommandNotFoundResultHandler(Terminal terminal, ObjectProvider<CommandNotFoundMessageProvider> provider) {
 		super(terminal);
 		Assert.notNull(provider, "provider cannot be null");
-		this.provider = provider.getIfAvailable(() -> new DefaultProvider());
+		this.provider = provider.getIfAvailable(DefaultProvider::new);
 	}
 
 	@Override
@@ -44,9 +44,8 @@ public final class CommandNotFoundResultHandler extends TerminalAwareResultHandl
 
 		@Override
 		public String apply(ProviderContext context) {
-			String message = new AttributedString(context.error().getMessage(),
+			return new AttributedString(context.error().getMessage(),
 					AttributedStyle.DEFAULT.foreground(AttributedStyle.RED)).toAnsi();
-			return message;
 		}
 	}
 }

@@ -34,7 +34,7 @@ import org.springframework.util.StringUtils;
 public class StringToStyleExpressionRenderer implements AttributeRenderer<String> {
 
 	private final ThemeResolver themeResolver;
-	private final static String TRUNCATE = "truncate-";
+	private static final String TRUNCATE = "truncate-";
 
 	public StringToStyleExpressionRenderer(ThemeResolver themeResolver) {
 		Assert.notNull(themeResolver, "themeResolver must be set");

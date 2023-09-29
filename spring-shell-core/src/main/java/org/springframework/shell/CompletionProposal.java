@@ -47,7 +47,7 @@ public class CompletionProposal {
 	 * Whether the proposal should bypass escaping and quoting rules. This is useful for command proposals, which can
 	 * appear as true multi-word Strings.
 	 */
-	private boolean dontQuote = false;
+	private boolean dontQuote;
 
 	/**
 	 * Whether the proposal cant be completed further. By setting complete to false then it will not append an space

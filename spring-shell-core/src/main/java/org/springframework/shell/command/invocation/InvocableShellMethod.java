@@ -299,7 +299,7 @@ public class InvocableShellMethod {
 				Method bridgedMethod = getBridgedMethod();
 				Set<ConstraintViolation<Object>> constraintViolations = validator.forExecutables()
 						.validateParameters(getBean(), bridgedMethod, args);
-				if (constraintViolations.size() > 0) {
+				if (!constraintViolations.isEmpty()) {
 					throw new ParameterValidationException(constraintViolations);
 				}
 			}
@@ -307,7 +307,7 @@ public class InvocableShellMethod {
 		}
 		catch (IllegalArgumentException ex) {
 			assertTargetBean(getBridgedMethod(), getBean(), args);
-			String text = (ex.getMessage() != null ? ex.getMessage() : "Illegal argument");
+			String text = ex.getMessage() != null ? ex.getMessage() : "Illegal argument";
 			throw new IllegalStateException(formatInvokeError(text, args), ex);
 		}
 		catch (InvocationTargetException ex) {
@@ -466,12 +466,12 @@ public class InvocableShellMethod {
 			return false;
 		}
 		InvocableShellMethod otherMethod = (InvocableShellMethod) other;
-		return (this.bean.equals(otherMethod.bean) && this.method.equals(otherMethod.method));
+		return this.bean.equals(otherMethod.bean) && this.method.equals(otherMethod.method);
 	}
 
 	@Override
 	public int hashCode() {
-		return (this.bean.hashCode() * 31 + this.method.hashCode());
+		return this.bean.hashCode() * 31 + this.method.hashCode();
 	}
 
 	@Override
@@ -588,7 +588,7 @@ public class InvocableShellMethod {
 
 		@Override
 		public Class<?> getParameterType() {
-			return (this.returnValue != null ? this.returnValue.getClass() : super.getParameterType());
+			return this.returnValue != null ? this.returnValue.getClass() : super.getParameterType();
 		}
 
 		@Override

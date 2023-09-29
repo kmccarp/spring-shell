@@ -105,7 +105,7 @@ public interface Ast {
 			List<NonterminalAstNode> nonterminalNodes = new ArrayList<>();
 			List<TerminalAstNode> terminalNodes = new ArrayList<>();
 
-			if (commandNodes.size() > 0) {
+			if (!commandNodes.isEmpty()) {
 				nonterminalNodes.add(commandNodes.get(0));
 			}
 			for (DirectiveNode dn : directiveNodes) {

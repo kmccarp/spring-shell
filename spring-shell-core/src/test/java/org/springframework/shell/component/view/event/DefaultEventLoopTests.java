@@ -182,7 +182,7 @@ class DefaultEventLoopTests {
 	}
 
 	static class TestRunnable implements Runnable {
-		int count = 0;
+		int count;
 
 		@Override
 		public void run() {

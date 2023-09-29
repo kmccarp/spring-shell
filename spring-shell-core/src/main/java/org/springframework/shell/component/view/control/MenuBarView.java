@@ -98,10 +98,10 @@ public class MenuBarView extends BoxView {
 
 	@Override
 	protected void initInternal() {
-		registerKeyBinding(Key.CursorLeft, () -> left());
-		registerKeyBinding(Key.CursorRight, () -> right());
+		registerKeyBinding(Key.CursorLeft, this::left);
+		registerKeyBinding(Key.CursorRight, this::right);
 
-		registerMouseBinding(MouseEvent.Type.Released | MouseEvent.Button.Button1, event -> select(event));
+		registerMouseBinding(MouseEvent.Type.Released | MouseEvent.Button.Button1, this::select);
 	}
 
 	@Override
@@ -231,7 +231,7 @@ public class MenuBarView extends BoxView {
 		}
 		else {
 			MenuBarItem item = items.get(activeItemIndex);
-			currentMenuView = menuViews.computeIfAbsent(item, i -> buildMenuView(i));
+			currentMenuView = menuViews.computeIfAbsent(item, this::buildMenuView);
 		}
 	}
 

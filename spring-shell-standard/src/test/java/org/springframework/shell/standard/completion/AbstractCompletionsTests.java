@@ -78,23 +78,23 @@ public class AbstractCompletionsTests {
 		TestCompletions completions = new TestCompletions(resourceLoader, commandCatalog);
 		CommandModel commandModel = completions.testCommandModel();
 		assertThat(commandModel.getCommands()).hasSize(3);
-		assertThat(commandModel.getCommands().stream().map(c -> c.getMainCommand())).containsExactlyInAnyOrder("test1", "test2",
+		assertThat(commandModel.getCommands().stream().map(org.springframework.shell.standard.completion.AbstractCompletions.CommandModelCommand::getMainCommand)).containsExactlyInAnyOrder("test1", "test2",
 				"test3");
-		assertThat(commandModel.getCommands().stream().filter(c -> c.getMainCommand().equals("test1")).findFirst().get()
+		assertThat(commandModel.getCommands().stream().filter(c -> "test1".equals(c.getMainCommand())).findFirst().get()
 				.getOptions()).hasSize(1);
-		assertThat(commandModel.getCommands().stream().filter(c -> c.getMainCommand().equals("test1")).findFirst().get()
+		assertThat(commandModel.getCommands().stream().filter(c -> "test1".equals(c.getMainCommand())).findFirst().get()
 				.getOptions().get(0).option()).isEqualTo("--param1");
-		assertThat(commandModel.getCommands().stream().filter(c -> c.getMainCommand().equals("test2")).findFirst().get()
+		assertThat(commandModel.getCommands().stream().filter(c -> "test2".equals(c.getMainCommand())).findFirst().get()
 				.getOptions()).hasSize(0);
-		assertThat(commandModel.getCommands().stream().filter(c -> c.getMainCommand().equals("test3")).findFirst().get()
+		assertThat(commandModel.getCommands().stream().filter(c -> "test3".equals(c.getMainCommand())).findFirst().get()
 				.getOptions()).hasSize(0);
-		assertThat(commandModel.getCommands().stream().filter(c -> c.getMainCommand().equals("test3")).findFirst().get()
+		assertThat(commandModel.getCommands().stream().filter(c -> "test3".equals(c.getMainCommand())).findFirst().get()
 				.getCommands()).hasSize(1);
-		assertThat(commandModel.getCommands().stream().filter(c -> c.getMainCommand().equals("test3")).findFirst().get()
+		assertThat(commandModel.getCommands().stream().filter(c -> "test3".equals(c.getMainCommand())).findFirst().get()
 				.getCommands().get(0).getMainCommand()).isEqualTo("test4");
-		assertThat(commandModel.getCommands().stream().filter(c -> c.getMainCommand().equals("test3")).findFirst().get()
+		assertThat(commandModel.getCommands().stream().filter(c -> "test3".equals(c.getMainCommand())).findFirst().get()
 				.getCommands().get(0).getOptions()).hasSize(1);
-		assertThat(commandModel.getCommands().stream().filter(c -> c.getMainCommand().equals("test3")).findFirst().get()
+		assertThat(commandModel.getCommands().stream().filter(c -> "test3".equals(c.getMainCommand())).findFirst().get()
 				.getCommands().get(0).getOptions().get(0).option()).isEqualTo("--param4");
 	}
 

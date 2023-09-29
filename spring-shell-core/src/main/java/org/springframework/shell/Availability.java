@@ -24,7 +24,7 @@ import org.springframework.util.Assert;
  *
  * @author Eric Bottard
  */
-public class Availability {
+public final class Availability {
 
     private final String reason;
 

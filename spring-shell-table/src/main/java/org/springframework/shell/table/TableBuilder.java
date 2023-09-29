@@ -37,15 +37,15 @@ public class TableBuilder {
 
 	private final TableModel model;
 
-	private final Map<CellMatcher, Formatter> formatters = new LinkedHashMap<CellMatcher, Formatter>();
+	private final Map<CellMatcher, Formatter> formatters = new LinkedHashMap<>();
 
-	private final Map<CellMatcher, SizeConstraints> sizeConstraints = new LinkedHashMap<CellMatcher, SizeConstraints>();
+	private final Map<CellMatcher, SizeConstraints> sizeConstraints = new LinkedHashMap<>();
 
-	private final Map<CellMatcher, TextWrapper> wrappers = new LinkedHashMap<CellMatcher, TextWrapper>();
+	private final Map<CellMatcher, TextWrapper> wrappers = new LinkedHashMap<>();
 
-	private final LinkedHashMap<CellMatcher, Aligner> aligners = new LinkedHashMap<CellMatcher, Aligner>();
+	private final LinkedHashMap<CellMatcher, Aligner> aligners = new LinkedHashMap<>();
 
-	private final List<BorderSpecification> borderSpecifications = new ArrayList<BorderSpecification>();
+	private final List<BorderSpecification> borderSpecifications = new ArrayList<>();
 
 	private final int rows;
 
@@ -165,8 +165,8 @@ public class TableBuilder {
 	}
 
 	private <K, V> LinkedHashMap<K, V> reverse(Map<K, V> original) {
-		LinkedHashMap<K, V> result = new LinkedHashMap<K, V>(original.size());
-		List<Map.Entry<K, V>> entries = new ArrayList<Map.Entry<K, V>>(original.entrySet());
+		LinkedHashMap<K, V> result = new LinkedHashMap<>(original.size());
+		List<Map.Entry<K, V>> entries = new ArrayList<>(original.entrySet());
 		for (int i = entries.size() - 1; i >= 0; i--) {
 			Map.Entry<K, V> entry = entries.get(i);
 			result.put(entry.getKey(), entry.getValue());
@@ -174,7 +174,7 @@ public class TableBuilder {
 		return result;
 	}
 
-	public class CellMatcherStub {
+	public final class CellMatcherStub {
 
 		private final CellMatcher cellMatcher;
 
@@ -215,7 +215,7 @@ public class TableBuilder {
 		}
 	}
 
-	public class BorderStub {
+	public final class BorderStub {
 
 		private final BorderStyle style;
 
@@ -234,7 +234,7 @@ public class TableBuilder {
 			return new TopLeft(0, 0);
 		}
 
-		public class TopLeft {
+		public final class TopLeft {
 			private final int row;
 
 			private final int column;

@@ -25,67 +25,67 @@ public abstract class FigureSettings {
 	/**
 	 * Figure meant to be used as ok like a checkmark.
 	 */
-	public final static String TAG_TICK = "tick";
+	public static final String TAG_TICK = "tick";
 
 	/**
 	 * Figure indicating something about on a level of info.
 	 */
-	public final static String TAG_INFO = "info";
+	public static final String TAG_INFO = "info";
 
 	/**
 	 * Figure indicating something about on a level of warning.
 	 */
-	public final static String TAG_WARNING = "warning";
+	public static final String TAG_WARNING = "warning";
 
 	/**
 	 * Figure indicating something about on a level of error.
 	 */
-	public final static String TAG_ERROR = "error";
+	public static final String TAG_ERROR = "error";
 
 	/**
 	 * Figure used as a checkbox for off position.
 	 */
-	public final static String TAG_CHECKBOX_OFF = "checkboxOff";
+	public static final String TAG_CHECKBOX_OFF = "checkboxOff";
 
 	/**
 	 * Figure used as a checkbox for on position.
 	 */
-	public final static String TAG_CHECKBOX_ON = "checkboxOn";
+	public static final String TAG_CHECKBOX_ON = "checkboxOn";
 
 	/**
 	 * Figure for left arrow.
 	 */
-	public final static String TAG_LEFTWARDS_ARROR = "leftwardsArrow";
+	public static final String TAG_LEFTWARDS_ARROR = "leftwardsArrow";
 
 	/**
 	 * Figure for up arrow.
 	 */
-	public final static String TAG_UPWARDS_ARROR = "upwardsArrow";
+	public static final String TAG_UPWARDS_ARROR = "upwardsArrow";
 
 	/**
 	 * Figure for right arrow.
 	 */
-	public final static String TAG_RIGHTWARDS_ARROR = "righwardsArror";
+	public static final String TAG_RIGHTWARDS_ARROR = "righwardsArror";
 
 	/**
 	 * Figure for down arrow.
 	 */
-	public final static String TAG_DOWNWARDS_ARROR = "downwardsArror";
+	public static final String TAG_DOWNWARDS_ARROR = "downwardsArror";
 
 	/**
 	 * Figure used as indicator pointing left.
 	 */
-	public final static String TAG_LEFT_POINTING_QUOTATION = "leftPointingQuotation";
+	public static final String TAG_LEFT_POINTING_QUOTATION = "leftPointingQuotation";
 
 	/**
 	 * Figure used as indicator pointing left.
 	 */
-	public final static String TAG_RIGHT_POINTING_QUOTATION = "rightPointingQuotation";
+	public static final String TAG_RIGHT_POINTING_QUOTATION = "rightPointingQuotation";
 
 	/**
 	 * Figure meant for question.
 	 */
-	public final static String TAG_QUESTION_MARK = "questionMark";
+	public static final String TAG_QUESTION_MARK = "questionMark";
 
 	public String tick() {
 		return "✔"; // U+2714 Heavy Check Mark Emoji, tick, checkmark

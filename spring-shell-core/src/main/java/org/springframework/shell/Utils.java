@@ -111,8 +111,8 @@ public class Utils {
 		return words;
 	}
 
-	private final static ValidatorFactory DEFAULT_VALIDATOR_FACTORY;
-	private final static Validator DEFAULT_VALIDATOR;
+	private static final ValidatorFactory DEFAULT_VALIDATOR_FACTORY;
+	private static final Validator DEFAULT_VALIDATOR;
 
 	static {
 		DEFAULT_VALIDATOR_FACTORY = Validation.buildDefaultValidatorFactory();

@@ -38,8 +38,8 @@ public abstract class BaseConfirmationInput extends BaseInput<ConfirmationInputS
 	private Boolean resultValue;
 	private ResultMode resultMode;
 	private Function<ConfirmationInputContext, List<AttributedString>> renderer;
-	private List<Consumer<ConfirmationInputContext>> preHandlers = new ArrayList<>();
-	private List<Consumer<ConfirmationInputContext>> postHandlers = new ArrayList<>();
+	private final List<Consumer<ConfirmationInputContext>> preHandlers = new ArrayList<>();
+	private final List<Consumer<ConfirmationInputContext>> postHandlers = new ArrayList<>();
 	private boolean storeResult = true;
 	private String templateLocation;
 	private Function<ConfirmationInputContext, String> next;

@@ -79,11 +79,11 @@ public abstract class AbstractArgumentMethodArgumentResolver implements HandlerM
 		// Possibly remove after discussion in gh-23882.
 
 		//noinspection ConstantConditions
-		this.conversionService = (conversionService != null ?
-				conversionService : DefaultConversionService.getSharedInstance());
+		this.conversionService = conversionService != null ?
+				conversionService : DefaultConversionService.getSharedInstance();
 
 		this.configurableBeanFactory = beanFactory;
-		this.expressionContext = (beanFactory != null ? new BeanExpressionContext(beanFactory, null) : null);
+		this.expressionContext = beanFactory != null ? new BeanExpressionContext(beanFactory, null) : null;
 	}
 
 	@Override

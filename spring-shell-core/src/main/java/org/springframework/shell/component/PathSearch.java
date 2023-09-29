@@ -77,11 +77,11 @@ import static org.jline.keymap.KeyMap.key;
  */
 public class PathSearch extends AbstractTextComponent<Path, PathSearchContext> {
 
-	private final static Logger log = LoggerFactory.getLogger(PathSearch.class);
-	private final static String DEFAULT_TEMPLATE_LOCATION = "classpath:org/springframework/shell/component/path-search-default.stg";
+	private static final Logger log = LoggerFactory.getLogger(PathSearch.class);
+	private static final String DEFAULT_TEMPLATE_LOCATION = "classpath:org/springframework/shell/component/path-search-default.stg";
 	private final PathSearchConfig config;
 	private PathSearchContext currentContext;
-	private Function<String, Path> pathProvider = (path) -> Paths.get(path);
+	private Function<String, Path> pathProvider = path -> Paths.get(path);
 	private final SelectorList<PathViewItem> selectorList;
 
 	public PathSearch(Terminal terminal) {
@@ -208,9 +208,7 @@ public class PathSearch extends AbstractTextComponent<Path, PathSearchContext> {
 
 	private void selectorListUpdated(PathSearchContext context) {
 		List<PathViewItem> pathViews = selectorList.getProjection().stream()
-			.map(i -> {
-				return new PathViewItem(i.getItem().getPath(), i.getItem().getPartsText(), i.isSelected());
-			})
+			.map(i -> new PathViewItem(i.getItem().getPath(), i.getItem().getPartsText(), i.isSelected()))
 			.collect(Collectors.toList());
 		context.setPathViewItems(pathViews);
 	}
@@ -238,8 +236,7 @@ public class PathSearch extends AbstractTextComponent<Path, PathSearchContext> {
 						text = ".";
 					}
 					PartsText partsText = PathSearchContext.ofPositions(text, positions);
-					PathViewItem item = new PathViewItem(scoredPath.getPath(), partsText, false);
-					return item;
+					return new PathViewItem(scoredPath.getPath(), partsText, false);
 				})
 			.collect(Collectors.toList());
 
@@ -261,9 +258,9 @@ public class PathSearch extends AbstractTextComponent<Path, PathSearchContext> {
 		private int maxPathsShow = 5;
 		private int maxPathsSearch = 20;
 		private boolean searchForward = true;
-		private boolean searchCaseSensitive = false;
-		private boolean searchNormalize = false;
-		private Supplier<BiFunction<String, PathSearchContext, PathScannerResult>> pathScanner = () -> DefaultPathScanner.of();
+		private boolean searchCaseSensitive;
+		private boolean searchNormalize;
+		private Supplier<BiFunction<String, PathSearchContext, PathScannerResult>> pathScanner = org.springframework.shell.component.PathSearch.DefaultPathScanner::of;
 
 		public int getMaxPathsShow() {
 			return this.maxPathsShow;
@@ -321,7 +318,7 @@ public class PathSearch extends AbstractTextComponent<Path, PathSearchContext> {
 		private final List<ScoredPath> scoredPaths;
 		private long dirCount = -1;
 		private long fileCount = -1;
-		private boolean hasFilter = false;
+		private boolean hasFilter;
 
 		PathScannerResult(List<ScoredPath> scoredPaths, long dirCount, long fileCount, boolean hasFilter) {
 			Assert.notNull(scoredPaths, "Scored paths cannot be null");
@@ -609,7 +606,7 @@ public class PathSearch extends AbstractTextComponent<Path, PathSearchContext> {
 			}
 
 			// match and score candidates
- 			Set<ScoredPath> treeSet = new HashSet<ScoredPath>();
+ 			Set<ScoredPath> treeSet = new HashSet<>();
 			Stream.concat(visitor.getFileList().stream(), visitor.getDirList().stream())
 				.forEach(p -> {
 					SearchMatchResult result;
@@ -644,7 +641,7 @@ public class PathSearch extends AbstractTextComponent<Path, PathSearchContext> {
 	private static class PathSearchPathVisitor extends AccumulatorPathVisitor {
 
 		private final int limitFiles;
-		private final static IOFileFilter DNFILTER = new NotFileFilter(new WildcardFileFilter(".*"));
+		private static final IOFileFilter DNFILTER = new NotFileFilter(new WildcardFileFilter(".*"));
 
 		PathSearchPathVisitor(int limitFiles) {
 			super(Counters.longPathCounters(), DNFILTER, DNFILTER);

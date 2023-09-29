@@ -29,7 +29,7 @@ public enum SimpleHorizontalAligner implements Aligner {
 	public String[] align(String[] text, int cellWidth, int cellHeight) {
 		String[] result = new String[cellHeight];
 		for (int i = 0; i < cellHeight; i++) {
-			String line = (i < text.length && text[i] != null) ? text[i].trim() : "";
+			String line = i < text.length && text[i] != null ? text[i].trim() : "";
 
 			int paddingToDistribute = cellWidth - line.length();
 

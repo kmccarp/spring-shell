@@ -148,7 +148,7 @@ public interface Parser {
 		private List<DirectiveResult> directiveResults = new ArrayList<>();
 		private List<OptionNode> invalidOptionNodes = new ArrayList<>();
 		private List<ArgumentResult> argumentResults = new ArrayList<>();
-		private int commandArgumentPos = 0;
+		private int commandArgumentPos;
 		private int optionPos = -1;
 		private long expectedOptionCount;
 
@@ -172,20 +172,20 @@ public interface Parser {
 				// go through positional arguments and fill using those and
 				// then fill from option default values.
 				Set<CommandOption> resolvedOptions = optionResults.stream()
-					.map(or -> or.option())
+					.map(org.springframework.shell.command.parser.Parser.ParseResult.OptionResult::option)
 					.collect(Collectors.toSet());
 
 				// get sorted list by position as we later match by order
 				List<CommandOption> optionsForArguments = registration.getOptions().stream()
 					.filter(o -> !resolvedOptions.contains(o))
 					.filter(o -> o.getPosition() > -1)
-					.sorted(Comparator.comparingInt(o -> o.getPosition()))
+					.sorted(Comparator.comparingInt(CommandOption::getPosition))
 					.collect(Collectors.toList());
 
 				// leftover arguments to match into needed options
 				List<String> argumentValues = argumentResults.stream()
-					.sorted(Comparator.comparingInt(ar -> ar.position()))
-					.map(ar -> ar.value())
+					.sorted(Comparator.comparingInt(org.springframework.shell.command.parser.Parser.ParseResult.ArgumentResult::position))
+					.map(org.springframework.shell.command.parser.Parser.ParseResult.ArgumentResult::value)
 					.collect(Collectors.toList());
 
 				// try to find matching arguments
@@ -417,16 +417,14 @@ public interface Parser {
 
 		private List<MessageResult> validateOptionNotMissing(CommandRegistration registration) {
 			HashSet<CommandOption> requiredOptions = registration.getOptions().stream()
-				.filter(o -> o.isRequired())
+				.filter(CommandOption::isRequired)
 				.collect(Collectors.toCollection(() -> new HashSet<>()));
 
 			List<String> argumentResultValues = argumentResults.stream().map(ar -> ar.value).collect(Collectors.toList());
 			optionResults.stream()
 				.filter(or -> or.value() != null)
-				.map(or -> or.option())
-				.forEach(o -> {
-					requiredOptions.remove(o);
-				});
+				.map(org.springframework.shell.command.parser.Parser.ParseResult.OptionResult::option)
+				.forEach(requiredOptions::remove);
 			Set<CommandOption> requiredOptions2 = requiredOptions.stream()
 				.filter(o -> {
 					if (argumentResultValues.isEmpty()) {
@@ -458,9 +456,7 @@ public interface Parser {
 
 		private List<MessageResult> validateOptionIsValid(CommandRegistration registration) {
 			return invalidOptionNodes.stream()
-				.map(on -> {
-					return MessageResult.of(ParserMessage.UNRECOGNISED_OPTION, 0, on.getName());
-				})
+				.map(on -> MessageResult.of(ParserMessage.UNRECOGNISED_OPTION, 0, on.getName()))
 				.collect(Collectors.toList());
 		}
 
@@ -468,7 +464,7 @@ public interface Parser {
 			if (node == null) {
 				return 0;
 			}
-			return node.getChildren().stream().filter(n -> n instanceof OptionNode).count();
+			return node.getChildren().stream().filter(OptionNode.class::isInstance).count();
 		}
 	}
 }

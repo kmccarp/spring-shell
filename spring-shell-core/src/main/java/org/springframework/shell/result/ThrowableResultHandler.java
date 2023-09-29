@@ -50,11 +50,11 @@ public class ThrowableResultHandler extends TerminalAwareResultHandler<Throwable
 
 	private Throwable lastError;
 
-	private CommandCatalog commandCatalog;
+	private final CommandCatalog commandCatalog;
 
-	private ObjectProvider<InteractiveShellRunner> interactiveRunner;
+	private final ObjectProvider<InteractiveShellRunner> interactiveRunner;
 
-	private ShellContext shellContext;
+	private final ShellContext shellContext;
 
 	public ThrowableResultHandler(Terminal terminal, CommandCatalog commandCatalog, ShellContext shellContext,
 			ObjectProvider<InteractiveShellRunner> interactiveRunner) {

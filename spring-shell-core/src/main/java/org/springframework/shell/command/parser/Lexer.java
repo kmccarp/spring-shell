@@ -65,7 +65,7 @@ public interface Lexer {
 	 */
 	public class DefaultLexer implements Lexer {
 
-		private final static Logger log = LoggerFactory.getLogger(DefaultLexer.class);
+		private static final Logger log = LoggerFactory.getLogger(DefaultLexer.class);
 		private final CommandModel commandModel;
 		private final ParserConfig config;
 
@@ -123,7 +123,7 @@ public interface Lexer {
 		public LexerResult tokenize(List<String> arguments) {
 			log.debug("Tokenizing arguments {}", arguments);
 			List<MessageResult> errorResults = new ArrayList<>();
-			List<Token> tokenList = new ArrayList<Token>();
+			List<Token> tokenList = new ArrayList<>();
 
 			preValidate(errorResults, arguments);
 
@@ -148,7 +148,7 @@ public interface Lexer {
 				}
 			}
 			else {
-				if (!config.isEnabled(Feature.IGNORE_DIRECTIVES) && beforeArguments.size() > 0) {
+				if (!config.isEnabled(Feature.IGNORE_DIRECTIVES) && !beforeArguments.isEmpty()) {
 					errorResults.add(MessageResult.of(ParserMessage.ILLEGAL_CONTENT_BEFORE_COMMANDS, 0, beforeArguments));
 				}
 			}
@@ -227,7 +227,7 @@ public interface Lexer {
 		}
 
 		private void preValidate(List<MessageResult> errorResults, List<String> arguments) {
-			if (arguments.size() > 0) {
+			if (!arguments.isEmpty()) {
 				String arg = arguments.get(0);
 				if ("--".equals(arg)) {
 					errorResults.add(MessageResult.of(ParserMessage.ILLEGAL_CONTENT_BEFORE_COMMANDS, 0, arg));
@@ -236,7 +236,7 @@ public interface Lexer {
 		}
 
 		private static boolean isLastTokenOfType(List<Token> tokenList, TokenType type) {
-			if (tokenList.size() > 0) {
+			if (!tokenList.isEmpty()) {
 				if (tokenList.get(tokenList.size() - 1).getType() == type) {
 					return true;
 				}

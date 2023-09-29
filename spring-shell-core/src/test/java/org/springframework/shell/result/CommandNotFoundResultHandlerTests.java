@@ -81,11 +81,9 @@ class CommandNotFoundResultHandlerTests {
 		List<String> commands = Arrays.asList("one", "two");
 		Map<String, CommandRegistration> registrations = Collections.emptyMap();
 		CommandNotFound e = new CommandNotFound(commands, registrations, "text");
-		given(provider.getIfAvailable()).willReturn(ctx -> {
-			return String.format("%s%s%s%s%s", "hi", ctx.error() == e ? "true" : "false",
+		given(provider.getIfAvailable()).willReturn(ctx -> String.format("%s%s%s%s%s", "hi", ctx.error() == e ? "true" : "false",
 					ctx.commands().stream().collect(Collectors.joining()),
-					ctx.registrations() == registrations ? "true" : "false", ctx.text());
-		});
+					ctx.registrations() == registrations ? "true" : "false", ctx.text()));
 		given(provider.getIfAvailable(any())).willCallRealMethod();
 		given(terminal.writer()).willReturn(writer);
 		CommandNotFoundResultHandler handler = new CommandNotFoundResultHandler(terminal, provider);

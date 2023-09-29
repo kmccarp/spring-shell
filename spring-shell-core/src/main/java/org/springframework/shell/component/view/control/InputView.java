@@ -34,15 +34,15 @@ import org.springframework.shell.component.view.screen.Screen;
 public class InputView extends BoxView {
 
 	private final ArrayList<String> text = new ArrayList<>();
-	private int cursorIndex = 0;
+	private int cursorIndex;
 
 	@Override
 	protected void initInternal() {
 		registerKeyBinding(Key.CursorLeft, event -> left());
 		registerKeyBinding(Key.CursorRight, event -> right());
-		registerKeyBinding(Key.Delete, () -> delete());
-		registerKeyBinding(Key.Backspace, () -> backspace());
-		registerKeyBinding(Key.Enter, () -> done());
+		registerKeyBinding(Key.Delete, this::delete);
+		registerKeyBinding(Key.Backspace, this::backspace);
+		registerKeyBinding(Key.Enter, this::done);
 	}
 
 	@Override
@@ -84,7 +84,7 @@ public class InputView extends BoxView {
 	}
 
 	private int cursorPosition() {
-		return text.stream().limit(cursorIndex).mapToInt(text -> text.length()).sum();
+		return text.stream().limit(cursorIndex).mapToInt(String::length).sum();
 	}
 
 	private void add(String data) {

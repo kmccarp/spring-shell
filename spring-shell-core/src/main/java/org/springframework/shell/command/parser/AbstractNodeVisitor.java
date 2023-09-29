@@ -30,7 +30,7 @@ import org.springframework.shell.command.parser.Parser.ParseResult;
  */
 public abstract class AbstractNodeVisitor implements NodeVisitor {
 
-	private final static Logger log = LoggerFactory.getLogger(AbstractNodeVisitor.class);
+	private static final Logger log = LoggerFactory.getLogger(AbstractNodeVisitor.class);
 
 	@Override
 	public final ParseResult visit(List<NonterminalAstNode> nonterminalNodes,

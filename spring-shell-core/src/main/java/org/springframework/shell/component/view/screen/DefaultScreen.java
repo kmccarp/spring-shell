@@ -39,11 +39,11 @@ import org.springframework.util.Assert;
  */
 public class DefaultScreen implements Screen, DisplayLines {
 
-	private final static Logger log = LoggerFactory.getLogger(DefaultScreen.class);
+	private static final Logger log = LoggerFactory.getLogger(DefaultScreen.class);
 	private boolean showCursor;
 	private Position cursorPosition = new Position(0, 0);
-	private int rows = 0;
-	private int columns = 0;
+	private int rows;
+	private int columns;
 
 	public DefaultScreen() {
 		this(0, 0);
@@ -98,7 +98,7 @@ public class DefaultScreen implements Screen, DisplayLines {
 		return null;
 	}
 
-	private static char[] BOX_CHARS = new char[] { ' ', '╴', '╵', '┌', '╶', '─', '┐', '┬', '╷', '└', '│', '├', '┘', '┴',
+	private static char[] boxChars = new char[] { ' ', '╴', '╵', '┌', '╶', '─', '┐', '┬', '╷', '└', '│', '├', '┘', '┴',
 			'┤', '┼' };
 
 	@Override
@@ -147,7 +147,7 @@ public class DefaultScreen implements Screen, DisplayLines {
 						builder.append(item.getContent(), s);
 					}
 					else if (item.getBorder() > 0) {
-						builder.append(Character.toString(BOX_CHARS[item.getBorder()]), s);
+						builder.append(Character.toString(boxChars[item.getBorder()]), s);
 					}
 					else {
 						builder.append(Character.toString(' '), s);
@@ -256,10 +256,7 @@ public class DefaultScreen implements Screen, DisplayLines {
 	private Map<Integer, Layer> layers = new TreeMap<>();
 
 	private Layer getLayer(int index) {
-		Layer layer = layers.computeIfAbsent(index, l -> {
-			return new Layer();
-		});
-		return layer;
+		return layers.computeIfAbsent(index, l -> new Layer());
 	}
 
 	public ScreenItem[][] getScreenItems() {

@@ -64,7 +64,7 @@ import org.springframework.util.StringUtils;
  */
 public class TerminalUI implements ViewService {
 
-	private final static Logger log = LoggerFactory.getLogger(TerminalUI.class);
+	private static final Logger log = LoggerFactory.getLogger(TerminalUI.class);
 	private final Terminal terminal;
 	private final BindingReader bindingReader;
 	private final KeyMap<Integer> keyMap = new KeyMap<>();
@@ -75,8 +75,8 @@ public class TerminalUI implements ViewService {
 	private View modalView;
 	private boolean fullScreen;
 	private final KeyBinder keyBinder;
-	private DefaultEventLoop eventLoop = new DefaultEventLoop();
-	private View focus = null;
+	private final DefaultEventLoop eventLoop = new DefaultEventLoop();
+	private View focus;
 
 	/**
 	 * Constructs a handler with a given terminal.
@@ -245,9 +245,7 @@ public class TerminalUI implements ViewService {
 	private void registerEventHandling() {
 		// XXX: think this again
 		eventLoop.onDestroy(eventLoop.events()
-			.filter(m -> {
-				return ObjectUtils.nullSafeEquals(m.getHeaders().get(ShellMessageHeaderAccessor.EVENT_TYPE), EventLoop.Type.SIGNAL);
-			})
+			.filter(m -> ObjectUtils.nullSafeEquals(m.getHeaders().get(ShellMessageHeaderAccessor.EVENT_TYPE), EventLoop.Type.SIGNAL))
 			.doOnNext(m -> {
 				display();
 			})
@@ -255,9 +253,7 @@ public class TerminalUI implements ViewService {
 
 		// XXX: think this again
 		eventLoop.onDestroy(eventLoop.events()
-			.filter(m -> {
-				return ObjectUtils.nullSafeEquals(m.getHeaders().get(ShellMessageHeaderAccessor.EVENT_TYPE), EventLoop.Type.SYSTEM);
-			})
+			.filter(m -> ObjectUtils.nullSafeEquals(m.getHeaders().get(ShellMessageHeaderAccessor.EVENT_TYPE), EventLoop.Type.SYSTEM))
 			.doOnNext(m -> {
 				Object payload = m.getPayload();
 				if (payload instanceof String s) {
@@ -272,15 +268,11 @@ public class TerminalUI implements ViewService {
 			.subscribe());
 
 		eventLoop.onDestroy(eventLoop.keyEvents()
-			.doOnNext(m -> {
-				handleKeyEvent(m);
-			})
+			.doOnNext(this::handleKeyEvent)
 			.subscribe());
 
 		eventLoop.onDestroy(eventLoop.mouseEvents()
-			.doOnNext(m -> {
-				handleMouseEvent(m);
-			})
+			.doOnNext(this::handleMouseEvent)
 			.subscribe());
 	}
 

@@ -38,8 +38,8 @@ public abstract class BasePathInput extends BaseInput<PathInputSpec> implements 
 	private ResultMode resultMode;
 	private String defaultValue;
 	private Function<PathInputContext, List<AttributedString>> renderer;
-	private List<Consumer<PathInputContext>> preHandlers = new ArrayList<>();
-	private List<Consumer<PathInputContext>> postHandlers = new ArrayList<>();
+	private final List<Consumer<PathInputContext>> preHandlers = new ArrayList<>();
+	private final List<Consumer<PathInputContext>> postHandlers = new ArrayList<>();
 	private boolean storeResult = true;
 	private String templateLocation;
 	private Function<PathInputContext, String> next;

@@ -79,11 +79,11 @@ public class ValueResult {
 	}
 
 	public List<String> wordsUsed(List<String> words) {
-		return wordsUsed.stream().mapToObj(index -> words.get(index)).collect(Collectors.toList());
+		return wordsUsed.stream().mapToObj(words::get).collect(Collectors.toList());
 	}
 
 	public List<String> wordsUsedForValue(List<String> words) {
-		return wordsUsedForValue.stream().mapToObj(index -> words.get(index)).collect(Collectors.toList());
+		return wordsUsedForValue.stream().mapToObj(words::get).collect(Collectors.toList());
 	}
 
 }

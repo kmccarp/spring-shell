@@ -34,9 +34,9 @@ import org.springframework.util.StringUtils;
  */
 public class BoxView extends AbstractView {
 
-	private final static Logger log = LoggerFactory.getLogger(BoxView.class);
-	private String title = null;
-	private boolean showBorder = false;
+	private static final Logger log = LoggerFactory.getLogger(BoxView.class);
+	private String title;
+	private boolean showBorder;
 	private int innerX = -1;
 	private int innerY;
 	private int innerWidth;

@@ -123,7 +123,7 @@ public class SingleItemSelector<T, I extends Nameable & Matchable & Enableable &
 	private static class DefaultSingleItemSelectorContext<T, I extends Nameable & Matchable & Itemable<T>> extends
 			BaseSelectorComponentContext<T, I, SingleItemSelectorContext<T, I>> implements SingleItemSelectorContext<T, I> {
 
-		private Function<T, String> itemMapper = item -> item.toString();
+		private Function<T, String> itemMapper = Object::toString;
 
 		DefaultSingleItemSelectorContext() {
 		}

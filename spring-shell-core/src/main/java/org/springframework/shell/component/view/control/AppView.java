@@ -34,9 +34,9 @@ import org.springframework.util.Assert;
 public class AppView extends BoxView {
 
 	private GridView grid;
-	private View main;
-	private View menu;
-	private View status;
+	private final View main;
+	private final View menu;
+	private final View status;
 	private boolean menuVisible = true;
 	private boolean statusVisible = true;
 

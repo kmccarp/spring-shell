@@ -24,7 +24,7 @@ public interface SelectorItem<T> extends Nameable, Matchable, Enableable, Select
 	}
 
 	static <T> SelectorItem<T> of(String name, T item, boolean enabled, boolean selected) {
-		return new SelectorItemWrapper<T>(name, item, enabled, selected);
+		return new SelectorItemWrapper<>(name, item, enabled, selected);
 	}
 
 	public static class SelectorItemWrapper<T> implements SelectorItem<T> {

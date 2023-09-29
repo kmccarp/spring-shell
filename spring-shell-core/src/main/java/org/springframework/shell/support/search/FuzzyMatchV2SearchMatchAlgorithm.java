@@ -41,8 +41,8 @@ class FuzzyMatchV2SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 			return SearchMatchResult.ofMinus();
 		}
 
-		List<Integer> H0 = create(N);
-		List<Integer> C0 = create(N);
+		List<Integer> h0 = create(N);
+		List<Integer> c0 = create(N);
 		List<Integer> B = create(N);
 		List<Integer> F = create(M);
 		String T = text;
@@ -59,15 +59,15 @@ class FuzzyMatchV2SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 		CharClass prevClass = CharClass.WHITE;
 		boolean inGap = false;
 
-		int TsubIdxRestore = idx;
-		String Tsub = T.substring(idx);
+		int tsubIdxRestore = idx;
+		String tsub = T.substring(idx);
 
-		List<Integer> H0sub = slicex(H0, idx, Tsub.length());
-		List<Integer> C0sub = slicex(C0, idx, Tsub.length());
-		List<Integer> Bsub = slicex(B, idx, Tsub.length());
+		List<Integer> h0sub = slicex(h0, idx, tsub.length());
+		List<Integer> c0sub = slicex(c0, idx, tsub.length());
+		List<Integer> bsub = slicex(B, idx, tsub.length());
 
-		for (int off = 0; off < Tsub.length(); off++) {
-			char c = Tsub.charAt(off);
+		for (int off = 0; off < tsub.length(); off++) {
+			char c = tsub.charAt(off);
 			CharClass clazz;
 
 			if (c >= 32 && c < 127) {
@@ -88,9 +88,9 @@ class FuzzyMatchV2SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 
 			// TODO: potential speed increase as go can directly modify underlying array/slice
 			//       by access via for loop variables and so on. we create a lot of garbage here.
-			Tsub = Tsub.substring(0, off) + c + Tsub.substring(off + 1);
+			tsub = tsub.substring(0, off) + c + tsub.substring(off + 1);
 			int bonus = bonusFor(prevClass, clazz);
-			Bsub.set(off, bonus);
+			bsub.set(off, bonus);
 			prevClass = clazz;
 
 			if (c == pchar) {
@@ -104,8 +104,8 @@ class FuzzyMatchV2SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 
 			if (c == pchar0) {
 				int score = SCORE_MATCH + bonus * BONUS_FIRST_CHAR_MULTIPLIER;
-				H0sub.set(off, score);
-				C0sub.set(off, 1);
+				h0sub.set(off, score);
+				c0sub.set(off, 1);
 				if (M == 1 && (forward && score > maxScore || !forward && score >= maxScore)) {
 					maxScore = score;
 					maxScorePos = idx + off;
@@ -117,18 +117,18 @@ class FuzzyMatchV2SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 			}
 			else {
 				if (inGap) {
-					H0sub.set(off, Math.max(prevH0 + SCORE_GAP_EXTENSION, 0));
+					h0sub.set(off, Math.max(prevH0 + SCORE_GAP_EXTENSION, 0));
 				}
 				else {
-					H0sub.set(off, Math.max(prevH0 + SCORE_GAP_START, 0));
+					h0sub.set(off, Math.max(prevH0 + SCORE_GAP_START, 0));
 				}
-				C0sub.set(off, 0);
+				c0sub.set(off, 0);
 				inGap = true;
 			}
-			prevH0 = H0sub.get(off);
+			prevH0 = h0sub.get(off);
 		}
 
-		T = T.substring(0, TsubIdxRestore) + Tsub;
+		T = T.substring(0, tsubIdxRestore) + tsub;
 		if (pidx != M) {
 			return SearchMatchResult.ofMinus();
 		}
@@ -140,48 +140,48 @@ class FuzzyMatchV2SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 		int f0 = F.get(0);
 		int width = lastIdx - f0 + 1;
 		List<Integer> H = create(width * M);
-		copy(H, H0, f0, lastIdx + 1);
+		copy(H, h0, f0, lastIdx + 1);
 
 		List<Integer> C = create(width * M);
-		copy(C, C0, f0, lastIdx + 1);
+		copy(C, c0, f0, lastIdx + 1);
 
-		List<Integer> Fsub = F.subList(1, F.size());
-		String Psub = pattern.substring(1);
-		Psub = Psub.substring(0, Fsub.size());
+		List<Integer> fsub = F.subList(1, F.size());
+		String psub = pattern.substring(1);
+		psub = psub.substring(0, fsub.size());
 
-		for (int off = 0; off < Fsub.size(); off++) {
-			int f = Fsub.get(off);
-			char pchar2 = Psub.charAt(off);
+		for (int off = 0; off < fsub.size(); off++) {
+			int f = fsub.get(off);
+			char pchar2 = psub.charAt(off);
 			int pidx2 = off + 1;
 			int row = pidx2 * width;
 			boolean inGap2 = false;
-			String Tsub2 = T.substring(f, lastIdx + 1);
-			List<Integer> Bsub2 = slicex(B, f, Tsub2.length());
-			List<Integer> Csub2 = slicex(C, row + f - f0, Tsub2.length());
-			List<Integer> Cdiag = slicex(C, row + f - f0 - 1 - width, Tsub2.length());
-			List<Integer> Hsub2 = slicex(H, row + f - f0, Tsub2.length());
-			List<Integer> Hdiag = slicex(H, row + f - f0 - 1 - width, Tsub2.length());
-			List<Integer> Hleft = slicex(H, row + f - f0 - 1, Tsub2.length());
-			Hleft.set(0, 0);
+			String tsub2 = T.substring(f, lastIdx + 1);
+			List<Integer> bsub2 = slicex(B, f, tsub2.length());
+			List<Integer> csub2 = slicex(C, row + f - f0, tsub2.length());
+			List<Integer> cdiag = slicex(C, row + f - f0 - 1 - width, tsub2.length());
+			List<Integer> hsub2 = slicex(H, row + f - f0, tsub2.length());
+			List<Integer> hdiag = slicex(H, row + f - f0 - 1 - width, tsub2.length());
+			List<Integer> hleft = slicex(H, row + f - f0 - 1, tsub2.length());
+			hleft.set(0, 0);
 
-			for (int off2 = 0; off2 < Tsub2.length(); off2++) {
-				char c = Tsub2.charAt(off2);
+			for (int off2 = 0; off2 < tsub2.length(); off2++) {
+				char c = tsub2.charAt(off2);
 				int col = off2 + f;
 				int s1 = 0;
 				int s2 = 0;
 				int consecutive = 0;
 
 				if (inGap2) {
-					s2 = Hleft.get(off2) + SCORE_GAP_EXTENSION;
+					s2 = hleft.get(off2) + SCORE_GAP_EXTENSION;
 				}
 				else {
-					s2 = Hleft.get(off2) + SCORE_GAP_START;
+					s2 = hleft.get(off2) + SCORE_GAP_START;
 				}
 
 				if (pchar2 == c) {
-					s1 = Hdiag.get(off2) + SCORE_MATCH;
-					int b = Bsub2.get(off2);
-					consecutive = Cdiag.get(off2) + 1;
+					s1 = hdiag.get(off2) + SCORE_MATCH;
+					int b = bsub2.get(off2);
+					consecutive = cdiag.get(off2) + 1;
 
 					if (consecutive > 1) {
 						int fb = B.get(col - consecutive + 1);
@@ -193,21 +193,21 @@ class FuzzyMatchV2SearchMatchAlgorithm extends AbstractSearchMatchAlgorithm {
 						}
 					}
 					if (s1 + b < s2) {
-						s1 += Bsub2.get(off2);
+						s1 += bsub2.get(off2);
 						consecutive = 0;
 					}
 					else {
 						s1 += b;
 					}
 				}
-				Csub2.set(off2, consecutive);
+				csub2.set(off2, consecutive);
 				inGap2 = s1 < s2;
 				int score = Math.max(Math.max(s1, s2), 0);
 				if (pidx2 == M - 1 && (forward && score > maxScore) || !forward && score >= maxScore) {
 					maxScore = score;
 					maxScorePos = col;
 				}
-				Hsub2.set(off2, score);
+				hsub2.set(off2, score);
 			}
 		}
 

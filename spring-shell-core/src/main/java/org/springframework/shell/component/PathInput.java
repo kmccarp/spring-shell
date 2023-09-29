@@ -44,9 +44,9 @@ import org.springframework.util.StringUtils;;
  */
 public class PathInput extends AbstractTextComponent<Path, PathInputContext> {
 
-	private final static Logger log = LoggerFactory.getLogger(PathInput.class);
+	private static final Logger log = LoggerFactory.getLogger(PathInput.class);
 	private PathInputContext currentContext;
-	private Function<String, Path> pathProvider = (path) -> Paths.get(path);
+	private Function<String, Path> pathProvider = path -> Paths.get(path);
 
 	public PathInput(Terminal terminal) {
 		this(terminal, null);

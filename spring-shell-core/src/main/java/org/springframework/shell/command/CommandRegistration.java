@@ -319,7 +319,7 @@ public interface CommandRegistration {
 		/**
 		 * Define min(1), max(MAXINTEGER).
 		 */
-		ONE_OR_MORE;
+		ONE_OR_MORE
 	}
 
 	/**
@@ -375,7 +375,7 @@ public interface CommandRegistration {
 		}
 
 		enum TargetType {
-			METHOD, FUNCTION, CONSUMER;
+			METHOD, FUNCTION, CONSUMER
 		}
 
 		static class DefaultTargetInfo implements TargetInfo {
@@ -1050,7 +1050,7 @@ public interface CommandRegistration {
 			this.commands = Arrays.asList(commands).stream()
 				.flatMap(c -> Stream.of(c.split(" ")))
 				.filter(c -> StringUtils.hasText(c))
-				.map(c -> c.trim())
+				.map(String::trim)
 				.collect(Collectors.toList())
 				.toArray(new String[0]);
 			return this;
@@ -1282,9 +1282,7 @@ public interface CommandRegistration {
 		@Override
 		public List<CommandAlias> getAliases() {
 			return this.aliasSpecs.stream()
-				.map(spec -> {
-					return CommandAlias.of(commandArrayToName(spec.commands), spec.group);
-				})
+				.map(spec -> CommandAlias.of(commandArrayToName(spec.commands), spec.group))
 				.collect(Collectors.toList());
 		}
 
@@ -1323,7 +1321,7 @@ public interface CommandRegistration {
 			return Arrays.asList(commands).stream()
 				.flatMap(c -> Stream.of(c.split(" ")))
 				.filter(c -> StringUtils.hasText(c))
-				.map(c -> c.trim())
+				.map(String::trim)
 				.collect(Collectors.joining(" "));
 		}
 	}
@@ -1331,7 +1329,7 @@ public interface CommandRegistration {
 	static class DefaultBuilder extends BaseBuilder {
 	}
 
-	static abstract class BaseBuilder implements Builder {
+	abstract static class BaseBuilder implements Builder {
 
 		private String[] commands;
 		private InteractionMode interactionMode = InteractionMode.ALL;
@@ -1353,7 +1351,7 @@ public interface CommandRegistration {
 			this.commands = Arrays.asList(commands).stream()
 				.flatMap(c -> Stream.of(c.split(" ")))
 				.filter(c -> StringUtils.hasText(c))
-				.map(c -> c.trim())
+				.map(String::trim)
 				.collect(Collectors.toList())
 				.toArray(new String[0]);
 			return this;

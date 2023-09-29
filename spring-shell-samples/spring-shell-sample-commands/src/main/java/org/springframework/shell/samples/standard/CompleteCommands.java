@@ -75,7 +75,7 @@ public class CompleteCommands {
 
 	static class FunnyValuesProvider implements ValueProvider {
 
-		private final static String[] VALUES = new String[] {
+		private static final String[] VALUES = new String[] {
 			"hello world",
 			"I am quoting \"The Daily Mail\"",
 			"10 \\ 3 = 3"
@@ -117,7 +117,7 @@ public class CompleteCommands {
 		return "You said " + arg1;
 	}
 
-	static enum MyEnums {
+	enum MyEnums {
 		E1, E2, E3
 	}
 }

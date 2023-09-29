@@ -52,8 +52,8 @@ public class ButtonView extends BoxView {
 
 	@Override
 	protected void initInternal() {
-		registerKeyBinding(Key.Enter, () -> keySelect());
-		registerMouseBinding(MouseEvent.Type.Released | MouseEvent.Button.Button1, event -> mouseSelect(event));
+		registerKeyBinding(Key.Enter, this::keySelect);
+		registerMouseBinding(MouseEvent.Type.Released | MouseEvent.Button.Button1, this::mouseSelect);
 	}
 
 	@Override

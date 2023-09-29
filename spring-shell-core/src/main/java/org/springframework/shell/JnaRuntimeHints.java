@@ -351,7 +351,7 @@ public class JnaRuntimeHints implements RuntimeHintsRegistrar {
 		}
 
 		void withHints(TypeHint.Builder hint) {
-			Stream.of(names()).forEach(f -> hint.withField(f));
+			Stream.of(names()).forEach(hint::withField);
 		}
 	}
 

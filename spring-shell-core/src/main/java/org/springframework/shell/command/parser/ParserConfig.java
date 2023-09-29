@@ -41,7 +41,7 @@ public class ParserConfig {
 		return this;
 	}
 
-	public static enum Feature {
+	public enum Feature {
 
 		/**
 		 * Defines if directives support is enabled, disabled on default.
@@ -69,7 +69,7 @@ public class ParserConfig {
 		private final long mask;
 
 		private Feature(boolean defaultState) {
-			this.mask = (1 << ordinal());
+			this.mask = 1 << ordinal();
 			this.defaultState = defaultState;
 		}
 

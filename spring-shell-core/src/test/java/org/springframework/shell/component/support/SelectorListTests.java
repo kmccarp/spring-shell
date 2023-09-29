@@ -255,9 +255,7 @@ class SelectorListTests {
 
 	List<TestItem> items(int count) {
 		return IntStream.range(0, count)
-			.mapToObj(i -> {
-				return new TestItem("name" + i);
-			})
+			.mapToObj(i -> new TestItem("name" + i))
 			.collect(Collectors.toList());
 	}
 
@@ -285,7 +283,7 @@ class SelectorListTests {
 		public SelectorListAssert<T> namesContainsExactly(String... names) {
 			isNotNull();
 			List<String> actualNames = actual.getProjection().stream()
-				.map(i -> i.getName())
+				.map(Nameable::getName)
 				.collect(Collectors.toList());
 			assertThat(actualNames).containsExactly(names);
 			return this;
@@ -294,7 +292,7 @@ class SelectorListTests {
 		public SelectorListAssert<T> selectedContainsExactly(Boolean... selected) {
 			isNotNull();
 			List<Boolean> actualSelected = actual.getProjection().stream()
-				.map(i -> i.isSelected())
+				.map(Selectable::isSelected)
 				.collect(Collectors.toList());
 			assertThat(actualSelected).containsExactly(selected);
 			return this;
