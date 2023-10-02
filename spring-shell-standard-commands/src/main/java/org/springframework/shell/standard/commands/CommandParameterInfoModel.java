@@ -26,11 +26,11 @@ import org.springframework.util.StringUtils;
  */
 class CommandParameterInfoModel {
 
-	private String type;
-	private List<String> arguments;
-	private boolean required;
-	private String description;
-	private String defaultValue;
+	private final String type;
+	private final List<String> arguments;
+	private final boolean required;
+	private final String description;
+	private final String defaultValue;
 
 	CommandParameterInfoModel(String type, List<String> arguments, boolean required, String description,
 			String defaultValue) {

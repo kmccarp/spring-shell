@@ -64,7 +64,7 @@ public interface KeyHandler {
 	 * @return a composed handler
 	 */
     default KeyHandler thenIfConsumed(KeyHandler other) {
-		return thenConditionally(other, result -> result.consumed());
+		return thenConditionally(other, org.springframework.shell.component.view.event.KeyHandler.KeyHandlerResult::consumed);
     }
 
 	/**

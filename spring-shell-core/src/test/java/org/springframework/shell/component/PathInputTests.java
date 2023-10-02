@@ -55,7 +55,7 @@ public class PathInputTests extends AbstractShellTests {
 		latch1 = new CountDownLatch(1);
 		result1 = new AtomicReference<>();
 		fileSystem = Jimfs.newFileSystem();
-		pathProvider = (path) -> fileSystem.getPath(path);
+		pathProvider = fileSystem::getPath;
 	}
 
 	@AfterEach

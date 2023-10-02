@@ -33,8 +33,7 @@ public class GenericResultHandlerServiceTests {
 		resultHandlerService.addResultHandler(integerResultHandler);
 		resultHandlerService.handle("string");
 		assertThat(stringResultHandler.result).isEqualTo("string");
-		assertThat(integerResultHandler.result).isNull();;
-		resultHandlerService.handle(0);
+		assertThat(integerResultHandler.result).isNull();resultHandlerService.handle(0);
 		assertThat(integerResultHandler.result).isEqualTo(0);
 	}
 

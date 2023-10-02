@@ -34,11 +34,9 @@ public class CompletionSnippets {
 		CommandRegistration.builder()
 			.withOption()
 				.longNames("arg1")
-				.completion(ctx -> {
-					return Arrays.asList("val1", "val2").stream()
+				.completion(ctx -> Arrays.asList("val1", "val2").stream()
 						.map(CompletionProposal::new)
-						.collect(Collectors.toList());
-				})
+						.collect(Collectors.toList()))
 				.and()
 			.build();
 	}

@@ -482,9 +482,7 @@ public class CommandRegistrationTests extends AbstractCommandTests {
 			.command("command1")
 			.withOption()
 				.longNames("arg1")
-				.completion(ctx -> {
-					return new ArrayList<>();
-				})
+				.completion(ctx -> new ArrayList<>())
 				.and()
 			.withTarget()
 				.function(function1)
