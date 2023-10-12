@@ -139,10 +139,10 @@ public class ExtendedDefaultParser implements Parser {
 		}
 		if (eofOnUnclosedQuote && quoteStart >= 0 && context != ParseContext.COMPLETE) {
 			throw new EOFError(-1, -1, "Missing closing quote",
-					(line != null && line.charAt(quoteStart) == '\'') ? "quote" : "dquote");
+					line != null && line.charAt(quoteStart) == '\'' ? "quote" : "dquote");
 		}
 
-		String openingQuote = (quoteStart >= 0 && line != null) ? line.substring(quoteStart, quoteStart + 1) : null;
+		String openingQuote = quoteStart >= 0 && line != null ? line.substring(quoteStart, quoteStart + 1) : null;
 		return wrap(new ExtendedArgumentList(line, words, wordIndex, wordCursor, cursor, openingQuote));
 	}
 

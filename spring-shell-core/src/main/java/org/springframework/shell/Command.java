@@ -61,8 +61,12 @@ public interface Command {
 
 		@Override
 		public boolean equals(Object o) {
-			if (this == o) return true;
-			if (o == null || getClass() != o.getClass()) return false;
+			if (this == o) {
+				return true;
+			}
+			if (o == null || getClass() != o.getClass()) {
+				return false;
+			}
 			Help help = (Help) o;
 			return Objects.equals(group, help.group) &&
 					Objects.equals(description, help.description);

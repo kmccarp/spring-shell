@@ -85,7 +85,7 @@ public class Help extends AbstractShellComponent {
 		}
 		else {
 			String commandStr = Stream.of(command)
-				.map(c -> c.trim())
+				.map(String::trim)
 				.collect(Collectors.joining(" "));
 			return renderCommand(commandStr);
 		}

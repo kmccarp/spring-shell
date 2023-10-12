@@ -30,7 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PartsTextRendererTests {
 
-	private static Locale LOCALE = Locale.getDefault();
+	private static final Locale LOCALE = Locale.getDefault();
 	private static PartsTextRenderer renderer;
 	private static ThemeResolver themeResolver;
 

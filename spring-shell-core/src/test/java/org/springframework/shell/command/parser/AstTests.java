@@ -101,10 +101,8 @@ class AstTests extends AbstractParsingTests {
 			assertThat(cn.getCommand()).isEqualTo("root3");
 			assertThat(cn.getChildren()).hasSize(1);
 			assertThat(cn.getChildren())
-				.filteredOn(on -> on instanceof OptionNode)
-				.extracting(on -> {
-					return ((OptionNode)on).getName();
-				})
+				.filteredOn(OptionNode.class::isInstance)
+				.extracting(on -> ((OptionNode)on).getName())
 				.containsExactly("--arg1");
 		});
 	}
@@ -125,10 +123,8 @@ class AstTests extends AbstractParsingTests {
 			assertThat(cn.getCommand()).isEqualTo("root3");
 			assertThat(cn.getChildren()).hasSize(1);
 			assertThat(cn.getChildren())
-				.filteredOn(on -> on instanceof OptionNode)
-				.extracting(on -> {
-					return ((OptionNode)on).getName();
-				})
+				.filteredOn(OptionNode.class::isInstance)
+				.extracting(on -> ((OptionNode)on).getName())
 				.containsExactly("--arg1");
 			OptionNode on = (OptionNode) cn.getChildren().get(0);
 			assertThat(on.getChildren()).hasSize(1);
@@ -155,10 +151,8 @@ class AstTests extends AbstractParsingTests {
 			assertThat(cn.getCommand()).isEqualTo("root3");
 			assertThat(cn.getChildren()).hasSize(2);
 			assertThat(cn.getChildren())
-				.filteredOn(on -> on instanceof OptionNode)
-				.extracting(on -> {
-					return ((OptionNode)on).getName();
-				})
+				.filteredOn(OptionNode.class::isInstance)
+				.extracting(on -> ((OptionNode)on).getName())
 				.containsExactly("--arg1", "--arg2");
 			OptionNode on1 = (OptionNode) cn.getChildren().get(0);
 			assertThat(on1.getChildren()).hasSize(1);
@@ -187,10 +181,8 @@ class AstTests extends AbstractParsingTests {
 			assertThat(cn.getCommand()).isEqualTo("root3");
 			assertThat(cn.getChildren()).hasSize(1);
 			assertThat(cn.getChildren())
-				.filteredOn(on -> on instanceof OptionNode)
-				.extracting(on -> {
-					return ((OptionNode)on).getName();
-				})
+				.filteredOn(OptionNode.class::isInstance)
+				.extracting(on -> ((OptionNode)on).getName())
 				.containsExactly("-a");
 			OptionNode on = (OptionNode) cn.getChildren().get(0);
 			assertThat(on.getChildren()).hasSize(1);
@@ -217,10 +209,8 @@ class AstTests extends AbstractParsingTests {
 			assertThat(cn.getCommand()).isEqualTo("root3");
 			assertThat(cn.getChildren()).hasSize(2);
 			assertThat(cn.getChildren())
-				.filteredOn(on -> on instanceof OptionNode)
-				.extracting(on -> {
-					return ((OptionNode)on).getName();
-				})
+				.filteredOn(OptionNode.class::isInstance)
+				.extracting(on -> ((OptionNode)on).getName())
 				.containsExactly("-a", "-b");
 			OptionNode on1 = (OptionNode) cn.getChildren().get(0);
 			assertThat(on1.getChildren()).hasSize(1);
@@ -249,10 +239,8 @@ class AstTests extends AbstractParsingTests {
 			assertThat(cn.getCommand()).isEqualTo("root3");
 			assertThat(cn.getChildren()).hasSize(2);
 			assertThat(cn.getChildren())
-				.filteredOn(on -> on instanceof OptionNode)
-				.extracting(on -> {
-					return ((OptionNode)on).getName();
-				})
+				.filteredOn(OptionNode.class::isInstance)
+				.extracting(on -> ((OptionNode)on).getName())
 				.containsExactly("--arg1", "--arg2");
 		});
 	}

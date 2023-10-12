@@ -293,9 +293,7 @@ public class ShellTests {
 		CommandRegistration registration1 = CommandRegistration.builder()
 			.command("hello world")
 			.withTarget()
-				.function(ctx -> {
-					return null;
-				})
+				.function(ctx -> null)
 				.and()
 			.withOption()
 				.longNames("arg1")

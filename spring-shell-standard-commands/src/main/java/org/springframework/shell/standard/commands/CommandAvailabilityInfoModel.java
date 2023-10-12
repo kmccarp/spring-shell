@@ -22,8 +22,8 @@ package org.springframework.shell.standard.commands;
  */
 class CommandAvailabilityInfoModel {
 
-	private boolean available;
-	private String reason;
+	private final boolean available;
+	private final String reason;
 
 	CommandAvailabilityInfoModel(boolean available, String reason) {
 		this.available = available;
