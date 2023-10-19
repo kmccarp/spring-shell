@@ -66,7 +66,7 @@ public interface MouseHandler {
 	 * @return a composed handler
 	 */
     default MouseHandler thenIfConsumed(MouseHandler other) {
-		return thenConditionally(other, result -> result.consumed());
+		return thenConditionally(other, org.springframework.shell.component.view.event.MouseHandler.MouseHandlerResult::consumed);
     }
 
 	/**

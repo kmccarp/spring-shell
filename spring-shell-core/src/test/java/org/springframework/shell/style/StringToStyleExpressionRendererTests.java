@@ -28,7 +28,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class StringToStyleExpressionRendererTests {
 
-	private static Locale LOCALE = Locale.getDefault();
+	private static final Locale LOCALE = Locale.getDefault();
 	private static StringToStyleExpressionRenderer renderer;
 
 	@BeforeAll

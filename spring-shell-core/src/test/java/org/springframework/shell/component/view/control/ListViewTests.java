@@ -43,8 +43,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ListViewTests extends AbstractViewTests {
 
-	private final static ParameterizedTypeReference<ListViewSelectedItemChangedEvent<String>> LISTVIEW_STRING_TYPEREF
-		= new ParameterizedTypeReference<ListViewSelectedItemChangedEvent<String>>() {};
+	private static final ParameterizedTypeReference<ListViewSelectedItemChangedEvent<String>> LISTVIEW_STRING_TYPEREF
+		= new ParameterizedTypeReference<>() {};
 
 	private static final String SELECTED_FIELD = "selected";
 	private static final String START_FIELD = "start";
